@@ -22,7 +22,7 @@
     .divider-3 {
         height: 3px;
         overflow: hidden;
-        background-color: #e0e0e0;
+        background-color: #fff;
     }
     
     .backgroud {
@@ -35,4 +35,12 @@
     
     .body-background-color {
         background-color: white;
+    }
+    
+    .custom-card {
+        position: relative;
+        margin: 0.5rem 0 1rem 0;
+        background-color: #fff;
+        transition: box-shadow .25s;
+        border-radius: 2px;
     }
