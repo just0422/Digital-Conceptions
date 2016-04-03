@@ -25,6 +25,12 @@
         background-color: #fff;
     }
     
+    .divider-grey-3 {
+        height: 3px;
+        overflow: hidden;
+        background-color: #e0e0e0;
+    }
+    
     .backgroud {
         background-color: #fafafa;
     }
