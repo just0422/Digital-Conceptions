@@ -8042,6 +8042,10 @@ footer.page-footer .footer-copyright {
     height: 500px;
 }
 
+.card.largest {
+    height: 100%;
+}
+
 .card .card-image {
     position: relative;
 }
@@ -11678,7 +11682,6 @@ button.picker__close:focus {
 }
 
 .body {
-    display: flex;
     min-height: 100vh;
     flex-direction: column;
 }

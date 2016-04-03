@@ -1,20 +1,26 @@
-.custom-nav-font-size {
-    font-size: 200%;
-}
-
-.fix-comic-cover-page {
-    width: 50%;
-    height: auto;
-}
-
-.pad-top {
-    padding-top: 8px;
-}
-
-.pad-top-2 {
-    padding-top: 13px;
-}
-
-.pad-top-10 {
-    padding-top: 10px;
-}
+    .custom-nav-font-size {
+        font-size: 200%;
+    }
+    
+    .fix-comic-cover-page {
+        width: 50%;
+        height: auto;
+    }
+    
+    .pad-top {
+        padding-top: 8px;
+    }
+    
+    .pad-top-2 {
+        padding-top: 13px;
+    }
+    
+    .pad-top-10 {
+        padding-top: 10px;
+    }
+    
+    .divider-3 {
+        height: 3px;
+        overflow: hidden;
+        background-color: #e0e0e0;
+    }
