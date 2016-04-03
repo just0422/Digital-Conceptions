@@ -28,3 +28,11 @@
     .backgroud {
         background-color: #fafafa;
     }
+    
+    .max-height {
+        height: 100%;
+    }
+    
+    .body-background-color {
+        background-color: white;
+    }
