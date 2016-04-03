@@ -1,0 +1,20 @@
+.custom-nav-font-size {
+    font-size: 200%;
+}
+
+.fix-comic-cover-page {
+    width: 50%;
+    height: auto;
+}
+
+.pad-top {
+    padding-top: 8px;
+}
+
+.pad-top-2 {
+    padding-top: 13px;
+}
+
+.pad-top-10 {
+    padding-top: 10px;
+}
