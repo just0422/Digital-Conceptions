@@ -26,157 +26,155 @@
 </head>
 
 <body class="background">
-    <!-- Page content -->
 
+    <!-- Outer most container -->
     <div class="container">
 
-        <div clas="page-flexbox-wrapper">
-            <header class="main">
-                <!-- Nav bar-->
-                <nav>
-                    <div class="nav-wrapper cyan lighten-2">
-                        <ul id="nav-mobile" class="left">
-                            <li><a href="index.html" class="custom-nav-font-size">Home</a></li>
-                            <li><a href="genre.html" class="custom-nav-font-size">Genre</a></li>
+
+        <!-- Header section-->
+        <header class="main">
+            <!-- Nav bar-->
+            <nav>
+                <div class="nav-wrapper cyan lighten-2">
+                    <ul id="nav-mobile" class="left">
+                        <li><a href="index.html" class="custom-nav-font-size">Home</a></li>
+                        <li><a href="#" class="custom-nav-font-size z-depth-1">Genre</a></li>
+                    </ul>
+
+
+                    <ul class="right">
+                        <li><a href="#" class="dropdown-button" data-activates="features"><i class="material-icons">face</i></a></li>
+
+                        <!-- Dropdown Data -->
+                        <ul id='features' class='dropdown-content'>
+                            <li><a href="#!">Create <img></a></li>
+                            <li><a href="user_profile.html">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><a href="#!">Log out</a></li>
                         </ul>
+                    </ul>
 
-
-                        <ul class="right">
-                            <li><a href="#" class="dropdown-button" data-activates="features"><i class="material-icons">face</i></a></li>
-
-                            <!-- Dropdown Structure -->
-                            <ul id='features' class='dropdown-content'>
-                                <li><a href="#!">Create <img></a></li>
-                                <li><a href="user_profile.html">Profile</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#!">Log out</a></li>
-                            </ul>
-
-                        </ul>
-
-
-                        <!-- Search bar-->
-                        <ul>
-                            <form action="search.html">
-                                <div class="input-field right">
-                                    <input id="search" type="search" required>
-                                    <label for="search"><i class="material-icons right">search</i></label>
-                                    <i class="material-icons">close</i>
-                                </div>
-                            </form>
-                        </ul>
-                    </div>
-                </nav>
-            </header>
-
-            <main class="main body body-background-color">
-                <!--Search results-->
-
-
-                <div class="card white lighten-2 min-height">
-                    <div class="card-content cyan-text">
-                        <span class="card-title">Results: 0</span>
-                        <p>Your search - Hello Word - No related comics found</p>
-                        <p>Below are recommend comics for the day </p>
-
-                        <div class="pad-top"></div>
-                        <div class="divider"></div>
-                        <div class="pad-top"></div>
-                        <div class="pad-top"></div>
-                        <div class="pad-top"></div>
-
-
-                        <div class="row">
-                            <div class="col s6">
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p>Hero</p>
-                                    </div>
-                                </div>
-                                <div class="divider-3"></div>
-
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p>Hero</p>
-                                    </div>
-                                </div>
-                                <div class="divider-3"></div>
-
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p>Hero</p>
-                                    </div>
-                                </div>
-                                <div class="divider-3"></div>
-
-
-
+                    <!-- Search bar-->
+                    <ul>
+                        <form action="search.html">
+                            <div class="input-field right">
+                                <input id="search" type="search" required>
+                                <label for="search"><i class="material-icons right">search</i></label>
+                                <i class="material-icons">close</i>
                             </div>
+                        </form>
+                    </ul>
 
-                            <div class="col s6">
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p>Hero</p>
-                                    </div>
+                </div>
+            </nav>
+        </header>
+
+        <!-- Main boy content -->
+        <main class="main body body-background-color">
+
+            <!--Search results-->
+            <div class="card white lighten-2 min-height">
+                <div class="card-content cyan-text">
+                    <span class="card-title">Results: 0</span>
+                    <p>Your search - Hello Word - No related comics found</p>
+                    <p>Below are recommend comics for the day </p>
+
+                    <div class="pad-top"></div>
+                    <div class="divider"></div>
+                    <div class="pad-top"></div>
+                    <div class="pad-top"></div>
+                    <div class="pad-top"></div>
+
+
+                    <div class="row">
+                        <div class="col s6">
+                            <div class="card hoverable cyan lighten-3" onclick="">
+                                <div class="card-image">
+                                    <img src="image/5.jpg">
                                 </div>
-                                <div class="divider-3"></div>
-
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p>Hero</p>
-                                    </div>
+                                <div class="card-content white-text">
+                                    <p>Hero</p>
                                 </div>
-                                <div class="divider-3"></div>
-
-
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p>Hero</p>
-                                    </div>
-                                </div>
-                                <div class="divider-3"></div>
-
                             </div>
+                            <div class="divider-3"></div>
 
+                            <div class="card hoverable cyan lighten-3" onclick="">
+                                <div class="card-image">
+                                    <img src="image/5.jpg">
+                                </div>
+                                <div class="card-content white-text">
+                                    <p>Hero</p>
+                                </div>
+                            </div>
+                            <div class="divider-3"></div>
 
+                            <div class="card hoverable cyan lighten-3" onclick="">
+                                <div class="card-image">
+                                    <img src="image/5.jpg">
+                                </div>
+                                <div class="card-content white-text">
+                                    <p>Hero</p>
+                                </div>
+                            </div>
+                            <div class="divider-3"></div>
 
 
 
                         </div>
-                    </div>
-                </div>
-            </main>
 
-            <footer class="page-footer cyan lighten-2 ">
-                <div class="container ">
-                    <div class="row ">
-                        <div class="col s12 ">
-                            <span class="white-text text-lighten-4 ">About Us</span>
-                            <span class="white-text text-lighten-4 right ">Contact Us</span>
-                            <p class="white-text text-lighten-4 ">© 2016 Degital Conceptions, All rights reserved.</p>
+                        <div class="col s6">
+                            <div class="card hoverable cyan lighten-3" onclick="">
+                                <div class="card-image">
+                                    <img src="image/5.jpg">
+                                </div>
+                                <div class="card-content white-text">
+                                    <p>Hero</p>
+                                </div>
+                            </div>
+                            <div class="divider-3"></div>
+
+                            <div class="card hoverable cyan lighten-3" onclick="">
+                                <div class="card-image">
+                                    <img src="image/5.jpg">
+                                </div>
+                                <div class="card-content white-text">
+                                    <p>Hero</p>
+                                </div>
+                            </div>
+                            <div class="divider-3"></div>
+
+
+                            <div class="card hoverable cyan lighten-3" onclick="">
+                                <div class="card-image">
+                                    <img src="image/5.jpg">
+                                </div>
+                                <div class="card-content white-text">
+                                    <p>Hero</p>
+                                </div>
+                            </div>
+                            <div class="divider-3"></div>
+
                         </div>
+
                     </div>
                 </div>
-            </footer>
-        </div>
+            </div>
+        </main>
+
+
+        <!-- Footer -->
+        <footer class="page-footer cyan lighten-2 ">
+            <div class="container ">
+                <div class="row ">
+                    <div class="col s12 ">
+                        <span class="white-text text-lighten-4 ">About Us</span>
+                        <span class="white-text text-lighten-4 right ">Contact Us</span>
+                        <p class="white-text text-lighten-4 ">© 2016 Degital Conceptions, All rights reserved.</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
     </div>
 </body>
 
