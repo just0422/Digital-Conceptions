@@ -22,7 +22,8 @@ public class ComicInfo {
     @Index String genre;
     @Index String username;
     @Index User user;
-    @Index Date dateCreated;
+    @Index long dateLong;
+    Date dateCreated;
     @Index int numberOfReads;
     @Index int rating;
 
@@ -38,6 +39,7 @@ public class ComicInfo {
         username = null;
         user = UserServiceFactory.getUserService().getCurrentUser();
         dateCreated = new Date();
+        dateLong = dateCreated.getTime();
         numberOfReads = 0;
         rating = 0;
 

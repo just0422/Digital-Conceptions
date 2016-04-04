@@ -7,6 +7,8 @@
           <element id="module-output" name="digital_conceptions" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.googlecode.objectify:objectify:4.0.1" />
+          <element id="library" level="project" name="Maven: com.google.guava:guava:14.0.1" />
           <element id="library" level="project" name="Maven: com.google.appengine:appengine-api-1.0-sdk:1.9.32" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
         </element>
