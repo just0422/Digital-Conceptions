@@ -39,10 +39,6 @@
         <jsp-file>search.jsp</jsp-file>
     </servlet>
 
-    <welcome-file-list>
-        <welcome-file>/home</welcome-file>
-        <welcome-file>/</welcome-file>
-    </welcome-file-list>
 
     <!-- Servlet Mapping for the home page -->
     <servlet-mapping>
