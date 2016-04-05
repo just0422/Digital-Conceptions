@@ -38,7 +38,11 @@
 <!-- Outer most container -->
 <div class="container">
 
+    <jsp:include page="header.jsp"/>
 
+    <jsp:include page="search.jsp"/>
+
+    <jsp:include page="footer.jsp"/>
 
 
 
