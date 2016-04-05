@@ -10,11 +10,16 @@
         <servlet-name>genreservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.GenreServlet</servlet-class>
     </servlet>
-    
+    <!-- Search Page Servlet -->
+    <servlet>
+        <servlet-name>searchservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.SearchPageServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>userservice</servlet-name>
         <servlet-class>com.digitalconeptions.www.UserServiceServlet</servlet-class>
     </servlet>
+
     
     <!-- JSP Servlet Mappings -->
     <servlet>
@@ -28,6 +33,10 @@
     <servlet>
         <servlet-name>genres</servlet-name>
         <jsp-file>genre.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>search</servlet-name>
+        <jsp-file>search.jsp</jsp-file>
     </servlet>
 
     <welcome-file-list>
@@ -43,6 +52,10 @@
     <servlet-mapping>
         <servlet-name>genreservlet</servlet-name>
         <url-pattern>genre</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>searchservlet</servlet-name>
+        <url-pattern>searchquery</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -62,5 +75,9 @@
     <servlet-mapping>
         <servlet-name>genres</servlet-name>
         <url-pattern>genres/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>search</servlet-name>
+        <url-pattern>search/*</url-pattern>
     </servlet-mapping>
 </web-app>
