@@ -54,15 +54,87 @@
                     <div class="card-content white-text">
 
                         <!-- Account button -->
-                        <a class="waves-effect waves-light btn cyan lighten-2"><i class="material-icons right">account_circle</i>Account</a>
+                        <a id="accoutn_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
+                                class="material-icons right">account_circle</i>Account</a>
 
                         <!-- Subscription button-->
-                        <a class="waves-effect waves-light btn right cyan lighten-2"><i class="material-icons right">library_books</i>Subscription</a>
+                        <a id="subscirption_button" class="waves-effect waves-light btn right cyan lighten-2"><i
+                                class="material-icons right">library_books</i>Subscription</a>
 
                     </div>
                     <!-- Divider -->
                     <div class="divider-grey-3"></div>
 
+                    <div id="account_info">
+
+                        <div class="flow-text pad-left">
+                            <h5>Display Name: </h5>
+
+                        </div>
+
+                    </div>
+                    <div id="subscription" class="flow-text" style="display: none">
+
+                        <div class="row">
+                            <div class="col s6">
+                                <div class="card hoverable cyan lighten-3" onclick="">
+                                    <div class="card-image">
+                                        <img src="image/5.jpg">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p class="flow-text">Hero</p>
+                                    </div>
+                                </div>
+
+                                <div class="card hoverable cyan lighten-3" onclick="">
+                                    <div class="card-image">
+                                        <img src="image/5.jpg">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p class="flow-text">Hero</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col s6">
+
+
+                                <div class="card hoverable cyan lighten-3" onclick="">
+                                    <div class="card-image">
+                                        <img src="image/5.jpg">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p class="flow-text">Hero</p>
+                                    </div>
+                                </div>
+
+                                <div class="card hoverable cyan lighten-3" onclick="">
+                                    <div class="card-image">
+                                        <img src="image/5.jpg">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p class="flow-text">Hero</p>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <ul class="pagination center">
+                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                            <li class="waves-effect"><a href="#!">3</a></li>
+                            <li class="waves-effect"><a href="#!">4</a></li>
+                            <li class="waves-effect"><a href="#!">5</a></li>
+                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                        </ul>
+
+                    </div>
                 </div>
             </div>
 
@@ -70,9 +142,44 @@
             <!-- Notification or message -->
             <div class="col s4">
                 <div class="card min-height">
-                    <div class="card-content">
+                    <div class="card-content ">
+                        <div class="flow-text">
+                            <h5>Recently Reviewed</h5>
+
+                        </div>
+
+                        <!-- Divider -->
+                        <div class="pad-top-10"></div>
+                        <div class="divider-grey-3"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                        </div>
+
+                        <div class="pad-top-10"></div>
+
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                        </div>
+
+                        <div class="pad-top-10"></div>
+
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                        </div>
+
+
                     </div>
                 </div>
+
 
             </div>
 

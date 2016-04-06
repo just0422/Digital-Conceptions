@@ -31,7 +31,7 @@
         background-color: #e0e0e0;
     }
     
-    .backgroud {
+    .background {
         background-color: #fafafa;
     }
     
@@ -49,4 +49,10 @@
         background-color: #fff;
         transition: box-shadow .25s;
         border-radius: 2px;
+    }
+
+    .pad-left{
+        padding-left: 10px;
+
+
     }

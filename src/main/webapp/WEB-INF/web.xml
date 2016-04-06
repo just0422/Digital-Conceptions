@@ -47,11 +47,11 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>genreservlet</servlet-name>
-        <url-pattern>genre</url-pattern>
+        <url-pattern>/genre</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>searchservlet</servlet-name>
-        <url-pattern>searchquery</url-pattern>
+        <url-pattern>/searchquery</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

@@ -6,7 +6,7 @@
         <div class="nav-wrapper cyan lighten-2">
             <ul id="nav-mobile" class="left">
                 <li><a href="index.jsp" class="custom-nav-font-size z-depth-1">Home</a></li>
-                <li><a href="genre" class="custom-nav-font-size">Genre</a></li>
+                <li><a href="genre.jsp" class="custom-nav-font-size">Genre</a></li>
             </ul>
 
 
