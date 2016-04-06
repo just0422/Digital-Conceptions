@@ -32,7 +32,7 @@
     }
     
     .background {
-        background-color: #fafafa;
+        background-color: rgba(0, 0, 0, 0.05);
     }
     
     .min-height {
@@ -55,4 +55,14 @@
         padding-left: 10px;
 
 
+    }
+
+    .genre-pad-left{
+        padding-left: 35px;
+
+    }
+
+    .stick-bot{
+        position: relative;
+        bottom: 15px;
     }
