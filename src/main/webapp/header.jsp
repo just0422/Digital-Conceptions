@@ -6,8 +6,8 @@
 
                     <!-- Home button and Genre button-->
                     <ul id="nav-mobile" class="left">
-                        <li><a href="index_main.jsp" class="custom-nav-font-size z-depth-1">Home</a></li>
-                        <li><a href="genre_main.jsp" class="custom-nav-font-size">Genre</a></li>
+                        <li><a href="index.jsp" class="custom-nav-font-size">Home</a></li>
+                        <li><a href="genre.jsp" class="custom-nav-font-size">Genre</a></li>
                     </ul>
 
                     <!-- Profile butto n-->
@@ -17,7 +17,7 @@
 
                     <!-- Search bar -->
                     <ul>
-                        <form action="search_main.jsp">
+                        <form action="search.jsp">
                             <div class="input-field right">
                                 <input id="search" type="search" required>
                                 <label for="search"><i class="material-icons right">search</i></label>
