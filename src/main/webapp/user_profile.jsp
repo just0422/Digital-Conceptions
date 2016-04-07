@@ -54,7 +54,7 @@
                     <div class="card-content white-text">
 
                         <!-- Account button -->
-                        <a id="accoutn_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
+                        <a id="account_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
                                 class="material-icons right">account_circle</i>Account</a>
 
                         <!-- Subscription button-->
