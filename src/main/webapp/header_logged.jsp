@@ -24,9 +24,9 @@
 
                     <!-- Search bar-->
                     <ul>
-                        <form action="/search">
+                        <form action="/search" method="get">
                             <div class="input-field right">
-                                <input id="search" type="search" required>
+                                <input id="search" type="search" name="search" required>
                                 <label for="search"><i class="material-icons right">search</i></label>
                                 <i class="material-icons">close</i>
                             </div>

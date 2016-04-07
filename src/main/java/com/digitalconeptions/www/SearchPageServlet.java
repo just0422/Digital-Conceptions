@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class SearchPageServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String search = req.getParameter("searchquery");
+        String search = req.getParameter("search");
 
 //        @Index String seriesTitle;
 //        @Index String comicTitle;
@@ -28,8 +28,10 @@ public class SearchPageServlet extends HttpServlet {
             search = "";
 
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/search/"+search);
+        RequestDispatcher rd = sc.getRequestDispatcher(resp.encodeURL("/search_result/" + search));
 
+//        String hi = resp.encodeURL("/search/" + search);
+//        String hi = resp.encodeURL("/search/" + search);
 
         List<ComicInfo> comics_series_name = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle >=", search)
@@ -48,6 +50,8 @@ public class SearchPageServlet extends HttpServlet {
                 comics_series_name.add(c);
 
         req.setAttribute("comics", comics_series_name);
+//        resp.encodeURL("search/"+search);
+//        resp.encodeRedirectURL("search/"+search);
 
         rd.forward(req, resp);
     }
