@@ -70,7 +70,7 @@ public class HomePageServlet extends HttpServlet {
         HttpSession session = req.getSession();
         session.setAttribute("user", username);
 
-      //  System.out.println("In homepage servlet");
+        System.out.println("In homepage servlet");
 
         // Forward request to the home page
         ServletContext sc = getServletContext();

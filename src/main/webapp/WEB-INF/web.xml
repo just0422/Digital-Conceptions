@@ -65,7 +65,7 @@
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>home</servlet-name>
+        <servlet-name>homepage</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
