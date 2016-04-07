@@ -158,10 +158,6 @@
                         <div class="pad-top"></div>
                         <p><a href="#" class="white-text hoverable" hoverable>One Piece</a></p>
 
-                        <c:if test="${empty formData.CountryOfRes}">
-                            <option selected="selected" value="">Select one</option>
-                        </c:if>
-
                     </div>
                 </div>
             </div>

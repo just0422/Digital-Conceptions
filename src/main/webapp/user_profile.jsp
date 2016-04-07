@@ -74,7 +74,6 @@
                     <div id="account_info">
 
                         <div class="flow-text pad-left">
-                            <h5>Display Name: </h5>
 
                         </div>
 
