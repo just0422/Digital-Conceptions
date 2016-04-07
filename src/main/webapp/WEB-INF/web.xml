@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <!-- Home page Servlet -->
     <servlet>
         <servlet-name>homepage</servlet-name>
@@ -20,7 +21,7 @@
         <servlet-class>com.digitalconeptions.www.UserServiceServlet</servlet-class>
     </servlet>
 
-    
+
     <!-- JSP Servlet Mappings -->
     <servlet>
         <servlet-name>home</servlet-name>
@@ -42,7 +43,7 @@
 
     <!-- Servlet Mapping for the home page -->
     <servlet-mapping>
-        <servlet-name>homepage</servlet-name>
+        <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -58,14 +59,14 @@
         <servlet-name>userservice</servlet-name>
         <url-pattern>/usersignin</url-pattern>
     </servlet-mapping>
-    
+
     <!-- Mappings for JSP files-->
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>home</servlet-name>
+        <servlet-name>homepage</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
@@ -76,4 +77,6 @@
         <servlet-name>search</servlet-name>
         <url-pattern>search/*</url-pattern>
     </servlet-mapping>
+
+
 </web-app>

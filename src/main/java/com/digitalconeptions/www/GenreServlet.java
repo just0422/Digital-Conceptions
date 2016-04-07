@@ -25,8 +25,8 @@ public class GenreServlet extends HttpServlet{
         RequestDispatcher rd = sc.getRequestDispatcher("/genres/"+genre);
 
 
-        List<ComicInfo> comics= ObjectifyService.ofy().load().type(ComicInfo.class).filter("genre", genre).list();
-        req.setAttribute("comics", comics);
+        //List<ComicInfo> comics= ObjectifyService.ofy().load().type(ComicInfo.class).filter("genre", genre).list();
+        //req.setAttribute("comics", comics);
 
         rd.forward(req, resp);
     }

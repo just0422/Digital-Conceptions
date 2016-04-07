@@ -40,7 +40,14 @@
 <!-- Outer most container -->
 <div class="container">
 
-    <jsp:include page="index_active_header.jsp"/>
+    <c:choose>
+        <c:when test="${user != null}">
+            <jsp:include page="index_active_header_logged.jsp"/>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="index_active_header.jsp"/>
+        </c:otherwise>
+    </c:choose>
 
     <!-- Home Page -->
     <!-- Main body-->
@@ -79,7 +86,8 @@
                             <!-- random image -->
                             <div class="caption left-align">
                                 <h3>Fairy Tail</h3>
-                                <h5 class="light grey-text text-lighten-3">Chapter 3: Infiltrate the Everlue Mansion</h5>
+                                <h5 class="light grey-text text-lighten-3">Chapter 3: Infiltrate the Everlue
+                                    Mansion</h5>
                             </div>
                         </li>
                         <!-- 4th slide -->
@@ -151,7 +159,7 @@
                         <p><a href="#" class="white-text hoverable" hoverable>One Piece</a></p>
 
                         <c:if test="${empty formData.CountryOfRes}">
-                        <option selected="selected" value="">Select one</option>
+                            <option selected="selected" value="">Select one</option>
                         </c:if>
 
                     </div>

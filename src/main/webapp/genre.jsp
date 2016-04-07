@@ -40,7 +40,14 @@
 <!-- Outer most container -->
 <div class="container">
 
-    <jsp:include page="genre_active_header_logged.jsp"/>
+    <c:choose>
+        <c:when test="${user != null}">
+            <jsp:include page="genre_active_header_logged.jsp"/>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="genre_active_header.jsp"/>
+        </c:otherwise>
+    </c:choose>
 
     <!-- Main home page content-->
     <main class="main body body-background-color">
