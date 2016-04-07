@@ -53,13 +53,19 @@
 
                     <div class="card-content white-text">
 
-                        <!-- Account button -->
-                        <a id="account_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                class="material-icons right">account_circle</i>Account</a>
+                        <div class="center">
+                            <!-- Account button -->
+                            <a id="account_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
+                                    class="material-icons right">account_circle</i>Account</a>
 
-                        <!-- Subscription button-->
-                        <a id="subscirption_button" class="waves-effect waves-light btn right cyan lighten-2"><i
-                                class="material-icons right">library_books</i>Subscription</a>
+                            <!-- Subscription button-->
+                            <a id="subscription_button" class="waves-effect waves-light btn cyan lighten-2"><i
+                                    class="material-icons right">library_books</i>Subscription</a>
+
+                            <!-- Notification button-->
+                            <a id="notification_button" class="waves-effect waves-light btn  cyan lighten-2"><i
+                                    class="material-icons right">notifications</i>Notification</a>
+                        </div>
 
                     </div>
                     <!-- Divider -->
@@ -98,6 +104,10 @@
 
                             </div>
 
+                            <div id="notification" class="flow-text" style="display: none">
+
+                            </div>
+
                             <div class="col s6">
 
 
@@ -119,7 +129,6 @@
                                     </div>
                                 </div>
                             </div>
-
 
 
                         </div>
