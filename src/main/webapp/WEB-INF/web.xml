@@ -51,7 +51,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>searchservlet</servlet-name>
-        <url-pattern>/searchquery</url-pattern>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
@@ -70,10 +70,22 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>genres</servlet-name>
-        <url-pattern>genres/*</url-pattern>
+        <url-pattern>/genres/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>search</servlet-name>
-        <url-pattern>search/*</url-pattern>
+        <url-pattern>/search_result/*</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>ObjectifyFilter</filter-name>
+        <filter-class>com.googlecode.objectify.ObjectifyFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ObjectifyFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <listener>
+        <listener-class>com.digitalconeptions.www.OfyHelper</listener-class>
+    </listener>
 </web-app>
