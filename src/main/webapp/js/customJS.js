@@ -33,5 +33,9 @@ $(document).ready(function () {
             })
         }
     })
+
+    $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
+        $(this).parent().parent().remove();
+    });
 });
 
