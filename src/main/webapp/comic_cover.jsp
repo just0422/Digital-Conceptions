@@ -26,6 +26,8 @@
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
+    <script type="text/javascript" src="js/jquery.star.rating.js"></script>
+
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
 
@@ -92,35 +94,48 @@
                             <div class="divider"></div>
                         </div>
 
+                        <div class="container-1">
+                            <div class="pad-top-20"></div>
+                            <div class="pad-top-20"></div>
+                            <div class="center">
+                                <a class="waves-effect waves-light btn lighten-3">Start</a>
+                                <a class="waves-effect waves-light btn">Subscribe</a>
+                                <a class="waves-effect waves-light btn">Download</a>
+                            </div>
+                        </div>
+
                     </div>
 
                     <div class="col s3">
                         <div class="container-1 flow-text center cyan-text">
-                            <div class="pad-top-10"></div>
-                            <div class="pad-top-10"></div>
-                            <div class="pad-top-10"></div>
-                            <div class="pad-top-10"></div>
+                            <div class="pad-top-20"></div>
+                            <div class="pad-top-20"></div>
+                            <div class="pad-top-20"></div>
+                            <div class="pad-top-20"></div>
                             Rating
+
+                            <!-- Stars -->
+                            <div class="card-1">
+                                <div class="card-content-1">
+                                    <div id="rating" class="center"></div>
+                                </div>
+
+                            </div>
+                            <script>
+                                $('#rating').addRating();
+                            </script>
                         </div>
                     </div>
 
                 </div>
+
 
                 <!-- Buttons for start, download and subscripbe -->
-                <div class="row">
-                    <div class="col s9">
-                        <div class="container-1">
-                            <div class="pad-top-10"></div>
-                            <a class="waves-effect waves-light btn lighten-3">Start</a><span
-                                class="button-padding"></span>
-                            <a class="waves-effect waves-light btn">Subscribe</a><span class="button-padding"></span>
-                            <a class="waves-effect waves-light btn">Download</a><span class="button-padding"></span>
-                        </div>
-                    </div>
-
-                </div>
 
                 <div class="divider-grey-3"></div>
+                <div class="pad-top-10"></div>
+                <div class="pad-top-10"></div>
+                <div class="pad-top-10"></div>
 
 
                 <!-- Comments for comic -->
