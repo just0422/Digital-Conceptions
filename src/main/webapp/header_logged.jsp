@@ -18,7 +18,7 @@
                             <li><a href="#!">Create <img></a></li>
                             <li><a href="/profile">Profile</a></li>
                             <li class="divider"></li>
-                            <li><a href="#!">Log out</a></li>
+                            <li><a href="/usersignin">Log out</a></li>
                         </ul>
                     </ul>
 

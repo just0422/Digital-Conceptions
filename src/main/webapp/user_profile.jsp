@@ -40,7 +40,14 @@
 <!-- Outer most container -->
 <div class="container">
 
-    <jsp:include page="header_logged.jsp"/>
+    <c:choose>
+        <c:when test="${user != null}">
+            <jsp:include page="header_logged.jsp"/>
+        </c:when>
+        <c:otherwise>
+            <jsp:include page="header.jsp"/>
+        </c:otherwise>
+    </c:choose>
 
     <!-- Main boy content -->
     <main class="main body">
