@@ -49,6 +49,7 @@
 
             <!-- Account info and Subscription -->
             <div class="col s8">
+
                 <div class="card min-height">
 
                     <div class="card-content white-text">
@@ -78,7 +79,10 @@
                         </div>
 
                     </div>
+
+
                     <div id="subscription" class="flow-text" style="display: none">
+
 
                         <div class="row">
                             <div class="col s6">
@@ -103,9 +107,6 @@
 
                             </div>
 
-                            <div id="notification" class="flow-text" style="display: none">
-
-                            </div>
 
                             <div class="col s6">
 
@@ -129,21 +130,57 @@
                                 </div>
                             </div>
 
+                            <ul class="pagination center">
+                                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a>
+                                </li>
+                                <li class="active"><a href="#!">1</a></li>
+                                <li class="waves-effect"><a href="#!">2</a></li>
+                                <li class="waves-effect"><a href="#!">3</a></li>
+                                <li class="waves-effect"><a href="#!">4</a></li>
+                                <li class="waves-effect"><a href="#!">5</a></li>
+                                <li class="waves-effect"><a href="#!"><i
+                                        class="material-icons">chevron_right</i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="container-1">
+                        <div id="notification" class="flow-text" style="display: none">
+
+                            <div class="container-1">
+                                <ul class="collapsible" data-collapsible="accordion">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">message</i>System
+                                            Message
+                                        </div>
+                                        <div class="collapsible-body"><i class="material-icons right pointer">close</i>
+                                            <p>Message Body</p></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">message</i>System
+                                            Message
+                                        </div>
+                                        <div class="collapsible-body"><i class="material-icons right pointer">close</i>
+                                            <p>Message Body</p></div>
+                                    </li>
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">message</i>System
+                                            Message
+                                        </div>
+                                        <div class="collapsible-body"><i class="material-icons right pointer">close</i>
+                                            <p>Message Body</p></div>
+                                    </li>
+
+                                </ul>
+                            </div>
+
 
                         </div>
-
-                        <ul class="pagination center">
-                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                            <li class="active"><a href="#!">1</a></li>
-                            <li class="waves-effect"><a href="#!">2</a></li>
-                            <li class="waves-effect"><a href="#!">3</a></li>
-                            <li class="waves-effect"><a href="#!">4</a></li>
-                            <li class="waves-effect"><a href="#!">5</a></li>
-                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                        </ul>
-
                     </div>
+
                 </div>
+
+
             </div>
 
             <!-- Side bar -->
@@ -152,7 +189,7 @@
                 <div class="card min-height">
                     <div class="card-content ">
                         <div class="flow-text">
-                            <h5>Recently Reviewed</h5>
+                            <h5>Recently Viewed</h5>
 
                         </div>
 
