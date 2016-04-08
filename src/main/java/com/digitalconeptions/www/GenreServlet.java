@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class GenreServlet extends HttpServlet{
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println(getClass().getName());
         String genre = req.getParameter("genre");
 
         if (genre == null)
@@ -25,8 +26,8 @@ public class GenreServlet extends HttpServlet{
         RequestDispatcher rd = sc.getRequestDispatcher("/genres/"+genre);
 
 
-        //List<ComicInfo> comics= ObjectifyService.ofy().load().type(ComicInfo.class).filter("genre", genre).list();
-        //req.setAttribute("comics", comics);
+        List<ComicInfo> comics= ObjectifyService.ofy().load().type(ComicInfo.class).filter("genre", genre).list();
+        req.setAttribute("comics", comics);
 
         rd.forward(req, resp);
     }

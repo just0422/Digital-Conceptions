@@ -5,7 +5,6 @@ import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.LoadType;
-import com.googlecode.objectify.cmd.Loader;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -15,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -24,6 +22,7 @@ import java.util.List;
  */
 public class HomePageServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println(getClass().getName());
         String genre = "action"; // List of Genres
 
         // Load all comics from the database
@@ -69,8 +68,6 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute("newest_comics", newestComics);
         HttpSession session = req.getSession();
         session.setAttribute("user", username);
-
-        System.out.println("In homepage servlet");
 
         // Forward request to the home page
         ServletContext sc = getServletContext();
