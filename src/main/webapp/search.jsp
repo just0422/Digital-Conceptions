@@ -40,7 +40,7 @@
 <!-- Outer most container -->
 <div class="container">
 
-    <jsp:include page="header_logged.jsp"/>
+    <jsp:include page="header.jsp"/>
 
     <!-- Search Page -->
     <!-- Main boy content -->

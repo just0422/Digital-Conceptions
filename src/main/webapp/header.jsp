@@ -19,8 +19,6 @@
 
                     <!-- Profile butto n-->
                     <ul class="right">
-                        <li><a href="#" class="dropdown-button" data-activates="features" id="profile"><i class="material-icons">face</i></a></li>
-
                         <script>console.log("right");</script>
                         <c:choose>
                             <c:when test="${user == null}">
@@ -28,6 +26,7 @@
                                 <li><a href="/usersignin"><i class="material-icons">face</i></a></li>
                             </c:when>
                             <c:otherwise>
+                                <li><a href="#" class="dropdown-button" data-activates="features" id="profile"><i class="material-icons">face</i></a></li>
                                 <script>console.log("otherwise");</script>
                                 <!-- Dropdown Data -->
                                 <ul id='features' class='dropdown-content'>

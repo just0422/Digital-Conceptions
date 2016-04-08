@@ -43,15 +43,6 @@
 
     <jsp:include page="header.jsp"/>
 
-    <%--<c:choose>--%>
-        <%--<c:when test="${user != null}">--%>
-            <%--<jsp:include page="index_active_header_logged.jsp"/>--%>
-        <%--</c:when>--%>
-        <%--<c:otherwise>--%>
-            <%--<jsp:include page="index_active_header.jsp"/>--%>
-        <%--</c:otherwise>--%>
-    <%--</c:choose>--%>
-
     <!-- Home Page -->
     <!-- Main body-->
     <main class="main body body-background-color">
