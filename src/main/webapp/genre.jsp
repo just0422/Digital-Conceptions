@@ -45,160 +45,160 @@
     <!-- Main home page content-->
     <main class="main body body-background-color">
 
-
-        <div class="row">
-
-            <div class="col s12">
-                <nav>
-                    <div class="nav-wrapper cyan lighten-3 ">
-                        <ul id="nav-mobile" class="center genre-pad-left">
-
-                            <li><a>Action</a></li>
-                            <li><a>Drama</a></li>
-                            <li><a>Romance</a></li>
-                            <li><a>Comedy</a></li>
-                            <li><a>Thriller</a></li>
-                            <li><a>Slice of Life</a></li>
-                            <li><a>Sport</a></li>
-                            <li><a>Sci-Fi</a></li>
-
-                        </ul>
-
-                    </div>
-                </nav>
-
-            </div>
-        </div>
-
-        <div id="genre_content">
+        <div class="container-1">
             <div class="row">
-                <div class="col s3">
 
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
+                <div class="col s12">
+                    <nav>
+                        <div class="nav-wrapper cyan lighten-3 ">
+                            <ul id="nav-mobile" class="center genre-pad-left">
 
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
+                                <li><a>Action</a></li>
+                                <li><a>Drama</a></li>
+                                <li><a>Romance</a></li>
+                                <li><a>Comedy</a></li>
+                                <li><a>Thriller</a></li>
+                                <li><a>Slice of Life</a></li>
+                                <li><a>Sport</a></li>
+                                <li><a>Sci-Fi</a></li>
 
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s3">
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col s3">
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
+                            </ul>
 
+                        </div>
+                    </nav>
 
                 </div>
-                <div class="col s3">
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
+            </div>
+
+            <div id="genre_content">
+                <div class="row">
+                    <div class="col s3">
+
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
                         </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
+
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
+                        </div>
+
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
+                    <div class="col s3">
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
                         </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
+                        </div>
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
+                    <div class="col s3">
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
                         </div>
-                        <div class="card-content white-text">
-                            <p class="flow-text">Hero</p>
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
                         </div>
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col s3">
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
+                        </div>
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
+                        </div>
+                        <div class="card hoverable cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content white-text">
+                                <p class="flow-text">Hero</p>
+                            </div>
+                        </div>
+
                     </div>
 
+
                 </div>
+                <ul class="pagination center stick-bot">
+                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                    <li class="active"><a href="#!">1</a></li>
+                    <li class="waves-effect"><a href="#!">2</a></li>
+                    <li class="waves-effect"><a href="#!">3</a></li>
+                    <li class="waves-effect"><a href="#!">4</a></li>
+                    <li class="waves-effect"><a href="#!">5</a></li>
+                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                </ul>
 
 
             </div>
-            <ul class="pagination center stick-bot">
-                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                <li class="active"><a href="#!">1</a></li>
-                <li class="waves-effect"><a href="#!">2</a></li>
-                <li class="waves-effect"><a href="#!">3</a></li>
-                <li class="waves-effect"><a href="#!">4</a></li>
-                <li class="waves-effect"><a href="#!">5</a></li>
-                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-            </ul>
-
 
         </div>
-
-
     </main>
 
 

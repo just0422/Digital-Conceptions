@@ -45,9 +45,71 @@
     <!-- Main home page content-->
     <main class="main body body-background-color">
 
+        <!-- Comic cover and control buttons-->
+
+        <div class="card-1 cyan lighten-5">
+            <div class="card-content-1">
+
+                <div class="row">
+
+                    <div class="col s4">
+                        <div class="card cyan lighten-3" onclick="">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col s5">
+
+                        <!-- Comic Name-->
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Comic Name:<span class="right">Hello World</span>
+                            <div class="divider"></div>
+                        </div>
+
+                        <!-- Author Name-->
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Author:<span class="right">ABC</span>
+                            <div class="divider"></div>
+                        </div>
+
+                        <!-- Release Date-->
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Release Date:<span class="right">03/03/2016</span>
+                            <div class="divider"></div>
+                        </div>
+
+                        <!-- Latest Chapter-->
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Latest Chapter:<span class="right">Bye</span>
+                            <div class="divider"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="col s3">
+                        <div class="container-1 flow-text center cyan-text">
+                            <div class="pad-top-10"></div>
+                            <div class="pad-top-10"></div>
+                            <div class="pad-top-10"></div>
+                            <div class="pad-top-10"></div>
+                            Rating
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
 
 
+        </div>
     </main>
 
 
