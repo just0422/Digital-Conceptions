@@ -27,7 +27,7 @@ public class UserProfileServlet extends HttpServlet {
 
         req.setAttribute("current_user", currentUser);
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/profile");
+        RequestDispatcher rd = sc.getRequestDispatcher("/user_profile.jsp");
         rd.forward(req, resp);
 
     }

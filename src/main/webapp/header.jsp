@@ -33,7 +33,7 @@
                                 <!-- Dropdown Data -->
                                 <ul id='features' class='dropdown-content'>
                                     <li><a href="#!">Create <img></a></li>
-                                    <li><a href="/user_profile">Profile</a></li>
+                                    <li><a href="/userprofile">Profile</a></li>
                                     <li class="divider"></li>
                                     <li><a onclick="$('#signout').submit();">Log out</a></li>
                                 </ul>
