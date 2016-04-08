@@ -54,7 +54,7 @@
                 <div>
                     <span class="card-title">Results: 0</span>
 
-                    <p>Your search - Hello Word - No related comics found</p>
+                    <p>Your search - <c:out value="${param['search']}"/> - No related comics found</p>
 
                     <p>Below are recommend comics for the day </p>
 

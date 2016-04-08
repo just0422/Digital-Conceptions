@@ -52,6 +52,7 @@ public class SearchPageServlet extends HttpServlet {
                 comics_series_name.add(c);
 
         req.setAttribute("comics", comics_series_name);
+//        req.setAttribute("search", search);
 //        resp.encodeURL("search/"+search);
 //        resp.encodeRedirectURL("search/"+search);
 
