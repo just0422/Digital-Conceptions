@@ -18,7 +18,7 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 /">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
@@ -33,6 +33,7 @@
     <script type="text/javascript" src="js/customJS.js"></script>
 
     <title>Home - Digital Conceptions</title>
+    <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
 </head>
 
 <body class="background">
@@ -40,14 +41,16 @@
 <!-- Outer most container -->
 <div class="container">
 
-    <c:choose>
-        <c:when test="${user != null}">
-            <jsp:include page="index_active_header_logged.jsp"/>
-        </c:when>
-        <c:otherwise>
-            <jsp:include page="index_active_header.jsp"/>
-        </c:otherwise>
-    </c:choose>
+    <jsp:include page="header.jsp"/>
+
+    <%--<c:choose>--%>
+        <%--<c:when test="${user != null}">--%>
+            <%--<jsp:include page="index_active_header_logged.jsp"/>--%>
+        <%--</c:when>--%>
+        <%--<c:otherwise>--%>
+            <%--<jsp:include page="index_active_header.jsp"/>--%>
+        <%--</c:otherwise>--%>
+    <%--</c:choose>--%>
 
     <!-- Home Page -->
     <!-- Main body-->
