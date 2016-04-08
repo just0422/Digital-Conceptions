@@ -16,6 +16,7 @@ import java.util.List;
  */
 public class SearchPageServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println(getClass().getName());
         String search = req.getParameter("search");
 
 //        @Index String seriesTitle;
@@ -28,7 +29,7 @@ public class SearchPageServlet extends HttpServlet {
             search = "";
 
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher(resp.encodeURL("/search_result/" + search));
+        RequestDispatcher rd = sc.getRequestDispatcher(resp.encodeURL("/results/" + search));
 
 //        String hi = resp.encodeURL("/search/" + search);
 //        String hi = resp.encodeURL("/search/" + search);

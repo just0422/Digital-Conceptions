@@ -15,35 +15,20 @@
         <servlet-name>searchservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.SearchPageServlet</servlet-class>
     </servlet>
+    <!-- User Profile Servlet -->
+    <servlet>
+        <servlet-name>userprofileservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.UserProfileServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>userservice</servlet-name>
         <servlet-class>com.digitalconeptions.www.UserServiceServlet</servlet-class>
     </servlet>
 
-    
-    <!-- JSP Servlet Mappings -->
-    <servlet>
-        <servlet-name>home</servlet-name>
-        <jsp-file>index.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>profile</servlet-name>
-        <jsp-file>userprofile.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>genres</servlet-name>
-        <jsp-file>genre.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>search</servlet-name>
-        <jsp-file>search.jsp</jsp-file>
-    </servlet>
-
-
-    <!-- Servlet Mapping for the home page -->
+    <!-- Servlet Mappings -->
     <servlet-mapping>
         <servlet-name>homepage</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>genreservlet</servlet-name>
@@ -51,30 +36,55 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>searchservlet</servlet-name>
-        <url-pattern>/searchquery</url-pattern>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userprofileservlet</servlet-name>
+        <url-pattern>/user_profile</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>userservice</servlet-name>
         <url-pattern>/usersignin</url-pattern>
     </servlet-mapping>
+
     
+    <!-- JSP Servlet Mappings -->
+    <!--<servlet>-->
+        <!--<servlet-name>home</servlet-name>-->
+        <!--<jsp-file>index.jsp</jsp-file>-->
+    <!--</servlet>-->
+    <servlet>
+        <servlet-name>profile</servlet-name>
+        <jsp-file>user_profile.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>genres</servlet-name>
+        <jsp-file>genre.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>results</servlet-name>
+        <jsp-file>search.jsp</jsp-file>
+    </servlet>
+
+
+
     <!-- Mappings for JSP files-->
     <servlet-mapping>
         <servlet-name>profile</servlet-name>
         <url-pattern>/profile</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>homepage</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>homepage</servlet-name>-->
+        <!--<url-pattern>/</url-pattern>-->
+    <!--</servlet-mapping>-->
     <servlet-mapping>
         <servlet-name>genres</servlet-name>
         <url-pattern>genres/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>search</servlet-name>
-        <url-pattern>search/*</url-pattern>
+        <servlet-name>results</servlet-name>
+        <url-pattern>results/*</url-pattern>
     </servlet-mapping>
 
     <filter>

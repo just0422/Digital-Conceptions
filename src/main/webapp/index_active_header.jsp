@@ -6,7 +6,7 @@
 
             <!-- Home button and Genre button-->
             <ul id="nav-mobile" class="left">
-                <li><a href="/index" class="custom-nav-font-size z-depth-1">Home</a></li>
+                <li><a href="/" class="custom-nav-font-size z-depth-1">Home</a></li>
                 <li><a href="/genre" class="custom-nav-font-size">Genre</a></li>
             </ul>
 
