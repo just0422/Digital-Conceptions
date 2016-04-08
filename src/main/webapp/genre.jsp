@@ -182,19 +182,20 @@
                         </div>
 
                     </div>
-
-
                 </div>
-                <ul class="pagination center stick-bot">
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <li class="active"><a href="#!">1</a></li>
-                    <li class="waves-effect"><a href="#!">2</a></li>
-                    <li class="waves-effect"><a href="#!">3</a></li>
-                    <li class="waves-effect"><a href="#!">4</a></li>
-                    <li class="waves-effect"><a href="#!">5</a></li>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                </ul>
 
+
+                <!-- Pagination -->
+
+                    <ul class="pagination center">
+                        <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
+                        </li>
+                        <li class="active teal lighten-2"><a href="#!">1</a></li>
+                        <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
+                        <li class="waves-effect teal lighten-2"><a href="#!"><i
+                                class="material-icons">chevron_right</i></a></li>
+                    </ul>
+                    <div class="pad-top-10"></div>
 
             </div>
 

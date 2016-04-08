@@ -113,3 +113,16 @@
         padding: 20px;
         border-radius: 0 0 2px 2px;
     }
+
+    .button-padding{
+        padding-left: 15%;
+    }
+
+    .comic-cover-border{
+        border-bottom: solid;
+        border-color: rgba(0, 0, 0, 0.11);
+    }
+
+    .small-font{
+        font-size: medium;
+    }

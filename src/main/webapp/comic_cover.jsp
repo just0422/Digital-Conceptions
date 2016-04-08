@@ -47,7 +47,7 @@
 
         <!-- Comic cover and control buttons-->
 
-        <div class="card-1 cyan lighten-5">
+        <div class="card-1">
             <div class="card-content-1">
 
                 <div class="row">
@@ -105,10 +105,159 @@
                     </div>
 
                 </div>
+
+                <!-- Buttons for start, download and subscripbe -->
+                <div class="row">
+                    <div class="col s9">
+                        <div class="container-1">
+                            <div class="pad-top-10"></div>
+                            <a class="waves-effect waves-light btn lighten-3">Start</a><span
+                                class="button-padding"></span>
+                            <a class="waves-effect waves-light btn">Subscribe</a><span class="button-padding"></span>
+                            <a class="waves-effect waves-light btn">Download</a><span class="button-padding"></span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divider-grey-3"></div>
+
+
+                <!-- Comments for comic -->
+                <div class="card-1">
+                    <div class="card-content-1 flow-text">
+                        Comments from readers:
+                    </div>
+                    <div class="divider"></div>
+
+                    <!-- Comment 1 -->
+                    <div class="card-content-1">
+                        <div>
+                            <div class="chip purple lighten-3 z-depth-1">
+                                <img src="image/5.jpg">
+                                Superman
+                            </div>
+                            <div class="pad-top-2"></div>
+
+                            <!-- Acutal comment-->
+                            <div class="flow-text small-font">
+                                <span>Superman is better</span>
+                                <span class="right">3/4/16</span>
+                            </div>
+
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Comment 2 -->
+                    <div class="card-content-1">
+                        <div>
+                            <div class="chip orange lighten-3 z-depth-1">
+                                <img src="image/6.jpg">
+                                Batman
+                            </div>
+                            <div class="pad-top-2"></div>
+
+                            <!-- Acutal comment-->
+                            <div class="flow-text small-font">
+                                <span>Batman Batman Batman</span>
+                                <span class="right">3/3/16</span>
+                            </div>
+
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Comment 3 -->
+                    <div class="card-content-1">
+                        <div>
+                            <div class="chip green lighten-3 z-depth-1">
+                                <img src="image/7.jpg">
+                                Luffy
+                            </div>
+                            <div class="pad-top-2"></div>
+
+                            <!-- Acutal comment-->
+                            <div class="flow-text small-font">
+                                <span>Boring</span>
+                                <span class="right">3/3/16</span>
+                            </div>
+
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Comment 4 -->
+                    <div class="card-content-1">
+                        <div>
+                            <div class="chip blue lighten-3 z-depth-1">
+                                <img src="image/8.jpg">
+                                Crayon Shin-chan
+                            </div>
+                            <div class="pad-top-2"></div>
+
+                            <!-- Acutal comment-->
+                            <div class="flow-text small-font">
+                                <span>...</span>
+                                <span class="right">3/3/16</span>
+                            </div>
+
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="card-content-1">
+                        <ul class="pagination right">
+                            <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
+                            </li>
+                            <li class="active teal lighten-2"><a href="#!">1</a></li>
+                            <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
+                            <li class="waves-effect teal lighten-2"><a href="#!"><i
+                                    class="material-icons">chevron_right</i></a></li>
+                        </ul>
+                        <div class="pad-top-10"></div>
+                    </div>
+
+
+                    <div class="pad-top-10"></div>
+                    <div class="pad-top-10"></div>
+                    <div class="pad-top-10"></div>
+                    <!-- Write Comment-->
+                    <div class="card-content-1">
+                        <div class="divider-grey-3"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+
+                        <div class="row">
+                            <form class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
+                                        <label for="textarea1">Write Your Comment here</label>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div>
+                                <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
+                                    <i class="material-icons right">send</i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
             </div>
-
-
-
         </div>
     </main>
 

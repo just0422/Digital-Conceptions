@@ -9329,7 +9329,7 @@ textarea.materialize-textarea {
     padding: 1.6rem 0;
     /* prevents text jump on Enter keypress */
     resize: none;
-    min-height: 3rem;
+    min-height: 5rem;
 }
 
 .hiddendiv {
