@@ -43,17 +43,19 @@
     <jsp:include page="header.jsp"/>
 
     <!-- Main boy content -->
-    <main class="main body">
+    <main class="main body body-background-color">
         <!-- Body  -->
         <div class="row">
 
             <!-- Account info and Subscription -->
             <div class="col s8">
-                <div class="card min-height">
+                <div class="pad-top-10"></div>
+                <div class="card-1 min-height">
 
-                    <div class="card-content white-text">
+                    <div class="card-content-1 white-text">
 
                         <div class="center">
+
                             <!-- Account button -->
                             <a id="account_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
                                     class="material-icons right">account_circle</i>Account</a>
@@ -65,6 +67,7 @@
                             <!-- Notification button-->
                             <a id="notification_button" class="waves-effect waves-light btn  cyan lighten-2"><i
                                     class="material-icons right">notifications</i>Notification</a>
+                            <div class="pad-top-10"></div>
                         </div>
 
                     </div>
@@ -79,80 +82,124 @@
 
                     </div>
                     <div id="subscription" class="flow-text" style="display: none">
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
+                        <div class="pad-top-10"></div>
 
-                        <div class="row">
-                            <div class="col s6">
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
+                        <div class="container-1">
+                            <div class="row">
+                                <div class="col s6">
+                                    <div class="card hoverable cyan lighten-3" onclick="">
+                                        <div class="card-image">
+                                            <img src="image/5.jpg">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">Hero</p>
+                                        </div>
                                     </div>
-                                    <div class="card-content white-text">
-                                        <p class="flow-text">Hero</p>
+
+                                    <div class="pad-top-10"></div>
+                                    <div class="pad-top-10"></div>
+                                    <div class="pad-top-10"></div>
+
+                                    <div class="card hoverable cyan lighten-3" onclick="">
+                                        <div class="card-image">
+                                            <img src="image/5.jpg">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">Hero</p>
+                                        </div>
                                     </div>
+
+
                                 </div>
 
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
+
+                                <div class="col s6">
+
+
+                                    <div class="card hoverable cyan lighten-3" onclick="">
+                                        <div class="card-image">
+                                            <img src="image/5.jpg">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">Hero</p>
+                                        </div>
                                     </div>
-                                    <div class="card-content white-text">
-                                        <p class="flow-text">Hero</p>
+
+                                    <div class="pad-top-10"></div>
+                                    <div class="pad-top-10"></div>
+                                    <div class="pad-top-10"></div>
+
+                                    <div class="card hoverable cyan lighten-3" onclick="">
+                                        <div class="card-image">
+                                            <img src="image/5.jpg">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">Hero</p>
+                                        </div>
                                     </div>
                                 </div>
 
 
                             </div>
 
-                            <div id="notification" class="flow-text" style="display: none">
-
-                            </div>
-
-                            <div class="col s6">
+                            <div class="pad-top-10"></div>
+                            <div class="pad-top-10"></div>
+                            <div class="pad-top-10"></div>
 
 
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p class="flow-text">Hero</p>
-                                    </div>
-                                </div>
-
-                                <div class="card hoverable cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
-                                    </div>
-                                    <div class="card-content white-text">
-                                        <p class="flow-text">Hero</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                            <ul class="pagination center">
+                                <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+                                <li class="active"><a href="#!">1</a></li>
+                                <li class="waves-effect"><a href="#!">2</a></li>
+                                <li class="waves-effect"><a href="#!">3</a></li>
+                                <li class="waves-effect"><a href="#!">4</a></li>
+                                <li class="waves-effect"><a href="#!">5</a></li>
+                                <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a>
+                                </li>
+                            </ul>
                         </div>
 
-                        <ul class="pagination center">
-                            <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                            <li class="active"><a href="#!">1</a></li>
-                            <li class="waves-effect"><a href="#!">2</a></li>
-                            <li class="waves-effect"><a href="#!">3</a></li>
-                            <li class="waves-effect"><a href="#!">4</a></li>
-                            <li class="waves-effect"><a href="#!">5</a></li>
-                            <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
-                        </ul>
+                    </div>
 
+
+                    <div id="notification" style="display: none">  
+                        <div class="container-1">
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">message</i>System Message
+                                    </div>
+                                    <div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>
+                                        Message Body</p></div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">message</i>System Message
+                                    </div>
+                                    <div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>
+                                        Message Body</p></div>
+                                </li>
+                                <li>
+                                    <div class="collapsible-header"><i class="material-icons">message</i>System Message
+                                    </div>
+                                    <div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>
+                                        Message Body</p></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                         
                     </div>
                 </div>
             </div>
 
             <!-- Side bar -->
-            <!-- Notification or message -->
+            <!-- Recently Viewed -->
             <div class="col s4">
-                <div class="card min-height">
-                    <div class="card-content ">
-                        <div class="flow-text">
-                            <h5>Recently Reviewed</h5>
+                <div class="card-1 min-height">
+                    <div class="card-content-1 ">
+                        <div class="flow-text medium cyan-text center">
+                            <h5>Recently Viewed</h5>
 
                         </div>
 

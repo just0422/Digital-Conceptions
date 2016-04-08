@@ -45,12 +45,14 @@
     <!-- Main home page content-->
     <main class="main body body-background-color">
 
+
         <div class="row">
+
             <div class="col s12">
                 <nav>
-                    <div class="nav-wrapper cyan lighten-3">
-
+                    <div class="nav-wrapper cyan lighten-3 ">
                         <ul id="nav-mobile" class="center genre-pad-left">
+
                             <li><a>Action</a></li>
                             <li><a>Drama</a></li>
                             <li><a>Romance</a></li>
@@ -59,10 +61,12 @@
                             <li><a>Slice of Life</a></li>
                             <li><a>Sport</a></li>
                             <li><a>Sci-Fi</a></li>
+
                         </ul>
 
                     </div>
                 </nav>
+
             </div>
         </div>
 
@@ -139,14 +143,15 @@
                         <div class="card-content white-text">
                             <p class="flow-text">Hero</p>
                         </div>
-                    </div> <div class="card hoverable cyan lighten-3" onclick="">
-                    <div class="card-image">
-                        <img src="image/5.jpg">
                     </div>
-                    <div class="card-content white-text">
-                        <p class="flow-text">Hero</p>
+                    <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card-image">
+                            <img src="image/5.jpg">
+                        </div>
+                        <div class="card-content white-text">
+                            <p class="flow-text">Hero</p>
+                        </div>
                     </div>
-                </div>
 
 
                 </div>
