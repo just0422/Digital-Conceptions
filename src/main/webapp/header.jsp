@@ -17,23 +17,25 @@
                         <li><a href="/genre" class="custom-nav-font-size" id="genre">Genre</a></li>
                     </ul>
 
-                    <!-- Profile butto n-->
+                    <!-- Profile button-->
                     <ul class="right">
-                        <script>console.log("right");</script>
                         <c:choose>
                             <c:when test="${user == null}">
-                                <script>console.log("when");</script>
-                                <li><a href="/usersignin"><i class="material-icons">face</i></a></li>
+                                <li>
+                                    <form action="/usersignin" method="get" id="signin">
+                                        <a onclick="$('#signin').submit();"><i class="material-icons">face</i></a>
+                                    </form>
+                                </li>
                             </c:when>
                             <c:otherwise>
                                 <li><a href="#" class="dropdown-button" data-activates="features" id="profile"><i class="material-icons">face</i></a></li>
-                                <script>console.log("otherwise");</script>
+                                <form action="/usersignin" method="post" id="signout"></form>
                                 <!-- Dropdown Data -->
                                 <ul id='features' class='dropdown-content'>
                                     <li><a href="#!">Create <img></a></li>
                                     <li><a href="/user_profile">Profile</a></li>
                                     <li class="divider"></li>
-                                    <li><a href="/usersignin">Log out</a></li>
+                                    <li><a onclick="$('#signout').submit();">Log out</a></li>
                                 </ul>
                             </c:otherwise>
                         </c:choose>
@@ -50,7 +52,6 @@
                         </form>
                     </ul>
                     <script>
-                        console.log(page_title);
                         if (page_title.toLowerCase().indexOf('home') >= 0)
                             $("#home").addClass(highlight_select);
 

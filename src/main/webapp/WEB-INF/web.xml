@@ -28,7 +28,7 @@
     <!-- Servlet Mappings -->
     <servlet-mapping>
         <servlet-name>homepage</servlet-name>
-        <url-pattern>/home</url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>genreservlet</servlet-name>
@@ -73,14 +73,14 @@
 
     <!--<welcome-file-list>-->
         <!--<welcome-file>home</welcome-file>-->
-        <!--<welcome-file>homepage</welcome-file>-->
-        <!--<welcome-file>index.jsp</welcome-file>-->
+        <!--&lt;!&ndash;<welcome-file>homepage</welcome-file>&ndash;&gt;-->
+        <!--&lt;!&ndash;<welcome-file>index.jsp</welcome-file>&ndash;&gt;-->
     <!--</welcome-file-list>-->
 
     <!-- Mappings for JSP files-->
     <servlet-mapping>
         <servlet-name>home</servlet-name>
-        <url-pattern>/homepage</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>profile</servlet-name>

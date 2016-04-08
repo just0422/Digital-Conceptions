@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -18,17 +19,22 @@ public class UserServiceServlet extends HttpServlet {
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
 
+        String loginURL = userService.createLoginURL("/");
+        resp.sendRedirect(loginURL);
+
+//        HttpSession session = req.getSession();
+//        session.setAttribute("user", user.getNickname());
         // IF THE USER IS NOT LOGGED IN, THEN REDIRECT USER TO LOG IN PAGE
-        if (user == null) {
-            String loginURL = userService.createLoginURL("/");
-            resp.sendRedirect(loginURL);
-        }
-        // IF LOGGED IN, THEN GENERATE LOGOUT URL FOR LATER USE
-        else {
-            String logoutURL = userService.createLogoutURL("/");
-//            req.setAttribute("logoutURL", logoutURL);
-            resp.sendRedirect(logoutURL);
-        }
+//        if (user == null) {
+//            String loginURL = userService.createLoginURL("/");
+//            resp.sendRedirect(loginURL);
+//        }
+//        // IF LOGGED IN, THEN GENERATE LOGOUT URL FOR LATER USE
+//        else {
+//            String logoutURL = userService.createLogoutURL("/");
+////            req.setAttribute("logoutURL", logoutURL);
+//            resp.sendRedirect(logoutURL);
+//        }
 //        String userProfLink = "/profile?user=" + user.getNickname();
 //        String login = userProfLink;
 //        if (user == null)

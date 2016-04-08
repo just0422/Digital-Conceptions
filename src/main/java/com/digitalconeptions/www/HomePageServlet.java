@@ -71,7 +71,7 @@ public class HomePageServlet extends HttpServlet {
 
         // Forward request to the home page
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/homepage");
+        RequestDispatcher rd = sc.getRequestDispatcher("/index.jsp");
         rd.forward(req, resp);
     }
 }
