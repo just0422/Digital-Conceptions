@@ -29,7 +29,8 @@ public class SearchPageServlet extends HttpServlet {
             search = "";
 
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher(resp.encodeURL("/results/" + search));
+        RequestDispatcher rd = sc.getRequestDispatcher("/search.jsp");
+                //("/results/" + search));
 
 //        String hi = resp.encodeURL("/search/" + search);
 //        String hi = resp.encodeURL("/search/" + search);

@@ -23,7 +23,8 @@ public class GenreServlet extends HttpServlet{
             genre = "action";
 
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/genres/"+genre);
+        RequestDispatcher rd = sc.getRequestDispatcher("/genre.jsp");
+//        RequestDispatcher rd = req.getRequestDispatcher("/genres/"+genre);
 
 
         List<ComicInfo> comics= ObjectifyService.ofy().load().type(ComicInfo.class).filter("genre", genre).list();

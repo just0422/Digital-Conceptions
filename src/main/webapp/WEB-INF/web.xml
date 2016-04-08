@@ -47,6 +47,10 @@
         <servlet-name>userservice</servlet-name>
         <url-pattern>/usersignin</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>userservice</servlet-name>
+        <url-pattern>/usersignout</url-pattern>
+    </servlet-mapping>
 
     
     <!-- JSP Servlet Mappings -->
@@ -67,11 +71,11 @@
         <jsp-file>search.jsp</jsp-file>
     </servlet>
 
-    <welcome-file-list>
-        <welcome-file>home</welcome-file>
-        <welcome-file>homepage</welcome-file>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>home</welcome-file>-->
+        <!--<welcome-file>homepage</welcome-file>-->
+        <!--<welcome-file>index.jsp</welcome-file>-->
+    <!--</welcome-file-list>-->
 
     <!-- Mappings for JSP files-->
     <servlet-mapping>
@@ -84,7 +88,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>genres</servlet-name>
-        <url-pattern>genres/*</url-pattern>
+        <url-pattern>/genres/*</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>results</servlet-name>
