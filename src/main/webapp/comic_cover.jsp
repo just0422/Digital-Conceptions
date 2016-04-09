@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <div class="col s5">
+                    <div class="col s6">
 
                         <!-- Comic Name-->
                         <div class="pad-top-10"></div>
@@ -94,6 +94,13 @@
                             <div class="divider"></div>
                         </div>
 
+                        <!-- Current  Rating-->
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Current Rating:<span class="right">4</span>
+                            <div class="divider"></div>
+                        </div>
+
                         <div class="container-1">
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
@@ -106,7 +113,7 @@
 
                     </div>
 
-                    <div class="col s3">
+                    <div class="col s2">
                         <div class="container-1 flow-text center cyan-text">
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
