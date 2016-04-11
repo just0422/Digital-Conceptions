@@ -189,15 +189,19 @@
 
                 <!-- Pagination -->
 
-                    <ul class="pagination center">
-                        <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
-                        </li>
-                        <li class="active teal lighten-2"><a href="#!">1</a></li>
-                        <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
-                        <li class="waves-effect teal lighten-2"><a href="#!"><i
-                                class="material-icons">chevron_right</i></a></li>
-                    </ul>
-                    <div class="pad-top-10"></div>
+                <ul class="pagination center">
+                    <li id="previous" class="disabled ">
+                        <a href="#!"><i class="material-icons">chevron_left</i></a>
+                    </li>
+                    <div id="pages" style="display:inline;">
+                        <li class="active"><a href="#!">1</a></li>
+                        <li class="waves-effect "><a href="#!">2</a></li>
+                    </div>
+                    <li id="next" class="waves-effect ">
+                        <a href="#!"><i class="material-icons">chevron_right</i></a>
+                    </li>
+                </ul>
+                <div class="pad-top-10"></div>
 
             </div>
 

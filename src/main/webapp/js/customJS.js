@@ -1,3 +1,15 @@
+
+
+
+function removeActiveClass()
+{
+    $("#pages").children().each(function(index)
+    {
+        $(this).removeClass("active");
+    })
+}
+
+
 $(document).ready(function () {
     $(".slider").slider();
 
@@ -21,17 +33,30 @@ $(document).ready(function () {
 
     })
 
-    $(".pagination").children().each(function(index)
+    $("#previous").click(function()
     {
-        {
-            console.log(index + ": " + $( this ).text());
-            $(this).attr("id", "pagination" + index);
-            $(this).addClass("active");
-            $(this).click(function()
-            {
+        
+    })
 
-            })
-        }
+    $("#next").click(function()
+    {
+
+    })
+
+    var activePage = $("li.active");
+
+    $("#pages").children().each(function(index)
+    {
+        console.log(index + ": " + $( this ).text());
+        $(this).click(function()
+        {
+            if ($(this).attr("class").indexOf("active") == -1)
+            {
+                activePage.removeClass("active");
+                $(this).addClass("active");
+                activePage = $(this);
+            }
+        })
     })
 
     $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
