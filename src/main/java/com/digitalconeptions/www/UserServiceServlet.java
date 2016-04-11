@@ -21,25 +21,6 @@ public class UserServiceServlet extends HttpServlet {
 
         String loginURL = userService.createLoginURL("/");
         resp.sendRedirect(loginURL);
-
-//        HttpSession session = req.getSession();
-//        session.setAttribute("user", user.getNickname());
-        // IF THE USER IS NOT LOGGED IN, THEN REDIRECT USER TO LOG IN PAGE
-//        if (user == null) {
-//            String loginURL = userService.createLoginURL("/");
-//            resp.sendRedirect(loginURL);
-//        }
-//        // IF LOGGED IN, THEN GENERATE LOGOUT URL FOR LATER USE
-//        else {
-//            String logoutURL = userService.createLogoutURL("/");
-////            req.setAttribute("logoutURL", logoutURL);
-//            resp.sendRedirect(logoutURL);
-//        }
-//        String userProfLink = "/profile?user=" + user.getNickname();
-//        String login = userProfLink;
-//        if (user == null)
-//            userService.createLoginURL(userProfLink);
-
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
