@@ -62,7 +62,7 @@
                         </div>
                     </div>
 
-                    <div class="col s6">
+                    <div class="col s5">
 
                         <!-- Comic Name-->
                         <div class="pad-top-10"></div>
@@ -105,15 +105,26 @@
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
-                                <a class="waves-effect waves-light btn lighten-3">Start</a>
+                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#modal1">Start</a>
                                 <a class="waves-effect waves-light btn">Subscribe</a>
                                 <a class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
 
+                        <!-- Modal Structure -->
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h4>Modal Header</h4>
+                                <p>A bunch of text</p>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <div class="col s2">
+                    <div class="col s3">
                         <div class="container-1 flow-text center cyan-text">
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
