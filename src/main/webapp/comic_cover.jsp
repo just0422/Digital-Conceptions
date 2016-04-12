@@ -118,7 +118,7 @@
                         <div id="reading" class="modal">
                             <div class="modal-content">
                                <i class="material-icons modal-close right">close</i>
-                                <p>A bunch of text</p>
+                                <p></p>
                             </div>
                             <%--<div class="modal-footer">--%>
                                 <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
