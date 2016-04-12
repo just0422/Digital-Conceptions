@@ -5,7 +5,7 @@
             <div class="col s12 ">
                 <span class="white-text text-lighten-4 ">About Us</span>
                 <span class="white-text text-lighten-4 right ">Contact Us</span>
-                <p class="white-text text-lighten-4 ">© 2016 Degital Conceptions, All rights reserved.</p>
+                <p class="white-text text-lighten-4 ">&copy; 2016 Digital Conceptions, All rights reserved.</p>
             </div>
         </div>
     </div>
