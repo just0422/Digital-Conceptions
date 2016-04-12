@@ -65,8 +65,8 @@
                                     class="material-icons right">library_books</i>Subscription</a>
 
                             <!-- Notification button-->
-                            <a id="notification_button" class="waves-effect waves-light btn  cyan lighten-2"><i
-                                    class="material-icons right">notifications</i>Notification</a>
+                            <a id="notification_button" class="waves-effect waves-light btn cyan lighten-2"><i
+                                    class="material-icons right">notifications</i>Notification</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="3"></span>
                             <div class="pad-top-10"></div>
                         </div>
 

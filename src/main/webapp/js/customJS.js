@@ -146,6 +146,16 @@ $(document).ready(function () {
 
     $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
         $(this).parent().parent().remove();
+        var numOfNoti = $("#numOfNoti").attr("data-badge");
+        numOfNoti --;
+        if(numOfNoti == 0){
+            $("#numOfNoti").hide();
+        }
+        $("#numOfNoti").attr("data-badge",numOfNoti);
+
+
+
+
     });
 });
 
