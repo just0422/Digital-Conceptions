@@ -31,6 +31,8 @@
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
 
+    <script src="js/customJS_2.js"></script>
+
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
 
@@ -105,22 +107,24 @@
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
-                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#modal1">Start</a>
+                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
                                 <a class="waves-effect waves-light btn">Subscribe</a>
                                 <a class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
 
-                        <!-- Modal Structure -->
-                        <div id="modal1" class="modal">
+
+                        <!-- Reading Structure -->
+                        <div id="reading" class="modal">
                             <div class="modal-content">
-                                <h4>Modal Header</h4>
+                               <i class="material-icons modal-close right">close</i>
                                 <p>A bunch of text</p>
                             </div>
-                            <div class="modal-footer">
-                                <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-                            </div>
+                            <%--<div class="modal-footer">--%>
+                                <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
+                            <%--</div>--%>
                         </div>
+
 
                     </div>
 
@@ -288,6 +292,10 @@
                     </div>
 
                 </div>
+
+
+
+
 
 
             </div>
