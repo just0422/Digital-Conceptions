@@ -21,6 +21,9 @@ public class UserServiceServlet extends HttpServlet {
 
         String loginURL = userService.createLoginURL("/");
         resp.sendRedirect(loginURL);
+
+        HttpSession session = req.getSession();
+        session.setAttribute("user", user.getNickname());
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
