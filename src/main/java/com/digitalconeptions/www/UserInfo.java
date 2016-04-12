@@ -7,7 +7,9 @@ import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -19,6 +21,7 @@ public class UserInfo {
 
     @Index String username;
     @Index User user;
+    Date dateJoined;
     HashMap<ComicInfo, Integer> comicPageLeftOff;
     ArrayList<ComicInfo> subscriptions;
     ArrayList<ComicInfo> creations;
@@ -28,6 +31,7 @@ public class UserInfo {
     ArrayList<String> readNotifications;
 
     public UserInfo(){
+        dateJoined = new Date();
         username = null;
         user = UserServiceFactory.getUserService().getCurrentUser();
 
@@ -45,7 +49,11 @@ public class UserInfo {
     public void setKey(){
         key = KeyFactory.createKeyString("UserInfo", username + user.getNickname());
     }
+    public String getDateFormat() {
+        SimpleDateFormat format = new SimpleDateFormat("E MM/dd/yyyy");
 
+        return format.format(this.dateJoined);
+    }
 
     public String getUsername() { return username; }
     public void setUsername(String username) { this.username = username; }
