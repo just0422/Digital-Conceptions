@@ -33,6 +33,7 @@
 
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
+    <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>Genre - Digital Conceptions</title>
 </head>
