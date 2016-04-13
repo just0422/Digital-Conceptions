@@ -75,9 +75,24 @@
                     <div class="divider-grey-3"></div>
 
                     <div id="account_info">
-
+                        <div class="pad-top-20"></div>
+                        <div class="container">
                         <div class="flow-text pad-left">
+                            User Name: <span id="user_name">IntelliJ</span>
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
 
+
+                            <div class="pad-top-20"></div>
+                            Email Address: <span id="email_address">IntelliJ@gmail.com</span>
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+
+                            <div class="pad-top-20"></div>
+                            Date Joined: <span id="date_jointed">01/08/13</span>
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+                        </div>
                         </div>
 
                     </div>
