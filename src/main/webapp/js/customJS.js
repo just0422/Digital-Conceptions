@@ -5,7 +5,7 @@ $(document).ready(function () {
     $(".slider").slider();
 
 
-    $("#subscription_button").click(function () {
+    $("#subscription_button").click(function(){
         $("#account_info").hide();
         $("#notification").hide();
         $("#subscription").show();
@@ -21,7 +21,6 @@ $(document).ready(function () {
         $("#subscription").hide();
         $("#account_info").hide();
         $("#notification").show();
-
     })
     
     // // May need to do some manipulation to this part depending on how many pages
@@ -126,23 +125,23 @@ $(document).ready(function () {
     //     }
     // })
 
-    $(".card").each(function()
-    {
-        // Give each card the comic image
-
-
-        // If clicked, navigate to the comic cover page with the
-        // corresponding comic
-        $(this).click(function()
-        {
-            location.href = "comic_cover.jsp";
-        })
-
-        $(this).mouseover(function()
-        {
-            $(this).css("cursor", "pointer");
-        })
-    })
+    // $(".card.hoverable").each(function()
+    // {
+    //     // Give each card the comic image
+    //
+    //
+    //     // If clicked, navigate to the comic cover page with the
+    //     // corresponding comic
+    //     $(this).click(function()
+    //     {
+    //         location.href = "comic_cover.jsp";
+    //     })
+    //
+    //     $(this).mouseover(function()
+    //     {
+    //         $(this).css("cursor", "pointer");
+    //     })
+    // })
 
     $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
         $(this).parent().parent().remove();

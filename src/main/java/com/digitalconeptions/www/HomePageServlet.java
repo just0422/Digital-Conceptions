@@ -61,6 +61,15 @@ public class HomePageServlet extends HttpServlet {
         else
             username = user.getNickname();
 
+        ComicInfo testComic = new ComicInfo();
+        testComic.seriesTitle = "Parasyte";
+        testComic.comicTitle = "THE MAXIM";
+        testComic.volume = 5;
+        testComic.issue = 10;
+        req.setAttribute("test_comic", testComic);
+
+//        String s = "test string"
+//        req.setAttribute("", s);
 
         // Set attributes in request for forwarding
         req.setAttribute("action_comics", actionComics);

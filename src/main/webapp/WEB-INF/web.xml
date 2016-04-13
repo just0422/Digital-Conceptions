@@ -24,6 +24,10 @@
         <servlet-name>userservice</servlet-name>
         <servlet-class>com.digitalconeptions.www.UserServiceServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>comicservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.ComicServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet Mappings -->
     <servlet-mapping>
@@ -50,6 +54,11 @@
     <servlet-mapping>
         <servlet-name>userservice</servlet-name>
         <url-pattern>/usersignout</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>comicservlet</servlet-name>
+        <url-pattern>/comicservlet</url-pattern>
     </servlet-mapping>
 
     
