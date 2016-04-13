@@ -31,6 +31,7 @@
 
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
+    <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>User Profile - Digital Conceptions</title>
 </head>
@@ -78,18 +79,17 @@
                         <div class="pad-top-20"></div>
                         <div class="container">
                         <div class="flow-text pad-left">
-                            User Name: <span id="user_name">IntelliJ</span>
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
-
-
-                            <div class="pad-top-20"></div>
-                            Email Address: <span id="email_address">IntelliJ@gmail.com</span>
+                            User Name: <span id="user_name">IntelliJ<%--${current_user.username}--%></span>
                             <div class="pad-top-2"></div>
                             <div class="divider"></div>
 
                             <div class="pad-top-20"></div>
-                            Date Joined: <span id="date_jointed">01/08/13</span>
+                            Email Address: <span id="email_address">${user.email}</span>
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
+
+                            <div class="pad-top-20"></div>
+                            Date Joined: <span id="date_jointed">01/08/13<%--${current_user.dateJoined.toString()}--%></span>
                             <div class="pad-top-2"></div>
                             <div class="divider"></div>
                         </div>
@@ -112,11 +112,12 @@
                                             <p class="flow-text">Hero</p>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <div class="pad-top-10"></div>
-                                    <div class="pad-top-10"></div>
-                                    <div class="pad-top-10"></div>
-
+                                    <%--<div class="pad-top-10"></div>--%>
+                                    <%--<div class="pad-top-10"></div>--%>
+                                    <%--<div class="pad-top-10"></div>--%>
+                                <div class="col s6">
                                     <div class="card hoverable cyan lighten-3" onclick="">
                                         <div class="card-image">
                                             <img src="image/5.jpg">
@@ -125,27 +126,9 @@
                                             <p class="flow-text">Hero</p>
                                         </div>
                                     </div>
-
-
                                 </div>
-
 
                                 <div class="col s6">
-
-
-                                    <div class="card hoverable cyan lighten-3" onclick="">
-                                        <div class="card-image">
-                                            <img src="image/5.jpg">
-                                        </div>
-                                        <div class="card-content white-text">
-                                            <p class="flow-text">Hero</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="pad-top-10"></div>
-                                    <div class="pad-top-10"></div>
-                                    <div class="pad-top-10"></div>
-
                                     <div class="card hoverable cyan lighten-3" onclick="">
                                         <div class="card-image">
                                             <img src="image/5.jpg">
@@ -156,23 +139,36 @@
                                     </div>
                                 </div>
 
-
+                                    <%--<div class="pad-top-10"></div>--%>
+                                    <%--<div class="pad-top-10"></div>--%>
+                                    <%--<div class="pad-top-10"></div>--%>
+                                <div class="col s6">
+                                    <div class="card hoverable cyan lighten-3" onclick="">
+                                        <div class="card-image">
+                                            <img src="image/5.jpg">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">Hero</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <!-- Pagination -->
-                            <div class="card-content-1">
-                                <ul class="pagination right">
-                                    <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
-                                    </li>
-                                    <li class="active teal lighten-2"><a href="#!">1</a></li>
-                                    <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
-                                    <li class="waves-effect teal lighten-2"><a href="#!"><i
-                                            class="material-icons">chevron_right</i></a></li>
-                                </ul>
-                                <div class="pad-top-10"></div>
-                            </div>
+                            <ul class="pagination center">
+                                <li id="previous" class="disabled">
+                                    <a href="#!"><i class="material-icons">chevron_left</i></a>
+                                </li>
+                                <div id="pages" style="display:inline;">
+                                    <li class="active"><a href="#!">1</a></li>
+                                    <li class="waves-effect"><a href="#!">2</a></li>
+                                </div>
+                                <li id="next" class="waves-effect">
+                                    <a href="#!"><i class="material-icons">chevron_right</i></a>
+                                </li>
+                            </ul>
+                            <div class="pad-top-10"></div>
                         </div>
-
                     </div>
 
 

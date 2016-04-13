@@ -76,7 +76,8 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute("popular_comics", popularComics);
         req.setAttribute("newest_comics", newestComics);
         HttpSession session = req.getSession();
-        session.setAttribute("user", username);
+        session.setAttribute("user", user);
+        session.setAttribute("username", username);
 
         // Forward request to the home page
         ServletContext sc = getServletContext();
