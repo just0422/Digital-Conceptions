@@ -48,10 +48,6 @@
     <!-- Home Page -->
     <!-- Main body-->
     <main class="main body body-background-color">
-        <form action="demo_form.asp">
-            <input type="file" name="upload" accept="image/*">
-            <input type="submit">
-        </form>--%>
 
         <div class="pad-top-20"></div>
         <div class="pad-top-20"></div>
@@ -85,7 +81,7 @@
                     <!-- Comic Cover -->
                     <div class="col s3">
 
-                        <div class="card hoverable grey lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3" onclick="">
                             <div class="card-image">
                                 <img src="image/9.jpg">
                             </div>
