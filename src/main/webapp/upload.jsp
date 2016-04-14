@@ -46,8 +46,8 @@
     <!-- Home Page -->
     <!-- Main body-->
     <main class="main body body-background-color">
-        <form action="demo_form.asp">
-            <input type="file" name="upload" accept="image/*">
+        <form action="${upload}" method="post" enctype="multipart/form-data">
+            <input type="file" name="upload" multiple>
             <input type="submit">
         </form>
     </main>
