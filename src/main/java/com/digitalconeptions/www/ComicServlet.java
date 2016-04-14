@@ -42,7 +42,7 @@ public class ComicServlet extends HttpServlet {
                 .filter("volume", volume)
                 .filter("issue", issue).first().now();
 
-        req.setAttribute("comic", currentcomic);
+        req.setAttribute("current_comic", currentcomic);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/comic_cover.jsp");
         rd.forward(req, resp);
@@ -57,10 +57,12 @@ public class ComicServlet extends HttpServlet {
     // Comic attribute should be set for each request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ComicInfo comic = (ComicInfo)req.getAttribute("comic");
+        String comment = (String) req.getAttribute("comment");
 //        UserService userService = UserServiceFactory.getUserService();
 //        User user = userService.getCurrentUser();
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
+        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
 
         // Rating
         // Average in rating for comic
@@ -68,6 +70,8 @@ public class ComicServlet extends HttpServlet {
 
         // Comments
         // Concatenate EPOCH date to comment using ! as delimiter
+        Comment newComment = new Comment(userInfo, userInfo.username);
+        comic.commentList.add(newComment);
 
         // Finished reading
         // Set userinfo pageleftoff hashmap based off of <ComicInfo, int page>
