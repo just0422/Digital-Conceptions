@@ -274,20 +274,18 @@
                         <div class="pad-top-10"></div>
 
                         <div class="row">
-                            <form class="col s12">
-                                <div class="row">
-                                    <div class="input-field col s12">
-                                        <textarea id="textarea1" class="materialize-textarea"></textarea>
-                                        <label for="textarea1">Write Your Comment here</label>
-                                    </div>
-                                </div>
-                            </form>
 
-                            <div>
-                                <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-                                    <i class="material-icons right">send</i>
-                                </button>
+                            <div class="input-field col s12">
+                                <form class="col s12" action="/comicservlet" method="POST">
+                                    <input type="hidden" name="comic" value="${requestScope.current_comic}">
+                                    <label for="textarea1">Write Your Comment here</label>
+                                    <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                                    <button class="btn waves-effect waves-light right" type="submit">
+                                        Submit<i class="material-icons right">send</i>
+                                    </button>
+                                </form>
                             </div>
+
                         </div>
                     </div>
 

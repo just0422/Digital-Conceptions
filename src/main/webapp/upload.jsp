@@ -48,7 +48,7 @@
     <!-- Home Page -->
     <!-- Main body-->
     <main class="main body body-background-color">
-        <%--<form action="demo_form.asp">
+        <form action="demo_form.asp">
             <input type="file" name="upload" accept="image/*">
             <input type="submit">
         </form>--%>

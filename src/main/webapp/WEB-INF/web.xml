@@ -24,6 +24,11 @@
         <servlet-name>userservice</servlet-name>
         <servlet-class>com.digitalconeptions.www.UserServiceServlet</servlet-class>
     </servlet>
+    <!-- Upload Servlet -->
+    <servlet>
+        <servlet-name>creationpageservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.CreationServlet</servlet-class>
+    </servlet>
     <servlet>
         <servlet-name>comicservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.ComicServlet</servlet-class>
@@ -45,6 +50,10 @@
     <servlet-mapping>
         <servlet-name>userprofileservlet</servlet-name>
         <url-pattern>/userprofile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>creationpageservlet</servlet-name>
+        <url-pattern>/upload</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>

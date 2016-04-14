@@ -7,6 +7,7 @@ import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 
@@ -29,6 +30,7 @@ public class ComicInfo {
 
     String comicImagesDirectory;
     String comicCommentsDirectory;
+    ArrayList<Comment> commentList;
     int volume;
     int issue;
 
@@ -45,6 +47,7 @@ public class ComicInfo {
 
         comicImagesDirectory = null;
         comicCommentsDirectory = null;
+        commentList = new ArrayList();
         volume = 0;
         issue = 0;
     }
@@ -111,7 +114,6 @@ public class ComicInfo {
         this.issue = issue;
     }
 
-
     public void setKey(){
         key = KeyFactory.createKeyString("ComicInfo", username + seriesTitle + comicTitle + getTimeCreated());
     }
@@ -142,7 +144,9 @@ public class ComicInfo {
     public String getComicImagesDirectory() { return comicImagesDirectory; }
     public void setComicImagesDirectory(String comicImagesDirectory) { this.comicImagesDirectory = comicImagesDirectory; }
     public String getComicCommentsDirectory() { return comicCommentsDirectory; }
-    public void setComicCommentsDirectory(String comicCommentsDirecotry) { this.comicCommentsDirectory = comicCommentsDirecotry; }
+    public void setComicCommentsDirectory(String comicCommentsDirectory) { this.comicCommentsDirectory = comicCommentsDirectory; }
+    public ArrayList<Comment> getCommentList() {return commentList;}
+    public void setCommentList(ArrayList<Comment> commentList) {this.commentList = commentList;}
     public int getVolume() { return volume; }
     public void setVolume(int volume) { this.volume = volume; }
     public int getIssue() { return issue; }
