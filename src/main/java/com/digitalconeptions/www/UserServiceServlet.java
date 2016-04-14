@@ -17,13 +17,13 @@ import java.io.IOException;
 public class UserServiceServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
+//        User user = userService.getCurrentUser();
 
         String loginURL = userService.createLoginURL("/");
         resp.sendRedirect(loginURL);
 
-        HttpSession session = req.getSession();
-        session.setAttribute("user", user.getNickname());
+//        HttpSession session = req.getSession();
+//        session.setAttribute("user", user.getNickname());
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{

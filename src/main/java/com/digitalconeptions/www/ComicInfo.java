@@ -28,7 +28,7 @@ public class ComicInfo {
     @Index int rating;
 
     String comicImagesDirectory;
-    String comicCommentsDirecotry;
+    String comicCommentsDirectory;
     int volume;
     int issue;
 
@@ -44,7 +44,7 @@ public class ComicInfo {
         rating = 0;
 
         comicImagesDirectory = null;
-        comicCommentsDirecotry = null;
+        comicCommentsDirectory = null;
         volume = 0;
         issue = 0;
     }
@@ -61,11 +61,11 @@ public class ComicInfo {
         String lowestLevelDir = seriesTitle + '/' + comicTitle + '/';
         this.comicImagesDirectory =  highestLevelDir +
                 "/comics/" + lowestLevelDir;
-        this.comicCommentsDirecotry = highestLevelDir +
+        this.comicCommentsDirectory = highestLevelDir +
                 "/comments/" + lowestLevelDir;
 
         File cid = new File(comicImagesDirectory);
-        File ccd = new File(comicCommentsDirecotry);
+        File ccd = new File(comicCommentsDirectory);
 
         try {
             if(!cid.exists())
@@ -141,8 +141,8 @@ public class ComicInfo {
     public void setRating(int rating) { this.rating = rating; }
     public String getComicImagesDirectory() { return comicImagesDirectory; }
     public void setComicImagesDirectory(String comicImagesDirectory) { this.comicImagesDirectory = comicImagesDirectory; }
-    public String getComicCommentsDirecotry() { return comicCommentsDirecotry; }
-    public void setComicCommentsDirecotry(String comicCommentsDirecotry) { this.comicCommentsDirecotry = comicCommentsDirecotry; }
+    public String getComicCommentsDirectory() { return comicCommentsDirectory; }
+    public void setComicCommentsDirectory(String comicCommentsDirecotry) { this.comicCommentsDirectory = comicCommentsDirecotry; }
     public int getVolume() { return volume; }
     public void setVolume(int volume) { this.volume = volume; }
     public int getIssue() { return issue; }

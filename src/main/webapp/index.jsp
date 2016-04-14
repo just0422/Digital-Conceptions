@@ -56,6 +56,24 @@
             <div class="col s9">
                 <div class="slider z-depth-1">
                     <ul class="slides">
+                        <%--<c:forEach var="newestComic" items="${requestScope.newestComics}" begin="0" end="3">--%>
+                            <%--<li>--%>
+                                <%--<form action="/comicservlet" method="GET">--%>
+                                    <%--<input type="hidden" name="series_title" value="${newestComic.seriesTitle}">--%>
+                                    <%--<input type="hidden" name="comic_title" value="${newestComic.comicTitle}">--%>
+                                    <%--<input type="hidden" name="volume" value="${newestComic.volume}">--%>
+                                    <%--<input type="hidden" name="issue" value="${newestComic.issue}">--%>
+                                    <%----%>
+                                    <%--<img src="/image/3.jpg" onclick="$(this).parent().submit();">--%>
+                                    <%--<!-- random image -->--%>
+                                    <%--<div class="caption left-align">--%>
+                                        <%--<h3>${newestComic.seriesTitle}</h3>--%>
+                                        <%--<h5 class="light grey-text text-lighten-3">${newestComic.comicTitle}</h5>--%>
+                                    <%--</div>--%>
+                                <%--</form>--%>
+                            <%--</li>--%>
+                        <%--</c:forEach>--%>
+
                         <!-- 1st Slide -->
                         <li>
                             <img src="/image/3.jpg">
@@ -111,6 +129,12 @@
                         <div class="pad-top"></div>
                         <div class="divider"></div>
                         <div class="pad-top-10"></div>
+
+                        <%--<c:forEach var="popularComic" items="${requestScope.popularComics}"--%>
+                        <%--begin="0" end="${requestScope.popularComics.size()}">--%>
+                            <%--<div class="pad-top"></div>--%>
+                            <%--<p><a href="#" class="white-text hoverable" hoverable>${popularComics.SeriesTitle}</a></p>--%>
+                        <%--</c:forEach>--%>
 
                         <!-- 1 -->
                         <div class="pad-top"></div>
@@ -172,17 +196,44 @@
 
             <!-- First Row -->
             <div class="row">
+                <%--<c:forEach var="fantasyComic" items="${requestScope.fantasyComics}" begin="0" end="2">--%>
+                    <%--<div class="col s4">--%>
+                        <%--<form action="/comicservlet" method="GET">--%>
+                            <%--<input type="hidden" name="series_title" value="${fantasyComic.seriesTitle}">--%>
+                            <%--<input type="hidden" name="comic_title" value="${fantasyComic.comicTitle}">--%>
+                            <%--<input type="hidden" name="volume" value="${fantasyComic.volume}">--%>
+                            <%--<input type="hidden" name="issue" value="${fantasyComic.issue}">--%>
+                            <%--<div class="card hoverable" onclick="$(this).parent().submit();">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content">--%>
+                                    <%--<p class="flow-text">${fantasyComic.seriesTitle}</p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
 
                 <!-- 1st comic -->
                 <div class="col s4">
-                    <div class="card hoverable" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
+                    <form id="fantasy1" action="/comicservlet" method="GET">
+                        <input type="hidden" name="series_title" value="${requestScope.test_comic.seriesTitle}">
+                        <input type="hidden" name="comic_title" value="${requestScope.test_comic.comicTitle}">
+                        <input type="hidden" name="volume" value="${requestScope.test_comic.volume}">
+                        <input type="hidden" name="issue" value="${requestScope.test_comic.issue}">
+
+                        <div class="card hoverable" onclick="$(this).parent().submit();">
+                            <div class="card-image">
+                                <img src="image/5.jpg">
+                            </div>
+                            <div class="card-content">
+                                <p class="flow-text">Hero</p>
+                            </div>
+
                         </div>
-                        <div class="card-content">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
+
+                    </form>
                 </div>
 
                 <!-- 2nd comic -->
@@ -226,6 +277,24 @@
             </div>
             <!-- First Row -->
             <div class="row">
+                <%--<c:forEach var="romanceComic" items="${requestScope.romanceComics}" begin="0" end="2">--%>
+                    <%--<div class="col s4">--%>
+                        <%--<form action="/comicservlet" method="GET">--%>
+                            <%--<input type="hidden" name="series_title" value="${romanceComic.seriesTitle}">--%>
+                            <%--<input type="hidden" name="comic_title" value="${romanceComic.comicTitle}">--%>
+                            <%--<input type="hidden" name="volume" value="${romanceComic.volume}">--%>
+                            <%--<input type="hidden" name="issue" value="${romanceComic.issue}">--%>
+                            <%--<div class="card hoverable" onclick="$(this).parent().submit();">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content">--%>
+                                    <%--<p class="flow-text">${romanceComic.seriesTitle}</p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
 
                 <!-- 1st comic -->
                 <div class="col s4">
@@ -278,6 +347,24 @@
             </div>
             <!-- First Row -->
             <div class="row">
+                <%--<c:forEach var="horrorComic" items="${requestScope.horrorComics}" begin="0" end="2">--%>
+                    <%--<div class="col s4">--%>
+                        <%--<form action="/comicservlet" method="GET">--%>
+                            <%--<input type="hidden" name="series_title" value="${horrorComic.seriesTitle}">--%>
+                            <%--<input type="hidden" name="comic_title" value="${horrorComic.comicTitle}">--%>
+                            <%--<input type="hidden" name="volume" value="${horrorComic.volume}">--%>
+                            <%--<input type="hidden" name="issue" value="${horrorComic.issue}">--%>
+                            <%--<div class="card hoverable" onclick="$(this).parent().submit();">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content">--%>
+                                    <%--<p class="flow-text">${horrorComic.seriesTitle}</p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
 
                 <!-- 1st comic -->
                 <div class="col s4">
@@ -331,6 +418,24 @@
                 </div>
             </div>
             <div class="row">
+                <%--<c:forEach var="actionComic" items="${requestScope.actionComics}" begin="0" end="2">--%>
+                    <%--<div class="col s4">--%>
+                        <%--<form action="/comicservlet" method="GET">--%>
+                            <%--<input type="hidden" name="series_title" value="${actionComic.seriesTitle}">--%>
+                            <%--<input type="hidden" name="comic_title" value="${actionComic.comicTitle}">--%>
+                            <%--<input type="hidden" name="volume" value="${actionComic.volume}">--%>
+                            <%--<input type="hidden" name="issue" value="${actionComic.issue}">--%>
+                            <%--<div class="card hoverable" onclick="$(this).parent().submit();">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content">--%>
+                                    <%--<p class="flow-text">${actionComic.seriesTitle}</p>--%>
+                                <%--</div>--%>
+                            <%--</div>--%>
+                        <%--</form>--%>
+                    <%--</div>--%>
+                <%--</c:forEach>--%>
 
                 <!-- 1st comic -->
                 <div class="col s4">
