@@ -33,6 +33,7 @@
 
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
+    <script type="text/javascript" src="js/customJS_2.js"></script>
     <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>Genre - Digital Conceptions</title>
@@ -54,16 +55,16 @@
                 <div class="col s12">
                     <nav>
                         <div class="nav-wrapper cyan lighten-3 ">
-                            <ul id="nav-mobile" class="center genre-pad-left">
+                            <ul id="genres" class="center genre-pad-left">
 
-                                <li><a>Action</a></li>
-                                <li><a>Drama</a></li>
-                                <li><a>Romance</a></li>
-                                <li><a>Comedy</a></li>
-                                <li><a>Thriller</a></li>
-                                <li><a>Slice of Life</a></li>
-                                <li><a>Sport</a></li>
-                                <li><a>Sci-Fi</a></li>
+                                <li id="action"><a>Action</a></li>
+                                <li id="drama"><a>Drama</a></li>
+                                <li id="romance"><a>Romance</a></li>
+                                <li id="comedy"><a>Comedy</a></li>
+                                <li id="thriller"><a>Thriller</a></li>
+                                <li id="life"><a>Slice of Life</a></li>
+                                <li id="sport"><a>Sport</a></li>
+                                <li id="science"><a>Sci-Fi</a></li>
 
                             </ul>
 
