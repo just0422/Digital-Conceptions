@@ -32,7 +32,7 @@
                                 <form action="/usersignin" method="post" id="signout"></form>
                                 <!-- Dropdown Data -->
                                 <ul id='features' class='dropdown-content'>
-                                    <li><a href="#!">Create <img></a></li>
+                                    <li><a href="/upload">Create <img></a></li>
                                     <li><a href="/userprofile">Profile</a></li>
                                     <li class="divider"></li>
                                     <li><a onclick="$('#signout').submit();">Log out</a></li>

@@ -73,39 +73,48 @@
 
         <div class="container-1">
 
-            <form action="#">
 
 
-                <div class="row">
+            <div class="row">
 
-                    <!-- Comic Cover -->
-                    <div class="col s3">
+                <!-- Comic Cover -->
+                <div class="col s3">
 
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/9.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text center">Cover</p>
-                            </div>
+                    <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card-image">
+                            <img src="image/9.jpg">
+                        </div>
+                        <div class="card-content white-text">
+                            <p class="flow-text center">Cover</p>
                         </div>
                     </div>
+                </div>
 
 
-                    <!-- Upload information -->
-
-
-                    <div class="col s9">
-                        <div class="container-1">
-                            <div class="input-field">
-                                <input id="title" type="text" class="validate">
-                                <label for="title">Title</label>
+                <!-- Upload information -->
+                <div class="col s9">
+                    <div class="container-1">
+                        <form id="comic_upload" enctype="multipart/form-data">
+                            <div class="input-field titles">
+                                <input id="series_title" type="text" class="validate" name="series_title">
+                                <label for="series_title">Series Title</label>
                             </div>
-
+                            <div class="input-field titles issues">
+                                <input id="issue_title" type="text" class="validate" name="issue_title">
+                                <label for="issue_title">Issue Title</label>
+                            </div>
+                            <div class="input-field titles">
+                                <input id="volume" type="number" class="validate" name="volume">
+                                <label for="volume">Volume</label>
+                            </div>
+                            <div class="input-field titles issues">
+                                <input id="issue" type="number" class="validate" name="issue">
+                                <label for="issue">Issues</label>
+                            </div>
 
                             <div class="row">
                                 <div class="input-field col s12">
-                                    <select>
+                                    <select name="genre" form="comic_upload" required>
                                         <option value="" disabled selected>Choose your genre</option>
                                         <option value="action">Action</option>
                                         <option value="drama">Drama</option>
@@ -115,114 +124,106 @@
                                         <option value="sport">Sport</option>
                                         <option value="science">Sci-Fi</option>
                                     </select>
-
                                 </div>
                             </div>
 
-
                             <div class="input-field">
-                                <input id="volumn" type="text" class="validate">
-                                <label for="volumn">Volumn</label>
-                            </div>
-
-                            <div class="input-field">
-                                <textarea id="description" class="materialize-textarea"></textarea>
+                                <textarea id="description" class="materialize-textarea" name="description" required></textarea>
                                 <label for="description">Description of the comic</label>
                             </div>
+                        </form>
 
-                        </div>
+                    </div>
 
-                        <!-- Preview of the uploaded comics -->
-                        <div class="container-1">
+                    <!-- Preview of the uploaded comics -->
+                    <div class="container-1">
 
-                            <%--<!-- Small cards for uploaded comics preview -->--%>
-                            <%--<div class="row">--%>
-                            <%--<div class="col s3">--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
+                        <%--<!-- Small cards for uploaded comics preview -->--%>
+                        <%--<div class="row">--%>
+                        <%--<div class="col s3">--%>
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
 
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
 
-                            <%--</div>--%>
-
-
-                            <%--<div class="col s3">--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="col s3">--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="col s3">--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                            <%--<div class="card-image">--%>
-                            <%--<img src="image/preview.jpg">--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
-                            <%--</div>--%>
+                        <%--</div>--%>
 
 
-                            <div class="pad-top-20"></div>
-                            <div class="pad-top-20"></div>
-                            <!-- Browse and sbumt buttons -->
-                            <div class="col s12">
-                                <div class="file-field input-field">
-                                    <div class="waves-effect waves-light btn cyan lighten-2"><i
-                                            class="material-icons right">cloud_upload</i>Browse</input>
-                                        <input type="file" multiple>
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text"
-                                               placeholder="Upload one or more files">
-                                    </div>
+                        <%--<div class="col s3">--%>
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="col s3">--%>
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="col s3">--%>
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="card cyan lighten-3" onclick="">--%>
+                        <%--<div class="card-image">--%>
+                        <%--<img src="image/preview.jpg">--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+                        <%--</div>--%>
+
+                        <div class="pad-top-20"></div>
+                        <div class="pad-top-20"></div>
+                        <!-- Browse and sbumt buttons -->
+                        <div class="col s12">
+                            <div class="file-field input-field">
+                                <div class="waves-effect waves-light btn cyan lighten-2"><i
+                                        class="material-icons right">cloud_upload</i>Browse</input>
+                                    <input type="file" name="upload" multiple form="comic_upload">
                                 </div>
-
-
-                                <div class="pad-top-20"></div>
-                                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"><i
-                                        class="material-icons right">send</i>Submit
-                                </button>
+                                <div class="file-path-wrapper">
+                                    <input class="file-path validate" type="text"
+                                           placeholder="Upload one or more files" readonly>
+                                </div>
                             </div>
 
+
+                            <div class="pad-top-20"></div>
+                            <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center" form="comic_upload"><i
+                                    class="material-icons right">send</i>Submit
+                            </button>
                         </div>
 
                     </div>
+
                 </div>
-            </form>
+            </div>
             <div class="pad-top-20"></div>
             <div class="pad-top-20"></div>
 

@@ -168,3 +168,15 @@
     .hoverable:hover {
         cursor: pointer;
     }
+
+    .titles{
+        width: 45%;
+        display: inline-block;
+    }
+    .issues{
+        margin-left: 9%;
+    }
+    #comic_upload input {
+        padding-left: 5%;
+        padding-right: 5%;
+    }

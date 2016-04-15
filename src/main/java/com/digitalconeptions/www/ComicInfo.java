@@ -1,4 +1,5 @@
 package com.digitalconeptions.www;
+import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
@@ -10,6 +11,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created by justin on 3/21/16.
@@ -22,13 +24,14 @@ public class ComicInfo {
     @Index String comicTitle;
     @Index String genre;
     @Index String username;
+    String description;
     @Index User user;
     @Index long dateLong;
     Date dateCreated;
     @Index int numberOfReads;
     @Index int rating;
 
-    String comicImagesDirectory;
+    List<BlobKey> images;
     String comicCommentsDirectory;
     ArrayList<Comment> commentList;
     int volume;
@@ -39,13 +42,14 @@ public class ComicInfo {
         comicTitle = null;
         genre = null;
         username = null;
+        description = null;
         user = UserServiceFactory.getUserService().getCurrentUser();
         dateCreated = new Date();
         dateLong = dateCreated.getTime();
         numberOfReads = 0;
         rating = 0;
 
-        comicImagesDirectory = null;
+        images = null;
         comicCommentsDirectory = null;
         commentList = new ArrayList();
         volume = 0;
@@ -62,17 +66,12 @@ public class ComicInfo {
 
         String highestLevelDir = '/' + user.getNickname();
         String lowestLevelDir = seriesTitle + '/' + comicTitle + '/';
-        this.comicImagesDirectory =  highestLevelDir +
-                "/comics/" + lowestLevelDir;
         this.comicCommentsDirectory = highestLevelDir +
                 "/comments/" + lowestLevelDir;
 
-        File cid = new File(comicImagesDirectory);
         File ccd = new File(comicCommentsDirectory);
 
         try {
-            if(!cid.exists())
-                cid.mkdir();
             if(!ccd.exists())
                 ccd.mkdir();
         }
@@ -106,12 +105,16 @@ public class ComicInfo {
                      String seriesTitle,
                      String comicTitle,
                      String genre,
+                     String description,
                      int volume,
-                     int issue){
+                     int issue,
+                     List<BlobKey> images){
         this(username, seriesTitle, comicTitle);
+        this.description = description;
         this.genre = genre;
         this.volume = volume;
         this.issue = issue;
+        this.images = images;
     }
 
     public void setKey(){
@@ -141,8 +144,6 @@ public class ComicInfo {
     public void setNumberOfReads(int numberOfReads) { this.numberOfReads = numberOfReads; }
     public int getRating() { return rating; }
     public void setRating(int rating) { this.rating = rating; }
-    public String getComicImagesDirectory() { return comicImagesDirectory; }
-    public void setComicImagesDirectory(String comicImagesDirectory) { this.comicImagesDirectory = comicImagesDirectory; }
     public String getComicCommentsDirectory() { return comicCommentsDirectory; }
     public void setComicCommentsDirectory(String comicCommentsDirectory) { this.comicCommentsDirectory = comicCommentsDirectory; }
     public ArrayList<Comment> getCommentList() {return commentList;}
@@ -151,4 +152,8 @@ public class ComicInfo {
     public void setVolume(int volume) { this.volume = volume; }
     public int getIssue() { return issue; }
     public void setIssue(int issue) { this.issue = issue; }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+    public List<BlobKey> getImages() { return images; }
+    public void setImages(List<BlobKey> images) { this.images = images; }
 }
