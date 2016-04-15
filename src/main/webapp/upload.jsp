@@ -22,7 +22,6 @@
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
-    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -74,6 +73,7 @@
 
         <div class="container-1">
 
+            <form action="#">
 
 
             <div class="row">
@@ -163,97 +163,99 @@
                             </div>
                         </form>
 
-                    </div>
+                        </div>
 
-                    <!-- Preview of the uploaded comics -->
-                    <div class="container-1">
+                        <!-- Preview of the uploaded comics -->
+                        <div class="container-1">
 
-                        <%--<!-- Small cards for uploaded comics preview -->--%>
-                        <%--<div class="row">--%>
-                        <%--<div class="col s3">--%>
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<!-- Small cards for uploaded comics preview -->--%>
+                            <%--<div class="row">--%>
+                            <%--<div class="col s3">--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--</div>--%>
+                            <%--</div>--%>
 
 
-                        <%--<div class="col s3">--%>
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<div class="col s3">--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--<div class="col s3">--%>
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<div class="col s3">--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--<div class="col s3">--%>
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
+                            <%--<div class="col s3">--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
-                        <%--<div class="card cyan lighten-3" onclick="">--%>
-                        <%--<div class="card-image">--%>
-                        <%--<img src="image/preview.jpg">--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-                        <%--</div>--%>
-
-                        <div class="pad-top-20"></div>
-                        <div class="pad-top-20"></div>
-                        <!-- Browse and sbumt buttons -->
-                        <div class="col s12">
-                            <div class="file-field input-field">
-                                <div class="waves-effect waves-light btn cyan lighten-2"><i
-                                        class="material-icons right">cloud_upload</i>Browse</input>
-                                    <input type="file" name="upload" multiple form="comic_upload">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text"
-                                           placeholder="Upload one or more files" readonly>
-                                </div>
-                            </div>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                            <%--<img src="image/preview.jpg">--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
+                            <%--</div>--%>
 
 
                             <div class="pad-top-20"></div>
-                            <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center" form="comic_upload"><i
-                                    class="material-icons right">send</i>Submit
-                            </button>
+                            <div class="pad-top-20"></div>
+                            <!-- Browse and sbumt buttons -->
+                            <div class="col s12">
+                                <div class="file-field input-field">
+                                    <div class="waves-effect waves-light btn cyan lighten-2"><i
+                                            class="material-icons right">cloud_upload</i>Browse</input>
+                                        <input type="file" multiple>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="file-path validate" type="text"
+                                               placeholder="Upload one or more files">
+                                    </div>
+                                </div>
+
+
+                                <div class="pad-top-20"></div>
+                                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"><i
+                                        class="material-icons right">send</i>Submit
+                                </button>
+                            </div>
+
                         </div>
 
                     </div>
-
                 </div>
-            </div>
+            </form>
             <div class="pad-top-20"></div>
             <div class="pad-top-20"></div>
 

@@ -27,12 +27,12 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
 
-
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
 
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
+    <script type="text/javascript" src="js/customJS_2.js"></script>
     <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>Genre - Digital Conceptions</title>
@@ -53,20 +53,16 @@
 
                 <div class="col s12">
                     <nav>
-                        <div class="nav-wrapper cyan lighten-3 ">
-                            <ul id="nav-mobile" class="center genre-pad-left">
-
-                                <li><a>Action</a></li>
-                                <li><a>Drama</a></li>
-                                <li><a>Romance</a></li>
-                                <li><a>Comedy</a></li>
-                                <li><a>Thriller</a></li>
-                                <li><a>Slice of Life</a></li>
-                                <li><a>Sport</a></li>
-                                <li><a>Sci-Fi</a></li>
-
-                            </ul>
-
+                        <div class="nav-wrapper cyan lighten-3 center">
+                                <ul id="genres" class="center">
+                                    <li id="action" class="z-depth-1"><a>Action</a></li>
+                                    <li id="drama"><a>Drama</a></li>
+                                    <li id="romance"><a>Romance</a></li>
+                                    <li id="comedy"><a>Comedy</a></li>
+                                    <li id="horror"><a>Horror</a></li>
+                                    <li id="fantasy"><a>Fantasy</a></li>
+                                    <li id="sport"><a>Sport</a></li>
+                                </ul>
                         </div>
                     </nav>
 
@@ -76,24 +72,24 @@
             <div id="genre_content">
                 <div class="row">
                     <%-- How to show next page of comics? --%>
-                    <%--<c:forEach var="comic" items="${requestScope.comics}" begin="0" end="2">--%>
-                        <%--<div class="col s3">--%>
-                            <%--<form action="/comicservlet" method="GET">--%>
-                                <%--<input type="hidden" name="series_title" value="${comic.seriesTitle}">--%>
-                                <%--<input type="hidden" name="comic_title" value="${comic.comicTitle}">--%>
-                                <%--<input type="hidden" name="volume" value="${comic.volume}">--%>
-                                <%--<input type="hidden" name="issue" value="${comic.issue}">--%>
-                                <%--<div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">--%>
-                                    <%--<div class="card-image">--%>
-                                        <%--<img src="image/5.jpg">--%>
-                                    <%--</div>--%>
-                                    <%--<div class="card-content white-text">--%>
-                                        <%--<p class="flow-text">${comic.seriesTitle}</p>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</form>--%>
-                        <%--</div>--%>
-                    <%--</c:forEach>--%>
+                    <c:forEach var="comic" items="${requestScope.comics}">
+                        <div class="col s3">
+                            <form action="/comicservlet" method="GET">
+                                <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                <input type="hidden" name="comic_title" value="${comic.comicTitle}">
+                                <input type="hidden" name="volume" value="${comic.volume}">
+                                <input type="hidden" name="issue" value="${comic.issue}">
+                                <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                    <div class="card-image">
+                                        <img src="image/5.jpg">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p class="flow-text">${comic.seriesTitle}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </c:forEach>
 
                     <div class="col s3">
                         <div class="card hoverable cyan lighten-3" onclick="">

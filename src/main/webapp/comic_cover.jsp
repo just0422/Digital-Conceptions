@@ -35,6 +35,7 @@
 
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
+    <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>Comic Cover - Digital Conceptions</title>
 </head>
@@ -104,11 +105,12 @@
                         <!-- Current  Rating-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Current Rating:<span class="right" id="full_rate">${current_comic.rating}</span>
+                            Current Rating:<span class="right">4</span>
                             <div class="divider"></div>
                         </div>
 
                         <div class="container-1">
+                            <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
@@ -192,20 +194,7 @@
                     <div class="divider"></div>
 
                     <!-- Comment 1 -->
-                    <%--<script>--%>
-                        <%--$("#scrollview").endlessScroll({--%>
-                            <%--fireOnce : false,--%>
-                            <%--fireDelay : false,--%>
-                            <%--loader : '<div class="loading">Loading...<div>'--%>
-                            <%--ceaseFireOnEmpty : true,--%>
-                            <%--content : notifyCallback()--%>
-                        <%--})--%>
-
-                        <%--function notifyCallBack(){--%>
-                            <%----%>
-                        <%--}--%>
-                    <%--</script>--%>
-                    <div class="card-content-1" id="scrollview">
+                    <div class="card-content-1">
                         <div>
                             <div class="chip purple lighten-3 z-depth-1">
                                 <img src="image/5.jpg">
@@ -223,9 +212,6 @@
                             <div class="divider"></div>
                         </div>
                     </div>
-
-
-
 
                     <!-- Comment 2 -->
                     <div class="card-content-1">
@@ -313,6 +299,8 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
 
+                        <%-- Might have to use AJAX for this so that the page doesn't reload every time
+                             the user comments on the comic. js/customJS.js line 38--%>
                         <div class="row">
 
                             <div class="input-field col s12">

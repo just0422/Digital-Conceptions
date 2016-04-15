@@ -35,6 +35,17 @@ $(document).ready(function () {
     //     })
     // })
 
+    $("#submit_comment").click(function()
+    {
+        // PERFORM AJAX TO SUBMIT COMMENT
+        // THIS DOES NOT RELOAD THE COMIC COVER PAGE
+        $.ajax({
+            url: "/comicservlet",
+            data: "",
+            success: ""
+                })
+    })
+
     $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
         $(this).parent().parent().remove();
         var numOfNoti = $("#numOfNoti").attr("data-badge");
