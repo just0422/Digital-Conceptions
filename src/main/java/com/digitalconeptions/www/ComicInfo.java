@@ -3,6 +3,7 @@ import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.googlecode.objectify.annotation.EmbedMap;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -29,7 +31,7 @@ public class ComicInfo {
     @Index long dateLong;
     Date dateCreated;
     @Index int numberOfReads;
-    @Index int rating;
+    @Index double rating;
     @Index int volume;
     @Index int issue;
 
@@ -37,6 +39,7 @@ public class ComicInfo {
     List<String> urls;
     String comicCommentsDirectory;
     ArrayList<Comment> commentList;
+    @EmbedMap HashMap<String, Integer> ratings;
 
     public ComicInfo(){
         seriesTitle = null;
@@ -53,6 +56,7 @@ public class ComicInfo {
         images = null;
         comicCommentsDirectory = null;
         commentList = new ArrayList();
+        ratings = new HashMap<>();
         volume = 0;
         issue = 0;
     }
@@ -62,26 +66,8 @@ public class ComicInfo {
                      String comicTitle){
         this();
         this.seriesTitle = seriesTitle;
-        this. issueTitle = comicTitle;
+        this.issueTitle = comicTitle;
         this.username = username;
-
-        String highestLevelDir = '/' + user.getNickname();
-        String lowestLevelDir = seriesTitle + '/' + comicTitle + '/';
-//        this.comicCommentsDirectory = highestLevelDir +
-//                "/comments/" + lowestLevelDir;
-
-//        File ccd = new File(comicCommentsDirectory);
-//
-//        try {
-//            if(!ccd.exists())
-//                ccd.mkdir();
-//        }
-//        catch (SecurityException e){
-//            System.err.println("\n\nUHOH IT BROKE\n\n");
-//            e.printStackTrace();
-//        }
-
-
     }
 
     public ComicInfo(String username,
@@ -131,8 +117,19 @@ public class ComicInfo {
     public String getComicName(){
         return seriesTitle + '|' + volume + '|' +  issueTitle + '|' + issue;
     }
-    public String getCoverPage(){
-        return urls.get(0);
+    public String getCoverPage(){ return urls.get(0); }
+    public int getRate(String rater){ return ratings.containsKey(rater) ? -1 : ratings.get(rater); }
+    public void addRate(String rater, int rating){
+        if (!ratings.isEmpty()) {
+            if(ratings.containsKey(rater)){
+                this.rating *= 2;
+                this.rating -= ratings.get(rater);
+            }
+            this.rating = (this.rating + rating) / 2;
+        }
+        else
+            this.rating = rating;
+        ratings.put(rater, rating);
     }
 
 
@@ -151,8 +148,8 @@ public class ComicInfo {
     public void setDateCreated(Date dateCreated) { this.dateCreated = dateCreated; }
     public int getNumberOfReads() { return numberOfReads; }
     public void setNumberOfReads(int numberOfReads) { this.numberOfReads = numberOfReads; }
-    public int getRating() { return rating; }
-    public void setRating(int rating) { this.rating = rating; }
+    public double getRating() { return rating; }
+    public void setRating(double rating) { this.rating = rating; }
     public String getComicCommentsDirectory() { return comicCommentsDirectory; }
     public void setComicCommentsDirectory(String comicCommentsDirectory) { this.comicCommentsDirectory = comicCommentsDirectory; }
     public ArrayList<Comment> getCommentList() {return commentList;}

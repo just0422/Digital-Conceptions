@@ -44,8 +44,6 @@ public class ComicServlet extends HttpServlet {
                 .filter("volume", volume)
                 .filter("issue", issue).first().now();
 
-        System.out.println(currentcomic.description);
-
         req.setAttribute("current_comic", currentcomic);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/comic_cover.jsp");
@@ -60,22 +58,35 @@ public class ComicServlet extends HttpServlet {
 
     // Comic attribute should be set for each request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        ComicInfo comic = (ComicInfo)req.getAttribute("comic");
-        String comment = (String) req.getAttribute("comment");
+        String name = req.getParameter("current_comic");
+        String comic[] = name.split("\\|");
+
+        System.out.println(comic[0] + comic[1] + comic[2] + comic[3]);
+
+        ComicInfo currentcomic
+                = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter("seriesTitle", comic[0])
+                .filter("issueTitle", comic[2])
+                .filter("volume", Integer.parseInt(comic[1]))
+                .filter("issue", Integer.parseInt(comic[3])).first().now();
+
+//        String comment = (String) req.getAttribute("comment");
 //        UserService userService = UserServiceFactory.getUserService();
 //        User user = userService.getCurrentUser();
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
-        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
+//        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
 
-        // Rating
-        // Average in rating for comic
-        // Add user rating to hash table
+        if (req.getParameter("rating") != null) {
+            currentcomic.addRate(user.getNickname(), Integer.parseInt(req.getParameter("rating")));
+            resp.getWriter().write(""+currentcomic.rating);
+            ObjectifyService.ofy().save().entity(currentcomic).now();
+        }
 
         // Comments
         // Concatenate EPOCH date to comment using ! as delimiter
-        Comment newComment = new Comment(userInfo, userInfo.username);
-        comic.commentList.add(newComment);
+//        Comment newComment = new Comment(userInfo, userInfo.username);
+//        comic.commentList.add(newComment);
 
         // Finished reading
         // Set userinfo pageleftoff hashmap based off of <ComicInfo, int page>
@@ -83,7 +94,7 @@ public class ComicServlet extends HttpServlet {
         // Subscription
         // Add to user info subscriptionlist
 
-        ObjectifyService.ofy().save().entity(comic).now();
+//        ObjectifyService.ofy().save().entity(comic).now();
     }
 
 }

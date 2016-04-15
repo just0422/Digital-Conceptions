@@ -104,7 +104,7 @@
                         <!-- Current  Rating-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Current Rating:<span class="right">4</span>
+                            Current Rating:<span class="right" id="full_rate">${current_comic.rating}</span>
                             <div class="divider"></div>
                         </div>
 
@@ -143,12 +143,26 @@
                             <!-- Stars -->
                             <div class="card-1">
                                 <div class="card-content-1">
-                                    <div id="rating" class="center"></div>
+                                    <div id="rating" class="center" onclick="rate()"></div>
                                 </div>
 
                             </div>
                             <script>
-                                $('#rating').addRating();
+                                $(document).ready(function() {
+                                    $('#rating').addRating();
+                                })
+
+                                    function rate(){
+                                        $.post(
+                                            "/comic",
+                                            { rating : $('#rating').val(),
+                                              current_comic : '${current_comic.comicName}'},
+                                            function(result){
+                                                console.log(result);
+                                                $("#full_rate").html(result);
+                                            }
+                                        )
+                                    }
                             </script>
                         </div>
                     </div>
