@@ -103,6 +103,18 @@
 
                         <div class="container-1">
                             <div class="row">
+                                <%--<c:forEach var="subscribedComic" items="sessionScope.user_info.subscriptions">--%>
+                                    <%--<div class="col s6">--%>
+                                        <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
+                                            <%--<div class="card-image">--%>
+                                                <%--<img src="image/5.jpg">--%>
+                                            <%--</div>--%>
+                                            <%--<div class="card-content white-text">--%>
+                                                <%--<p class="flow-text">${subscribedComic.seriesTitle}</p>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</c:forEach>--%>
                                 <div class="col s6">
                                     <div class="card hoverable cyan lighten-3" onclick="">
                                         <div class="card-image">

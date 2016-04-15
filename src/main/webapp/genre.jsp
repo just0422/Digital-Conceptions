@@ -76,24 +76,24 @@
             <div id="genre_content">
                 <div class="row">
                     <%-- How to show next page of comics? --%>
-                    <%--<c:forEach var="comic" items="${requestScope.comics}" begin="0" end="2">--%>
-                        <%--<div class="col s3">--%>
-                            <%--<form action="/comicservlet" method="GET">--%>
-                                <%--<input type="hidden" name="series_title" value="${comic.seriesTitle}">--%>
-                                <%--<input type="hidden" name="comic_title" value="${comic.comicTitle}">--%>
-                                <%--<input type="hidden" name="volume" value="${comic.volume}">--%>
-                                <%--<input type="hidden" name="issue" value="${comic.issue}">--%>
-                                <%--<div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">--%>
-                                    <%--<div class="card-image">--%>
-                                        <%--<img src="image/5.jpg">--%>
-                                    <%--</div>--%>
-                                    <%--<div class="card-content white-text">--%>
-                                        <%--<p class="flow-text">${comic.seriesTitle}</p>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</form>--%>
-                        <%--</div>--%>
-                    <%--</c:forEach>--%>
+                    <c:forEach var="comic" items="${requestScope.comics}">
+                        <div class="col s3">
+                            <form action="/comicservlet" method="GET">
+                                <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                <input type="hidden" name="comic_title" value="${comic.comicTitle}">
+                                <input type="hidden" name="volume" value="${comic.volume}">
+                                <input type="hidden" name="issue" value="${comic.issue}">
+                                <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                    <div class="card-image">
+                                        <img src="image/5.jpg">
+                                    </div>
+                                    <div class="card-content white-text">
+                                        <p class="flow-text">${comic.seriesTitle}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </c:forEach>
 
                     <div class="col s3">
                         <div class="card hoverable cyan lighten-3" onclick="">

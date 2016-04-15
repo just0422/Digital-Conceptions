@@ -16,7 +16,7 @@ import java.util.HashMap;
  * Created by justin on 3/21/16.
  */
 @Entity
-public class UserInfo {
+public class UserInfo implements java.io.Serializable{
     @Id String key;
 
     @Index String username;

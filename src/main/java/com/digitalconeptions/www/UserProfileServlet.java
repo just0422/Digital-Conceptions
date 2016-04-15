@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -24,7 +25,8 @@ public class UserProfileServlet extends HttpServlet {
         User user = userService.getCurrentUser();
 
         UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username",user.getNickname()).first().now();
-
+//        HttpSession session = req.getSession();
+//        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
         req.setAttribute("current_user", currentUser);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/user_profile.jsp");

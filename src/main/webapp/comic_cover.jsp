@@ -35,6 +35,7 @@
 
     <!--Import custom js-->
     <script type="text/javascript" src="js/customJS.js"></script>
+    <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>Comic Cover - Digital Conceptions</title>
 </head>
@@ -71,35 +72,35 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Comic Name:<span class="right">Hello World</span>
+                            Comic Name:<span class="right">${current_comic.seriesTitle}</span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Author Name-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Author:<span class="right">ABC</span>
+                            Author:<span class="right">${current_comic.username}</span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Release Date-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Release Date:<span class="right">03/03/2016</span>
+                            Release Date:<span class="right">${current_comic.dateCreated}</span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Latest Chapter-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Latest Chapter:<span class="right">Bye</span>
+                            Latest Chapter:<span class="right">${current_comic.comicTitle}</span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Current  Rating-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Current Rating:<span class="right">4</span>
+                            Current Rating:<span class="right">${current_comic.rating}</span>
                             <div class="divider"></div>
                         </div>
 
@@ -248,17 +249,18 @@
                     </div>
 
                     <!-- Pagination -->
-                    <div class="card-content-1">
-                        <ul class="pagination right">
-                            <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
-                            </li>
-                            <li class="active teal lighten-2"><a href="#!">1</a></li>
-                            <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
-                            <li class="waves-effect teal lighten-2"><a href="#!"><i
-                                    class="material-icons">chevron_right</i></a></li>
-                        </ul>
-                        <div class="pad-top-10"></div>
-                    </div>
+                    <ul class="pagination center">
+                        <li id="previous" class="disabled">
+                            <a href="#!"><i class="material-icons">chevron_left</i></a>
+                        </li>
+                        <div id="pages" style="display:inline;">
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                        </div>
+                        <li id="next" class="waves-effect">
+                            <a href="#!"><i class="material-icons">chevron_right</i></a>
+                        </li>
+                    </ul>
 
 
                     <div class="pad-top-10"></div>
@@ -273,27 +275,26 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
 
+                        <%-- Might have to use AJAX for this so that the page doesn't reload every time
+                             the user comments on the comic. js/customJS.js line 38--%>
                         <div class="row">
-
                             <div class="input-field col s12">
-                                <form class="col s12" action="/comicservlet" method="POST">
+                                <%--<form class="col s12" action="/comicservlet" method="POST">--%>
                                     <input type="hidden" name="comic" value="${requestScope.current_comic}">
                                     <label for="textarea1">Write Your Comment here</label>
                                     <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
-                                    <button class="btn waves-effect waves-light right" type="submit">
+                                    <%--<button class="btn waves-effect waves-light right" type="submit">--%>
+                                        <%--Submit<i class="material-icons right">send</i>--%>
+                                    <%--</button>--%>
+                                    <button id="submit_comment" class="btn waves-effect waves-light right">
                                         Submit<i class="material-icons right">send</i>
                                     </button>
-                                </form>
+                                <%--</form>--%>
                             </div>
-
                         </div>
                     </div>
 
                 </div>
-
-
-
-
 
 
             </div>
