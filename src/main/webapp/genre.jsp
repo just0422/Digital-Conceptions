@@ -27,7 +27,6 @@
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
 
-
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
 
@@ -54,20 +53,16 @@
 
                 <div class="col s12">
                     <nav>
-                        <div class="nav-wrapper cyan lighten-3 ">
-                            <ul id="genres" class="center genre-pad-left">
-
-                                <li id="action" class="z-depth-1"><a>Action</a></li>
-                                <li id="drama"><a>Drama</a></li>
-                                <li id="romance"><a>Romance</a></li>
-                                <li id="comedy"><a>Comedy</a></li>
-                                <li id="thriller"><a>Thriller</a></li>
-                                <li id="life"><a>Slice of Life</a></li>
-                                <li id="sport"><a>Sport</a></li>
-                                <li id="science"><a>Sci-Fi</a></li>
-
-                            </ul>
-
+                        <div class="nav-wrapper cyan lighten-3 center">
+                                <ul id="genres" class="center">
+                                    <li id="action" class="z-depth-1"><a>Action</a></li>
+                                    <li id="drama"><a>Drama</a></li>
+                                    <li id="romance"><a>Romance</a></li>
+                                    <li id="comedy"><a>Comedy</a></li>
+                                    <li id="horror"><a>Horror</a></li>
+                                    <li id="fantasy"><a>Fantasy</a></li>
+                                    <li id="sport"><a>Sport</a></li>
+                                </ul>
                         </div>
                     </nav>
 

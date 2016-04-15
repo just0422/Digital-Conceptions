@@ -6,26 +6,22 @@ $(document).ready(function () {
     $('select').material_select();
 
     //When the Life tap is clicked
-    $("#life").click(function () {
+    $("#fantasy").click(function () {
         // First remove the z-depth effect from the previous active tap
         $("#genres").children().removeClass("z-depth-1");
 
         // Add z-depth effect to Life tap
-        $("#life").addClass("z-depth-1");
+        $("#fantasy").addClass("z-depth-1");
 
     });
 
-    $("#thriller").click(function () {
+    $("#horror").click(function () {
         $("#genres").children().removeClass("z-depth-1");
-        $("#thriller").addClass("z-depth-1");
+        $("#horror").addClass("z-depth-1");
 
     });
 
-    $("#science").click(function () {
-        $("#genres").children().removeClass("z-depth-1");
-        $("#science").addClass("z-depth-1");
 
-    });
     $("#sport").click(function () {
         $("#genres").children().removeClass("z-depth-1");
         $("#sport").addClass("z-depth-1");

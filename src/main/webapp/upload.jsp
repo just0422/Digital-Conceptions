@@ -110,10 +110,10 @@
                                         <option value="action">Action</option>
                                         <option value="drama">Drama</option>
                                         <option value="comedy">Comedy</option>
-                                        <option value="thriller">Thriller</option>
-                                        <option value="life">Slice of Life</option>
+                                        <option value="thriller">Horror</option>
+                                        <option value="life">Fantasy</option>
                                         <option value="sport">Sport</option>
-                                        <option value="science">Sci-Fi</option>
+                                        <option value="roman">Romance</option>
                                     </select>
 
                                 </div>
