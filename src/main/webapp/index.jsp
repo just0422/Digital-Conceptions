@@ -186,6 +186,74 @@
 
         <!-- First Row Set-->
         <div>
+            <!-- Fourth set-->
+            <div>
+                <div class="card cyan lighten-2 ">
+                    <div class="card-content white-text ">
+                        <span class="card-title ">Action</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <c:forEach var="actionComic" items="${action_comics}" begin="0" end="2">
+                        <div class="col s4">
+                            <form action="/comicservlet" method="GET">
+                                <input type="hidden" name="series_title" value="${actionComic.seriesTitle}">
+                                <input type="hidden" name="comic_title" value="${actionComic.comicTitle}">
+                                <input type="hidden" name="volume" value="${actionComic.volume}">
+                                <input type="hidden" name="issue" value="${actionComic.issue}">
+                                <div class="card hoverable" onclick="$(this).parent().submit();">
+                                    <div class="card-image">
+                                        <img src="${actionComic.coverPage}">
+                                    </div>
+                                    <div class="card-content">
+                                        <p class="flow-text">${actionComic.seriesTitle}</p>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </c:forEach>
+
+                    <%--<!-- 1st comic -->--%>
+                    <%--<div class="col s4">--%>
+                        <%--<div class="card hoverable" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                            <%--</div>--%>
+                            <%--<div class="card-content">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
+                    <%--<!-- 2nd comic -->--%>
+                    <%--<div class="col s4">--%>
+                        <%--<div class="card hoverable" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                            <%--</div>--%>
+                            <%--<div class="card-content">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
+                    <%--<!-- 3rd comic -->--%>
+                    <%--<div class="col s4">--%>
+                        <%--<div class="card hoverable" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                            <%--</div>--%>
+                            <%--<div class="card-content">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
+
+                </div>
+            </div>
+
+            <div class="divider-grey-3"></div>
+
 
             <!-- Genre Name -->
             <div class="card cyan lighten-2 ">
@@ -193,6 +261,8 @@
                     <span class="card-title ">Fantasy</span>
                 </div>
             </div>
+
+
 
             <!-- First Row -->
             <div class="row">
@@ -407,74 +477,6 @@
 
 
         <!-- Divider -->
-        <div class="divider-grey-3"></div>
-
-
-        <!-- Fourth set-->
-        <div>
-            <div class="card cyan lighten-2 ">
-                <div class="card-content white-text ">
-                    <span class="card-title ">Action</span>
-                </div>
-            </div>
-            <div class="row">
-                <%--<c:forEach var="actionComic" items="${requestScope.actionComics}" begin="0" end="2">--%>
-                    <%--<div class="col s4">--%>
-                        <%--<form action="/comicservlet" method="GET">--%>
-                            <%--<input type="hidden" name="series_title" value="${actionComic.seriesTitle}">--%>
-                            <%--<input type="hidden" name="comic_title" value="${actionComic.comicTitle}">--%>
-                            <%--<input type="hidden" name="volume" value="${actionComic.volume}">--%>
-                            <%--<input type="hidden" name="issue" value="${actionComic.issue}">--%>
-                            <%--<div class="card hoverable" onclick="$(this).parent().submit();">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/5.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-content">--%>
-                                    <%--<p class="flow-text">${actionComic.seriesTitle}</p>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</form>--%>
-                    <%--</div>--%>
-                <%--</c:forEach>--%>
-
-                <!-- 1st comic -->
-                <div class="col s4">
-                    <div class="card hoverable" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 2nd comic -->
-                <div class="col s4">
-                    <div class="card hoverable" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 3rd comic -->
-                <div class="col s4">
-                    <div class="card hoverable" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                        <div class="card-content">
-                            <p class="flow-text">Hero</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
     </main>
 
 

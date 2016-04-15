@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,9 @@ import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
 import com.google.appengine.api.blobstore.BlobstoreServicePb;
+import com.google.appengine.api.images.ImagesService;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.LoadType;
@@ -41,12 +45,19 @@ public class CreationServlet extends HttpServlet {
         System.out.println(getClass().getName());
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
+        ImagesService imagesService = ImagesServiceFactory.getImagesService();
+
 
         HttpSession now = req.getSession();
         String username = ((User)now.getAttribute("user")).getNickname();
         resp.setContentType("text/plain");
 
         List<BlobKey> blobKeys = blobs.get("upload");
+        List<String> urls = new ArrayList<>();
+
+        for (BlobKey key : blobKeys){
+            urls.add(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(key)));
+        }
 
         String seriesTitle = req.getParameter("series_title");
         String comicTitle = req.getParameter("issue_title");
@@ -71,7 +82,7 @@ public class CreationServlet extends HttpServlet {
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
         if (query.list().size() < 1){
             ComicInfo newComic = new ComicInfo(username, seriesTitle, comicTitle, genre, description,
-                    Integer.parseInt(volume), Integer.parseInt(issue), blobKeys);
+                    Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls);
             newComic.setKey();
             currentUserInfo.addCreation(newComic.getComicName());
 
@@ -83,14 +94,5 @@ public class CreationServlet extends HttpServlet {
             resp.getWriter().write("0");
             // RETURN FALSE COMIC EXISTS
         }
-
-
-//                .filter("seriesTitle", seriesTitle)
-//                .filter("comicTitle", comicTitle)
-//                .filter("volume", volume)
-//                .filter("issue", issue).first().now();
-
-
-        // Once you get the keys, they can be put into the comic info object
     }
 }

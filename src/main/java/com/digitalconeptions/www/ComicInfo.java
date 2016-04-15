@@ -32,6 +32,7 @@ public class ComicInfo {
     @Index int rating;
 
     List<BlobKey> images;
+    List<String> urls;
     String comicCommentsDirectory;
     ArrayList<Comment> commentList;
     int volume;
@@ -108,13 +109,15 @@ public class ComicInfo {
                      String description,
                      int volume,
                      int issue,
-                     List<BlobKey> images){
+                     List<BlobKey> images,
+                     List<String> urls){
         this(username, seriesTitle, comicTitle);
         this.description = description;
         this.genre = genre;
         this.volume = volume;
         this.issue = issue;
         this.images = images;
+        this.urls = urls;
     }
 
     public void setKey(){
@@ -127,6 +130,9 @@ public class ComicInfo {
     }
     public String getComicName(){
         return seriesTitle + '|' + volume + '|' + comicTitle + '|' + issue;
+    }
+    public String getCoverPage(){
+        return urls.get(0);
     }
 
 

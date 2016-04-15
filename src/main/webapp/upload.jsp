@@ -147,12 +147,12 @@
                                     <select name="genre" form="comic_upload" required>
                                         <option value="" disabled selected>Choose your genre</option>
                                         <option value="action">Action</option>
-                                        <option value="drama">Drama</option>
                                         <option value="comedy">Comedy</option>
-                                        <option value="thriller">Thriller</option>
-                                        <option value="life">Slice of Life</option>
-                                        <option value="sport">Sport</option>
-                                        <option value="science">Sci-Fi</option>
+                                        <option value="drama">Drama</option>
+                                        <option value="horror">Horror</option>
+                                        <option value="fantasy">Fantasy</option>
+                                        <option value="romance">Romance</option>
+                                        <option value="sport">Sports</option>
                                     </select>
                                 </div>
                             </div>
