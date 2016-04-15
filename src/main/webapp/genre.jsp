@@ -57,7 +57,7 @@
                         <div class="nav-wrapper cyan lighten-3 ">
                             <ul id="genres" class="center genre-pad-left">
 
-                                <li id="action"><a>Action</a></li>
+                                <li id="action" class="z-depth-1"><a>Action</a></li>
                                 <li id="drama"><a>Drama</a></li>
                                 <li id="romance"><a>Romance</a></li>
                                 <li id="comedy"><a>Comedy</a></li>
