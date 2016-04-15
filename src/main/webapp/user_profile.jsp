@@ -18,7 +18,7 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 /">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
@@ -79,7 +79,7 @@
                         <div class="pad-top-20"></div>
                         <div class="container">
                         <div class="flow-text pad-left">
-                            User Name: <span id="user_name">IntelliJ<%--${current_user.username}--%></span>
+                            User Name: <span id="user_name">${current_user.username}</span>
                             <div class="pad-top-2"></div>
                             <div class="divider"></div>
 
@@ -89,7 +89,7 @@
                             <div class="divider"></div>
 
                             <div class="pad-top-20"></div>
-                            Date Joined: <span id="date_jointed">01/08/13<%--${current_user.dateJoined.toString()}--%></span>
+                            Date Joined: <span id="date_jointed">${current_user.dateFormat}</span>
                             <div class="pad-top-2"></div>
                             <div class="divider"></div>
                         </div>
