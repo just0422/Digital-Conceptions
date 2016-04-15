@@ -29,6 +29,7 @@
         <servlet-name>creationpageservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.CreationServlet</servlet-class>
     </servlet>
+    <!-- Comic Servlet -->
     <servlet>
         <servlet-name>comicservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.ComicServlet</servlet-class>
@@ -55,6 +56,10 @@
         <servlet-name>creationpageservlet</servlet-name>
         <url-pattern>/upload</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>comicservlet</servlet-name>
+        <url-pattern>/comic</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>userservice</servlet-name>
@@ -65,29 +70,25 @@
         <url-pattern>/usersignout</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>comicservlet</servlet-name>
-        <url-pattern>/comicservlet</url-pattern>
-    </servlet-mapping>
 
     
     <!-- JSP Servlet Mappings -->
-    <servlet>
-        <servlet-name>home</servlet-name>
-        <jsp-file>index.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>profile</servlet-name>
-        <jsp-file>user_profile.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>genres</servlet-name>
-        <jsp-file>genre.jsp</jsp-file>
-    </servlet>
-    <servlet>
-        <servlet-name>results</servlet-name>
-        <jsp-file>search.jsp</jsp-file>
-    </servlet>
+    <!--<servlet>-->
+        <!--<servlet-name>home</servlet-name>-->
+        <!--<jsp-file>index.jsp</jsp-file>-->
+    <!--</servlet>-->
+    <!--<servlet>-->
+        <!--<servlet-name>profile</servlet-name>-->
+        <!--<jsp-file>user_profile.jsp</jsp-file>-->
+    <!--</servlet>-->
+    <!--<servlet>-->
+        <!--<servlet-name>genres</servlet-name>-->
+        <!--<jsp-file>genre.jsp</jsp-file>-->
+    <!--</servlet>-->
+    <!--<servlet>-->
+        <!--<servlet-name>results</servlet-name>-->
+        <!--<jsp-file>search.jsp</jsp-file>-->
+    <!--</servlet>-->
 
     <!--<welcome-file-list>-->
         <!--<welcome-file>home</welcome-file>-->
@@ -96,22 +97,22 @@
     <!--</welcome-file-list>-->
 
     <!-- Mappings for JSP files-->
-    <servlet-mapping>
-        <servlet-name>home</servlet-name>
-        <url-pattern>/home</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>genres</servlet-name>
-        <url-pattern>/genres/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>results</servlet-name>
-        <url-pattern>results/*</url-pattern>
-    </servlet-mapping>
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>home</servlet-name>-->
+        <!--<url-pattern>/home</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>profile</servlet-name>-->
+        <!--<url-pattern>/profile</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>genres</servlet-name>-->
+        <!--<url-pattern>/genres/*</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>results</servlet-name>-->
+        <!--<url-pattern>results/*</url-pattern>-->
+    <!--</servlet-mapping>-->
 
     <filter>
         <filter-name>ObjectifyFilter</filter-name>

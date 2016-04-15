@@ -196,9 +196,9 @@
                 <div class="row">
                     <c:forEach var="actionComic" items="${action_comics}" begin="0" end="2">
                         <div class="col s4">
-                            <form action="/comicservlet" method="GET">
+                            <form action="/comic" method="GET">
                                 <input type="hidden" name="series_title" value="${actionComic.seriesTitle}">
-                                <input type="hidden" name="comic_title" value="${actionComic.comicTitle}">
+                                <input type="hidden" name="issue_title" value="${actionComic.issueTitle}">
                                 <input type="hidden" name="volume" value="${actionComic.volume}">
                                 <input type="hidden" name="issue" value="${actionComic.issue}">
                                 <div class="card hoverable" onclick="$(this).parent().submit();">
@@ -289,7 +289,7 @@
                 <div class="col s4">
                     <form id="fantasy1" action="/comicservlet" method="GET">
                         <input type="hidden" name="series_title" value="${requestScope.test_comic.seriesTitle}">
-                        <input type="hidden" name="comic_title" value="${requestScope.test_comic.comicTitle}">
+                        <input type="hidden" name="comic_title" value="${requestScope.test_comic.issueTitle}">
                         <input type="hidden" name="volume" value="${requestScope.test_comic.volume}">
                         <input type="hidden" name="issue" value="${requestScope.test_comic.issue}">
 

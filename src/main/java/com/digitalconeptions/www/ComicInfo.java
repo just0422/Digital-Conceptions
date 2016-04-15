@@ -21,7 +21,7 @@ public class ComicInfo {
     @Id String key;
 
     @Index String seriesTitle;
-    @Index String comicTitle;
+    @Index String issueTitle;
     @Index String genre;
     @Index String username;
     String description;
@@ -30,17 +30,17 @@ public class ComicInfo {
     Date dateCreated;
     @Index int numberOfReads;
     @Index int rating;
+    @Index int volume;
+    @Index int issue;
 
     List<BlobKey> images;
     List<String> urls;
     String comicCommentsDirectory;
     ArrayList<Comment> commentList;
-    int volume;
-    int issue;
 
     public ComicInfo(){
         seriesTitle = null;
-        comicTitle = null;
+        issueTitle = null;
         genre = null;
         username = null;
         description = null;
@@ -62,24 +62,24 @@ public class ComicInfo {
                      String comicTitle){
         this();
         this.seriesTitle = seriesTitle;
-        this.comicTitle = comicTitle;
+        this. issueTitle = comicTitle;
         this.username = username;
 
         String highestLevelDir = '/' + user.getNickname();
         String lowestLevelDir = seriesTitle + '/' + comicTitle + '/';
-        this.comicCommentsDirectory = highestLevelDir +
-                "/comments/" + lowestLevelDir;
+//        this.comicCommentsDirectory = highestLevelDir +
+//                "/comments/" + lowestLevelDir;
 
-        File ccd = new File(comicCommentsDirectory);
-
-        try {
-            if(!ccd.exists())
-                ccd.mkdir();
-        }
-        catch (SecurityException e){
-            System.err.println("\n\nUHOH IT BROKE\n\n");
-            e.printStackTrace();
-        }
+//        File ccd = new File(comicCommentsDirectory);
+//
+//        try {
+//            if(!ccd.exists())
+//                ccd.mkdir();
+//        }
+//        catch (SecurityException e){
+//            System.err.println("\n\nUHOH IT BROKE\n\n");
+//            e.printStackTrace();
+//        }
 
 
     }
@@ -121,7 +121,7 @@ public class ComicInfo {
     }
 
     public void setKey(){
-        key = KeyFactory.createKeyString("ComicInfo", username + seriesTitle + comicTitle + getTimeCreated());
+        key = KeyFactory.createKeyString("ComicInfo", username + seriesTitle +  issueTitle + getTimeCreated());
     }
     public String getDateFormat() {
         SimpleDateFormat format = new SimpleDateFormat("E MM/dd/yyyy");
@@ -129,7 +129,7 @@ public class ComicInfo {
         return format.format(this.dateCreated);
     }
     public String getComicName(){
-        return seriesTitle + '|' + volume + '|' + comicTitle + '|' + issue;
+        return seriesTitle + '|' + volume + '|' +  issueTitle + '|' + issue;
     }
     public String getCoverPage(){
         return urls.get(0);
@@ -138,8 +138,8 @@ public class ComicInfo {
 
     public String getSeriesTitle() { return seriesTitle; }
     public void setSeriesTitle(String seriesTitle) { this.seriesTitle = seriesTitle; }
-    public String getComicTitle() { return comicTitle; }
-    public void setComicTitle(String comicTitle) { this.comicTitle = comicTitle; }
+    public String getIssueTitle() { return  issueTitle; }
+    public void setIssueTitle(String comicTitle) { this. issueTitle = comicTitle; }
     public String getGenre() { return genre; }
     public void setGenre(String genre) { this.genre = genre; }
     public String getUsername() { return username; }

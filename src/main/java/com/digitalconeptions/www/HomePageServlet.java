@@ -88,7 +88,7 @@ public class HomePageServlet extends HttpServlet {
         // For testing if form is able to get this comic and its attributes
         ComicInfo testComic = new ComicInfo();
         testComic.seriesTitle = "Parasyte";
-        testComic.comicTitle = "THE MAXIM";
+        testComic.issueTitle = "THE MAXIM";
         testComic.volume = 5;
         testComic.issue = 10;
         req.setAttribute("test_comic", testComic);

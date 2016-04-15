@@ -25,22 +25,26 @@ public class ComicServlet extends HttpServlet {
 
     // Front end splits comments based on delimiters
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println(getClass().getName());
         // Attributes should be set in request
         String seriesTitle = req.getParameter("series_title");
-        String comicTitle = req.getParameter("comic_title");
+        String issueTitle = req.getParameter("issue_title");
         int volume = Integer.parseInt(req.getParameter("volume"));
         int issue = Integer.parseInt(req.getParameter("issue"));
 
 //        ComicInfo obj = new ComicInfo();
-//        String obj.comicTitle;
+//        String obj.issueTitle;
 //        String obj.seriesTitle;
 //        Integer obj.volume;
 //        Integer obj.issue;
-        ComicInfo currentcomic = ObjectifyService.ofy().load().type(ComicInfo.class)
+        ComicInfo currentcomic
+                = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle", seriesTitle)
-                .filter("comicTitle", comicTitle)
+                .filter("issueTitle", issueTitle)
                 .filter("volume", volume)
                 .filter("issue", issue).first().now();
+
+        System.out.println(currentcomic.description);
 
         req.setAttribute("current_comic", currentcomic);
         ServletContext sc = getServletContext();

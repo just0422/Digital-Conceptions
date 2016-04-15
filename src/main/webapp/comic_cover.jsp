@@ -18,7 +18,7 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 /">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
@@ -59,7 +59,7 @@
                     <div class="col s4">
                         <div class="card cyan lighten-3" onclick="">
                             <div class="card-image">
-                                <img src="image/5.jpg">
+                                <img src="${current_comic.coverPage}">
                             </div>
                         </div>
                     </div>
@@ -71,21 +71,26 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Comic Name:<span class="right">Hello World</span>
+                            Series Title:<span class="right">${current_comic.seriesTitle}</span>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Issue Title:<span class="right">${current_comic.issueTitle}</span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Author Name-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Author:<span class="right">ABC</span>
+                            Author:<span class="right">${current_comic.username}</span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Release Date-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Release Date:<span class="right">03/03/2016</span>
+                            Release Date:<span class="right">${current_comic.dateFormat}</span>
                             <div class="divider"></div>
                         </div>
 
@@ -104,7 +109,6 @@
                         </div>
 
                         <div class="container-1">
-                            <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>

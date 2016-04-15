@@ -60,7 +60,7 @@ public class CreationServlet extends HttpServlet {
         }
 
         String seriesTitle = req.getParameter("series_title");
-        String comicTitle = req.getParameter("issue_title");
+        String issueTitle = req.getParameter("issue_title");
         String volume = req.getParameter("volume");
         String issue = req.getParameter("issue");
         String genre = req.getParameter("genre");
@@ -70,18 +70,18 @@ public class CreationServlet extends HttpServlet {
         Query<ComicInfo> query = load;
         if (seriesTitle != null) query = query.filter("seriesTitle", seriesTitle);
             else seriesTitle = "";
-        if (comicTitle != null) query = query.filter("issueTitle", comicTitle);
-            else comicTitle = "";
-        if (comicTitle != null) query = query.filter("volume", volume);
+        if (issueTitle != null) query = query.filter("issueTitle", issueTitle);
+            else issueTitle = "";
+        if (issueTitle != null) query = query.filter("volume", volume);
             else volume = "1";
-        if (comicTitle != null) query = query.filter("issue", issue);
+        if (issueTitle != null) query = query.filter("issue", issue);
             else issue = "1";
 
 
 
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
         if (query.list().size() < 1){
-            ComicInfo newComic = new ComicInfo(username, seriesTitle, comicTitle, genre, description,
+            ComicInfo newComic = new ComicInfo(username, seriesTitle, issueTitle, genre, description,
                     Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls);
             newComic.setKey();
             currentUserInfo.addCreation(newComic.getComicName());
