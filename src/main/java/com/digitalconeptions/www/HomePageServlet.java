@@ -57,15 +57,20 @@ public class HomePageServlet extends HttpServlet {
         String username;
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
-        UserInfo userInfo = null;
+        UserInfo currentUser;
         if (user == null)
             username = null;
         // Otherwise look for UserInfo in datastore
         else
         {
             username = user.getNickname();
-            LoadType<UserInfo> userInfoObjLoad = ObjectifyService.ofy().load().type(UserInfo.class);
-            userInfo = new UserInfo(username);
+            currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
+            if (currentUser == null){
+                currentUser = new UserInfo(user.getNickname());
+                currentUser.setKey();
+                ObjectifyService.ofy().save().entity(currentUser).now();
+            }
+
         /*
             TODO
             Load UserInfo of user and set it as session attribute

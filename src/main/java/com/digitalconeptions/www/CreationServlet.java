@@ -72,7 +72,8 @@ public class CreationServlet extends HttpServlet {
         if (query.list().size() < 1){
             ComicInfo newComic = new ComicInfo(username, seriesTitle, comicTitle, genre, description,
                     Integer.parseInt(volume), Integer.parseInt(issue), blobKeys);
-            currentUserInfo.addCreation(newComic);
+            newComic.setKey();
+            currentUserInfo.addCreation(newComic.getComicName());
 
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();

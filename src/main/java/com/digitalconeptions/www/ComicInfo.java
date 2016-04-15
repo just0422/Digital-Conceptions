@@ -125,6 +125,9 @@ public class ComicInfo {
 
         return format.format(this.dateCreated);
     }
+    public String getComicName(){
+        return seriesTitle + '|' + volume + '|' + comicTitle + '|' + issue;
+    }
 
 
     public String getSeriesTitle() { return seriesTitle; }

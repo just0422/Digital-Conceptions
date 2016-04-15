@@ -25,6 +25,12 @@ public class UserProfileServlet extends HttpServlet {
 
         UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username",user.getNickname()).first().now();
 
+        if (currentUser == null){
+            currentUser = new UserInfo(user.getNickname());
+            currentUser.setKey();
+            ObjectifyService.ofy().save().entity(currentUser).now();
+        }
+
         req.setAttribute("current_user", currentUser);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/user_profile.jsp");

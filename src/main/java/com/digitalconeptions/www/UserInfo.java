@@ -3,6 +3,7 @@ package com.digitalconeptions.www;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.googlecode.objectify.annotation.EmbedMap;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
@@ -22,10 +23,10 @@ public class UserInfo {
     @Index String username;
     @Index User user;
     Date dateJoined;
-    HashMap<ComicInfo, Integer> comicPageLeftOff;
-    ArrayList<ComicInfo> subscriptions;
-    ArrayList<ComicInfo> creations;
-    ArrayList<ComicInfo> recentlyRead;
+    @EmbedMap HashMap<String, Integer> comicPageLeftOff;
+    ArrayList<String> subscriptions;
+    ArrayList<String> creations;
+    ArrayList<String> recentlyRead;
 
     ArrayList<String> unreadNotifications;
     ArrayList<String> readNotifications;
@@ -60,17 +61,17 @@ public class UserInfo {
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
-    public HashMap<ComicInfo, Integer> getComicPageLeftOffMap() { return comicPageLeftOff; }
-    public void addComicPageLeftOff(ComicInfo comic, int page){ comicPageLeftOff.put(comic, page); }
+    public HashMap<String, Integer> getComicPageLeftOffMap() { return comicPageLeftOff; }
+    public void addComicPageLeftOff(String comic, int page){ comicPageLeftOff.put(comic, page); }
     public int getComicPageLeftOff(ComicInfo comic){ return comicPageLeftOff.get(comic); }
 
-    public ArrayList<ComicInfo> getSubscriptions() { return subscriptions; }
-    public void setSubscriptions(ArrayList<ComicInfo> subscriptions) { this.subscriptions = subscriptions; }
-    public ArrayList<ComicInfo> getCreations() { return creations; }
-    public void setCreations(ArrayList<ComicInfo> creations) { this.creations = creations; }
-    public void addCreation (ComicInfo comic) { creations.add(comic); }
-    public ArrayList<ComicInfo> getRecentlyRead() { return recentlyRead; }
-    public void setRecentlyRead(ArrayList<ComicInfo> recentlyRead) { this.recentlyRead = recentlyRead; }
+    public ArrayList<String> getSubscriptions() { return subscriptions; }
+    public void setSubscriptions(ArrayList<String> subscriptions) { this.subscriptions = subscriptions; }
+    public ArrayList<String> getCreations() { return creations; }
+    public void setCreations(ArrayList<String> creations) { this.creations = creations; }
+    public void addCreation (String comic) { creations.add(comic); }
+    public ArrayList<String> getRecentlyRead() { return recentlyRead; }
+    public void setRecentlyRead(ArrayList<String> recentlyRead) { this.recentlyRead = recentlyRead; }
 
     public ArrayList<String> getUnreadNotifications() { return unreadNotifications; }
     public void setUnreadNotifications(ArrayList<String> unreadNotifications) { this.unreadNotifications = unreadNotifications; }
