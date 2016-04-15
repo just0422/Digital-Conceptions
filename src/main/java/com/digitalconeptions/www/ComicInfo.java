@@ -37,7 +37,6 @@ public class ComicInfo {
 
     List<BlobKey> images;
     List<String> urls;
-    String comicCommentsDirectory;
     ArrayList<Comment> commentList;
     @EmbedMap HashMap<String, Integer> ratings;
 
@@ -54,7 +53,6 @@ public class ComicInfo {
         rating = 0;
 
         images = null;
-        comicCommentsDirectory = null;
         commentList = new ArrayList();
         ratings = new HashMap<>();
         volume = 0;
@@ -118,6 +116,7 @@ public class ComicInfo {
         return seriesTitle + '|' + volume + '|' +  issueTitle + '|' + issue;
     }
     public String getCoverPage(){ return urls.get(0); }
+    public String getPage(int page) { return urls.get(page); }
     public int getRate(String rater){ return ratings.containsKey(rater) ? -1 : ratings.get(rater); }
     public void addRate(String rater, int rating){
         if (!ratings.isEmpty()) {
@@ -150,10 +149,9 @@ public class ComicInfo {
     public void setNumberOfReads(int numberOfReads) { this.numberOfReads = numberOfReads; }
     public double getRating() { return rating; }
     public void setRating(double rating) { this.rating = rating; }
-    public String getComicCommentsDirectory() { return comicCommentsDirectory; }
-    public void setComicCommentsDirectory(String comicCommentsDirectory) { this.comicCommentsDirectory = comicCommentsDirectory; }
     public ArrayList<Comment> getCommentList() {return commentList;}
     public void setCommentList(ArrayList<Comment> commentList) {this.commentList = commentList;}
+    public void addComment(Comment comment) { commentList.add(comment); }
     public int getVolume() { return volume; }
     public void setVolume(int volume) { this.volume = volume; }
     public int getIssue() { return issue; }

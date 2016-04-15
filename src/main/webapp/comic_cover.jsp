@@ -122,7 +122,13 @@
                         <div id="reading" class="modal">
                             <div class="modal-content">
                                <i class="material-icons modal-close right">close</i>
-                                <p></p>
+                                <img src="${current_comic.coverPage}">
+                                <%--<script>--%>
+                                    <%--$.get(--%>
+                                            <%--"/comic",--%>
+                                            <%--{page : '${current_user.page}'}--%>
+                                    <%--)--%>
+                                <%--</script>--%>
                             </div>
                             <%--<div class="modal-footer">--%>
                                 <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
@@ -295,7 +301,6 @@
 
                             <div class="input-field col s12">
                                 <form class="col s12" action="/comicservlet" method="POST">
-                                    <input type="hidden" name="comic" value="${requestScope.current_comic}">
                                     <label for="textarea1">Write Your Comment here</label>
                                     <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
                                     <button class="btn waves-effect waves-light right" type="submit">

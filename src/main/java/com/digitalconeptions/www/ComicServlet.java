@@ -61,8 +61,6 @@ public class ComicServlet extends HttpServlet {
         String name = req.getParameter("current_comic");
         String comic[] = name.split("\\|");
 
-        System.out.println(comic[0] + comic[1] + comic[2] + comic[3]);
-
         ComicInfo currentcomic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle", comic[0])
@@ -80,8 +78,13 @@ public class ComicServlet extends HttpServlet {
         if (req.getParameter("rating") != null) {
             currentcomic.addRate(user.getNickname(), Integer.parseInt(req.getParameter("rating")));
             resp.getWriter().write(""+currentcomic.rating);
-            ObjectifyService.ofy().save().entity(currentcomic).now();
         }
+
+        if (req.getParameter("comment") != null){
+            Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
+            currentcomic.addComment(comment);
+        }
+        ObjectifyService.ofy().save().entity(currentcomic).now();
 
         // Comments
         // Concatenate EPOCH date to comment using ! as delimiter
