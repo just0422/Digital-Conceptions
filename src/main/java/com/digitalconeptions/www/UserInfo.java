@@ -68,6 +68,7 @@ public class UserInfo {
     public void setSubscriptions(ArrayList<ComicInfo> subscriptions) { this.subscriptions = subscriptions; }
     public ArrayList<ComicInfo> getCreations() { return creations; }
     public void setCreations(ArrayList<ComicInfo> creations) { this.creations = creations; }
+    public void addCreation (ComicInfo comic) { creations.add(comic); }
     public ArrayList<ComicInfo> getRecentlyRead() { return recentlyRead; }
     public void setRecentlyRead(ArrayList<ComicInfo> recentlyRead) { this.recentlyRead = recentlyRead; }
 

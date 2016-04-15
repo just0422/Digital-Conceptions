@@ -22,6 +22,7 @@
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -90,11 +91,40 @@
                     </div>
                 </div>
 
+                <script>
+                    $(document).ready(function() {
+                        var options = {
+                            beforeSend: function() {
+                                console.log("Sending");
+                            },
+                            success : function (resp) {
+                                console.log(resp);
+                            }
+                        }
+                        $("#comic_upload").ajaxForm(options);
+                        <%--$('#comic_upload').submit(function(e){--%>
+                            <%--var postData = $(this).serializeArray();--%>
+                            <%--console.log("Uploading " + postData);--%>
 
+                            <%--$.post(--%>
+                                    <%--'<c:out value="${upload}"/>',--%>
+                                    <%--data : {--%>
+                                        <%--series_title : $('#series_title').val(),--%>
+                                                <%--issue_title : $("#issue_title").val()--%>
+                                    <%--},--%>
+                                    <%--function (text) {--%>
+                                        <%--console.log("Returned " + text);--%>
+                                        <%--console.log("0 : Failure\n1 : Success");--%>
+                                    <%--}--%>
+                            <%--)--%>
+                            <%--e.preventDefault();--%>
+                        <%--})--%>
+                    });
+                </script>
                 <!-- Upload information -->
                 <div class="col s9">
                     <div class="container-1">
-                        <form id="comic_upload" enctype="multipart/form-data">
+                        <form action="${upload}" method="post" id="comic_upload" enctype="multipart/form-data">
                             <div class="input-field titles">
                                 <input id="series_title" type="text" class="validate" name="series_title">
                                 <label for="series_title">Series Title</label>

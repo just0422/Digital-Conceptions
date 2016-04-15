@@ -42,6 +42,9 @@ public class CreationServlet extends HttpServlet {
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
 
+        HttpSession now = req.getSession();
+        String username = ((User)now.getAttribute("user")).getNickname();
+        resp.setContentType("text/plain");
 
         List<BlobKey> blobKeys = blobs.get("upload");
 
@@ -56,7 +59,7 @@ public class CreationServlet extends HttpServlet {
         Query<ComicInfo> query = load;
         if (seriesTitle != null) query = query.filter("seriesTitle", seriesTitle);
             else seriesTitle = "";
-        if (comicTitle != null) query = query.filter("comicTitle", comicTitle);
+        if (comicTitle != null) query = query.filter("issueTitle", comicTitle);
             else comicTitle = "";
         if (comicTitle != null) query = query.filter("volume", volume);
             else volume = "1";
@@ -64,22 +67,20 @@ public class CreationServlet extends HttpServlet {
             else issue = "1";
 
 
-        // GET CURRENT UserInfo EITHER BY DATASTORE OR BY SESSION
-        // PUT IN USER VARIABLE
+
+        UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
         if (query.list().size() < 1){
-            HttpSession now = req.getSession();
-            String username = ((User)now.getAttribute("user")).getNickname();
             ComicInfo newComic = new ComicInfo(username, seriesTitle, comicTitle, genre, description,
                     Integer.parseInt(volume), Integer.parseInt(issue), blobKeys);
+            currentUserInfo.addCreation(newComic);
 
             ObjectifyService.ofy().save().entity(newComic).now();
-            // CURRENT USER ADD NEW COMIC TO USERINFO
-            // ADD NEW COMIC TO DATASTORE
-
-
+            ObjectifyService.ofy().save().entity(currentUserInfo).now();
+            resp.getWriter().write("1");
         }
         else{
-            // RETURN FALSE
+            resp.getWriter().write("0");
+            // RETURN FALSE COMIC EXISTS
         }
 
 
