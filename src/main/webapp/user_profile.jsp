@@ -175,24 +175,35 @@
                     <div id="notification" style="display: none">  
                         <div class="container-1">
                             <ul class="collapsible" data-collapsible="accordion">
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">message</i>System Message
-                                    </div>
-                                    <div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>
-                                        Message Body</p></div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">message</i>System Message
-                                    </div>
-                                    <div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>
-                                        Message Body</p></div>
-                                </li>
-                                <li>
-                                    <div class="collapsible-header"><i class="material-icons">message</i>System Message
-                                    </div>
-                                    <div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>
-                                        Message Body</p></div>
-                                </li>
+                                <c:forEach items="${current_user.unreadNotifications}" var="entry">
+                                    <li>
+                                        <div class="collapsible-header"><i class="material-icons">${entry}</i>System Message</div>
+                                        <div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>
+                                    </li>
+                                </c:forEach>
+                                <%--<script>--%>
+                                    <%--$(document).ready(--%>
+                                            <%--function rem(){--%>
+                                                <%--$.post(--%>
+                                                        <%--"/userprofile",--%>
+                                                        <%--{coomment : }--%>
+                                                <%--)--%>
+
+                                            <%--}--%>
+                                    <%--)--%>
+                                <%--</script>--%>
+                                <%--<li>--%>
+                                    <%--<div class="collapsible-header"><i class="material-icons">message</i>System Message--%>
+                                    <%--</div>--%>
+                                    <%--<div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>--%>
+                                        <%--Message Body</p></div>--%>
+                                <%--</li>--%>
+                                <%--<li>--%>
+                                    <%--<div class="collapsible-header"><i class="material-icons">message</i>System Message--%>
+                                    <%--</div>--%>
+                                    <%--<div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>--%>
+                                        <%--Message Body</p></div>--%>
+                                <%--</li>--%>
                             </ul>
                         </div>
 

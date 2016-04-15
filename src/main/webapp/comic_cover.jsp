@@ -192,7 +192,20 @@
                     <div class="divider"></div>
 
                     <!-- Comment 1 -->
-                    <div class="card-content-1">
+                    <%--<script>--%>
+                        <%--$("#scrollview").endlessScroll({--%>
+                            <%--fireOnce : false,--%>
+                            <%--fireDelay : false,--%>
+                            <%--loader : '<div class="loading">Loading...<div>'--%>
+                            <%--ceaseFireOnEmpty : true,--%>
+                            <%--content : notifyCallback()--%>
+                        <%--})--%>
+
+                        <%--function notifyCallBack(){--%>
+                            <%----%>
+                        <%--}--%>
+                    <%--</script>--%>
+                    <div class="card-content-1" id="scrollview">
                         <div>
                             <div class="chip purple lighten-3 z-depth-1">
                                 <img src="image/5.jpg">
@@ -210,6 +223,9 @@
                             <div class="divider"></div>
                         </div>
                     </div>
+
+
+
 
                     <!-- Comment 2 -->
                     <div class="card-content-1">
@@ -300,7 +316,7 @@
                         <div class="row">
 
                             <div class="input-field col s12">
-                                <form class="col s12" action="/comicservlet" method="POST">
+                                <form class="col s12" action="/comic" method="POST">
                                     <label for="textarea1">Write Your Comment here</label>
                                     <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
                                     <button class="btn waves-effect waves-light right" type="submit">

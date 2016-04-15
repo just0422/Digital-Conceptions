@@ -3,6 +3,7 @@ package com.digitalconeptions.www;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
 
 import javax.servlet.RequestDispatcher;
@@ -73,6 +74,7 @@ public class ComicServlet extends HttpServlet {
 //        User user = userService.getCurrentUser();
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
+        UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
 //        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
 
         if (req.getParameter("rating") != null) {
@@ -83,6 +85,9 @@ public class ComicServlet extends HttpServlet {
         if (req.getParameter("comment") != null){
             Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
             currentcomic.addComment(comment);
+
+            userinfo.addUnreadNotification(comment.getUser() + " commented '" + comment.getComment() + "' on your Comic: "
+                    + currentcomic.issueTitle + " " + currentcomic.issue);
         }
         ObjectifyService.ofy().save().entity(currentcomic).now();
 

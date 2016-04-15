@@ -77,4 +77,5 @@ public class UserInfo {
     public void setUnreadNotifications(ArrayList<String> unreadNotifications) { this.unreadNotifications = unreadNotifications; }
     public ArrayList<String> getReadNotifications() { return readNotifications; }
     public void setReadNotifications(ArrayList<String> readNotifications) { this.readNotifications = readNotifications; }
+    public void addUnreadNotification(String notification) { unreadNotifications.add(notification); }
 }
