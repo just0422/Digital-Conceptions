@@ -169,6 +169,10 @@
         cursor: pointer;
     }
 
+    .hoverable-1:hover {
+        cursor: pointer;
+    }
+
     .titles{
         width: 45%;
         display: inline-block;
@@ -179,4 +183,8 @@
     #comic_upload input {
         padding-left: 5%;
         padding-right: 5%;
+    }
+
+    .reading-height{
+        max-height: 80vh;
     }

@@ -49,4 +49,13 @@ $(document).ready(function () {
         $("#action").addClass("z-depth-1");
 
     });
+
+    $("#my_comic_button").click(function(){
+        $("#upload").hide();
+       $("#my_comic").show();
+    });
+    $("#upload_button").click(function(){
+        $("#my_comic").hide();
+        $("#upload").show();
+    })
 });
