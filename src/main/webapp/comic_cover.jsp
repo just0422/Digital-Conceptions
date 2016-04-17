@@ -113,7 +113,8 @@
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
-                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
+                                <a class="waves-effect waves-light btn lighten-3 modal-trigger"
+                                   href="#reading">Start</a>
                                 <a class="waves-effect waves-light btn">Subscribe</a>
                                 <a class="waves-effect waves-light btn">Download</a>
                             </div>
@@ -121,20 +122,69 @@
 
 
                         <!-- Reading Structure -->
+                        <!-- Reading Structure -->
                         <div id="reading" class="modal">
                             <div class="modal-content">
-                               <i class="material-icons modal-close right">close</i>
-                                <img src="${current_comic.coverPage}">
+                                <i class="material-icons modal-close right">close</i>
+
                                 <%--<script>--%>
-                                    <%--$.get(--%>
-                                            <%--"/comic",--%>
-                                            <%--{page : '${current_user.page}'}--%>
-                                    <%--)--%>
+                                <%--$.get(--%>
+                                <%--"/comic",--%>
+                                <%--{page : '${current_user.page}'}--%>
+                                <%--)--%>
                                 <%--</script>--%>
+
+                                <!--Previous page-->
+                                <div class="row">
+                                    <div class="col s1">
+                                        <div class="valign-wrapper" style="min-height: 80vh">
+                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Comic reading area-->
+                                    <div class="col s10">
+                                        <%--<img src="${current_comic.coverPage}">--%>
+                                        <div class="center">
+                                            <img src="/image/preview.jpg" class="reading-height">
+                                        </div>
+
+                                        <!-- Pagination -->
+                                        <div class="flow-text">
+                                            <div style="padding-bottom: 10px">Jump to
+
+                                                <ul class="pagination center">
+                                                    <li id="previous" class="disabled">
+                                                        <a href="#!"><i class="material-icons">chevron_left</i></a>
+                                                    </li>
+                                                    <div id="pages" style="display:inline;">
+                                                        <li class="active"><a href="#!">1</a></li>
+                                                        <li class="waves-effect"><a href="#!">2</a></li>
+                                                    </div>
+                                                    <li id="next" class="waves-effect">
+                                                        <a href="#!"><i class="material-icons">chevron_right</i></a>
+                                                    </li>
+                                                </ul>
+
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <!--Next page-->
+                                    <div class="col s1">
+                                        <div class="valign-wrapper" style="min-height: 80vh">
+                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
-                            <%--<div class="modal-footer">--%>
-                                <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
-                            <%--</div>--%>
                         </div>
 
 
@@ -156,20 +206,22 @@
 
                             </div>
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
                                     $('#rating').addRating();
                                 })
 
-                                function rate(){
+                                function rate() {
                                     $.post(
-                                        "/comic",
-                                        {   rating : $('#rating').val(),
-                                            current_comic : '${current_comic.comicName}'},
-                                            function(result) {
-                                            console.log(result);
-                                            $("#full_rate").html(result);
+                                            "/comic",
+                                            {
+                                                rating: $('#rating').val(),
+                                                current_comic: '${current_comic.comicName}'
+                                            },
+                                            function (result) {
+                                                console.log(result);
+                                                $("#full_rate").html(result);
                                             }
-                                        )
+                                    )
                                 }
                             </script>
                         </div>
@@ -197,24 +249,22 @@
                                 Post<i class="material-icons right">send</i>
                             </button>
                             <script>
-                                $(document).ready(function()
-                                {
-                                    $("#comment_form").on("submit", function(e)
-                                    {
+                                $(document).ready(function () {
+                                    $("#comment_form").on("submit", function (e) {
                                         e.preventDefault();
 //                                        PERFORM AJAX TO SUBMIT COMMENT
 //                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
                                         $.ajax({
                                             url: "/comic",
                                             method: "POST",
-                                            data: {comment: $("#textarea1").val(),
-                                                    comic_name: '${current_comic.comicName}'},
-                                            error: function()
-                                            {
+                                            data: {
+                                                comment: $("#textarea1").val(),
+                                                comic_name: '${current_comic.comicName}'
+                                            },
+                                            error: function () {
                                                 alert("Comment could not be posted.");
                                             },
-                                            success: function ()
-                                            {
+                                            success: function () {
                                                 var comment = $("#textarea1").val();
                                                 var post =
                                                         "<div class='card-content-1'>" +
@@ -252,20 +302,20 @@
 
                         <!-- Comment 1 -->
                         <div class="card-content-1">
-                                <div class="chip purple lighten-3 z-depth-1">
-                                    <img src="image/5.jpg">
-                                    Superman
-                                </div>
-                                <div class="pad-top-2"></div>
+                            <div class="chip purple lighten-3 z-depth-1">
+                                <img src="image/5.jpg">
+                                Superman
+                            </div>
+                            <div class="pad-top-2"></div>
 
-                                <!-- Acutal comment-->
-                                <div class="flow-text small-font">
-                                    <span>Superman is better</span>
-                                    <span class="right">3/4/16</span>
-                                </div>
+                            <!-- Acutal comment-->
+                            <div class="flow-text small-font">
+                                <span>Superman is better</span>
+                                <span class="right">3/4/16</span>
+                            </div>
 
-                                <div class="pad-top-2"></div>
-                                <div class="divider"></div>
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
                         </div>
 
                         <!-- Comment 2 -->
@@ -348,21 +398,17 @@
                     <div class="pad-top-10"></div>
                     <!-- Write Comment-->
                     <div class="card-content-1">
-                    <%--<div class="divider-grey-3"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
+                        <%--<div class="divider-grey-3"></div>--%>
+                        <%--<div class="pad-top-10"></div>--%>
+                        <%--<div class="pad-top-10"></div>--%>
+                        <%--<div class="pad-top-10"></div>--%>
+                        <%--<div class="pad-top-10"></div>--%>
+                        <%--<div class="pad-top-10"></div>--%>
 
 
                     </div>
 
                 </div>
-
-
-
-
 
 
             </div>

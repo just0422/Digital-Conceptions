@@ -410,9 +410,6 @@
                 <!-- Start of create tools -->
                 <!-- End of create tools -->
 
-                <!-- Start of canvas -->
-                <!-- End of canvas -->
-
             </div>
             <!-- End of actual create comic seciont -->
 

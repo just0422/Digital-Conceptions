@@ -287,7 +287,7 @@
 
                 <!-- 1st comic -->
                 <div class="col s4">
-                    <form id="fantasy1" action="/comic" method="GET">
+                    <form id="fantasy1" action="/comicservlet" method="GET">
                         <input type="hidden" name="series_title" value="${requestScope.test_comic.seriesTitle}">
                         <input type="hidden" name="comic_title" value="${requestScope.test_comic.issueTitle}">
                         <input type="hidden" name="volume" value="${requestScope.test_comic.volume}">
