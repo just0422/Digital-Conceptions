@@ -50,12 +50,21 @@ $(document).ready(function () {
 
     });
 
-    $("#my_comic_button").click(function(){
+    $("#my_comic_button").click(function () {
         $("#upload").hide();
-       $("#my_comic").show();
+        $("#create_canvas").hide();
+        $("#my_comic").show();
     });
-    $("#upload_button").click(function(){
+    $("#upload_button").click(function () {
         $("#my_comic").hide();
+        $("#create_canvas").hide();
         $("#upload").show();
-    })
+    });
+    $("#new_comic_button").click(function () {
+       $("#upload").hide();
+        $("#my_comic").hide();
+        $("#create_canvas").show();
+    });
+
+
 });

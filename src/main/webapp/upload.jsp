@@ -404,12 +404,25 @@
             </div>
             <!-- End of sample my_comic layout-->
 
+            <!-- Start of actual create comic secion -->
+            <div id="create_canvas">
+
+                <!-- Start of create tools -->
+                <!-- End of create tools -->
+
+                <!-- Start of canvas -->
+                <!-- End of canvas -->
+
+            </div>
+            <!-- End of actual create comic seciont -->
+
+
         </div>
         <!-- End of My Comic section -->
 
 
         <!-- Start of Add button -->
-        <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <a class="btn-floating btn-large red waves-effect tooltipped" data-position="top"
                data-delay="50" data-tooltip="Crate new comic">
                 <i class="large material-icons">add</i>
