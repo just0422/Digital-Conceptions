@@ -1,6 +1,7 @@
 
 
-$(document).ready(function () {
+$(document).ready(function ()
+{
     $(".slider").slider();
 
 
@@ -35,16 +36,75 @@ $(document).ready(function () {
     //     })
     // })
 
-    $("#submit_comment").click(function()
-    {
-        // PERFORM AJAX TO SUBMIT COMMENT
-        // THIS DOES NOT RELOAD THE COMIC COVER PAGE
-        $.ajax({
-            url: "/comicservlet",
-            data: "",
-            success: ""
-                })
-    })
+    // $("#post_button").click(function()
+    // {
+    //     PERFORM AJAX TO SUBMIT COMMENT
+    //     THIS DOES NOT RELOAD THE COMIC COVER PAGE
+    //     $.ajax({
+    //         url: "/comic",
+    //         method: "POST",
+    //         data: {comment: $("#textarea1").val()},
+    //         error: function()
+    //         {
+    //             alert("Comment could not be posted.");
+    //         },
+    //         success: function ()
+    //         {
+    //             var comment = $("#textarea1").val();
+    //             var post =
+    //                 "<div class='card-content-1'>" +
+    //                 "<div class='chip purple lighten-3 z-depth-1'>" +
+    //                 "<img src='image/5.jpg'>" +
+    //                 "Superman" +
+    //                 "</div>" +
+    //                 "<div class='pad-top-2'></div>" +
+    //                 "<div class='flow-text small-font'>" +
+    //                 "<span>" + comment + "</span>" +
+    //                 "<span class='right'>3/4/16</span>" +
+    //                 "</div>" +
+    //                 "<div class='pad-top-2'></div>" +
+    //                 "<div class='divider'></div>" +
+    //                 "</div>";
+    //             $("#comments").prepend(post);
+    //         }
+    //     })
+
+            // PERFORM AJAX TO SUBMIT COMMENT
+            // THIS DOES NOT RELOAD THE COMIC COVER PAGE
+    //         $.post(
+    //             "/comic",
+    //             {
+    //                 comment: $("#textarea1").val(),
+    //                 comic_name: ${current_comic.comicName}
+    //             },
+    //             function(data, status, xhr)
+    //             {
+    //                 if (status == "success")
+    //                 {
+    //                     var comment = $("#textarea1").val();
+    //                     var post =
+    //                         "<div class='card-content-1'>" +
+    //                         "<div class='chip purple lighten-3 z-depth-1'>" +
+    //                         "<img src='image/5.jpg'>" +
+    //                         "Superman" +
+    //                         "</div>" +
+    //                         "<div class='pad-top-2'></div>" +
+    //                         "<div class='flow-text small-font'>" +
+    //                         "<span>" + comment + "</span>" +
+    //                         "<span class='right'>3/4/16</span>" +
+    //                         "</div>" +
+    //                         "<div class='pad-top-2'></div>" +
+    //                         "<div class='divider'></div>" +
+    //                         "</div>";
+    //                     $("#comments").prepend(post);
+    //                 } else if (status == "error" || status == "parsererror")
+    //                 {
+    //                     alert("Comment could not be posted.");
+    //
+    //                 }
+    //             }
+    //         )
+    // })
 
     $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
         $(this).parent().parent().remove();
