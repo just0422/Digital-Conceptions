@@ -8491,6 +8491,15 @@ button.btn-floating {
     line-height: 56px;
 }
 
+.btn-small {
+    height: 22px;
+    max-width: 22px;
+    line-height: 22px;
+    font-size: 40%;
+    text-align:left;
+    padding:1px 4px 4px 4px;
+}
+
 .btn-large i {
     font-size: 1.6rem;
 }
@@ -8690,7 +8699,8 @@ a.waves-effect .waves-ripple {
     background-color: #fafafa;
 
     min-height: 85%;
-    width: 80%;
+    max-height: 95%;
+    width: 85%;
     margin: auto;
     overflow-y: auto;
     border-radius: 2px;
@@ -8711,7 +8721,7 @@ a.waves-effect .waves-ripple {
 }
 
 .modal .modal-content {
-    /*padding: 24px;*/
+    padding: 24px;
 }
 
 .modal .modal-close {

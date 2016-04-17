@@ -24,7 +24,7 @@
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
 
     <!--Import materialize.js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
 
     <script type="text/javascript" src="js/jquery.star.rating.js"></script>
 
@@ -121,9 +121,10 @@
                         </div>
 
 
-                        <!-- Reading Structure -->
-                        <!-- Reading Structure -->
+                        <!-- Reading Modal -->
                         <div id="reading" class="modal">
+
+                            <!-- Start of modal content -->
                             <div class="modal-content">
                                 <i class="material-icons modal-close right">close</i>
 
@@ -134,43 +135,57 @@
                                 <%--)--%>
                                 <%--</script>--%>
 
-                                <!--Previous page-->
+
                                 <div class="row">
+                                    <!--Previous page-->
                                     <div class="col s1">
                                         <div class="valign-wrapper" style="min-height: 80vh">
                                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
                                         </div>
 
                                     </div>
+                                    <!-- End of previous page-->
 
                                     <!-- Comic reading area-->
                                     <div class="col s10">
                                         <%--<img src="${current_comic.coverPage}">--%>
+
+                                        <!-- Sample image to test UI -->
                                         <div class="center">
                                             <img src="/image/preview.jpg" class="reading-height">
                                         </div>
 
-                                        <!-- Pagination -->
-                                        <div class="flow-text">
-                                            <div style="padding-bottom: 10px">Jump to
-
-                                                <ul class="pagination center">
-                                                    <li id="previous" class="disabled">
-                                                        <a href="#!"><i class="material-icons">chevron_left</i></a>
-                                                    </li>
+                                        <!-- Start of Pagination -->
+                                        <div class="flow-text center">
+                                            <div class="row">
+                                                <ul class="pagination cente r">
                                                     <div id="pages" style="display:inline;">
-                                                        <li class="active"><a href="#!">1</a></li>
-                                                        <li class="waves-effect"><a href="#!">2</a></li>
+                                                        <li class="active teal lighten-2"><a href="#!">1</a></li>
+                                                        <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
                                                     </div>
-                                                    <li id="next" class="waves-effect">
-                                                        <a href="#!"><i class="material-icons">chevron_right</i></a>
-                                                    </li>
                                                 </ul>
+
+                                                <!-- Start of form -->
+                                                <!-- Use Ajax to jump page -->
+                                                <form action="#" method="get">
+                                                    <div class="col s1 offset-s11 input-field"
+                                                         style="position: relative; top:-88px">
+                                                        <input id="jump_to" type="text" class="validate">
+                                                        <label for="jump_to">Jump to</label>
+                                                    </div>
+                                                    <div class="col s1 offset-s12"
+                                                         style="position: relative; top:-139px">
+                                                        <button class="btn waves-effect waves-light btn-small teal lighten-2"
+                                                                type="submit" name="action">Go
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                                <!-- End of form-->
 
                                             </div>
 
-
                                         </div>
+                                        <!-- End of pagination -->
 
                                     </div>
 
@@ -181,10 +196,10 @@
                                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
                                         </div>
                                     </div>
+                                    <!-- End of next page -->
                                 </div>
-
-
                             </div>
+                            <!-- End of modal content -->
                         </div>
 
 
