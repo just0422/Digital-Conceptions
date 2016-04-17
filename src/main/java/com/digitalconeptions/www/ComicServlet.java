@@ -59,7 +59,7 @@ public class ComicServlet extends HttpServlet {
 
     // Comic attribute should be set for each request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String name = req.getParameter("current_comic");
+        String name = req.getParameter("comic_name");
         String comic[] = name.split("\\|");
 
         ComicInfo currentcomic

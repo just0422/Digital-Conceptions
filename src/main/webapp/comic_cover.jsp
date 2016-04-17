@@ -72,7 +72,7 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Series Title:<span class="right">${current_comic.seriesTitle}</span>
+                            Series Title:<span class="right">${requestScope.test_comic.seriesTitle}</span>
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
@@ -113,8 +113,7 @@
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
-                                <a class="waves-effect waves-light btn lighten-3 modal-trigger"
-                                   href="#reading">Start</a>
+                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
                                 <a class="waves-effect waves-light btn">Subscribe</a>
                                 <a class="waves-effect waves-light btn">Download</a>
                             </div>
@@ -124,68 +123,17 @@
                         <!-- Reading Structure -->
                         <div id="reading" class="modal">
                             <div class="modal-content">
-                                <i class="material-icons modal-close right">close</i>
-
+                               <i class="material-icons modal-close right">close</i>
+                                <img src="${current_comic.coverPage}">
                                 <%--<script>--%>
-                                <%--$.get(--%>
-                                <%--"/comic",--%>
-                                <%--{page : '${current_user.page}'}--%>
-                                <%--)--%>
+                                    <%--$.get(--%>
+                                            <%--"/comic",--%>
+                                            <%--{page : '${current_user.page}'}--%>
+                                    <%--)--%>
                                 <%--</script>--%>
-
-                                <!--Previous page-->
-                                <div class="row">
-                                    <div class="col s1">
-                                        <div class="valign-wrapper" style="min-height: 80vh">
-                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
-                                        </div>
-
-                                    </div>
-
-                                    <!-- Comic reading area-->
-                                    <div class="col s10">
-                                        <%--<img src="${current_comic.coverPage}">--%>
-                                        <div class="center">
-                                            <img src="/image/preview.jpg" class="reading-height">
-                                        </div>
-
-                                        <!-- Pagination -->
-                                        <div class="flow-text">
-                                            <div style="padding-bottom: 10px">Jump to
-
-                                                <ul class="pagination center">
-                                                    <li id="previous" class="disabled">
-                                                        <a href="#!"><i class="material-icons">chevron_left</i></a>
-                                                    </li>
-                                                    <div id="pages" style="display:inline;">
-                                                        <li class="active"><a href="#!">1</a></li>
-                                                        <li class="waves-effect"><a href="#!">2</a></li>
-                                                    </div>
-                                                    <li id="next" class="waves-effect">
-                                                        <a href="#!"><i class="material-icons">chevron_right</i></a>
-                                                    </li>
-                                                </ul>
-
-                                            </div>
-
-
-                                        </div>
-
-                                    </div>
-
-
-                                    <!--Next page-->
-                                    <div class="col s1">
-                                        <div class="valign-wrapper" style="min-height: 80vh">
-                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
-                                        </div>
-                                    </div>
-                                </div>
-
-
                             </div>
                             <%--<div class="modal-footer">--%>
-                            <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
+                                <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
                             <%--</div>--%>
                         </div>
 
@@ -208,22 +156,20 @@
 
                             </div>
                             <script>
-                                $(document).ready(function () {
+                                $(document).ready(function() {
                                     $('#rating').addRating();
                                 })
 
-                                function rate() {
+                                function rate(){
                                     $.post(
-                                            "/comic",
-                                            {
-                                                rating: $('#rating').val(),
-                                                current_comic: '${current_comic.comicName}'
-                                            },
-                                            function (result) {
-                                                console.log(result);
-                                                $("#full_rate").html(result);
+                                        "/comic",
+                                        {   rating : $('#rating').val(),
+                                            current_comic : '${current_comic.comicName}'},
+                                            function(result) {
+                                            console.log(result);
+                                            $("#full_rate").html(result);
                                             }
-                                    )
+                                        )
                                 }
                             </script>
                         </div>
@@ -239,6 +185,61 @@
                 <div class="pad-top-10"></div>
                 <div class="pad-top-10"></div>
 
+                <%-- Might have to use AJAX for this so that the page doesn't reload every time
+                                             the user comments on the comic. js/customJS.js line 38--%>
+                <div class="row">
+
+                    <div class="input-field col s12">
+                        <form class="col s12" id="comment_form" action="/comic" method="POST">
+                            <label for="textarea1">Write Your Comment here</label>
+                            <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                            <button id="post_button" class="btn waves-effect waves-light right" type="submit">
+                                Post<i class="material-icons right">send</i>
+                            </button>
+                            <script>
+                                $(document).ready(function()
+                                {
+                                    $("#comment_form").on("submit", function(e)
+                                    {
+                                        e.preventDefault();
+//                                        PERFORM AJAX TO SUBMIT COMMENT
+//                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
+                                        $.ajax({
+                                            url: "/comic",
+                                            method: "POST",
+                                            data: {comment: $("#textarea1").val(),
+                                                    comic_name: '${current_comic.comicName}'},
+                                            error: function()
+                                            {
+                                                alert("Comment could not be posted.");
+                                            },
+                                            success: function ()
+                                            {
+                                                var comment = $("#textarea1").val();
+                                                var post =
+                                                        "<div class='card-content-1'>" +
+                                                        "<div class='chip purple lighten-3 z-depth-1'>" +
+                                                        "<img src='image/5.jpg'>" +
+                                                        "Superman" +
+                                                        "</div>" +
+                                                        "<div class='pad-top-2'></div>" +
+                                                        "<div class='flow-text small-font'>" +
+                                                        "<span>" + comment + "</span>" +
+                                                        "<span class='right'>3/4/16</span>" +
+                                                        "</div>" +
+                                                        "<div class='pad-top-2'></div>" +
+                                                        "<div class='divider'></div>" +
+                                                        "</div>";
+                                                $("#comments").prepend(post);
+                                            }
+                                        })
+                                    })
+                                })
+                            </script>
+                        </form>
+                    </div>
+
+                </div>
 
                 <!-- Comments for comic -->
                 <div class="card-1">
@@ -247,83 +248,84 @@
                     </div>
                     <div class="divider"></div>
 
-                    <!-- Comment 1 -->
-                    <div class="card-content-1">
-                        <div>
-                            <div class="chip purple lighten-3 z-depth-1">
-                                <img src="image/5.jpg">
-                                Superman
-                            </div>
-                            <div class="pad-top-2"></div>
+                    <div id="comments">
 
-                            <!-- Acutal comment-->
-                            <div class="flow-text small-font">
-                                <span>Superman is better</span>
-                                <span class="right">3/4/16</span>
-                            </div>
+                        <!-- Comment 1 -->
+                        <div class="card-content-1">
+                                <div class="chip purple lighten-3 z-depth-1">
+                                    <img src="image/5.jpg">
+                                    Superman
+                                </div>
+                                <div class="pad-top-2"></div>
 
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>Superman is better</span>
+                                    <span class="right">3/4/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
                         </div>
-                    </div>
 
-                    <!-- Comment 2 -->
-                    <div class="card-content-1">
-                        <div>
-                            <div class="chip orange lighten-3 z-depth-1">
-                                <img src="image/6.jpg">
-                                Batman
+                        <!-- Comment 2 -->
+                        <div class="card-content-1">
+                            <div>
+                                <div class="chip orange lighten-3 z-depth-1">
+                                    <img src="image/6.jpg">
+                                    Batman
+                                </div>
+                                <div class="pad-top-2"></div>
+
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>Batman Batman Batman</span>
+                                    <span class="right">3/3/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
                             </div>
-                            <div class="pad-top-2"></div>
-
-                            <!-- Acutal comment-->
-                            <div class="flow-text small-font">
-                                <span>Batman Batman Batman</span>
-                                <span class="right">3/3/16</span>
-                            </div>
-
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
                         </div>
-                    </div>
 
-                    <!-- Comment 3 -->
-                    <div class="card-content-1">
-                        <div>
-                            <div class="chip green lighten-3 z-depth-1">
-                                <img src="image/7.jpg">
-                                Luffy
+                        <!-- Comment 3 -->
+                        <div class="card-content-1">
+                            <div>
+                                <div class="chip green lighten-3 z-depth-1">
+                                    <img src="image/7.jpg">
+                                    Luffy
+                                </div>
+                                <div class="pad-top-2"></div>
+
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>Boring</span>
+                                    <span class="right">3/3/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
                             </div>
-                            <div class="pad-top-2"></div>
-
-                            <!-- Acutal comment-->
-                            <div class="flow-text small-font">
-                                <span>Boring</span>
-                                <span class="right">3/3/16</span>
-                            </div>
-
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
                         </div>
-                    </div>
 
-                    <!-- Comment 4 -->
-                    <div class="card-content-1">
-                        <div>
-                            <div class="chip blue lighten-3 z-depth-1">
-                                <img src="image/8.jpg">
-                                Crayon Shin-chan
+                        <!-- Comment 4 -->
+                        <div class="card-content-1">
+                            <div>
+                                <div class="chip blue lighten-3 z-depth-1">
+                                    <img src="image/8.jpg">
+                                    Crayon Shin-chan
+                                </div>
+                                <div class="pad-top-2"></div>
+
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>...</span>
+                                    <span class="right">3/3/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
                             </div>
-                            <div class="pad-top-2"></div>
-
-                            <!-- Acutal comment-->
-                            <div class="flow-text small-font">
-                                <span>...</span>
-                                <span class="right">3/3/16</span>
-                            </div>
-
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
                         </div>
                     </div>
 
@@ -346,31 +348,21 @@
                     <div class="pad-top-10"></div>
                     <!-- Write Comment-->
                     <div class="card-content-1">
-                        <div class="divider-grey-3"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
+                    <%--<div class="divider-grey-3"></div>--%>
+                    <%--<div class="pad-top-10"></div>--%>
+                    <%--<div class="pad-top-10"></div>--%>
+                    <%--<div class="pad-top-10"></div>--%>
+                    <%--<div class="pad-top-10"></div>--%>
+                    <%--<div class="pad-top-10"></div>--%>
 
-                        <%-- Might have to use AJAX for this so that the page doesn't reload every time
-                             the user comments on the comic. js/customJS.js line 38--%>
-                        <div class="row">
 
-                            <div class="input-field col s12">
-                                <form class="col s12" action="/comic" method="POST">
-                                    <label for="textarea1">Write Your Comment here</label>
-                                    <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
-                                    <button class="btn waves-effect waves-light right" type="submit">
-                                        Submit<i class="material-icons right">send</i>
-                                    </button>
-                                </form>
-                            </div>
-
-                        </div>
                     </div>
 
                 </div>
+
+
+
+
 
 
             </div>
