@@ -165,7 +165,34 @@
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
     }
 
+    .modal-1-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
     .hoverable:hover {
+        cursor: pointer;
+    }
+
+    .hoverable-1:hover {
         cursor: pointer;
     }
 
@@ -179,4 +206,8 @@
     #comic_upload input {
         padding-left: 5%;
         padding-right: 5%;
+    }
+
+    .reading-height{
+        max-height: 80vh;
     }
