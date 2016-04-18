@@ -114,8 +114,8 @@
                             <div class="pad-top-20"></div>
                             <div class="center">
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
-                                <a class="waves-effect waves-light btn">Subscribe</a>
-                                <a class="waves-effect waves-light btn">Download</a>
+                                <a id="subscribe" class="waves-effect waves-light btn">Subscribe</a>
+                                <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
 

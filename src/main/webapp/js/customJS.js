@@ -105,6 +105,13 @@ $(document).ready(function ()
     //             }
     //         )
     // })
+    
+    $("#subscribe").click(function()
+    {
+        $.ajax({
+            url: "",
+            data: ""})
+    })
 
     $( document ).on( "click .collapsible-body", ".collapsible-body .material-icons", function() {
         $(this).parent().parent().remove();
