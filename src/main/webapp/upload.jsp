@@ -421,7 +421,7 @@
         <!-- Start of Add button -->
         <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
             <a class="btn-floating btn-large red waves-effect tooltipped" data-position="top"
-               data-delay="50" data-tooltip="Crate new comic">
+               data-delay="50" data-tooltip="Create new comic">
                 <i class="large material-icons">add</i>
             </a>
         </div>

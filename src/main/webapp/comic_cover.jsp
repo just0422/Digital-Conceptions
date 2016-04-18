@@ -76,10 +76,6 @@
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
-                        <div class="container-1 flow-text cyan-text">
-                            Issue Title:<span class="right">${current_comic.issueTitle}</span>
-                            <div class="divider"></div>
-                        </div>
 
                         <!-- Author Name-->
                         <div class="pad-top-10"></div>
@@ -98,7 +94,8 @@
                         <!-- Latest Chapter-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Latest Chapter:<span class="right">Bye</span>
+                            Latest Updated:<br>
+                            <span>Volume # + Issue # + Issue title </span>
                             <div class="divider"></div>
                         </div>
 
@@ -108,16 +105,21 @@
                             Current Rating:<span class="right">4</span>
                             <div class="divider"></div>
                         </div>
+                        <!-- End of rating -->
 
+
+                        <!-- Start of start, subscribe and download button -->
                         <div class="container-1">
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
-                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
+                                <a class="waves-effect waves-light btn lighten-3 modal-trigger"
+                                   href="#reading">Start</a>
                                 <a id="subscribe" class="waves-effect waves-light btn">Subscribe</a>
                                 <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
+                        <!-- End of start, subscribe and download button -->
 
 
                         <!-- Reading Structure -->
@@ -186,7 +188,6 @@
 
                                         </div>
                                         <!-- End of pagination -->
-
                                     </div>
 
 
@@ -201,10 +202,11 @@
                             </div>
                             <!-- End of modal content -->
                         </div>
-
-
+                        <!-- End of modal -->
                     </div>
+                    <!-- End of middle column -->
 
+                    <!-- Start of rating -->
                     <div class="col s3">
                         <div class="container-1 flow-text center cyan-text">
                             <div class="pad-top-20"></div>
@@ -221,93 +223,119 @@
 
                             </div>
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
                                     $('#rating').addRating();
                                 })
 
-                                function rate(){
+                                function rate() {
                                     $.post(
-                                        "/comic",
-                                        {   rating : $('#rating').val(),
-                                            current_comic : '${current_comic.comicName}'},
-                                            function(result) {
-                                            console.log(result);
-                                            $("#full_rate").html(result);
+                                            "/comic",
+                                            {
+                                                rating: $('#rating').val(),
+                                                current_comic: '${current_comic.comicName}'
+                                            },
+                                            function (result) {
+                                                console.log(result);
+                                                $("#full_rate").html(result);
                                             }
-                                        )
+                                    )
                                 }
                             </script>
                         </div>
                     </div>
-
+                    <!-- End of rating -->
                 </div>
+                <!-- End of the top part grid layout -->
 
 
-                <!-- Buttons for start, download and subscripbe -->
-
+                <!-- Padding for bottom haft of the site -->
+                <div class="pad-top-10"></div>
                 <div class="divider-grey-3"></div>
                 <div class="pad-top-10"></div>
                 <div class="pad-top-10"></div>
-                <div class="pad-top-10"></div>
 
-                <%-- Might have to use AJAX for this so that the page doesn't reload every time
-                                             the user comments on the comic. js/customJS.js line 38--%>
-                <div class="row">
+                <!-- Start of Volume issue and issue title listing -->
+                <div class="row" style="min-height: 25vh;margin-top: 2vh;">
+                    <!-- Start of volume selection -->
+                    <div class="col s3">
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button btn' href='#' data-activates='volume'>Select a volume</a>
 
-                    <div class="input-field col s12">
-                        <form class="col s12" id="comment_form" action="/comic" method="POST">
-                            <label for="textarea1">Write Your Comment here</label>
-                            <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
-                            <button id="post_button" class="btn waves-effect waves-light right" type="submit">
-                                Post<i class="material-icons right">send</i>
-                            </button>
-                            <script>
-                                $(document).ready(function()
-                                {
-                                    $("#comment_form").on("submit", function(e)
-                                    {
-                                        e.preventDefault();
-//                                        PERFORM AJAX TO SUBMIT COMMENT
-//                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
-                                        $.ajax({
-                                            url: "/comic",
-                                            method: "POST",
-                                            data: {comment: $("#textarea1").val(),
-                                                    comic_name: '${current_comic.comicName}'},
-                                            error: function()
-                                            {
-                                                alert("Comment could not be posted.");
-                                            },
-                                            success: function ()
-                                            {
-                                                var comment = $("#textarea1").val();
-                                                var post =
-                                                        "<div class='card-content-1'>" +
-                                                        "<div class='chip purple lighten-3 z-depth-1'>" +
-                                                        "<img src='image/5.jpg'>" +
-                                                        "Superman" +
-                                                        "</div>" +
-                                                        "<div class='pad-top-2'></div>" +
-                                                        "<div class='flow-text small-font'>" +
-                                                        "<span>" + comment + "</span>" +
-                                                        "<span class='right'>3/4/16</span>" +
-                                                        "</div>" +
-                                                        "<div class='pad-top-2'></div>" +
-                                                        "<div class='divider'></div>" +
-                                                        "</div>";
-                                                $("#comments").prepend(post);
-                                            }
-                                        })
-                                    })
-                                })
-                            </script>
-                        </form>
+                        <!-- Dropdown Structure -->
+                        <ul id='volume' class='dropdown-content'>
+                            <li><a href="#!">1</a></li>
+                            <li><a href="#!">2</a></li>
+                            <li><a href="#!">3</a></li>
+                        </ul>
                     </div>
+                    <!-- End of volumn selection -->
+
+                    <!-- List of issues-->
+                    <div class="col s9 flow-text medium-font" style="overflow-y: scroll; height:25vh; ">
+
+                        <div class="row">
+                            <div class="col s4">
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                            </div>
+                            <div class="col s4">
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                            </div>
+                            <div class="col s4">
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- End of issues-->
 
                 </div>
+                <!-- End of volume issue and issue title listing -->
+                <div class="divider" style="position: relative; bottom: 0;"></div>
+
 
                 <!-- Comments for comic -->
-                <div class="card-1">
+                <div class="card-1" style="margin-top: 10vh;">
                     <div class="card-content-1 flow-text">
                         Comments from readers:
                     </div>
@@ -317,20 +345,20 @@
 
                         <!-- Comment 1 -->
                         <div class="card-content-1">
-                                <div class="chip purple lighten-3 z-depth-1">
-                                    <img src="image/5.jpg">
-                                    Superman
-                                </div>
-                                <div class="pad-top-2"></div>
+                            <div class="chip purple lighten-3 z-depth-1">
+                                <img src="image/5.jpg">
+                                Superman
+                            </div>
+                            <div class="pad-top-2"></div>
 
-                                <!-- Acutal comment-->
-                                <div class="flow-text small-font">
-                                    <span>Superman is better</span>
-                                    <span class="right">3/4/16</span>
-                                </div>
+                            <!-- Acutal comment-->
+                            <div class="flow-text small-font">
+                                <span>Superman is better</span>
+                                <span class="right">3/4/16</span>
+                            </div>
 
-                                <div class="pad-top-2"></div>
-                                <div class="divider"></div>
+                            <div class="pad-top-2"></div>
+                            <div class="divider"></div>
                         </div>
 
                         <!-- Comment 2 -->
@@ -409,33 +437,74 @@
 
 
                     <div class="pad-top-10"></div>
-                    <div class="pad-top-10"></div>
-                    <div class="pad-top-10"></div>
-                    <!-- Write Comment-->
-                    <div class="card-content-1">
-                    <%--<div class="divider-grey-3"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
-                    <%--<div class="pad-top-10"></div>--%>
 
+
+                    <!-- Start of write Comment-->
+                    <%-- Might have to use AJAX for this so that the page doesn't reload every time
+                                             the user comments on the comic. js/customJS.js line 38--%>
+                    <div class="row" style="margin-top: 10vh">
+
+                        <div class="input-field col s12">
+                            <form class="col s12" id="comment_form" action="/comic" method="POST">
+                                <label for="textarea1">Write Your Comment here</label>
+                                <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                                <button id="post_button" class="btn waves-effect waves-light right" type="submit">
+                                    Post<i class="material-icons right">send</i>
+                                </button>
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#comment_form").on("submit", function (e) {
+                                            e.preventDefault();
+//                                        PERFORM AJAX TO SUBMIT COMMENT
+//                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
+                                            $.ajax({
+                                                url: "/comic",
+                                                method: "POST",
+                                                data: {
+                                                    comment: $("#textarea1").val(),
+                                                    comic_name: '${current_comic.comicName}'
+                                                },
+                                                error: function () {
+                                                    alert("Comment could not be posted.");
+                                                },
+                                                success: function () {
+                                                    var comment = $("#textarea1").val();
+                                                    var post =
+                                                            "<div class='card-content-1'>" +
+                                                            "<div class='chip purple lighten-3 z-depth-1'>" +
+                                                            "<img src='image/5.jpg'>" +
+                                                            "Superman" +
+                                                            "</div>" +
+                                                            "<div class='pad-top-2'></div>" +
+                                                            "<div class='flow-text small-font'>" +
+                                                            "<span>" + comment + "</span>" +
+                                                            "<span class='right'>3/4/16</span>" +
+                                                            "</div>" +
+                                                            "<div class='pad-top-2'></div>" +
+                                                            "<div class='divider'></div>" +
+                                                            "</div>";
+                                                    $("#comments").prepend(post);
+                                                }
+                                            })
+                                        })
+                                    })
+                                </script>
+                            </form>
+                        </div>
 
                     </div>
+                    <!-- End of write comment -->
+
 
                 </div>
 
-
-
-
-
-
             </div>
         </div>
-    </main>
+</div>
+</main>
 
 
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 
 
 </div>
