@@ -104,10 +104,10 @@ public class ComicServlet extends HttpServlet {
         }
 
         if (req.getParameter("comment") != null){
-            Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
+//            Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
             String date = currentcomic.addComment(user.getNickname(), req.getParameter("comment"));
 
-            userinfo.addUnreadNotification( comment.getUser() + " commented '" + comment.getComment() + "' on your Comic: "
+            userinfo.addUnreadNotification( user.getNickname() + " commented '" + req.getParameter("comment") + "' on your Comic: "
                     + currentcomic.getIssueTitle() + " " + currentcomic.getIssue());
 
 //            resp.setContentType("application/json");
