@@ -455,6 +455,7 @@
                                     $(document).ready(function () {
                                         $("#comment_form").on("submit", function (e) {
                                             e.preventDefault();
+                                            console.log("Sending");
 //                                        PERFORM AJAX TO SUBMIT COMMENT
 //                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
                                             $.ajax({
@@ -464,21 +465,24 @@
                                                     comment: $("#textarea1").val(),
                                                     comic_name: '${current_comic.comicName}'
                                                 },
-                                                error: function () {
-                                                    alert("Comment could not be posted.");
-                                                },
-                                                success: function () {
-                                                    var comment = $("#textarea1").val();
+//                                                error: function () {
+//                                                    alert("Comment could not be posted."));
+//                                                },
+                                                success: function(response) {
+//                                                    console.log("received");
+//                                                    console.log(response);
+                                                    ucd = jQuery.parseJSON(response);
+//                                                    console.log(ucd.user);
                                                     var post =
                                                             "<div class='card-content-1'>" +
                                                             "<div class='chip purple lighten-3 z-depth-1'>" +
                                                             "<img src='image/5.jpg'>" +
-                                                            "Superman" +
+                                                            ucd.user +
                                                             "</div>" +
                                                             "<div class='pad-top-2'></div>" +
                                                             "<div class='flow-text small-font'>" +
-                                                            "<span>" + comment + "</span>" +
-                                                            "<span class='right'>3/4/16</span>" +
+                                                            "<span>" + ucd.comment + "</span>" +
+                                                            "<span class='right'>" + ucd.date + "</span>" +
                                                             "</div>" +
                                                             "<div class='pad-top-2'></div>" +
                                                             "<div class='divider'></div>" +

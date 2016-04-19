@@ -7,6 +7,7 @@ import com.googlecode.objectify.annotation.EmbedMap;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
+import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
+
 
 /**
  * Created by justin on 3/21/16.
@@ -37,7 +39,7 @@ public class ComicInfo {
 
     List<BlobKey> images;
     List<String> urls;
-    ArrayList<Comment> commentList;
+    List<String> commentList;
     @EmbedMap HashMap<String, Integer> ratings;
 
     public ComicInfo(){
@@ -109,7 +111,6 @@ public class ComicInfo {
     }
     public String getDateFormat() {
         SimpleDateFormat format = new SimpleDateFormat("E MM/dd/yyyy");
-
         return format.format(this.dateCreated);
     }
     public String getComicName(){
@@ -149,9 +150,15 @@ public class ComicInfo {
     public void setNumberOfReads(int numberOfReads) { this.numberOfReads = numberOfReads; }
     public double getRating() { return rating; }
     public void setRating(double rating) { this.rating = rating; }
-    public ArrayList<Comment> getCommentList() {return commentList;}
-    public void setCommentList(ArrayList<Comment> commentList) {this.commentList = commentList;}
-    public void addComment(Comment comment) { commentList.add(comment); }
+    public List<String> getCommentList() {return commentList;}
+    public String addComment(String username, String comment) {
+        SimpleDateFormat format = new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss");
+        String commentDate = format.format(new Date());
+
+        comment = commentDate + "|" + username + "|" + comment;
+        commentList.add(comment);
+        return commentDate;
+    }
     public int getVolume() { return volume; }
     public void setVolume(int volume) { this.volume = volume; }
     public int getIssue() { return issue; }

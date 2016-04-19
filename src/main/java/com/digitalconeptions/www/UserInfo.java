@@ -40,6 +40,9 @@ public class UserInfo implements java.io.Serializable{
         subscriptions = new ArrayList<>();
         creations = new ArrayList<>();
         recentlyRead = new ArrayList<>();
+
+        unreadNotifications = new ArrayList<>();
+        readNotifications = new ArrayList<>();
     }
 
     public UserInfo(String username){

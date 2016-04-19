@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  * Created by justin on 4/11/16.
@@ -26,7 +27,7 @@ public class ComicServlet extends HttpServlet {
 
     // Front end splits comments based on delimiters
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        System.out.println(getClass().getName());
+        System.out.println(getClass().getName() + " GET");
         // Attributes should be set in request
         String seriesTitle = req.getParameter("series_title");
         String issueTitle = req.getParameter("issue_title");
@@ -78,6 +79,7 @@ public class ComicServlet extends HttpServlet {
 
     // Comic attribute should be set for each request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        System.out.println(getClass().getName() + " POST");
         String name = req.getParameter("comic_name");
         String comic[] = name.split("\\|");
 
@@ -98,25 +100,36 @@ public class ComicServlet extends HttpServlet {
 
         if (req.getParameter("rating") != null) {
             currentcomic.addRate(user.getNickname(), Integer.parseInt(req.getParameter("rating")));
-            resp.getWriter().write(""+currentcomic.rating);
+            resp.getWriter().write("" + currentcomic.rating);
         }
 
         if (req.getParameter("comment") != null){
             Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
-            currentcomic.addComment(comment);
+            String date = currentcomic.addComment(user.getNickname(), req.getParameter("comment"));
 
-            userinfo.addUnreadNotification(
-                    comment.getUser() + " commented '" +
-                            comment.getComment() + "' on your Comic: "
-                    + currentcomic.issueTitle + " " +
-                            currentcomic.issue);
+            userinfo.addUnreadNotification( comment.getUser() + " commented '" + comment.getComment() + "' on your Comic: "
+                    + currentcomic.getIssueTitle() + " " + currentcomic.getIssue());
+
+//            resp.setContentType("application/json");
+
+//            resp.getWriter().println();
+            resp.setContentType("text/plain");
+//            resp.getWriter().println("HI");
+            resp.getWriter().println("{");
+            resp.getWriter().println("\"user\": \"" + user.getNickname() + "\",");
+            resp.getWriter().println("\"comment\": \""+ req.getParameter("comment") + "\",");
+            resp.getWriter().println("\"date\": \"" + date + "\"");
+            resp.getWriter().println("}");
+////            out.close();
+//
+//            System.out.println("COMMENT");
+////            System.out.println(out.toString());
+//            System.out.println(resp.getWriter().toString());
+//            System.out.println(resp.toString());
         }
         ObjectifyService.ofy().save().entity(currentcomic).now();
+        ObjectifyService.ofy().save().entity(userinfo).now();
 
-        // Comments
-        // Concatenate EPOCH date to comment using ! as delimiter
-//        Comment newComment = new Comment(userInfo, userInfo.username);
-//        comic.commentList.add(newComment);
 
         // Finished reading
         // Set userinfo pageleftoff hashmap based off of <ComicInfo, int page>
