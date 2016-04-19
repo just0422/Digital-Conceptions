@@ -198,6 +198,27 @@
                                         </div>
                                     </div>
                                     <!-- End of next page -->
+
+                                    <script>
+                                        $(document).ready(function()
+                                        {
+                                            var currentPage = $("#current_page");
+                                            var prevButton = $("#previous_page");
+                                            var nextButton = $("#next_page");
+
+                                            prevButton.click(function()
+                                            {
+                                                // This should be edited
+                                                currentPage.attr("src", "${current_comic.urls[0]}");
+                                            })
+
+                                            nextButton.click(function()
+                                            {
+                                                // This should be edited
+                                                currentPage.attr("src", "${current_comic.urls[2]}");
+                                            })
+                                        })
+                                    </script>
                                 </div>
                             </div>
                             <!-- End of modal content -->
@@ -456,8 +477,6 @@
                                         $("#comment_form").on("submit", function (e) {
                                             e.preventDefault();
                                             console.log("Sending");
-//                                        PERFORM AJAX TO SUBMIT COMMENT
-//                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
                                             $.ajax({
                                                 url: "/comic",
                                                 method: "POST",
