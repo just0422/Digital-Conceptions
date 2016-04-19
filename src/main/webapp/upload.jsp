@@ -25,6 +25,7 @@
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
@@ -75,7 +76,6 @@
         <div id="upload" style="display: none">
             <div class="container-1">
 
-                <form action="#">
 
 
                     <div class="row">
@@ -168,68 +168,68 @@
 
                             </div>
 
-                            <!-- Preview of the uploaded comics -->
-                            <div class="container-1">
+                            <%--<!-- Preview of the uploaded comics -->--%>
+                            <%--<div class="container-1">--%>
 
-                                <%--<!-- Small cards for uploaded comics preview -->--%>
-                                <%--<div class="row">--%>
-                                <%--<div class="col s3">--%>
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<!-- Small cards for uploaded comics preview -->&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
 
-                                <%--<div class="col s3">--%>
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--<div class="col s3">--%>
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--<div class="col s3">--%>
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
-                                <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                <%--<img src="image/preview.jpg">--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
-                                <%--</div>--%>
+                                <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
 
 
                                 <div class="pad-top-20"></div>
@@ -239,7 +239,7 @@
                                     <div class="file-field input-field">
                                         <div class="waves-effect waves-light btn cyan lighten-2"><i
                                                 class="material-icons right">cloud_upload</i>Browse</input>
-                                            <input type="file" multiple>
+                                            <input type="file" multiple form="comic_upload" name="upload_images">
                                         </div>
                                         <div class="file-path-wrapper">
                                             <input class="file-path validate" type="text"
@@ -249,7 +249,8 @@
 
 
                                     <div class="pad-top-20"></div>
-                                    <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"><i
+                                    <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"
+                                        form="comic_upload" type="submit"><i
                                             class="material-icons right">send</i>Submit
                                     </button>
                                 </div>
@@ -258,7 +259,6 @@
 
                         </div>
                     </div>
-                </form>
                 <div class="pad-top-20"></div>
                 <div class="pad-top-20"></div>
 

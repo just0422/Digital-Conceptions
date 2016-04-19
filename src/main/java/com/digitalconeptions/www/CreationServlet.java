@@ -52,7 +52,7 @@ public class CreationServlet extends HttpServlet {
         String username = ((User)now.getAttribute("user")).getNickname();
         resp.setContentType("text/plain");
 
-        List<BlobKey> blobKeys = blobs.get("upload");
+        List<BlobKey> blobKeys = blobs.get("upload_images");
         List<String> urls = new ArrayList<>();
 
         for (BlobKey key : blobKeys){
@@ -77,8 +77,6 @@ public class CreationServlet extends HttpServlet {
         if (issueTitle != null) query = query.filter("issue", issue);
             else issue = "1";
 
-        System.out.println(seriesTitle + " " + volume + "," + issueTitle + " " + issue);
-
 
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
         if (query.list().size() < 1){
@@ -93,7 +91,6 @@ public class CreationServlet extends HttpServlet {
         }
         else{
             resp.getWriter().write("0");
-            // RETURN FALSE COMIC EXISTS
         }
     }
 }
