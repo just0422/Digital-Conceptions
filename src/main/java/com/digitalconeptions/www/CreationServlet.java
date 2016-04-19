@@ -77,6 +77,7 @@ public class CreationServlet extends HttpServlet {
         if (issueTitle != null) query = query.filter("issue", issue);
             else issue = "1";
 
+        System.out.println(seriesTitle + " " + volume + "," + issueTitle + " " + issue);
 
 
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();

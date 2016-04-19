@@ -33,6 +33,7 @@
     <script type="text/javascript" src="js/customJS.js"></script>
 
     <script type="text/javascript" src="js/customJS_2.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
@@ -73,7 +74,7 @@
 
         <div class="container-1">
 
-            <form action="#">
+            <%--<form action="#">--%>
 
 
             <div class="row">
@@ -161,9 +162,8 @@
                                 <textarea id="description" class="materialize-textarea" name="description" required></textarea>
                                 <label for="description">Description of the comic</label>
                             </div>
-                        </form>
 
-                        </div>
+                        <%--</div>--%>
 
                         <!-- Preview of the uploaded comics -->
                         <div class="container-1">
@@ -235,8 +235,8 @@
                             <div class="col s12">
                                 <div class="file-field input-field">
                                     <div class="waves-effect waves-light btn cyan lighten-2"><i
-                                            class="material-icons right">cloud_upload</i>Browse</input>
-                                        <input type="file" multiple>
+                                            class="material-icons right" >cloud_upload</i>Browse</input>
+                                        <input type="file" multiple name="upload">
                                     </div>
                                     <div class="file-path-wrapper">
                                         <input class="file-path validate" type="text"
@@ -246,20 +246,23 @@
 
 
                                 <div class="pad-top-20"></div>
-                                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"><i
+                                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center" form="comic_upload" type="submit"><i
                                         class="material-icons right">send</i>Submit
                                 </button>
                             </div>
 
                         </div>
+                        </form>
 
-                    </div>
+
+        </div>
                 </div>
-            </form>
+            <%--</form>--%>
             <div class="pad-top-20"></div>
             <div class="pad-top-20"></div>
 
         </div>
+            </div>
 
     </main>
 

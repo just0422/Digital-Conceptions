@@ -86,8 +86,11 @@ public class ComicServlet extends HttpServlet {
             Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
             currentcomic.addComment(comment);
 
-            userinfo.addUnreadNotification(comment.getUser() + " commented '" + comment.getComment() + "' on your Comic: "
-                    + currentcomic.issueTitle + " " + currentcomic.issue);
+            userinfo.addUnreadNotification(
+                    comment.getUser() + " commented '" +
+                            comment.getComment() + "' on your Comic: "
+                    + currentcomic.issueTitle + " " +
+                            currentcomic.issue);
         }
         ObjectifyService.ofy().save().entity(currentcomic).now();
 

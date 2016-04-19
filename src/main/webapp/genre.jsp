@@ -76,7 +76,7 @@
                         <div class="col s3">
                             <form action="/comicservlet" method="GET">
                                 <input type="hidden" name="series_title" value="${comic.seriesTitle}">
-                                <input type="hidden" name="comic_title" value="${comic.comicTitle}">
+                                <input type="hidden" name="issue_title" value="${comic.issueTitle}">
                                 <input type="hidden" name="volume" value="${comic.volume}">
                                 <input type="hidden" name="issue" value="${comic.issue}">
                                 <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
