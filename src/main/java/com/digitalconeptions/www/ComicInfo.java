@@ -160,4 +160,6 @@ public class ComicInfo {
     public void setDescription(String description) { this.description = description; }
     public List<BlobKey> getImages() { return images; }
     public void setImages(List<BlobKey> images) { this.images = images; }
+    public List<String> getUrls() { return urls; }
+    public void setUrls(List<String> urls) { this.urls = urls; }
 }
