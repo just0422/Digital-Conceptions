@@ -253,7 +253,7 @@
                                             "/comic",
                                             {
                                                 rating: $('#rating').val(),
-                                                current_comic: '${current_comic.comicName}'
+                                                current_comic: "${current_comic.comicName}"
                                             },
                                             function (result) {
                                                 console.log(result);
@@ -363,7 +363,24 @@
                     <div class="divider"></div>
 
                     <div id="comments">
+                        <c:forEach items="${current_comic.commentList}" var="comment">
+                            <div class="card-content-1">
+                                <div class="chip purple lighten-3 z-depth-1">
+                                    <img src="image/5.jpg">
+                                    Superman
+                                </div>
+                                <div class="pad-top-2"></div>
 
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>${comment}</span>
+                                    <span class="right">3/4/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
+                            </div>
+                        </c:forEach>
                         <!-- Comment 1 -->
                         <div class="card-content-1">
                             <div class="chip purple lighten-3 z-depth-1">
@@ -482,7 +499,7 @@
                                                 method: "POST",
                                                 data: {
                                                     comment: $("#textarea1").val(),
-                                                    comic_name: '${current_comic.comicName}'
+                                                    comic_name: "${current_comic.comicName}"
                                                 },
 //                                                error: function () {
 //                                                    alert("Comment could not be posted."));
