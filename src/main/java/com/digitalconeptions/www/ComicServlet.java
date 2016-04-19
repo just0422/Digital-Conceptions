@@ -38,14 +38,33 @@ public class ComicServlet extends HttpServlet {
 //        String obj.seriesTitle;
 //        Integer obj.volume;
 //        Integer obj.issue;
-        ComicInfo currentcomic
+        ComicInfo currentComic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle", seriesTitle)
                 .filter("issueTitle", issueTitle)
                 .filter("volume", volume)
                 .filter("issue", issue).first().now();
 
-        req.setAttribute("current_comic", currentcomic);
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+        String subscribed = "Subscribe";
+        String start = "Start";
+        // TODO
+
+        if (user != null)
+        {
+            // Check if user is already subscribed
+
+            // If subscribed, change string to "Unsubscribe"
+            subscribed = "Unsubscribe";
+
+            // Check if user already started comic
+
+            // If started, change string to "Resume"
+            start = "Resume";
+        }
+
+        req.setAttribute("current_comic", currentComic);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/comic_cover.jsp");
         rd.forward(req, resp);
@@ -59,7 +78,7 @@ public class ComicServlet extends HttpServlet {
 
     // Comic attribute should be set for each request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        String name = req.getParameter("current_comic");
+        String name = req.getParameter("comic_name");
         String comic[] = name.split("\\|");
 
         ComicInfo currentcomic

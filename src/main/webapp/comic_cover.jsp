@@ -24,7 +24,7 @@
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
 
     <!--Import materialize.js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
 
     <script type="text/javascript" src="js/jquery.star.rating.js"></script>
 
@@ -72,14 +72,10 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Series Title:<span class="right">${current_comic.seriesTitle}</span>
+                            Series Title:<span class="right">${requestScope.test_comic.seriesTitle}</span>
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
-                        <div class="container-1 flow-text cyan-text">
-                            Issue Title:<span class="right">${current_comic.issueTitle}</span>
-                            <div class="divider"></div>
-                        </div>
 
                         <!-- Author Name-->
                         <div class="pad-top-10"></div>
@@ -98,48 +94,119 @@
                         <!-- Latest Chapter-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Latest Chapter:<span class="right">Bye</span>
+                            Latest Updated:<br>
+                            <span>Volume # + Issue # + Issue title </span>
                             <div class="divider"></div>
                         </div>
 
                         <!-- Current  Rating-->
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Current Rating:<span class="right" id="full_rate">${current_comic.rating}</span>
+                            Current Rating:<span class="right">4</span>
                             <div class="divider"></div>
                         </div>
+                        <!-- End of rating -->
 
+
+                        <!-- Start of start, subscribe and download button -->
                         <div class="container-1">
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
                             <div class="center">
-                                <a class="waves-effect waves-light btn lighten-3 modal-trigger" href="#reading">Start</a>
-                                <a class="waves-effect waves-light btn">Subscribe</a>
-                                <a class="waves-effect waves-light btn">Download</a>
+                                <a class="waves-effect waves-light btn lighten-3 modal-trigger"
+                                   href="#reading">Start</a>
+                                <a id="subscribe" class="waves-effect waves-light btn">Subscribe</a>
+                                <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
+                        <!-- End of start, subscribe and download button -->
 
 
                         <!-- Reading Structure -->
+                        <!-- Reading Modal -->
                         <div id="reading" class="modal">
+
+                            <!-- Start of modal content -->
                             <div class="modal-content">
-                               <i class="material-icons modal-close right">close</i>
-                                <img src="${current_comic.coverPage}">
+                                <i class="material-icons modal-close right">close</i>
+
                                 <%--<script>--%>
-                                    <%--$.get(--%>
-                                            <%--"/comic",--%>
-                                            <%--{page : '${current_user.page}'}--%>
-                                    <%--)--%>
+                                <%--$.get(--%>
+                                <%--"/comic",--%>
+                                <%--{page : '${current_user.page}'}--%>
+                                <%--)--%>
                                 <%--</script>--%>
+
+
+                                <div class="row">
+                                    <!--Previous page-->
+                                    <div class="col s1">
+                                        <div class="valign-wrapper" style="min-height: 80vh">
+                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
+                                        </div>
+
+                                    </div>
+                                    <!-- End of previous page-->
+
+                                    <!-- Comic reading area-->
+                                    <div class="col s10">
+                                        <%--<img src="${current_comic.coverPage}">--%>
+
+                                        <!-- Sample image to test UI -->
+                                        <div class="center">
+                                            <img src="/image/preview.jpg" class="reading-height">
+                                        </div>
+
+                                        <!-- Start of Pagination -->
+                                        <div class="flow-text center">
+                                            <div class="row">
+                                                <ul class="pagination cente r">
+                                                    <div id="pages" style="display:inline;">
+                                                        <li class="active teal lighten-2"><a href="#!">1</a></li>
+                                                        <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
+                                                    </div>
+                                                </ul>
+
+                                                <!-- Start of form -->
+                                                <!-- Use Ajax to jump page -->
+                                                <form action="#" method="get">
+                                                    <div class="col s1 offset-s11 input-field"
+                                                         style="position: relative; top:-88px">
+                                                        <input id="jump_to" type="text" class="validate">
+                                                        <label for="jump_to">Jump to</label>
+                                                    </div>
+                                                    <div class="col s1 offset-s12"
+                                                         style="position: relative; top:-138px">
+                                                        <button class="btn waves-effect waves-light btn-small teal lighten-2"
+                                                                type="submit" name="action">Go
+                                                        </button>
+                                                    </div>
+                                                </form>
+                                                <!-- End of form-->
+
+                                            </div>
+
+                                        </div>
+                                        <!-- End of pagination -->
+                                    </div>
+
+
+                                    <!--Next page-->
+                                    <div class="col s1">
+                                        <div class="valign-wrapper" style="min-height: 80vh">
+                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
+                                        </div>
+                                    </div>
+                                    <!-- End of next page -->
+                                </div>
                             </div>
-                            <%--<div class="modal-footer">--%>
-                                <%--<a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>--%>
-                            <%--</div>--%>
+                            <!-- End of modal content -->
                         </div>
-
-
+                        <!-- End of modal -->
                     </div>
+                    <!-- End of middle column -->
 
+                    <!-- Start of rating -->
                     <div class="col s3">
                         <div class="container-1 flow-text center cyan-text">
                             <div class="pad-top-20"></div>
@@ -156,124 +223,204 @@
 
                             </div>
                             <script>
-                                $(document).ready(function() {
+                                $(document).ready(function () {
                                     $('#rating').addRating();
                                 })
 
-                                    function rate(){
-                                        $.post(
+                                function rate() {
+                                    $.post(
                                             "/comic",
-                                            { rating : $('#rating').val(),
-                                              current_comic : '${current_comic.comicName}'},
-                                            function(result){
+                                            {
+                                                rating: $('#rating').val(),
+                                                current_comic: '${current_comic.comicName}'
+                                            },
+                                            function (result) {
                                                 console.log(result);
                                                 $("#full_rate").html(result);
                                             }
-                                        )
-                                    }
+                                    )
+                                }
                             </script>
                         </div>
                     </div>
-
+                    <!-- End of rating -->
                 </div>
+                <!-- End of the top part grid layout -->
 
 
-                <!-- Buttons for start, download and subscribe -->
-
+                <!-- Padding for bottom haft of the site -->
+                <div class="pad-top-10"></div>
                 <div class="divider-grey-3"></div>
                 <div class="pad-top-10"></div>
                 <div class="pad-top-10"></div>
-                <div class="pad-top-10"></div>
+
+                <!-- Start of Volume issue and issue title listing -->
+                <div class="row" style="min-height: 25vh;margin-top: 2vh;">
+                    <!-- Start of volume selection -->
+                    <div class="col s3">
+                        <!-- Dropdown Trigger -->
+                        <a class='dropdown-button btn' href='#' data-activates='volume'>Select a volume</a>
+
+                        <!-- Dropdown Structure -->
+                        <ul id='volume' class='dropdown-content'>
+                            <li><a href="#!">1</a></li>
+                            <li><a href="#!">2</a></li>
+                            <li><a href="#!">3</a></li>
+                        </ul>
+                    </div>
+                    <!-- End of volumn selection -->
+
+                    <!-- List of issues-->
+                    <div class="col s9 flow-text medium-font" style="overflow-y: scroll; height:25vh; ">
+
+                        <div class="row">
+                            <div class="col s4">
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                            </div>
+                            <div class="col s4">
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                            </div>
+                            <div class="col s4">
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                                <a class="modal-trigger"
+                                   href="#reading">Issue: Issue title</a><br>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <!-- End of issues-->
+
+                </div>
+                <!-- End of volume issue and issue title listing -->
+                <div class="divider" style="position: relative; bottom: 0;"></div>
 
 
                 <!-- Comments for comic -->
-                <div class="card-1">
+                <div class="card-1" style="margin-top: 10vh;">
                     <div class="card-content-1 flow-text">
                         Comments from readers:
                     </div>
                     <div class="divider"></div>
 
-                    <!-- Comment 1 -->
-                    <c:forEach items="${current_comic.commentList}" var="comment">
-                    <div class="card-content-1">
-                        <div>
+                    <div id="comments">
+
+                        <!-- Comment 1 -->
+                        <div class="card-content-1">
                             <div class="chip purple lighten-3 z-depth-1">
                                 <img src="image/5.jpg">
-                                ${comment.user}
+                                Superman
                             </div>
                             <div class="pad-top-2"></div>
 
                             <!-- Acutal comment-->
                             <div class="flow-text small-font">
-                                <span>${comment.comment}</span>
-                                <span class="right">${comment.dateFormat}</span>
+                                <span>Superman is better</span>
+                                <span class="right">3/4/16</span>
                             </div>
 
                             <div class="pad-top-2"></div>
                             <div class="divider"></div>
                         </div>
+
+                        <!-- Comment 2 -->
+                        <div class="card-content-1">
+                            <div>
+                                <div class="chip orange lighten-3 z-depth-1">
+                                    <img src="image/6.jpg">
+                                    Batman
+                                </div>
+                                <div class="pad-top-2"></div>
+
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>Batman Batman Batman</span>
+                                    <span class="right">3/3/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
+                            </div>
+                        </div>
+
+                        <!-- Comment 3 -->
+                        <div class="card-content-1">
+                            <div>
+                                <div class="chip green lighten-3 z-depth-1">
+                                    <img src="image/7.jpg">
+                                    Luffy
+                                </div>
+                                <div class="pad-top-2"></div>
+
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>Boring</span>
+                                    <span class="right">3/3/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
+                            </div>
+                        </div>
+
+                        <!-- Comment 4 -->
+                        <div class="card-content-1">
+                            <div>
+                                <div class="chip blue lighten-3 z-depth-1">
+                                    <img src="image/8.jpg">
+                                    Crayon Shin-chan
+                                </div>
+                                <div class="pad-top-2"></div>
+
+                                <!-- Acutal comment-->
+                                <div class="flow-text small-font">
+                                    <span>...</span>
+                                    <span class="right">3/3/16</span>
+                                </div>
+
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
+                            </div>
+                        </div>
                     </div>
-                    </c:forEach>
-
-                    <!-- Comment 2 -->
-                    <%--<div class="card-content-1">--%>
-                        <%--<div>--%>
-                            <%--<div class="chip orange lighten-3 z-depth-1">--%>
-                                <%--<img src="image/6.jpg">--%>
-                                <%--Batman--%>
-                            <%--</div>--%>
-                            <%--<div class="pad-top-2"></div>--%>
-
-                            <%--<!-- Acutal comment-->--%>
-                            <%--<div class="flow-text small-font">--%>
-                                <%--<span>Batman Batman Batman</span>--%>
-                                <%--<span class="right">3/3/16</span>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="pad-top-2"></div>--%>
-                            <%--<div class="divider"></div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-
-                    <%--<!-- Comment 3 -->--%>
-                    <%--<div class="card-content-1">--%>
-                        <%--<div>--%>
-                            <%--<div class="chip green lighten-3 z-depth-1">--%>
-                                <%--<img src="image/7.jpg">--%>
-                                <%--Luffy--%>
-                            <%--</div>--%>
-                            <%--<div class="pad-top-2"></div>--%>
-
-                            <%--<!-- Acutal comment-->--%>
-                            <%--<div class="flow-text small-font">--%>
-                                <%--<span>Boring</span>--%>
-                                <%--<span class="right">3/3/16</span>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="pad-top-2"></div>--%>
-                            <%--<div class="divider"></div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
-
-                    <%--<!-- Comment 4 -->--%>
-                    <%--<div class="card-content-1">--%>
-                        <%--<div>--%>
-                            <%--<div class="chip blue lighten-3 z-depth-1">--%>
-                                <%--<img src="image/8.jpg">--%>
-                                <%--Crayon Shin-chan--%>
-                            <%--</div>--%>
-                            <%--<div class="pad-top-2"></div>--%>
-
-                            <%--<!-- Acutal comment-->--%>
-                            <%--<div class="flow-text small-font">--%>
-                                <%--<span>...</span>--%>
-                                <%--<span class="right">3/3/16</span>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="pad-top-2"></div>--%>
-                            <%--<div class="divider"></div>--%>
-                        <%--</div>--%>
-                    <%--</div>--%>
 
                     <!-- Pagination -->
                     <div class="card-content-1">
@@ -290,48 +437,74 @@
 
 
                     <div class="pad-top-10"></div>
-                    <div class="pad-top-10"></div>
-                    <div class="pad-top-10"></div>
-                    <!-- Write Comment-->
-                    <div class="card-content-1">
-                        <div class="divider-grey-3"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
 
-                        <%-- Might have to use AJAX for this so that the page doesn't reload every time
-                             the user comments on the comic. js/customJS.js line 38--%>
-                        <div class="row">
 
-                            <div class="input-field col s12">
-                                <form class="col s12" action="/comic" method="POST">
-                                    <input type="hidden" name="current_comic" value="${current_comic.comicName}">
-                                    <label for="textarea1">Write Your Comment here</label>
-                                    <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
-                                    <button class="btn waves-effect waves-light right" type="submit">
-                                        Submit<i class="material-icons right">send</i>
-                                    </button>
-                                </form>
-                            </div>
+                    <!-- Start of write Comment-->
+                    <%-- Might have to use AJAX for this so that the page doesn't reload every time
+                                             the user comments on the comic. js/customJS.js line 38--%>
+                    <div class="row" style="margin-top: 10vh">
 
+                        <div class="input-field col s12">
+                            <form class="col s12" id="comment_form" action="/comic" method="POST">
+                                <label for="textarea1">Write Your Comment here</label>
+                                <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                                <button id="post_button" class="btn waves-effect waves-light right" type="submit">
+                                    Post<i class="material-icons right">send</i>
+                                </button>
+                                <script>
+                                    $(document).ready(function () {
+                                        $("#comment_form").on("submit", function (e) {
+                                            e.preventDefault();
+//                                        PERFORM AJAX TO SUBMIT COMMENT
+//                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
+                                            $.ajax({
+                                                url: "/comic",
+                                                method: "POST",
+                                                data: {
+                                                    comment: $("#textarea1").val(),
+                                                    comic_name: '${current_comic.comicName}'
+                                                },
+                                                error: function () {
+                                                    alert("Comment could not be posted.");
+                                                },
+                                                success: function () {
+                                                    var comment = $("#textarea1").val();
+                                                    var post =
+                                                            "<div class='card-content-1'>" +
+                                                            "<div class='chip purple lighten-3 z-depth-1'>" +
+                                                            "<img src='image/5.jpg'>" +
+                                                            "Superman" +
+                                                            "</div>" +
+                                                            "<div class='pad-top-2'></div>" +
+                                                            "<div class='flow-text small-font'>" +
+                                                            "<span>" + comment + "</span>" +
+                                                            "<span class='right'>3/4/16</span>" +
+                                                            "</div>" +
+                                                            "<div class='pad-top-2'></div>" +
+                                                            "<div class='divider'></div>" +
+                                                            "</div>";
+                                                    $("#comments").prepend(post);
+                                                }
+                                            })
+                                        })
+                                    })
+                                </script>
+                            </form>
                         </div>
+
                     </div>
+                    <!-- End of write comment -->
+
 
                 </div>
 
-
-
-
-
-
             </div>
         </div>
-    </main>
+</div>
+</main>
 
 
-    <jsp:include page="footer.jsp"/>
+<jsp:include page="footer.jsp"/>
 
 
 </div>
