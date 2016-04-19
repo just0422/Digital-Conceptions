@@ -72,7 +72,7 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Series Title:<span class="right">${current_comic.seriesTitle}</span>
+                            Series Title:<span class="right">${requestScope.test_comic.seriesTitle}</span>
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
@@ -141,7 +141,7 @@
                                 <div class="row">
                                     <!--Previous page-->
                                     <div class="col s1">
-                                        <div id="previous_page" class="valign-wrapper" style="min-height: 80vh">
+                                        <div class="valign-wrapper" style="min-height: 80vh">
                                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
                                         </div>
 
@@ -154,16 +154,16 @@
 
                                         <!-- Sample image to test UI -->
                                         <div class="center">
-                                            <img id="current_page" src="${current_comic.urls[1]}" class="reading-height">
+                                            <img src="/image/preview.jpg" class="reading-height">
                                         </div>
 
                                         <!-- Start of Pagination -->
                                         <div class="flow-text center">
                                             <div class="row">
-                                                <ul class="pagination center">
+                                                <ul class="pagination cente r">
                                                     <div id="pages" style="display:inline;">
-                                                        <li class="active"><a href="#!">1</a></li>
-                                                        <li class="waves-effect"><a href="#!">2</a></li>
+                                                        <li class="active teal lighten-2"><a href="#!">1</a></li>
+                                                        <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
                                                     </div>
                                                 </ul>
 
@@ -193,32 +193,11 @@
 
                                     <!--Next page-->
                                     <div class="col s1">
-                                        <div id="next_page" class="valign-wrapper" style="min-height: 80vh">
+                                        <div class="valign-wrapper" style="min-height: 80vh">
                                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
                                         </div>
                                     </div>
                                     <!-- End of next page -->
-
-                                    <script>
-                                        $(document).ready(function()
-                                        {
-                                            var currentPage = $("#current_page");
-                                            var prevButton = $("#previous_page");
-                                            var nextButton = $("#next_page");
-
-                                            prevButton.click(function()
-                                            {
-                                                // This should be edited
-                                                currentPage.attr("src", "${current_comic.urls[0]}");
-                                            })
-
-                                            nextButton.click(function()
-                                            {
-                                                // This should be edited
-                                                currentPage.attr("src", "${current_comic.urls[2]}");
-                                            })
-                                        })
-                                    </script>
                                 </div>
                             </div>
                             <!-- End of modal content -->
@@ -253,7 +232,7 @@
                                             "/comic",
                                             {
                                                 rating: $('#rating').val(),
-                                                current_comic: "${current_comic.comicName}"
+                                                current_comic: '${current_comic.comicName}'
                                             },
                                             function (result) {
                                                 console.log(result);
@@ -445,17 +424,13 @@
 
                     <!-- Pagination -->
                     <div class="card-content-1">
-                        <ul class="pagination center">
-                            <li id="previous" class="disabled">
-                                <a href="#!"><i class="material-icons">chevron_left</i></a>
+                        <ul class="pagination right">
+                            <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
                             </li>
-                            <div id="pages" style="display:inline;">
-                                <li class="active"><a href="#!">1</a></li>
-                                <li class="waves-effect"><a href="#!">2</a></li>
-                            </div>
-                            <li id="next" class="waves-effect">
-                                <a href="#!"><i class="material-icons">chevron_right</i></a>
-                            </li>
+                            <li class="active teal lighten-2"><a href="#!">1</a></li>
+                            <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
+                            <li class="waves-effect teal lighten-2"><a href="#!"><i
+                                    class="material-icons">chevron_right</i></a></li>
                         </ul>
                         <div class="pad-top-10"></div>
                     </div>
@@ -480,28 +455,34 @@
                                     $(document).ready(function () {
                                         $("#comment_form").on("submit", function (e) {
                                             e.preventDefault();
+                                            console.log("Sending");
+//                                        PERFORM AJAX TO SUBMIT COMMENT
+//                                        THIS DOES NOT RELOAD THE COMIC COVER PAGE
                                             $.ajax({
                                                 url: "/comic",
                                                 method: "POST",
                                                 data: {
                                                     comment: $("#textarea1").val(),
-                                                    comic_name: "${current_comic.comicName}"
+                                                    comic_name: '${current_comic.comicName}'
                                                 },
-                                                error: function () {
-                                                    alert("Comment could not be posted.");
-                                                },
-                                                success: function () {
-                                                    var comment = $("#textarea1").val();
+//                                                error: function () {
+//                                                    alert("Comment could not be posted."));
+//                                                },
+                                                success: function(response) {
+//                                                    console.log("received");
+//                                                    console.log(response);
+                                                    ucd = jQuery.parseJSON(response);
+//                                                    console.log(ucd.user);
                                                     var post =
                                                             "<div class='card-content-1'>" +
                                                             "<div class='chip purple lighten-3 z-depth-1'>" +
                                                             "<img src='image/5.jpg'>" +
-                                                            "Superman" +
+                                                            ucd.user +
                                                             "</div>" +
                                                             "<div class='pad-top-2'></div>" +
                                                             "<div class='flow-text small-font'>" +
-                                                            "<span>" + comment + "</span>" +
-                                                            "<span class='right'>3/4/16</span>" +
+                                                            "<span>" + ucd.comment + "</span>" +
+                                                            "<span class='right'>" + ucd.date + "</span>" +
                                                             "</div>" +
                                                             "<div class='pad-top-2'></div>" +
                                                             "<div class='divider'></div>" +
