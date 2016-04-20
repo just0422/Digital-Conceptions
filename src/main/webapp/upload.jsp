@@ -52,10 +52,6 @@
     <link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>
 
     <script type="text/javascript" src="js/font_definitions.js"></script>
-    <script>
-        var kitchensink = { };
-        var canvas = new fabric.Canvas('canvas');
-    </script>
 
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/app_config.js"></script>
@@ -431,10 +427,10 @@
             <!-- End of sample my_comic layout-->
 
             <!-- Start of actual create comic secion -->
-            <div id="create_canvas">
+            <div id="create_canvas" ng-app="kitchensink">
 
                 <!-- Start of create tools -->
-                <div id="bd-wrapper" ng-controller="CanvasControls">
+                <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
 
                     <%--<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
                     <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
@@ -1026,19 +1022,6 @@
                     </script>
 
                     </div>
-
-                <script>
-                    (function(){
-                        var mainScriptEl = document.getElementById('main');
-                        if (!mainScriptEl) return;
-                        var preEl = document.createElement('pre');
-                        var codeEl = document.createElement('code');
-                        codeEl.innerHTML = mainScriptEl.innerHTML;
-                        codeEl.className = 'language-javascript';
-                        preEl.appendChild(codeEl);
-                        document.getElementById('bd-wrapper').appendChild(preEl);
-                    })();
-                </script>
 
                 <script>
                     (function() {
