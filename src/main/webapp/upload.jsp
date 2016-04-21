@@ -41,11 +41,11 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 
     <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <%--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
     <script type="text/javascript" src="js/paster.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
 
-    <link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <%--<link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">--%>
     <link type="text/css" rel="stylesheet" href="css/kitchensink.css">
 
     <link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>
@@ -561,13 +561,22 @@
 
                     <div id="commands" ng-click="maybeLoadShape($event)">
 
-                        <ul class="nav nav-tabs">
-                            <li><a href="#simple-shapes" data-toggle="tab">Simple</a></li>
-                            <li><a href="#svg-shapes" data-toggle="tab">SVG</a></li>
-                            <li class="active"><a href="#object-controls-pane" data-toggle="tab">Controls</a></li>
-                            <li><a href="#load-svg-pane" data-toggle="tab">Load SVG</a></li>
-                            <li><a href="#execute-code" data-toggle="tab">Execute</a></li>
-                            <li><a href="#json-inout" data-toggle="tab">JSON</a></li>
+                        <%--<ul class="nav nav-tabs">--%>
+                            <%--<li><a href="#simple-shapes" data-toggle="tab">Simple</a></li>--%>
+                            <%--<li><a href="#svg-shapes" data-toggle="tab">SVG</a></li>--%>
+                            <%--<li class="active"><a href="#object-controls-pane" data-toggle="tab">Controls</a></li>--%>
+                            <%--<li><a href="#load-svg-pane" data-toggle="tab">Load SVG</a></li>--%>
+                            <%--<li><a href="#execute-code" data-toggle="tab">Execute</a></li>--%>
+                            <%--<li><a href="#json-inout" data-toggle="tab">JSON</a></li>--%>
+                        <%--</ul>--%>
+
+                        <ul class="tabs">
+                            <li class="tab col s2"><a href="#simple-shapes">Simple</a></li>
+                            <li class="tab col s2"><a href="#svg-shapes">SVG</a></li>
+                            <li class="tab col s2"><a class="active" href="#object-controls-pane">Controls</a></li>
+                            <li class="tab col s2"><a href="#load-svg-pane">Load SVG</a></li>
+                            <li class="tab col s2"><a href="#execute-code">Execute</a></li>
+                            <li class="tab col s2"><a href="#json-inout">JSON</a></li>
                         </ul>
 
                         <div class="tab-content">
