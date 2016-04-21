@@ -28,7 +28,11 @@
 
     <script type="text/javascript" src="js/jquery.star.rating.js"></script>
 
-    <!--Impot custom css-->
+    <!-- Import JSZip and FileSaver.js -->
+    <script type="text/javascript" src="js/jszip.js"></script>
+    <script type="text/javascript" src="js/FileSaver.js"></script>
+
+    <!--Import custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
 
     <script src="js/customJS_2.js"></script>
@@ -119,6 +123,25 @@
                                 <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
+                        <script>
+                            $(document).ready(function()
+                            {
+                                $("#download").click(function()
+                                {
+                                    // For downloading the comic images to a zip file
+                                    var zip = new JSZip();
+                                    var images = zip.folder("images");
+                                    <%--for (var i = 0; i < ${current_comic.urlsListSize}; i++)--%>
+                                    <%--{--%>
+                                        <%--images.file("" + i, imgData, {base64: true});--%>
+                                    <%--}--%>
+                                    zip.generateAsync({type: "blob"}).then(function(content)
+                                    {
+                                        saveAs(content, "${current_comic.seriesTitle}");
+                                    });
+                                })
+                            })
+                        </script>
                         <!-- End of start, subscribe and download button -->
 
 

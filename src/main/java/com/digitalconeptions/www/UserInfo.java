@@ -3,10 +3,7 @@ package com.digitalconeptions.www;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserServiceFactory;
-import com.googlecode.objectify.annotation.EmbedMap;
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-import com.googlecode.objectify.annotation.Index;
+import com.googlecode.objectify.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,6 +21,8 @@ public class UserInfo implements java.io.Serializable{
     @Index User user;
     Date dateJoined;
     @EmbedMap HashMap<String, Integer> comicPageLeftOff;
+    @EmbedMap HashMap<String, Integer> volumeLeftOff;
+    @EmbedMap HashMap<String, Integer> issueLeftOff;
     ArrayList<String> subscriptions;
     ArrayList<String> creations;
     ArrayList<String> recentlyRead;
@@ -37,6 +36,8 @@ public class UserInfo implements java.io.Serializable{
         user = UserServiceFactory.getUserService().getCurrentUser();
 
         comicPageLeftOff = new HashMap<>();
+        volumeLeftOff = new HashMap<>();
+        issueLeftOff = new HashMap<>();
         subscriptions = new ArrayList<>();
         creations = new ArrayList<>();
         recentlyRead = new ArrayList<>();
@@ -67,6 +68,11 @@ public class UserInfo implements java.io.Serializable{
     public HashMap<String, Integer> getComicPageLeftOffMap() { return comicPageLeftOff; }
     public void addComicPageLeftOff(String comic, int page){ comicPageLeftOff.put(comic, page); }
     public int getComicPageLeftOff(ComicInfo comic){ return comicPageLeftOff.get(comic); }
+    public void addVolumeLeftOff(String comic, int volume) { volumeLeftOff.put(comic, volume); }
+    public int getVolumeLeftOff(ComicInfo comic) { return volumeLeftOff.get(comic); }
+    public void addIssueLeftOff(String comic, int issue) { volumeLeftOff.put(comic, issue); }
+    public int getIssueLeftOff(ComicInfo comic) { return issueLeftOff.get(comic); }
+
 
     public ArrayList<String> getSubscriptions() { return subscriptions; }
     public void setSubscriptions(ArrayList<String> subscriptions) { this.subscriptions = subscriptions; }

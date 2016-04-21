@@ -169,4 +169,6 @@ public class ComicInfo {
     public void setImages(List<BlobKey> images) { this.images = images; }
     public List<String> getUrls() { return urls; }
     public void setUrls(List<String> urls) { this.urls = urls; }
+    public int getImagesListSize() { return images.size(); }
+    public int getUrlsListSize() { return urls.size(); }
 }
