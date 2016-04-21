@@ -30,6 +30,7 @@
 
     <!-- Import JSZip and FileSaver.js -->
     <script type="text/javascript" src="js/jszip.js"></script>
+    <script type="text/javascript" src="js/jszip-utils.js"></script>
     <script type="text/javascript" src="js/FileSaver.js"></script>
 
     <!--Import custom css-->
@@ -130,15 +131,37 @@
                                 {
                                     // For downloading the comic images to a zip file
                                     var zip = new JSZip();
-                                    var images = zip.folder("images");
-                                    <%--for (var i = 0; i < ${current_comic.urlsListSize}; i++)--%>
-                                    <%--{--%>
-                                        <%--images.file("" + i, imgData, {base64: true});--%>
-                                    <%--}--%>
-                                    zip.generateAsync({type: "blob"}).then(function(content)
+                                    var images = zip.folder("${current_comic.seriesTitle}").folder("images");
+                                    var deferreds = [];
+
+                                    <c:forEach var="imgLink" items="${current_comic.urls}" varStatus="loop">
+                                        deferreds.push(addToZip(images, "${imgLink}", "image" + ${loop.index} + ".jpg"));
+                                    </c:forEach>
+
+                                    function addToZip(zip, imgLink, imgTitle)
                                     {
-                                        saveAs(content, "${current_comic.seriesTitle}");
-                                    });
+                                        var deferred = $.Deferred();
+                                        JSZipUtils.getBinaryContent(imgLink, function(err, data)
+                                        {
+                                            if (err)
+                                            {
+                                                alert("An error has occurred while trying to load: " + imgLink);
+                                            } else
+                                            {
+                                                zip.file(imgTitle, data, {binary: true});
+                                            }
+                                            deferred.resolve(zip);
+                                        })
+                                        return deferred;
+                                    }
+
+                                    $.when.apply(window, deferreds).done(function()
+                                    {
+                                        zip.generateAsync({type: "blob"}).then(function(content)
+                                        {
+                                            saveAs(content, "${current_comic.seriesTitle}");
+                                        });
+                                    })
                                 })
                             })
                         </script>
