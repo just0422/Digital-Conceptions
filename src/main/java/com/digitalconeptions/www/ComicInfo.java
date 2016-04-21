@@ -2,12 +2,13 @@ package com.digitalconeptions.www;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
+import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.annotation.EmbedMap;
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
 import com.googlecode.objectify.annotation.Index;
-import sun.java2d.pipe.SpanShapeRenderer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -113,6 +114,32 @@ public class ComicInfo {
         SimpleDateFormat format = new SimpleDateFormat("E MM/dd/yyyy");
         return format.format(this.dateCreated);
     }
+    public String getCurrentPage(){
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        if (user == null)
+            return getCoverPage();
+        UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username",user.getNickname()).first().now();
+
+        if (currentUser.comicPageLeftOff.containsKey(getComicName()))
+            return getPage(currentUser.comicPageLeftOff.get(getComicName()));
+        return getCoverPage();
+    }
+    public int getPageNumber(){
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        if (user == null)
+            return 0;
+        UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username",user.getNickname()).first().now();
+
+        if (currentUser.comicPageLeftOff.containsKey(getComicName()))
+            return currentUser.comicPageLeftOff.get(getComicName());
+        return 0;
+    }
+
+
     public String getComicName(){
         return seriesTitle + '|' + volume + '|' +  issueTitle + '|' + issue;
     }

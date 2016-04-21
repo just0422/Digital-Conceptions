@@ -165,9 +165,10 @@
                                     <!--Previous page-->
                                     <div class="col s1">
                                         <div class="valign-wrapper" style="min-height: 80vh">
-                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
+                                            <a href="javascript:prevPage()">
+                                                <i class="valign material-icons medium hoverable-1" id="prev_page">keyboard_arrow_left</i>
+                                            </a>
                                         </div>
-
                                     </div>
                                     <!-- End of previous page-->
 
@@ -177,7 +178,8 @@
 
                                         <!-- Sample image to test UI -->
                                         <div class="center">
-                                            <img src="/image/preview.jpg" class="reading-height">
+                                            <img class="reading-height" id="comic_page_image">
+                                            <%--<p hidden id="page_number" value=""></p>--%>
                                         </div>
 
                                         <!-- Start of Pagination -->
@@ -192,19 +194,19 @@
 
                                                 <!-- Start of form -->
                                                 <!-- Use Ajax to jump page -->
-                                                <form action="#" method="get">
+                                                <%--<form onclicksubmit="goToPage()">--%>
                                                     <div class="col s1 offset-s11 input-field"
                                                          style="position: relative; top:-88px">
-                                                        <input id="jump_to" type="text" class="validate">
-                                                        <label for="jump_to">Jump to</label>
+                                                        <input id="jump_to_page" type="number" class="validate" required value="${current_comic.pageNumber}" onchange="goToPage()">
+                                                        <label for="jump_to_page">Jump to</label>
                                                     </div>
                                                     <div class="col s1 offset-s12"
                                                          style="position: relative; top:-138px">
                                                         <button class="btn waves-effect waves-light btn-small teal lighten-2"
-                                                                type="submit" name="action">Go
+                                                                onclick="goToPage()">Go
                                                         </button>
                                                     </div>
-                                                </form>
+                                                <%--</form>--%>
                                                 <!-- End of form-->
 
                                             </div>
@@ -217,30 +219,58 @@
                                     <!--Next page-->
                                     <div class="col s1">
                                         <div class="valign-wrapper" style="min-height: 80vh">
-                                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
+                                            <a href="javascript:nextPage()">
+                                                <i class="valign material-icons medium hoverable-1" id="next_page">keyboard_arrow_right</i>
+                                            </a>
                                         </div>
                                     </div>
                                     <!-- End of next page -->
 
                                     <script>
+                                        var pages;
                                         $(document).ready(function()
                                         {
-                                            var currentPage = $("#current_page");
-                                            var prevButton = $("#previous_page");
-                                            var nextButton = $("#next_page");
+                                            pages = '<c:out value="${current_comic.urls}"/>';
+                                            pages = pages.replace(" ", "");
+                                            pages = pages.slice(1, -1);
+                                            pages = pages.split(',');
+                                            pages = pages.slice(0, pages.length / 2);
 
-                                            prevButton.click(function()
-                                            {
-                                                // This should be edited
-                                                currentPage.attr("src", "${current_comic.urls[0]}");
-                                            })
+                                            $('#comic_page_image').attr("src", pages["${current_comic.pageNumber}"]);
+                                            <%--var currentPage = $("#current_page");--%>
+                                            <%--var prevButton = $("#previous_page");--%>
+                                            <%--var nextButton = $("#next_page");--%>
 
-                                            nextButton.click(function()
-                                            {
-                                                // This should be edited
-                                                currentPage.attr("src", "${current_comic.urls[2]}");
-                                            })
+                                            <%--prevButton.click(function()--%>
+                                            <%--{--%>
+                                                <%--// This should be edited--%>
+                                                <%--currentPage.attr("src", "${current_comic.urls[0]}");--%>
+                                            <%--})--%>
+
+                                            <%--nextButton.click(function()--%>
+                                            <%--{--%>
+                                                <%--// This should be edited--%>
+                                                <%--currentPage.attr("src", "${current_comic.urls[2]}");--%>
+                                            <%--})--%>
                                         })
+
+                                        function nextPage(){
+                                            console.log("Current page: " + $("#jump_to_page").val());
+                                            $('#jump_to_page').val(parseInt($("#jump_to_page").val()) + 1);
+                                            console.log("Next page: " + $("#jump_to_page").val());
+                                            goToPage();
+                                        }
+                                        function prevPage(){
+                                            console.log("Current page: " + $("#jump_to_page").val());
+                                            $('#jump_to_page').val(parseInt($("#jump_to_page").val()) - 1);
+                                            console.log("Prev page: " + $("#jump_to_page").val());
+                                            goToPage();
+                                        }
+
+                                        function goToPage(){
+                                            console.log("Jumping to page: " + $("#jump_to_page").val());
+                                            $("#comic_page_image").attr("src", pages[$('#jump_to_page').val()]);
+                                        }
                                     </script>
                                 </div>
                             </div>
@@ -563,7 +593,6 @@
 
             </div>
         </div>
-</div>
 </main>
 
 
