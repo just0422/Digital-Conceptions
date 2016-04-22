@@ -430,6 +430,64 @@
                 <!-- End of volume issue and issue title listing -->
                 <div class="divider" style="position: relative; bottom: 0;"></div>
 
+                <!-- Start of write Comment-->
+                <%-- Might have to use AJAX for this so that the page doesn't reload every time
+                                         the user comments on the comic. js/customJS.js line 38--%>
+                <div class="row" style="margin-top: 10vh">
+
+                    <div class="input-field col s12">
+                        <form class="col s12" id="comment_form" action="/comic" method="POST">
+                            <label for="textarea1">Write Your Comment here</label>
+                            <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
+                            <button id="post_button" class="btn waves-effect waves-light right" type="submit">
+                                Post<i class="material-icons right">send</i>
+                            </button>
+                            <script>
+                                $(document).ready(function () {
+                                    $("#comment_form").on("submit", function (e) {
+                                        e.preventDefault();
+                                        console.log("Sending");
+                                        $.ajax({
+                                            url: "/comic",
+                                            method: "POST",
+                                            data: {
+                                                comment: $("#textarea1").val(),
+                                                comic_name: "${current_comic.comicName}"
+                                            },
+//                                                error: function () {
+//                                                    alert("Comment could not be posted."));
+//                                                },
+                                            success: function(response) {
+//                                                    console.log("received");
+//                                                    console.log(response);
+                                                ucd = jQuery.parseJSON(response);
+//                                                    console.log(ucd.user);
+                                                var post =
+                                                        "<div class='card-content-1'>" +
+                                                        "<div class='chip purple lighten-3 z-depth-1'>" +
+                                                        "<img src='image/5.jpg'>" +
+                                                        ucd.user +
+                                                        "</div>" +
+                                                        "<div class='pad-top-2'></div>" +
+                                                        "<div class='flow-text small-font'>" +
+                                                        "<span>" + ucd.comment + "</span>" +
+                                                        "<span class='right'>" + ucd.date + "</span>" +
+                                                        "</div>" +
+                                                        "<div class='pad-top-2'></div>" +
+                                                        "<div class='divider'></div>" +
+                                                        "</div>";
+                                                $("#comments").prepend(post);
+                                            }
+                                        })
+                                    })
+                                })
+                            </script>
+                        </form>
+                    </div>
+
+                </div>
+                <!-- End of write comment -->
+
 
                 <!-- Comments for comic -->
                 <div class="card-1" style="margin-top: 10vh;">
@@ -553,63 +611,7 @@
                     <div class="pad-top-10"></div>
 
 
-                    <!-- Start of write Comment-->
-                    <%-- Might have to use AJAX for this so that the page doesn't reload every time
-                                             the user comments on the comic. js/customJS.js line 38--%>
-                    <div class="row" style="margin-top: 10vh">
 
-                        <div class="input-field col s12">
-                            <form class="col s12" id="comment_form" action="/comic" method="POST">
-                                <label for="textarea1">Write Your Comment here</label>
-                                <textarea id="textarea1" class="materialize-textarea" name="comment"></textarea>
-                                <button id="post_button" class="btn waves-effect waves-light right" type="submit">
-                                    Post<i class="material-icons right">send</i>
-                                </button>
-                                <script>
-                                    $(document).ready(function () {
-                                        $("#comment_form").on("submit", function (e) {
-                                            e.preventDefault();
-                                            console.log("Sending");
-                                            $.ajax({
-                                                url: "/comic",
-                                                method: "POST",
-                                                data: {
-                                                    comment: $("#textarea1").val(),
-                                                    comic_name: "${current_comic.comicName}"
-                                                },
-//                                                error: function () {
-//                                                    alert("Comment could not be posted."));
-//                                                },
-                                                success: function(response) {
-//                                                    console.log("received");
-//                                                    console.log(response);
-                                                    ucd = jQuery.parseJSON(response);
-//                                                    console.log(ucd.user);
-                                                    var post =
-                                                            "<div class='card-content-1'>" +
-                                                            "<div class='chip purple lighten-3 z-depth-1'>" +
-                                                            "<img src='image/5.jpg'>" +
-                                                            ucd.user +
-                                                            "</div>" +
-                                                            "<div class='pad-top-2'></div>" +
-                                                            "<div class='flow-text small-font'>" +
-                                                            "<span>" + ucd.comment + "</span>" +
-                                                            "<span class='right'>" + ucd.date + "</span>" +
-                                                            "</div>" +
-                                                            "<div class='pad-top-2'></div>" +
-                                                            "<div class='divider'></div>" +
-                                                            "</div>";
-                                                    $("#comments").prepend(post);
-                                                }
-                                            })
-                                        })
-                                    })
-                                </script>
-                            </form>
-                        </div>
-
-                    </div>
-                    <!-- End of write comment -->
 
 
                 </div>
