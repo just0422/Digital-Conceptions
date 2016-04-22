@@ -125,23 +125,6 @@
                                 }
                             }
                             $("#comic_upload").ajaxForm(options);
-                            <%--$('#comic_upload').submit(function(e){--%>
-                            <%--var postData = $(this).serializeArray();--%>
-                            <%--console.log("Uploading " + postData);--%>
-
-                            <%--$.post(--%>
-                            <%--'<c:out value="${upload}"/>',--%>
-                            <%--data : {--%>
-                            <%--series_title : $('#series_title').val(),--%>
-                            <%--issue_title : $("#issue_title").val()--%>
-                            <%--},--%>
-                            <%--function (text) {--%>
-                            <%--console.log("Returned " + text);--%>
-                            <%--console.log("0 : Failure\n1 : Success");--%>
-                            <%--}--%>
-                            <%--)--%>
-                            <%--e.preventDefault();--%>
-                            <%--})--%>
                         });
                     </script>
                     <!-- Upload information -->

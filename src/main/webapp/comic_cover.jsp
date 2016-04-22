@@ -25,6 +25,7 @@
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <script type="text/javascript" src="js/jquery.star.rating.js"></script>
 
@@ -77,7 +78,7 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Series Title:<span class="right">${requestScope.test_comic.seriesTitle}</span>
+                            Series Title:<span class="right">${current_comic.seriesTitle}</span>
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
@@ -121,49 +122,71 @@
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger"
                                    href="#reading">Start</a>
                                 <a id="subscribe" class="waves-effect waves-light btn">Subscribe</a>
-                                <a id="download" class="waves-effect waves-light btn">Download</a>
+                                <form action="/comic" method="post" id="comic_download">
+                                    <input hidden name="comic_name" value="${current_comic.comicName}">
+                                    <%--<input hidden name="seriesTitle" value="${current_comic.seriesTitle}">--%>
+                                    <%--<input hidden name="issueTitle" value="${current_comic.issueTitle}">--%>
+                                    <%--<input hidden name="volume" value="${current_comic.volume}">--%>
+                                    <%--<input hidden name="issue" value="${current_comic.issue}">--%>
+                                    <button name="download" id="download" class="waves-effect waves-light btn" type="submit">Download</button>
+                                </form>
                             </div>
                         </div>
+
                         <script>
-                            $(document).ready(function()
-                            {
-                                $("#download").click(function()
-                                {
-                                    // For downloading the comic images to a zip file
-                                    var zip = new JSZip();
-                                    var images = zip.folder("${current_comic.seriesTitle}").folder("images");
-                                    var deferreds = [];
-
-                                    <c:forEach var="imgLink" items="${current_comic.urls}" varStatus="loop">
-                                        deferreds.push(addToZip(images, "${imgLink}", "image" + ${loop.index} + ".jpg"));
-                                    </c:forEach>
-
-                                    function addToZip(zip, imgLink, imgTitle)
-                                    {
-                                        var deferred = $.Deferred();
-                                        JSZipUtils.getBinaryContent(imgLink, function(err, data)
-                                        {
-                                            if (err)
-                                            {
-                                                alert("An error has occurred while trying to load: " + imgLink);
-                                            } else
-                                            {
-                                                zip.file(imgTitle, data, {binary: true});
-                                            }
-                                            deferred.resolve(zip);
-                                        })
-                                        return deferred;
+                            $(document).ready(function () {
+                                var options = {
+                                    beforeSend: function () {
+                                        console.log("Sending");
+                                    },
+                                    success: function () {
+                                        console.log("Response");
+//                                        console.log(resp);
                                     }
+                                }
+                                $("#comic_download").ajaxForm(options);
+                            });
+                        </script>
+                        <script>
+                            <%--$(document).ready(function()--%>
+                            <%--{--%>
+                                <%--$("#download").click(function()--%>
+                                <%--{--%>
+                                    <%--// For downloading the comic images to a zip file--%>
+                                    <%--var zip = new JSZip();--%>
+                                    <%--var images = zip.folder("${current_comic.seriesTitle}").folder("images");--%>
+                                    <%--var deferreds = [];--%>
 
-                                    $.when.apply(window, deferreds).done(function()
-                                    {
-                                        zip.generateAsync({type: "blob"}).then(function(content)
-                                        {
-                                            saveAs(content, "${current_comic.seriesTitle}");
-                                        });
-                                    })
-                                })
-                            })
+                                    <%--<c:forEach var="imgLink" items="${current_comic.urls}" varStatus="loop">--%>
+                                        <%--deferreds.push(addToZip(images, "${imgLink}", "image" + ${loop.index} + ".jpg"));--%>
+                                    <%--</c:forEach>--%>
+
+                                    <%--function addToZip(zip, imgLink, imgTitle)--%>
+                                    <%--{--%>
+                                        <%--var deferred = $.Deferred();--%>
+                                        <%--JSZipUtils.getBinaryContent(imgLink, function(err, data)--%>
+                                        <%--{--%>
+                                            <%--if (err)--%>
+                                            <%--{--%>
+                                                <%--alert("An error has occurred while trying to load: " + imgLink);--%>
+                                            <%--} else--%>
+                                            <%--{--%>
+                                                <%--zip.file(imgTitle, data, {binary: true});--%>
+                                            <%--}--%>
+                                            <%--deferred.resolve(zip);--%>
+                                        <%--})--%>
+                                        <%--return deferred;--%>
+                                    <%--}--%>
+
+                                    <%--$.when.apply(window, deferreds).done(function()--%>
+                                    <%--{--%>
+                                        <%--zip.generateAsync({type: "blob"}).then(function(content)--%>
+                                        <%--{--%>
+                                            <%--saveAs(content, "${current_comic.seriesTitle}");--%>
+                                        <%--});--%>
+                                    <%--})--%>
+                                <%--})--%>
+                            <%--})--%>
                         </script>
                         <!-- End of start, subscribe and download button -->
 
