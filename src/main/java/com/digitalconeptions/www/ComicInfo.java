@@ -145,18 +145,24 @@ public class ComicInfo {
     }
     public String getCoverPage(){ return urls.get(0); }
     public String getPage(int page) { return urls.get(page); }
-    public int getRate(String rater){ return ratings.containsKey(rater) ? -1 : ratings.get(rater); }
+    public int getRate(){
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+        String username = user.getNickname();
+
+        return ratings.containsKey(username.replace('.','_')) ? ratings.get(username.replace('.','_')) : 0;
+    }
     public void addRate(String rater, int rating){
         if (!ratings.isEmpty()) {
-            if(ratings.containsKey(rater)){
+            if(ratings.containsKey(rater.replace('.', '_'))){
                 this.rating *= 2;
-                this.rating -= ratings.get(rater);
+                this.rating -= ratings.get(rater.replace('.', '_'));
             }
             this.rating = (this.rating + rating) / 2;
         }
         else
             this.rating = rating;
-        ratings.put(rater, rating);
+        ratings.put(rater.replace('.','_'), rating);
     }
 
 

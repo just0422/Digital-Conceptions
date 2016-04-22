@@ -34,17 +34,11 @@ public class ComicServlet extends HttpServlet {
     // Front end splits comments based on delimiters
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println(getClass().getName() + " GET");
-        // Attributes should be set in request
         String seriesTitle = req.getParameter("series_title");
         String issueTitle = req.getParameter("issue_title");
         int volume = Integer.parseInt(req.getParameter("volume"));
         int issue = Integer.parseInt(req.getParameter("issue"));
 
-//        ComicInfo obj = new ComicInfo();
-//        String obj.issueTitle;
-//        String obj.seriesTitle;
-//        Integer obj.volume;
-//        Integer obj.issue;
         ComicInfo currentComic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle", seriesTitle)
@@ -78,13 +72,9 @@ public class ComicServlet extends HttpServlet {
         rd.forward(req, resp);
     }
 
-    // Post request attributes
-    //  Change Rating   // FOR USER AND COMIC
-    //  Submit comments // FOR COMIC
     //  Finished reading (save chapter) // FOR USER
     //  Subscription // FOR USER
 
-    // Comic attribute should be set for each request
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println(getClass().getName() + " POST");
         String name = req.getParameter("comic_name");
@@ -97,13 +87,9 @@ public class ComicServlet extends HttpServlet {
                 .filter("volume", Integer.parseInt(comic[1]))
                 .filter("issue", Integer.parseInt(comic[3])).first().now();
 
-//        String comment = (String) req.getAttribute("comment");
-//        UserService userService = UserServiceFactory.getUserService();
-//        User user = userService.getCurrentUser();
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");
         UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
-//        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
 
         if (req.getParameter("rating") != null) {
             currentcomic.addRate(user.getNickname(), Integer.parseInt(req.getParameter("rating")));
@@ -111,28 +97,17 @@ public class ComicServlet extends HttpServlet {
         }
 
         if (req.getParameter("comment") != null){
-//            Comment comment = new Comment(user.getNickname(), req.getParameter("comment"));
             String date = currentcomic.addComment(user.getNickname(), req.getParameter("comment"));
 
             userinfo.addUnreadNotification( user.getNickname() + " commented '" + req.getParameter("comment") + "' on your Comic: "
                     + currentcomic.getIssueTitle() + " " + currentcomic.getIssue());
 
-//            resp.setContentType("application/json");
-
-//            resp.getWriter().println();
             resp.setContentType("text/plain");
-//            resp.getWriter().println("HI");
             resp.getWriter().println("{");
             resp.getWriter().println("\"user\": \"" + user.getNickname() + "\",");
             resp.getWriter().println("\"comment\": \""+ req.getParameter("comment") + "\",");
             resp.getWriter().println("\"date\": \"" + date + "\"");
             resp.getWriter().println("}");
-////            out.close();
-//
-//            System.out.println("COMMENT");
-////            System.out.println(out.toString());
-//            System.out.println(resp.getWriter().toString());
-//            System.out.println(resp.toString());
         }
         ObjectifyService.ofy().save().entity(currentcomic).now();
         ObjectifyService.ofy().save().entity(userinfo).now();
@@ -143,8 +118,6 @@ public class ComicServlet extends HttpServlet {
 
         // Subscription
         // Add to user info subscriptionlist
-
-//        ObjectifyService.ofy().save().entity(comic).now();
     }
 
 }

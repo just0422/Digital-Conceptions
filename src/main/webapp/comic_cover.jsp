@@ -111,10 +111,48 @@
 
                         <!-- Current  Rating-->
                         <div class="pad-top-10"></div>
-                        <div class="container-1 flow-text cyan-text">
-                            Current Rating:<span class="right">4</span>
-                            <div class="divider"></div>
-                        </div>
+                        <form method="post" action="/comic">
+                            <div class="container-1 flow-text cyan-text">
+                                Current Rating:<span class="right" id="full_rate">${current_comic.rating}</span>
+                                <div class="divider"></div>
+                            </div>
+                        </form>
+                        <script>
+                            function rate() {
+                                console.log("Sending");
+                                $.ajax({
+                                    url: "/comic",
+                                    method: "POST",
+                                    data: {
+                                        rating: $("#rating").val(),
+                                        comic_name: "${current_comic.comicName}"
+                                    },
+                                    success: function(result) {
+                                        console.log(result);
+                                        $("#full_rate").html(result);
+                                    }
+                                })
+                            }
+
+                        </script>
+
+                        <%--<script>--%>
+
+                            <%--function rate() {--%>
+                                <%--$.post(--%>
+                                        <%--"/comic",--%>
+                                        <%--{--%>
+                                            <%--rating: $('#rating').val(),--%>
+                                            <%--current_comic: "${current_comic.comicName}"--%>
+                                        <%--},--%>
+                                        <%--function (result) {--%>
+                                            <%--console.log(result);--%>
+                                            <%--$("#full_rate").html(result);--%>
+                                        <%--}--%>
+                                <%--)--%>
+                            <%--}--%>
+                        <%--</script>--%>
+
                         <!-- End of rating -->
 
 
@@ -319,28 +357,16 @@
                             <div class="card-1">
                                 <div class="card-content-1">
                                     <div id="rating" class="center" onclick="rate()"></div>
+                                    <script>
+
+                                            $('#rating').addRating();
+                                            $('#rating').val(${current_comic.rate});
+                                            $('#rating').setRating(${current_comic.rate});
+                                            $('#rating').showRating(${current_comic.rate}, true);
+
+                                    </script>
                                 </div>
-
                             </div>
-                            <script>
-                                $(document).ready(function () {
-                                    $('#rating').addRating();
-                                })
-
-                                function rate() {
-                                    $.post(
-                                            "/comic",
-                                            {
-                                                rating: $('#rating').val(),
-                                                current_comic: "${current_comic.comicName}"
-                                            },
-                                            function (result) {
-                                                console.log(result);
-                                                $("#full_rate").html(result);
-                                            }
-                                    )
-                                }
-                            </script>
                         </div>
                     </div>
                     <!-- End of rating -->
@@ -457,14 +483,8 @@
                                                 comment: $("#textarea1").val(),
                                                 comic_name: "${current_comic.comicName}"
                                             },
-//                                                error: function () {
-//                                                    alert("Comment could not be posted."));
-//                                                },
                                             success: function(response) {
-//                                                    console.log("received");
-//                                                    console.log(response);
                                                 ucd = jQuery.parseJSON(response);
-//                                                    console.log(ucd.user);
                                                 var post =
                                                         "<div class='card-content-1'>" +
                                                         "<div class='chip purple lighten-3 z-depth-1'>" +
@@ -518,83 +538,6 @@
                                 <div class="divider"></div>
                             </div>
                         </c:forEach>
-                        <%--<!-- Comment 1 -->--%>
-                        <%--<div class="card-content-1">--%>
-                            <%--<div class="chip purple lighten-3 z-depth-1">--%>
-                                <%--<img src="image/5.jpg">--%>
-                                <%--Superman--%>
-                            <%--</div>--%>
-                            <%--<div class="pad-top-2"></div>--%>
-
-                            <%--<!-- Acutal comment-->--%>
-                            <%--<div class="flow-text small-font">--%>
-                                <%--<span>Superman is better</span>--%>
-                                <%--<span class="right">3/4/16</span>--%>
-                            <%--</div>--%>
-
-                            <%--<div class="pad-top-2"></div>--%>
-                            <%--<div class="divider"></div>--%>
-                        <%--</div>--%>
-
-                        <%--<!-- Comment 2 -->--%>
-                        <%--<div class="card-content-1">--%>
-                            <%--<div>--%>
-                                <%--<div class="chip orange lighten-3 z-depth-1">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                    <%--Batman--%>
-                                <%--</div>--%>
-                                <%--<div class="pad-top-2"></div>--%>
-
-                                <%--<!-- Acutal comment-->--%>
-                                <%--<div class="flow-text small-font">--%>
-                                    <%--<span>Batman Batman Batman</span>--%>
-                                    <%--<span class="right">3/3/16</span>--%>
-                                <%--</div>--%>
-
-                                <%--<div class="pad-top-2"></div>--%>
-                                <%--<div class="divider"></div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-
-                        <%--<!-- Comment 3 -->--%>
-                        <%--<div class="card-content-1">--%>
-                            <%--<div>--%>
-                                <%--<div class="chip green lighten-3 z-depth-1">--%>
-                                    <%--<img src="image/7.jpg">--%>
-                                    <%--Luffy--%>
-                                <%--</div>--%>
-                                <%--<div class="pad-top-2"></div>--%>
-
-                                <%--<!-- Acutal comment-->--%>
-                                <%--<div class="flow-text small-font">--%>
-                                    <%--<span>Boring</span>--%>
-                                    <%--<span class="right">3/3/16</span>--%>
-                                <%--</div>--%>
-
-                                <%--<div class="pad-top-2"></div>--%>
-                                <%--<div class="divider"></div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-
-                        <%--<!-- Comment 4 -->--%>
-                        <%--<div class="card-content-1">--%>
-                            <%--<div>--%>
-                                <%--<div class="chip blue lighten-3 z-depth-1">--%>
-                                    <%--<img src="image/8.jpg">--%>
-                                    <%--Crayon Shin-chan--%>
-                                <%--</div>--%>
-                                <%--<div class="pad-top-2"></div>--%>
-
-                                <%--<!-- Acutal comment-->--%>
-                                <%--<div class="flow-text small-font">--%>
-                                    <%--<span>...</span>--%>
-                                    <%--<span class="right">3/3/16</span>--%>
-                                <%--</div>--%>
-
-                                <%--<div class="pad-top-2"></div>--%>
-                                <%--<div class="divider"></div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
                     </div>
 
                     <!-- Pagination -->
