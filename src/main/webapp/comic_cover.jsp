@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -493,121 +494,122 @@
 
                 <!-- Comments for comic -->
                 <div class="card-1" style="margin-top: 10vh;">
-                    <div class="card-content-1 flow-text">
-                        Comments from readers:
-                    </div>
+                    <%--<div class="card-content-1 flow-text">--%>
+                        <%--Comments from readers:--%>
+                    <%--</div>--%>
                     <div class="divider"></div>
 
                     <div id="comments">
                         <c:forEach items="${current_comic.commentList}" var="comment">
+                            <c:set var="commentParts" value="${fn:split(comment, '|')}"></c:set>
                             <div class="card-content-1">
                                 <div class="chip purple lighten-3 z-depth-1">
-                                    <img src="image/5.jpg">
-                                    Superman
+                                    <img src="image/5.jpg">${commentParts[1]}
                                 </div>
                                 <div class="pad-top-2"></div>
 
                                 <!-- Acutal comment-->
                                 <div class="flow-text small-font">
-                                    <span>${comment}</span>
-                                    <span class="right">3/4/16</span>
+                                    <span>${commentParts[2]}</span>
+                                    <span class="right">${commentParts[0]}</span>
                                 </div>
 
                                 <div class="pad-top-2"></div>
                                 <div class="divider"></div>
                             </div>
                         </c:forEach>
-                        <!-- Comment 1 -->
-                        <div class="card-content-1">
-                            <div class="chip purple lighten-3 z-depth-1">
-                                <img src="image/5.jpg">
-                                Superman
-                            </div>
-                            <div class="pad-top-2"></div>
+                        <%--<!-- Comment 1 -->--%>
+                        <%--<div class="card-content-1">--%>
+                            <%--<div class="chip purple lighten-3 z-depth-1">--%>
+                                <%--<img src="image/5.jpg">--%>
+                                <%--Superman--%>
+                            <%--</div>--%>
+                            <%--<div class="pad-top-2"></div>--%>
 
-                            <!-- Acutal comment-->
-                            <div class="flow-text small-font">
-                                <span>Superman is better</span>
-                                <span class="right">3/4/16</span>
-                            </div>
+                            <%--<!-- Acutal comment-->--%>
+                            <%--<div class="flow-text small-font">--%>
+                                <%--<span>Superman is better</span>--%>
+                                <%--<span class="right">3/4/16</span>--%>
+                            <%--</div>--%>
 
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
-                        </div>
+                            <%--<div class="pad-top-2"></div>--%>
+                            <%--<div class="divider"></div>--%>
+                        <%--</div>--%>
 
-                        <!-- Comment 2 -->
-                        <div class="card-content-1">
-                            <div>
-                                <div class="chip orange lighten-3 z-depth-1">
-                                    <img src="image/6.jpg">
-                                    Batman
-                                </div>
-                                <div class="pad-top-2"></div>
+                        <%--<!-- Comment 2 -->--%>
+                        <%--<div class="card-content-1">--%>
+                            <%--<div>--%>
+                                <%--<div class="chip orange lighten-3 z-depth-1">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                    <%--Batman--%>
+                                <%--</div>--%>
+                                <%--<div class="pad-top-2"></div>--%>
 
-                                <!-- Acutal comment-->
-                                <div class="flow-text small-font">
-                                    <span>Batman Batman Batman</span>
-                                    <span class="right">3/3/16</span>
-                                </div>
+                                <%--<!-- Acutal comment-->--%>
+                                <%--<div class="flow-text small-font">--%>
+                                    <%--<span>Batman Batman Batman</span>--%>
+                                    <%--<span class="right">3/3/16</span>--%>
+                                <%--</div>--%>
 
-                                <div class="pad-top-2"></div>
-                                <div class="divider"></div>
-                            </div>
-                        </div>
+                                <%--<div class="pad-top-2"></div>--%>
+                                <%--<div class="divider"></div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <!-- Comment 3 -->
-                        <div class="card-content-1">
-                            <div>
-                                <div class="chip green lighten-3 z-depth-1">
-                                    <img src="image/7.jpg">
-                                    Luffy
-                                </div>
-                                <div class="pad-top-2"></div>
+                        <%--<!-- Comment 3 -->--%>
+                        <%--<div class="card-content-1">--%>
+                            <%--<div>--%>
+                                <%--<div class="chip green lighten-3 z-depth-1">--%>
+                                    <%--<img src="image/7.jpg">--%>
+                                    <%--Luffy--%>
+                                <%--</div>--%>
+                                <%--<div class="pad-top-2"></div>--%>
 
-                                <!-- Acutal comment-->
-                                <div class="flow-text small-font">
-                                    <span>Boring</span>
-                                    <span class="right">3/3/16</span>
-                                </div>
+                                <%--<!-- Acutal comment-->--%>
+                                <%--<div class="flow-text small-font">--%>
+                                    <%--<span>Boring</span>--%>
+                                    <%--<span class="right">3/3/16</span>--%>
+                                <%--</div>--%>
 
-                                <div class="pad-top-2"></div>
-                                <div class="divider"></div>
-                            </div>
-                        </div>
+                                <%--<div class="pad-top-2"></div>--%>
+                                <%--<div class="divider"></div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
 
-                        <!-- Comment 4 -->
-                        <div class="card-content-1">
-                            <div>
-                                <div class="chip blue lighten-3 z-depth-1">
-                                    <img src="image/8.jpg">
-                                    Crayon Shin-chan
-                                </div>
-                                <div class="pad-top-2"></div>
+                        <%--<!-- Comment 4 -->--%>
+                        <%--<div class="card-content-1">--%>
+                            <%--<div>--%>
+                                <%--<div class="chip blue lighten-3 z-depth-1">--%>
+                                    <%--<img src="image/8.jpg">--%>
+                                    <%--Crayon Shin-chan--%>
+                                <%--</div>--%>
+                                <%--<div class="pad-top-2"></div>--%>
 
-                                <!-- Acutal comment-->
-                                <div class="flow-text small-font">
-                                    <span>...</span>
-                                    <span class="right">3/3/16</span>
-                                </div>
+                                <%--<!-- Acutal comment-->--%>
+                                <%--<div class="flow-text small-font">--%>
+                                    <%--<span>...</span>--%>
+                                    <%--<span class="right">3/3/16</span>--%>
+                                <%--</div>--%>
 
-                                <div class="pad-top-2"></div>
-                                <div class="divider"></div>
-                            </div>
-                        </div>
+                                <%--<div class="pad-top-2"></div>--%>
+                                <%--<div class="divider"></div>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
                     </div>
 
                     <!-- Pagination -->
-                    <div class="card-content-1">
-                        <ul class="pagination right">
-                            <li class="disabled teal lighten-2"><a href="#!"><i class="material-icons">chevron_left</i></a>
-                            </li>
-                            <li class="active teal lighten-2"><a href="#!">1</a></li>
-                            <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
-                            <li class="waves-effect teal lighten-2"><a href="#!"><i
-                                    class="material-icons">chevron_right</i></a></li>
-                        </ul>
-                        <div class="pad-top-10"></div>
-                    </div>
+                    <ul class="pagination center">
+                        <li id="previous" class="disabled">
+                            <a href="#!"><i class="material-icons">chevron_left</i></a>
+                        </li>
+                        <div id="pages" style="display:inline;">
+                            <li class="active"><a href="#!">1</a></li>
+                            <li class="waves-effect"><a href="#!">2</a></li>
+                        </div>
+                        <li id="next" class="waves-effect">
+                            <a href="#!"><i class="material-icons">chevron_right</i></a>
+                        </li>
+                    </ul>
 
 
                     <div class="pad-top-10"></div>

@@ -183,7 +183,7 @@ public class ComicInfo {
         String commentDate = format.format(new Date());
 
         comment = commentDate + "|" + username + "|" + comment;
-        commentList.add(comment);
+        commentList.add(0, comment);
         return commentDate;
     }
     public int getVolume() { return volume; }
