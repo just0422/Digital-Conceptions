@@ -97,52 +97,6 @@ public class ComicServlet extends HttpServlet {
                 .filter("volume", Integer.parseInt(comic[1]))
                 .filter("issue", Integer.parseInt(comic[3])).first().now();
 
-
-        if (req.getParameter("download") != null){
-            String filename = currentcomic.getSeriesTitle() + '_' + currentcomic.getIssueTitle() + ".zip";
-            resp.setHeader("Content-Dipsosition", "attachement; filename=\"" + filename + "\"");
-            resp.setContentType("application/x-download");
-
-            ByteArrayOutputStream zipbaos = new ByteArrayOutputStream();
-
-            ZipOutputStream zipos = new ZipOutputStream(zipbaos);
-            BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-            BlobInfoFactory bif = new BlobInfoFactory();
-
-            List<BlobKey> keys = currentcomic.getImages();
-//            for (BlobKey key : keys){
-            for (int x = 0; x < keys.size() / 2; x++){
-                BlobKey key = keys.get(x);
-                BlobInfo info = bif.loadBlobInfo(key);
-                long contentSize = info.getSize();
-                byte[] contents = blobstoreService.fetchData(key, 0, contentSize);
-
-                zipos.putNextEntry(new ZipEntry("image" + x));
-                zipos.write(contents);
-                zipos.closeEntry();
-            }
-
-            byte[] zipData = zipbaos.toByteArray();
-            resp.setContentLength(zipData.length);
-            resp.getOutputStream().write(zipData);
-
-            zipbaos.close();
-            zipos.close();
-            resp.getOutputStream().close();
-
-            return;
-//            try{
-//
-//            }
-//            catch(e){
-//                e.printStackTrace();
-//                // Creation of the zip file failed; inform the browser about it
-//                resp.sendError(500, "Creation of the zip file failed with exception:\n\n" + e.getLocalizedMessage());
-//                return;
-//            }
-        }
-
-
 //        String comment = (String) req.getAttribute("comment");
 //        UserService userService = UserServiceFactory.getUserService();
 //        User user = userService.getCurrentUser();
