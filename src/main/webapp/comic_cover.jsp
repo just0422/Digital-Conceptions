@@ -77,7 +77,11 @@
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
                         <div class="container-1 flow-text cyan-text">
-                            Series Title:<span class="right">${requestScope.test_comic.seriesTitle}</span>
+                            Series:<span class="right">${current_comic.seriesTitle} ${current_comic.volume}</span>
+                            <div class="divider"></div>
+                        </div>
+                        <div class="container-1 flow-text cyan-text">
+                            Issue:<span class="right">${current_comic.issueTitle} ${current_comic.issue}</span>
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
@@ -119,7 +123,7 @@
                             <div class="pad-top-20"></div>
                             <div class="center">
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger"
-                                   href="#reading">Start</a>
+                                   href="#reading" id="start">Start</a>
                                 <a id="subscribe" class="waves-effect waves-light btn">Subscribe</a>
                                 <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
@@ -176,14 +180,6 @@
                             <div class="modal-content">
                                 <i class="material-icons modal-close right">close</i>
 
-                                <%--<script>--%>
-                                <%--$.get(--%>
-                                <%--"/comic",--%>
-                                <%--{page : '${current_user.page}'}--%>
-                                <%--)--%>
-                                <%--</script>--%>
-
-
                                 <div class="row">
                                     <!--Previous page-->
                                     <div class="col s1">
@@ -204,14 +200,66 @@
                                             <img class="reading-height" id="comic_page_image">
                                             <%--<p hidden id="page_number" value=""></p>--%>
                                         </div>
+                                            <script>
+                                                function jumpPage(x){
+                                                    $("#page" + currentPageNumber).addClass("waves-effect");
+                                                    $("#page" + currentPageNumber).removeClass("active");
+                                                    $("#page" + x).removeClass("waves-effect");
+                                                    $("#page" + x).addClass("active");
+                                                    currentPageNumber = x;
+                                                    goToPage();
+                                                }
+                                                var pages, currentPageNumber = parseInt("${current_comic.pageNumber}") + 1;
+                                                pages = '<c:out value="${current_comic.urls}"/>';
+                                                pages = pages.replace(" ", "");
+                                                pages = pages.slice(1, -1);
+                                                pages = pages.split(',');
+                                                pages = pages.slice(0, pages.length / 2);
+                                                $(document).ready(function()
+                                                {
+
+                                                    $('#comic_page_image').attr("src", pages["${current_comic.pageNumber}"]);
+                                                    goToPage();
+
+                                                    if (currentPageNumber != 1){
+                                                        $("#start").val("RESUME");
+                                                    }
+                                                });
+
+                                                function nextPage(){
+                                                    if (currentPageNumber < pages.length) {
+                                                        currentPageNumber++;
+                                                        goToPage();
+                                                    }
+                                                }
+                                                function prevPage(){
+                                                    if (currentPageNumber > 1) {
+                                                        currentPageNumber--;
+                                                        goToPage();
+                                                    }
+                                                }
+
+                                                function goToPage(){
+                                                    $("#comic_page_image").attr("src", pages[currentPageNumber - 1]);
+                                                    $('#jump_to_page').val(currentPageNumber);
+                                                }
+                                            </script>
 
                                         <!-- Start of Pagination -->
                                         <div class="flow-text center">
                                             <div class="row">
                                                 <ul class="pagination cente r">
                                                     <div id="pages" style="display:inline;">
-                                                        <li class="active teal lighten-2"><a href="#!">1</a></li>
-                                                        <li class="waves-effect teal lighten-2"><a href="#!">2</a></li>
+                                                        <script>
+                                                            for (x = 1; x <= pages.length; x++){
+                                                                document.write('<li class="waves-effect teal lighten-2" id="page' + x + '"><a onclick="jumpPage(' + x + ')">' + x + '</a></li>');
+                                                            }
+                                                            $("#page" + currentPageNumber).removeClass("waves-effect");
+                                                            $("#page" + currentPageNumber).addClass("active");
+
+                                                        </script>
+                                                        <%--<li class="active teal lighten-2"><button onclick="jumpPage()">1</button></li>--%>
+                                                        <%--<li class="waves-effect teal lighten-2"><button href="#!">2</button></li>--%>
                                                     </div>
                                                 </ul>
 
@@ -249,52 +297,6 @@
                                     </div>
                                     <!-- End of next page -->
 
-                                    <script>
-                                        var pages;
-                                        $(document).ready(function()
-                                        {
-                                            pages = '<c:out value="${current_comic.urls}"/>';
-                                            pages = pages.replace(" ", "");
-                                            pages = pages.slice(1, -1);
-                                            pages = pages.split(',');
-                                            pages = pages.slice(0, pages.length / 2);
-
-                                            $('#comic_page_image').attr("src", pages["${current_comic.pageNumber}"]);
-                                            <%--var currentPage = $("#current_page");--%>
-                                            <%--var prevButton = $("#previous_page");--%>
-                                            <%--var nextButton = $("#next_page");--%>
-
-                                            <%--prevButton.click(function()--%>
-                                            <%--{--%>
-                                                <%--// This should be edited--%>
-                                                <%--currentPage.attr("src", "${current_comic.urls[0]}");--%>
-                                            <%--})--%>
-
-                                            <%--nextButton.click(function()--%>
-                                            <%--{--%>
-                                                <%--// This should be edited--%>
-                                                <%--currentPage.attr("src", "${current_comic.urls[2]}");--%>
-                                            <%--})--%>
-                                        })
-
-                                        function nextPage(){
-                                            console.log("Current page: " + $("#jump_to_page").val());
-                                            $('#jump_to_page').val(parseInt($("#jump_to_page").val()) + 1);
-                                            console.log("Next page: " + $("#jump_to_page").val());
-                                            goToPage();
-                                        }
-                                        function prevPage(){
-                                            console.log("Current page: " + $("#jump_to_page").val());
-                                            $('#jump_to_page').val(parseInt($("#jump_to_page").val()) - 1);
-                                            console.log("Prev page: " + $("#jump_to_page").val());
-                                            goToPage();
-                                        }
-
-                                        function goToPage(){
-                                            console.log("Jumping to page: " + $("#jump_to_page").val());
-                                            $("#comic_page_image").attr("src", pages[$('#jump_to_page').val()]);
-                                        }
-                                    </script>
                                 </div>
                             </div>
                             <!-- End of modal content -->
