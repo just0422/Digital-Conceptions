@@ -33,9 +33,14 @@ public class CreationServlet extends HttpServlet {
         System.out.println(getClass().getName());
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         String upload = blobstoreService.createUploadUrl("/upload");
+        HttpSession session = req.getSession();
+        UserInfo userInfo = (UserInfo) session.getAttribute("user_info");
 
+        LoadType<ComicInfo> comicObjLoad = ObjectifyService.ofy().load().type(ComicInfo.class);
+        List<ComicInfo> myComics = comicObjLoad.filter("username", userInfo.username).list();
 
         req.setAttribute("upload", upload);
+        req.setAttribute("my_comics", myComics);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
         rd.forward(req, resp);

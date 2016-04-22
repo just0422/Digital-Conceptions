@@ -57,7 +57,7 @@ public class HomePageServlet extends HttpServlet {
         String username;
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
-        UserInfo currentUser;
+        UserInfo currentUser = null;
         if (user == null)
             username = null;
         // Otherwise look for UserInfo in datastore
@@ -72,7 +72,6 @@ public class HomePageServlet extends HttpServlet {
             }
 
         /*
-            TODO
             Load UserInfo of user and set it as session attribute
             if null, then create a new UserInfo and store it in datastore
 
@@ -102,7 +101,7 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute("newest_comics", newestComics);
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
-//        session.setAttribute("user_info", userInfo);
+        session.setAttribute("user_info", currentUser);
 
 
         // Forward request to the home page

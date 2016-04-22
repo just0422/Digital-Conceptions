@@ -313,102 +313,113 @@
                     <!-- End of left pointer -->
 
                     <div class="center">
-                        <!-- Start of first column -->
-                        <div class="col s3">
-
-                            <!--Start of first card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
+                        <c:forEach var="comic" items="${my_comics}">
+                            <div class="col s3">
+                                <div class="card cyan lighten-3" onclick="">
+                                    <div class="card-image">
+                                        <img src="${comic.coverPage}">
+                                    </div>
+                                    <div class="card-title center">${comic.seriesTitle}</div>
                                 </div>
-                                <div class="card-title center">Batman</div>
                             </div>
-                            <!--End of first card-->
+                        </c:forEach>
 
-                            <!--Start of second card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of second card-->
+                        <%--<!-- Start of first column -->--%>
+                        <%--<div class="col s3">--%>
 
-                            <!--Start of third card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of third card-->
+                            <%--<!--Start of first card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of first card-->--%>
 
-                        </div>
-                        <!-- End of the first column-->
+                            <%--<!--Start of second card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of second card-->--%>
 
+                            <%--<!--Start of third card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of third card-->--%>
 
-                        <!-- start of second column -->
-                        <div class="col s3">
-                            <!--Start of first card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of first card-->
-
-                            <!--Start of second card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of second card-->
-
-                            <!--Start of third card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of third card-->
-                        </div>
-                        <!-- End of second column-->
+                        <%--</div>--%>
+                        <%--<!-- End of the first column-->--%>
 
 
-                        <!-- Start of third column -->
-                        <div class="col s3">
-                            <!--Start of first card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of first card-->
+                        <%--<!-- start of second column -->--%>
+                        <%--<div class="col s3">--%>
+                            <%--<!--Start of first card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of first card-->--%>
 
-                            <!--Start of second card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of second card-->
+                            <%--<!--Start of second card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of second card-->--%>
 
-                            <!--Start of third card-->
-                            <div class="card cyan lighten-3" onclick="">
-                                <div class="card-image">
-                                    <img src="image/6.jpg">
-                                </div>
-                                <div class="card-title center">Batman</div>
-                            </div>
-                            <!--End of third card-->
-                        </div>
-                        <!-- End of third column-->
+                            <%--<!--Start of third card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of third card-->--%>
+                        <%--</div>--%>
+                        <%--<!-- End of second column-->--%>
+
+
+                        <%--<!-- Start of third column -->--%>
+                        <%--<div class="col s3">--%>
+                            <%--<!--Start of first card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of first card-->--%>
+
+                            <%--<!--Start of second card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of second card-->--%>
+
+                            <%--<!--Start of third card-->--%>
+                            <%--<div class="card cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                    <%--<img src="image/6.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-title center">Batman</div>--%>
+                            <%--</div>--%>
+                            <%--<!--End of third card-->--%>
+                        <%--</div>--%>
+                        <%--<!-- End of third column-->--%>
                     </div>
 
                     <!-- Start of right pointer-->
