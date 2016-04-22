@@ -67,6 +67,7 @@ public class UserInfo implements java.io.Serializable{
 
     public HashMap<String, Integer> getComicPageLeftOffMap() { return comicPageLeftOff; }
     public void addComicPageLeftOff(String comic, int page){ comicPageLeftOff.put(comic, page); }
+    public void removeComicPageLeftOff(String comic) { comicPageLeftOff.remove(comic); }
     public int getComicPageLeftOff(ComicInfo comic){ return comicPageLeftOff.get(comic); }
     public void addVolumeLeftOff(String comic, int volume) { volumeLeftOff.put(comic, volume); }
     public int getVolumeLeftOff(ComicInfo comic) { return volumeLeftOff.get(comic); }

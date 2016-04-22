@@ -109,6 +109,12 @@ public class ComicServlet extends HttpServlet {
             resp.getWriter().println("\"date\": \"" + date + "\"");
             resp.getWriter().println("}");
         }
+
+        if (req.getParameter("page_left_off") != null){
+            userinfo.removeComicPageLeftOff(currentcomic.getComicName());
+            userinfo.addComicPageLeftOff(currentcomic.getComicName(), Integer.parseInt(req.getParameter("page_left_off")));
+        }
+
         ObjectifyService.ofy().save().entity(currentcomic).now();
         ObjectifyService.ofy().save().entity(userinfo).now();
 

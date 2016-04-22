@@ -133,26 +133,7 @@
                                     }
                                 })
                             }
-
                         </script>
-
-                        <%--<script>--%>
-
-                            <%--function rate() {--%>
-                                <%--$.post(--%>
-                                        <%--"/comic",--%>
-                                        <%--{--%>
-                                            <%--rating: $('#rating').val(),--%>
-                                            <%--current_comic: "${current_comic.comicName}"--%>
-                                        <%--},--%>
-                                        <%--function (result) {--%>
-                                            <%--console.log(result);--%>
-                                            <%--$("#full_rate").html(result);--%>
-                                        <%--}--%>
-                                <%--)--%>
-                            <%--}--%>
-                        <%--</script>--%>
-
                         <!-- End of rating -->
 
 
@@ -213,11 +194,37 @@
 
                         <!-- Reading Structure -->
                         <!-- Reading Modal -->
-                        <div id="reading" class="modal">
+                        <div id="reading" class="modal" id="comic_viewer">
 
                             <!-- Start of modal content -->
-                            <div class="modal-content">
+                            <div class="modal-content" >
                                 <i class="material-icons modal-close right">close</i>
+
+                                <%--<script>--%>
+                                    <%--$('.modal-trigger').leanModal({--%>
+                                                <%--dismissible: true, // Modal can be dismissed by clicking outside of the modal--%>
+                                                <%--opacity: .5, // Opacity of modal background--%>
+                                                <%--in_duration: 300, // Transition in duration--%>
+                                                <%--out_duration: 200, // Transition out duration--%>
+                                                <%--ready: function() { goToPage(); }, // Callback for Modal open--%>
+                                                <%--complete: function() {--%>
+                                                    <%--$('#comic_viewer').closeModal();--%>
+                                                    <%--$.ajax({--%>
+                                                        <%--url: "/comic",--%>
+                                                        <%--method: "POST",--%>
+                                                        <%--data: {--%>
+                                                            <%--page_left_off: currentPageNumber - 1,--%>
+                                                            <%--comic_name: "${current_comic.comicName}"--%>
+                                                        <%--}--%>
+<%--//                                                        success: function(result) {--%>
+<%--//                                                            console.log(result);--%>
+<%--//                                                            $("#full_rate").html(result);--%>
+<%--//                                                        }--%>
+                                                    <%--})--%>
+                                                <%--} // Callback for Modal close--%>
+                                            <%--}--%>
+                                    <%--);--%>
+                                <%--</script>--%>
 
                                 <div class="row">
                                     <!--Previous page-->
@@ -261,7 +268,7 @@
                                                     goToPage();
 
                                                     if (currentPageNumber != 1){
-                                                        $("#start").val("RESUME");
+                                                        $("#start").html("RESUME");
                                                     }
                                                 });
 
@@ -288,7 +295,7 @@
                                         <div class="flow-text center">
                                             <div class="row">
                                                 <ul class="pagination cente r">
-                                                    <div id="pages" style="display:inline;">
+                                                    <div id="comic_pages" style="display:inline;">
                                                         <script>
                                                             for (x = 1; x <= pages.length; x++){
                                                                 document.write('<li class="waves-effect teal lighten-2" id="page' + x + '"><a onclick="jumpPage(' + x + ')">' + x + '</a></li>');
