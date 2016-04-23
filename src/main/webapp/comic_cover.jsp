@@ -248,13 +248,13 @@
                                         </div>
                                             <script>
                                                 function jumpPage(x){
-                                                    $("#page" + currentPageNumber).addClass("waves-effect");
-                                                    $("#page" + currentPageNumber).removeClass("active");
-                                                    $("#page" + x).removeClass("waves-effect");
-                                                    $("#page" + x).addClass("active");
+                                                    deactivatePage(currentPageNumber);
+                                                    activatePage(x);
+
                                                     currentPageNumber = x;
                                                     goToPage();
                                                 }
+
                                                 var pages, currentPageNumber = parseInt("${current_comic.pageNumber}") + 1;
                                                 pages = '<c:out value="${current_comic.urls}"/>';
                                                 pages = pages.replace(" ", "");
@@ -272,17 +272,39 @@
                                                     }
                                                 });
 
+                                                function deactivatePage(num){
+                                                    $("#page" + num).addClass("waves-effect");
+                                                    $("#page" + num).removeClass("active");
+                                                }
+                                                function activatePage(num){
+                                                    $("#page" + num).removeClass("waves-effect");
+                                                    $("#page" + num).addClass("active");
+                                                }
                                                 function nextPage(){
                                                     if (currentPageNumber < pages.length) {
+                                                        deactivatePage(currentPageNumber)
                                                         currentPageNumber++;
+                                                        activatePage(currentPageNumber);
+
                                                         goToPage();
                                                     }
                                                 }
                                                 function prevPage(){
                                                     if (currentPageNumber > 1) {
+                                                        deactivatePage(currentPageNumber);
                                                         currentPageNumber--;
+                                                        activatePage(currentPageNumber);
                                                         goToPage();
                                                     }
+                                                }
+
+                                                function jumpToPage(){
+                                                    for (i = 0; i < pages.length; i++)
+                                                       deactivatePage(i);
+                                                    currentPageNumber = parseInt($("#jump_to_page").val());
+                                                    activatePage(currentPageNumber);
+
+                                                    goToPage();
                                                 }
 
                                                 function goToPage(){
@@ -314,13 +336,13 @@
                                                 <%--<form onclicksubmit="goToPage()">--%>
                                                     <div class="col s1 offset-s11 input-field"
                                                          style="position: relative; top:-88px">
-                                                        <input id="jump_to_page" type="number" class="validate" required value="${current_comic.pageNumber}" onchange="goToPage()">
+                                                        <input id="jump_to_page" type="number" class="validate" required value="${current_comic.pageNumber}" onchange="jumpToPage()">
                                                         <label for="jump_to_page">Jump to</label>
                                                     </div>
                                                     <div class="col s1 offset-s12"
                                                          style="position: relative; top:-138px">
                                                         <button class="btn waves-effect waves-light btn-small teal lighten-2"
-                                                                onclick="goToPage()">Go
+                                                                onclick="jumpToPage()">Go
                                                         </button>
                                                     </div>
                                                 <%--</form>--%>
