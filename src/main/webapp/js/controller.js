@@ -270,7 +270,7 @@ function addAccessors($scope) {
 
     var coord = getRandomLeftTop();
 
-    fabric.loadSVGFromURL('../assets/' + shapeName + '.svg', function(objects, options) {
+    fabric.loadSVGFromURL('../image/templates/' + shapeName + '.svg', function(objects, options) {
 
       var loadedObject = fabric.util.groupSVGElements(objects, options);
 

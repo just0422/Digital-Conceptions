@@ -572,433 +572,25 @@
                     <div class="tab-content">
 
                         <div class="tab-pane" id="svg-shapes">
-                            <p>Add <strong>SVG shapes</strong> to canvas:</p>
+                            <p>Comic Templates:</p>
 
                             <ul class="svg-shapes">
-                                <li>
-                                    <button class="btn btn-small shape" id="shape25"><strong>36</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape36"><strong>41</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape58"><strong>54</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape59"><strong>57</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape8"><strong>65</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape151">Lighthouse
-                                        (<strong>78</strong> paths)
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape17"><strong>87</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape2"><strong>90</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape69">HTML5 logo (<strong>96</strong>
-                                        paths)
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape115"><strong>124</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape47"><strong>133</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape51"><strong>141</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape141"><strong>244</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape109"><strong>153</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape146"><strong>160</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape50"><strong>167</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape99"><strong>174</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape142"><strong>180</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape112"><strong>183</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape132"><strong>191</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape63"><strong>202</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape133"><strong>223</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape64"><strong>224</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape14"><strong>226</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape108"><strong>236</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape62"><strong>237</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape139"><strong>239</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape140"><strong>246</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape113"><strong>278</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape145"><strong>264</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape98"><strong>280</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape144"><strong>308</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape57"><strong>321</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape128"><strong>341</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape123"><strong>359</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape90"><strong>363</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape120"><strong>395</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape138"><strong>401</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape9"><strong>404</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape45"><strong>404</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape65"><strong>444</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape1"><strong>448</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape93"><strong>464</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape131"><strong>476</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape122"><strong>513</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape91"><strong>562</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape38"><strong>563</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape119"><strong>600</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape135"><strong>651</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape96"><strong>674</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape125"><strong>676</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape126"><strong>696</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape94"><strong>710</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape129"><strong>756</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape121"><strong>756</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape37"><strong>758</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape10"><strong>778</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape101"><strong>832</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape134"><strong>834</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape143"><strong>838</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape147"><strong>841</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape102"><strong>850</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape43"><strong>936</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape136"><strong>975</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape110"><strong>1004</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape7"><strong>1018</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape95"><strong>1066</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape97"><strong>1126</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape118"><strong>1173</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape116"><strong>1196</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape3"><strong>1197</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape26"><strong>1215</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape114"><strong>1269</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape77"><strong>1424</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape32"><strong>1515</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape13"><strong>1652</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape130"><strong>1800</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape71"><strong>1868</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape76"><strong>1944</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape53"><strong>1948</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape21"><strong>1972</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape5"><strong>2208</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape40"><strong>2394</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape55"><strong>2499</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape4"><strong>2742</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape29"><strong>3103</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape30"><strong>3566</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape61"><strong>3685</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape6"><strong>3921</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape23"><strong>4418</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape42"><strong>4583</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape31"><strong>4768</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape15"><strong>8325</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape22"><strong>9663</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape41"><strong>12361</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape67"><strong>12604</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape24"><strong>12866</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape27"><strong>13905</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape49"><strong>14174</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape33"><strong>17059</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape20"><strong>19035</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape35"><strong>19271</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape44"><strong>22375</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape72"><strong>29303</strong> paths
-                                    </button>
-                                </li>
-                                <li>
-                                    <button class="btn btn-small shape" id="shape48"><strong>41787</strong> paths
-                                    </button>
-                                </li>
-
+                                <li><button class="btn btn-small shape" id="shape1">2 panes</button></li>
+                                <%--<li><button class="btn btn-small shape" id="shape25"><strong>36</strong> paths</button></li>--%>
+                                <%--<li><button class="btn btn-small shape" id="shape36"><strong>41</strong> paths</button></li>--%>
+                                <%--<li><button class="btn btn-small shape" id="shape58"><strong>54</strong> paths</button></li>--%>
+                                <%--<li><button class="btn btn-small shape" id="shape59"><strong>57</strong> paths</button></li>--%>
+                                <%--<li><button class="btn btn-small shape" id="shape8"><strong>65</strong> paths</button></li>--%>
+                                <%--<li><button class="btn btn-small shape" id="shape151">Lighthouse(<strong>78</strong> paths)</button></li>--%>
+                                <%--<li><button class="btn btn-small shape" id="shape17"><strong>87</strong> paths</button></li>--%>
                             </ul>
+
+                            <p>Speech bubbles:</p>
+
+                            <ul class="svg-shapes">
+                                <li><button class="btn btn-small shape" id="shape100">Bubble</button></li>
+                            </ul>
+
                         </div>
 
                         <div class="tab-pane" id="simple-shapes">
@@ -1016,39 +608,39 @@
                                 <button class="btn" ng-click="addText()">Add text</button>
                             </p>
 
-                            <p>Add <strong>images</strong> to canvas:</p>
-                            <p>
-                                <button type="button" class="btn image1" ng-click="addImage1()">Image 1 (pug)
-                                </button>
-                                <button type="button" class="btn image2" ng-click="addImage2()">Image 2 (google)
-                                </button>
-                                <button type="button" class="btn image3" n-click="addImage3()">Image 3 (printio)
-                                </button>
-                            </p>
+                            <%--<p>Add <strong>images</strong> to canvas:</p>--%>
+                            <%--<p>--%>
+                                <%--<button type="button" class="btn image1" ng-click="addImage1()">Image 1 (pug)--%>
+                                <%--</button>--%>
+                                <%--<button type="button" class="btn image2" ng-click="addImage2()">Image 2 (google)--%>
+                                <%--</button>--%>
+                                <%--<button type="button" class="btn image3" n-click="addImage3()">Image 3 (printio)--%>
+                                <%--</button>--%>
+                            <%--</p>--%>
 
-                            <p>Add <strong>gradient-based shapes</strong> to canvas:</p>
+                            <%--<p>Add <strong>gradient-based shapes</strong> to canvas:</p>--%>
 
-                            <p>
-                                <button class="btn shape" id="shape74">Gradient 1</button>
-                                <button class="btn shape" id="shape66">Gradient 2</button>
-                                <button class="btn shape" id="shape75">Gradient 3</button>
-                                <button class="btn shape" id="shape148">Gradient 4</button>
-                            </p>
+                            <%--<p>--%>
+                                <%--<button class="btn shape" id="shape74">Gradient 1</button>--%>
+                                <%--<button class="btn shape" id="shape66">Gradient 2</button>--%>
+                                <%--<button class="btn shape" id="shape75">Gradient 3</button>--%>
+                                <%--<button class="btn shape" id="shape148">Gradient 4</button>--%>
+                            <%--</p>--%>
 
-                            <p>Add <strong>arcs</strong> and misc to canvas:</p>
+                            <%--<p>Add <strong>arcs</strong> and misc to canvas:</p>--%>
 
-                            <p>
-                                <button class="btn shape" id="shape104">Arc(s) 1</button>
-                                <button class="btn shape" id="shape105">Arc(s) 2</button>
-                                <button class="btn shape" id="shape106">Arc(s) 3</button>
-                                <button class="btn shape" id="shape107">Arc(s) 4</button>
-                            </p>
-                            <p>
-                                <button class="btn shape" id="shape103">Transformed paths</button>
-                            </p>
-                            <p>
-                                <button class="btn shape" id="shape54">Image</button>
-                            </p>
+                            <%--<p>--%>
+                                <%--<button class="btn shape" id="shape104">Arc(s) 1</button>--%>
+                                <%--<button class="btn shape" id="shape105">Arc(s) 2</button>--%>
+                                <%--<button class="btn shape" id="shape106">Arc(s) 3</button>--%>
+                                <%--<button class="btn shape" id="shape107">Arc(s) 4</button>--%>
+                            <%--</p>--%>
+                            <%--<p>--%>
+                                <%--<button class="btn shape" id="shape103">Transformed paths</button>--%>
+                            <%--</p>--%>
+                            <%--<p>--%>
+                                <%--<button class="btn shape" id="shape54">Image</button>--%>
+                            <%--</p>--%>
                         </div>
 
                         <div class="tab-pane active" id="object-controls-pane">
@@ -1075,31 +667,25 @@
 
                                 <div style="margin-top:10px;">
                                     <p>
-                                        <button class="btn btn-object-action" id="remove-selected"
-                                                ng-click="removeSelected()">
-                                            Remove selected object/group
-                                        </button>
+                                        <button class="btn btn-object-action" id="remove-selected"ng-click="removeSelected()">Remove selected object/group</button>
                                     </p>
 
                                     <button class="btn btn-lock btn-object-action"
                                             ng-click="setHorizontalLock(!getHorizontalLock())"
                                             ng-class="{'btn-inverse': getHorizontalLock()}">
-                                        {[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal
-                                        movement' ]}
+                                        {[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal movement' ]}
                                     </button>
                                     <br>
                                     <button class="btn btn-lock btn-object-action"
                                             ng-click="setVerticalLock(!getVerticalLock())"
                                             ng-class="{'btn-inverse': getVerticalLock()}">
-                                        {[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement'
-                                        ]}
+                                        {[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement']}
                                     </button>
                                     <br>
                                     <button class="btn btn-lock btn-object-action"
                                             ng-click="setScaleLockX(!getScaleLockX())"
                                             ng-class="{'btn-inverse': getScaleLockX()}">
-                                        {[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling'
-                                        ]}
+                                        {[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling']}
                                     </button>
                                     <br>
                                     <button class="btn btn-lock btn-object-action"
@@ -1118,44 +704,26 @@
                                 <div style="margin-top:10px">
                                     <p>
                                         <span style="margin-right: 10px">Origin X: </span>
-                                        <label>
-                                            Left
-                                            <input type="radio" name="origin-x" class="origin-x btn-object-action"
-                                                   value="left"
-                                                   bind-value-to="originX">
+                                        <label>Left
+                                            <input type="radio" name="origin-x" class="origin-x btn-object-action" value="left" bind-value-to="originX">
                                         </label>
-                                        <label>
-                                            Center
-                                            <input type="radio" name="origin-x" class="origin-x btn-object-action"
-                                                   value="center"
-                                                   bind-value-to="originX">
+                                        <label>Center
+                                            <input type="radio" name="origin-x" class="origin-x btn-object-action" value="center" bind-value-to="originX">
                                         </label>
-                                        <label>
-                                            Right
-                                            <input type="radio" name="origin-x" class="origin-x btn-object-action"
-                                                   value="right"
-                                                   bind-value-to="originX">
+                                        <label>Right
+                                            <input type="radio" name="origin-x" class="origin-x btn-object-action" value="right" bind-value-to="originX">
                                         </label>
                                     </p>
                                     <p>
                                         <span style="margin-right: 10px">Origin Y: </span>
-                                        <label>
-                                            Top
-                                            <input type="radio" name="origin-y" class="origin-y btn-object-action"
-                                                   value="top"
-                                                   bind-value-to="originY">
+                                        <label>Top
+                                            <input type="radio" name="origin-y" class="origin-y btn-object-action" value="top" bind-value-to="originY">
                                         </label>
-                                        <label>
-                                            Center
-                                            <input type="radio" name="origin-y" class="origin-y btn-object-action"
-                                                   value="center"
-                                                   bind-value-to="originY">
+                                        <label>Center
+                                            <input type="radio" name="origin-y" class="origin-y btn-object-action" value="center" bind-value-to="originY">
                                         </label>
-                                        <label>
-                                            Bottom
-                                            <input type="radio" name="origin-y" class="origin-y btn-object-action"
-                                                   value="bottom"
-                                                   bind-value-to="originY">
+                                        <label>Bottom
+                                            <input type="radio" name="origin-y" class="origin-y btn-object-action" value="bottom" bind-value-to="originY">
                                         </label>
                                     </p>
                                 </div>
