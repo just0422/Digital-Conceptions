@@ -242,8 +242,8 @@
                                         <%--<img src="${current_comic.coverPage}">--%>
 
                                         <!-- Sample image to test UI -->
-                                        <div class="center">
-                                            <img class="reading-height" id="comic_page_image">
+                                        <div class="center reading-height">
+                                            <img id="comic_page_image" class="reading-height">
                                             <%--<p hidden id="page_number" value=""></p>--%>
                                         </div>
                                             <script>
