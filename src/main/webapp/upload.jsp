@@ -284,9 +284,9 @@
 
             <!-- Start of sample my_comic layout -->
             <div id="my_comic_content" class="container-1">
-                <div class="row" style="padding-left: 6%">
+                <div class="row">
                     <!-- Start of left pointer -->
-                    <div class="col s1">
+                    <div class="col s1" style="float: left">
 
                         <div class="valign-wrapper" style="min-height: 80vh">
                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
@@ -406,8 +406,8 @@
                     </div>
 
                     <!-- Start of right pointer-->
-                    <div class="col s1">
-                        <div class="valign-wrapper" style="min-height: 80vh">
+                    <div class="col s1" style="float: right;">
+                        <div class="valign-wrapper" style="min-height: 80vh; ">
                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
                         </div>
                     </div>
