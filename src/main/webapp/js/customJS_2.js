@@ -65,6 +65,5 @@ $(document).ready(function () {
         $("#my_comic").hide();
         $("#create_canvas").show();
     });
-
-
 });
+

@@ -24,7 +24,7 @@
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
 
     <!--Import materialize.js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
     <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!--Impot custom css-->
@@ -106,7 +106,7 @@
 
                         <div class="card hoverable cyan lighten-3" onclick="">
                             <div class="card-image">
-                                <img src="image/9.jpg">
+                                <img id="cover_image" src="image/9.jpg">
                             </div>
                             <div class="card-content white-text">
                                 <p class="flow-text center">Cover</p>

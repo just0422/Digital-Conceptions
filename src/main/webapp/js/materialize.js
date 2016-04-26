@@ -2735,6 +2735,10 @@ $(document).ready(function(){
       for (var i = 0; i < files.length; i++) {
         file_names.push(files[i].name);
       }
+
+       $("#cover_image").attr("src", window.URL.createObjectURL(files[0]));
+        $("#cover_image").css("max-height",147);
+
       path_input.val(file_names.join(", "));
       path_input.trigger('change');
     });
