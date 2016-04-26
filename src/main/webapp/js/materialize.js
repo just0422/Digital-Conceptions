@@ -2737,7 +2737,8 @@ $(document).ready(function(){
       }
 
        $("#cover_image").attr("src", window.URL.createObjectURL(files[0]));
-        $("#cover_image").css("max-height",147);
+        $("#cover_image").css("max-height",200);
+        $("#cover_image").css("min-height",200);
 
       path_input.val(file_names.join(", "));
       path_input.trigger('change');

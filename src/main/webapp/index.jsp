@@ -203,7 +203,7 @@
                                 <input type="hidden" name="issue" value="${actionComic.issue}">
                                 <div class="card hoverable" onclick="$(this).parent().submit();">
                                     <div class="card-image">
-                                        <img src="${actionComic.coverPage}">
+                                        <img src="${actionComic.coverPage}"  style="max-height: 270px; min-height:270px">
                                     </div>
                                     <div class="card-content">
                                         <p class="flow-text">${actionComic.seriesTitle}</p>

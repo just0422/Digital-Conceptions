@@ -106,7 +106,7 @@
 
                         <div class="card hoverable cyan lighten-3" onclick="">
                             <div class="card-image">
-                                <img id="cover_image" src="image/9.jpg">
+                                <img id="cover_image" src="image/9.jpg" style="max-height: 200px; min-height:200px">
                             </div>
                             <div class="card-content white-text">
                                 <p class="flow-text center">Cover</p>
@@ -300,7 +300,7 @@
                             <div class="col s3">
                                 <div class="card cyan lighten-3" onclick="">
                                     <div class="card-image">
-                                        <img src="${comic.coverPage}">
+                                        <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
                                     </div>
                                     <div class="card-title center">${comic.seriesTitle}</div>
                                 </div>

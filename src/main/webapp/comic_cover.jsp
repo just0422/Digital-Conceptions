@@ -66,7 +66,7 @@
                     <div class="col s4">
                         <div class="card cyan lighten-3" onclick="">
                             <div class="card-image">
-                                <img src="${current_comic.coverPage}">
+                                <img src="${current_comic.coverPage}"  style="max-height: 270px; min-height:270px">
                             </div>
                         </div>
                     </div>
