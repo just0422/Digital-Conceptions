@@ -173,73 +173,9 @@
 
                         </div>
 
-                        <%--<!-- Preview of the uploaded comics -->--%>
-                        <%--<div class="container-1">--%>
-
-                        <%--&lt;%&ndash;<!-- Small cards for uploaded comics preview -->&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-
-                        <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;<div class="col s3">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-                        <%--&lt;%&ndash;<div class="card cyan lighten-3" onclick="">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="card-image">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<img src="image/preview.jpg">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-
-
                         <div class="pad-top-20"></div>
                         <div class="pad-top-20"></div>
-                        <!-- Browse and sbumt buttons -->
+                        <!-- Browse and Submit buttons -->
                         <div class="col s12">
                             <div class="file-field input-field">
                                 <div class="waves-effect waves-light btn cyan lighten-2"><i
@@ -294,16 +230,17 @@
 
                     </div>
                     <!-- End of left pointer -->
-
                     <div class="center">
                         <c:forEach var="comic" items="${my_comics}">
                             <div class="col s3">
-                                <div class="card cyan lighten-3" onclick="">
-                                    <div class="card-image">
-                                        <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
+                                 <a href="/editimages?series_title=${comic.seriesTitle}&issue_title=${comic.issueTitle}&volume=${comic.volume}&issue=${comic.issue}">
+                                    <div class="card cyan lighten-3" onclick="">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
+                                        </div>
+                                        <div class="card-title center">${comic.seriesTitle}</div>
                                     </div>
-                                    <div class="card-title center">${comic.seriesTitle}</div>
-                                </div>
+                                </a>
                             </div>
                         </c:forEach>
 

@@ -207,6 +207,10 @@
         padding-left: 5%;
         padding-right: 5%;
     }
+    .selected-page{
+        outline: 5px solid #ffff00;
+    }
+
 
     .reading-height{
         min-height: 80vh;

@@ -22,6 +22,8 @@
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
+    <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
@@ -48,6 +50,9 @@
     <main class="main body body-background-color">
 
         <div class="container-1 min-height">
+            <div class="pad-top-10"></div>
+            <a id="my_comic_button" class="waves-effect waves-light btn cyan lighten-2 left"><i
+                    class="material-icons right" href="/upload">dashboard</i>My Comic</a>
             <div class="row" style="padding-top:5vh;">
                 <div class="col s12 center flow-text">
                     Pages Preview
@@ -55,101 +60,37 @@
                     <div class="divider"></div>
                     <div class="pad-top-10"></div>
                 </div>
+                <c:set var="column" value="${0}"/>
 
-
-
-                <div class="col s3">
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
+                <ul id="sortable">
+                <c:forEach var="imgLink" items="${current_comic.urls}" varStatus="loop">
+                    <li class="card hoverable cyan lighten-3 col s4 pad-top-10 page-image" >
                         <div class="card-image">
-                            <img src="image/5.jpg">
+                            <img id="img${column}" src="${imgLink}" onclick="select(this)">
                         </div>
-                    </div>
+                    </li>
+                    <c:set var="column" value="${column + 1}"/>
+                </c:forEach>
+                </ul>
 
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
+                <script>
+                    function select(element) {
+                        $(element).toggleClass("selected-page");
+                    }
 
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
+                    function trash(){
+                        var elements = document.getElementsByClassName("page-image");
+                        elements.each(function(){
+                            if ($(this).hasClass("selected-page")){
+                                $(this).remove();
+                            }
+                        });
+                    }
 
-                </div>
-
-
-                <div class="col s3">
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                </div>
-
-
-                <div class="col s3">
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-                </div>
-
-
-                <div class="col s3">
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                    <div class="card hoverable cyan lighten-3" onclick="">
-                        <div class="card-image">
-                            <img src="image/5.jpg">
-                        </div>
-                    </div>
-
-                </div>
-
-
-
+                    $(document).ready(function(){
+                        $("#sortable").sortable();
+                    })
+                </script>
             </div>
         </div>
 

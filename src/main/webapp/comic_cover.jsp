@@ -260,7 +260,7 @@
                                                 pages = pages.replace(" ", "");
                                                 pages = pages.slice(1, -1);
                                                 pages = pages.split(',');
-                                                pages = pages.slice(0, pages.length / 2);
+//                                                pages = pages.slice(0, pages.length / 2);
                                                 $(document).ready(function()
                                                 {
 

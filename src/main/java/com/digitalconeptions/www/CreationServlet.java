@@ -57,7 +57,7 @@ public class CreationServlet extends HttpServlet {
         String username = ((User)now.getAttribute("user")).getNickname();
         resp.setContentType("text/plain");
 
-        List<BlobKey> blobKeys = blobs.get("upload_images");
+        List<BlobKey> blobKeys = blobs.get("upload_images").subList(0, blobs.get("upload_images").size() / 2);
         List<String> urls = new ArrayList<>();
 
         for (BlobKey key : blobKeys){
@@ -93,9 +93,13 @@ public class CreationServlet extends HttpServlet {
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();
             resp.getWriter().write("1");
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher("/editimages?series_title=" + seriesTitle + "&issue_title=" +
+                issueTitle + "&volume=" + volume + "&issue=" + issue);
+            rd.forward(req, resp);
         }
         else{
-            resp.getWriter().write("0");
+            resp.getWriter().write("Unsuccessful");
         }
     }
 }
