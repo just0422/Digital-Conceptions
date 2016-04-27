@@ -51,8 +51,8 @@
 
         <div class="container-1 min-height">
             <div class="pad-top-10"></div>
-            <a id="my_comic_button" class="waves-effect waves-light btn cyan lighten-2 left"><i
-                    class="material-icons right" href="/upload">dashboard</i>My Comic</a>
+            <a id="my_comic_button" class="waves-effect waves-light btn cyan lighten-2 left" href="/upload"><i
+                    class="material-icons right">dashboard</i>My Comic</a>
             <div class="row" style="padding-top:5vh;">
                 <div class="col s12 center flow-text">
                     Pages Preview
