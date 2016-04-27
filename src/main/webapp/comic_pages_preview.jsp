@@ -50,16 +50,25 @@
     <main class="main body body-background-color">
 
         <div class="container-1 min-height">
-            <div class="pad-top-10"></div>
-            <a id="my_comic_button" class="waves-effect waves-light btn cyan lighten-2 left" href="/upload"><i
-                    class="material-icons right">dashboard</i>My Comic</a>
             <div class="row" style="padding-top:5vh;">
                 <div class="col s12 center flow-text">
-                    Pages Preview
+                    <h4>Pages Preview</h4>
                     <div class="pad-top-10"></div>
                     <div class="divider"></div>
                     <div class="pad-top-10"></div>
+                    <div class="pad-top-10"></div>
                 </div>
+
+                <div class="col s4 right-align" style="padding-top: 5px">
+                    <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back to My Comic</a>
+                </div>
+
+                <div class="col s8 right-align">
+                   <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem">delete_forever</i>
+                   <i id="save" class="material-icons hoverable-1" style="font-size: 3rem">save</i>
+                </div>
+
+
                 <c:set var="column" value="${0}"/>
 
                 <ul id="sortable">
