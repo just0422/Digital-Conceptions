@@ -25,15 +25,33 @@ public class GenreServlet extends HttpServlet{
 
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/genre.jsp?genre=" + genre);
-//        RequestDispatcher rd = req.getRequestDispatcher("/genres/"+genre);
 
         LoadType<ComicInfo> comicObjLoad = ObjectifyService.ofy().load().type(ComicInfo.class);
-        List<ComicInfo> comics = new ArrayList();
+        List<ComicInfo> actionComics = new ArrayList();
+        List<ComicInfo> dramaComics = new ArrayList();
+        List<ComicInfo> romanceComics = new ArrayList();
+        List<ComicInfo> comedyComics = new ArrayList();
+        List<ComicInfo> horrorComics = new ArrayList();
+        List<ComicInfo> fantasyComics = new ArrayList();
+        List<ComicInfo> sportComics = new ArrayList();
+
         if (comicObjLoad != null)
         {
-            comics = comicObjLoad.filter("genre", genre).list();
+            actionComics = comicObjLoad.filter("genre", "action").list();
+            dramaComics = comicObjLoad.filter("genre", "drama").list();
+            romanceComics = comicObjLoad.filter("genre", "romance").list();
+            comedyComics = comicObjLoad.filter("genre", "comedy").list();
+            horrorComics = comicObjLoad.filter("genre", "horror").list();
+            fantasyComics = comicObjLoad.filter("genre", "fantasy").list();
+            sportComics = comicObjLoad.filter("genre", "sport").list();
         }
-        req.setAttribute("comics", comics);
+        req.setAttribute("action_comics", actionComics);
+        req.setAttribute("drama_comics", dramaComics);
+        req.setAttribute("romance_comics", romanceComics);
+        req.setAttribute("comedyComics", comedyComics);
+        req.setAttribute("horror_comics", horrorComics);
+        req.setAttribute("fantasy_comics", fantasyComics);
+        req.setAttribute("sport_comics", sportComics);
         rd.forward(req, resp);
     }
 }
