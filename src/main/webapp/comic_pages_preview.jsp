@@ -80,16 +80,26 @@
 
                     function trash(){
                         var elements = document.getElementsByClassName("page-image");
-                        elements.each(function(){
-                            if ($(this).hasClass("selected-page")){
-                                $(this).remove();
+                        for (i = 0; i < elements.length; i++){
+                            if ($($(elements[i]).find('img')[0]).hasClass("selected-page")){
+                                $(elements[i]).remove();
                             }
-                        });
+                        }
                     }
 
                     $(document).ready(function(){
                         $("#sortable").sortable();
                     })
+
+                    $(document).keydown(function(e) {
+                        if (e.which == 8)
+                            e.preventDefault();
+
+                        if (e.which == 8 || e.which == 48)
+                            trash();
+
+                        console.log(e.which);
+                    });
                 </script>
             </div>
         </div>
