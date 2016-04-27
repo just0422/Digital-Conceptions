@@ -223,128 +223,32 @@
                 <div class="row">
                     <!-- Start of left pointer -->
                     <div class="col s1" style="float: left">
-
-                        <div class="valign-wrapper" style="min-height: 80vh">
+                        <div class="valign-wrapper" style="min-height: 80vh;">
                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
                         </div>
-
                     </div>
                     <!-- End of left pointer -->
-                    <div class="center">
-                        <c:forEach var="comic" items="${my_comics}">
-                            <div class="col s3">
-                                 <a href="/editimages?series_title=${comic.seriesTitle}&issue_title=${comic.issueTitle}&volume=${comic.volume}&issue=${comic.issue}">
-                                    <div class="card cyan lighten-3" onclick="">
-                                        <div class="card-image">
-                                            <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
+
+                    <div class="col s10">
+                        <div class="row">
+                            <c:forEach var="comic" items="${my_comics}">
+                                <div class="col s3">
+                                    <a href="/editimages?series_title=${comic.seriesTitle}&issue_title=${comic.issueTitle}&volume=${comic.volume}&issue=${comic.issue}">
+                                        <div class="card cyan lighten-3" onclick="">
+                                            <div class="card-image">
+                                                <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
+                                            </div>
+                                            <div class="card-title center">${comic.seriesTitle}</div>
                                         </div>
-                                        <div class="card-title center">${comic.seriesTitle}</div>
-                                    </div>
-                                </a>
-                            </div>
-                        </c:forEach>
-
-                        <%--<!-- Start of first column -->--%>
-                        <%--<div class="col s3">--%>
-
-                            <%--<!--Start of first card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of first card-->--%>
-
-                            <%--<!--Start of second card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of second card-->--%>
-
-                            <%--<!--Start of third card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of third card-->--%>
-
-                        <%--</div>--%>
-                        <%--<!-- End of the first column-->--%>
-
-
-                        <%--<!-- start of second column -->--%>
-                        <%--<div class="col s3">--%>
-                            <%--<!--Start of first card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of first card-->--%>
-
-                            <%--<!--Start of second card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of second card-->--%>
-
-                            <%--<!--Start of third card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of third card-->--%>
-                        <%--</div>--%>
-                        <%--<!-- End of second column-->--%>
-
-
-                        <%--<!-- Start of third column -->--%>
-                        <%--<div class="col s3">--%>
-                            <%--<!--Start of first card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of first card-->--%>
-
-                            <%--<!--Start of second card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of second card-->--%>
-
-                            <%--<!--Start of third card-->--%>
-                            <%--<div class="card cyan lighten-3" onclick="">--%>
-                                <%--<div class="card-image">--%>
-                                    <%--<img src="image/6.jpg">--%>
-                                <%--</div>--%>
-                                <%--<div class="card-title center">Batman</div>--%>
-                            <%--</div>--%>
-                            <%--<!--End of third card-->--%>
-                        <%--</div>--%>
-                        <%--<!-- End of third column-->--%>
+                                    </a>
+                                </div>
+                            </c:forEach>
+                        </div>
                     </div>
 
                     <!-- Start of right pointer-->
                     <div class="col s1" style="float: right;">
-                        <div class="valign-wrapper" style="min-height: 80vh; ">
+                        <div class="valign-wrapper" style="min-height: 80vh; max-height:80vh;">
                             <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
                         </div>
                     </div>
