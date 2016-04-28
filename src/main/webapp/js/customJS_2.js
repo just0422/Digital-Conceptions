@@ -60,10 +60,5 @@ $(document).ready(function () {
         $("#create_canvas").hide();
         $("#upload").show();
     });
-    $("#new_comic_button").click(function () {
-       $("#upload").hide();
-        $("#my_comic").hide();
-        $("#create_canvas").show();
-    });
 });
 

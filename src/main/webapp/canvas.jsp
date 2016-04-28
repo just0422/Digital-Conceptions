@@ -73,7 +73,7 @@
     <main class="main body body-background-color">
 
         <!-- Start of actual create comic secion -->
-        <div id="create_canvas" ng-app="kitchensink" style="display: none">
+        <div id="create_canvas" ng-app="kitchensink">
 
             <!-- Start of create tools -->
             <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
