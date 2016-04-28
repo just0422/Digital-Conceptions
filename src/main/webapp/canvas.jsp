@@ -602,8 +602,75 @@
 
         <!-- End of actual create comic seciont -->
 
+        <div class="col s9">
+            <div class="container-1">
+                <form action="${upload}" method="post" id="comic_upload" enctype="multipart/form-data">
+                    <div class="input-field titles">
+                        <input id="series_title" type="text" class="validate" name="series_title">
+                        <label for="series_title">Series Title</label>
+                    </div>
+                    <div class="input-field titles issues">
+                        <input id="issue_title" type="text" class="validate" name="issue_title">
+                        <label for="issue_title">Issue Title</label>
+                    </div>
+                    <div class="input-field titles">
+                        <input id="volume" type="number" class="validate" name="volume">
+                        <label for="volume">Volume</label>
+                    </div>
+                    <div class="input-field titles issues">
+                        <input id="issue" type="number" class="validate" name="issue">
+                        <label for="issue">Issues</label>
+                    </div>
 
 
+
+                    <div class="input-field col s11">
+                        <select name="genre" form="comic_upload" required>
+                            <option value="" disabled selected>Choose your genre</option>
+                            <option value="action">Action</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="drama">Drama</option>
+                            <option value="horror">Horror</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="romance">Romance</option>
+                            <option value="sport">Sports</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                                        <textarea id="description" class="materialize-textarea" name="description"
+                                                  required></textarea>
+                        <label for="description">Description of the comic</label>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="pad-top-20"></div>
+            <div class="pad-top-20"></div>
+            <!-- Browse and Submit buttons -->
+            <div class="col s12">
+                <div class="file-field input-field">
+                    <div class="waves-effect waves-light btn cyan lighten-2"><i
+                            class="material-icons right">cloud_upload</i>Browse</input>
+                        <input type="file" multiple form="comic_upload" name="upload_images">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text"
+                               placeholder="Upload one or more files">
+                    </div>
+                </div>
+
+
+                <div class="pad-top-20"></div>
+                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"
+                        form="comic_upload" type="submit"><i
+                        class="material-icons right">send</i>Submit
+                </button>
+            </div>
+
+        </div>
 
         <!-- Start of Add button -->
         <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">

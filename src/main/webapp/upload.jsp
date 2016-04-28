@@ -293,7 +293,7 @@
                         </div>
                     </div>
 
-                    <canvas id="canvas" width="700" height="600"></canvas>
+                    <canvas id="canvas" width="1000" height="700" style="margin:auto;"></canvas>
 
                     <div id="color-opacity-controls" ng-show="canvas.getActiveObject()">
 
