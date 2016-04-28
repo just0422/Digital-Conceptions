@@ -60,26 +60,28 @@
                 </div>
 
                 <div class="col s4 right-align" style="padding-top: 5px">
-                    <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back to My Comic</a>
+                    <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
+                        to My Comic</a>
                 </div>
 
                 <div class="col s8 right-align">
-                   <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem">delete_forever</i>
-                   <i id="save" class="material-icons hoverable-1" style="font-size: 3rem">save</i>
+                    <i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>
+                    <i id="delete" class="material-icons hoverable-1" style="font-size: 3rem">delete_forever</i>
+                    <i id="save" class="material-icons hoverable-1" style="font-size: 3rem">save</i>
                 </div>
 
 
                 <c:set var="column" value="${0}"/>
 
                 <ul id="sortable">
-                <c:forEach var="imgLink" items="${current_comic.urls}" varStatus="loop">
-                    <li class="card hoverable cyan lighten-3 col s4 pad-top-10 page-image" >
-                        <div class="card-image">
-                            <img id="img${column}" src="${imgLink}" onclick="select(this)">
-                        </div>
-                    </li>
-                    <c:set var="column" value="${column + 1}"/>
-                </c:forEach>
+                    <c:forEach var="imgLink" items="${current_comic.urls}" varStatus="loop">
+                        <li class="card hoverable cyan lighten-3 col s4 pad-top-10 page-image">
+                            <div class="card-image">
+                                <img id="img${column}" src="${imgLink}" onclick="select(this)">
+                            </div>
+                        </li>
+                        <c:set var="column" value="${column + 1}"/>
+                    </c:forEach>
                 </ul>
 
                 <script>
@@ -87,20 +89,20 @@
                         $(element).toggleClass("selected-page");
                     }
 
-                    function trash(){
+                    function trash() {
                         var elements = document.getElementsByClassName("page-image");
-                        for (i = 0; i < elements.length; i++){
-                            if ($($(elements[i]).find('img')[0]).hasClass("selected-page")){
+                        for (i = 0; i < elements.length; i++) {
+                            if ($($(elements[i]).find('img')[0]).hasClass("selected-page")) {
                                 $(elements[i]).remove();
                             }
                         }
                     }
 
-                    $(document).ready(function(){
+                    $(document).ready(function () {
                         $("#sortable").sortable();
                     })
 
-                    $(document).keydown(function(e) {
+                    $(document).keydown(function (e) {
                         if (e.which == 8)
                             e.preventDefault();
 
