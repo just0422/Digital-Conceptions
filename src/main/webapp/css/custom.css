@@ -210,6 +210,9 @@
     .selected-page{
         outline: 5px solid #ffff00;
     }
+    .preview_field{
+        display: none;
+    }
 
 
     .reading-height{

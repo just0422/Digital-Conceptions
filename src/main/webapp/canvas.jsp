@@ -471,7 +471,6 @@
                                 Load
                             </button>
                             <button type="button" class="btn btn-info" onclick="save()">
-                                    <%--ng-click="saveJSON()">--%>
                                 Save
                             </button>
                         </div>
@@ -479,8 +478,6 @@
                     </div>
 
                 </div>
-                    <%--<input name="canvas_JSON" id="canvas_JSON" form="comic_upload" hidden>--%>
-                    <%--<input type="file" name="canvas_image" id="canvas_image" form="comic_upload" hidden>--%>
 
                 <script src="js/font_definitions.js"></script>
                 <script>
@@ -489,10 +486,7 @@
 
                     function save(){
                         var string = JSON.stringify(canvas);
-//                        console.log(string);
-
-                        var url = canvas.toDataURL("image/jpeg");//.replace(/^data:image\/(png|jpg);base64,/, "");
-//                        console.log(url);
+                        var url = canvas.toDataURL("image/jpeg");
 
 
                         var blobBin = atob(url.split(',')[1]);
@@ -501,9 +495,6 @@
                             array.push(blobBin.charCodeAt(i));
                         }
                         var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
-
-//                        $("#canvas_JSON").val(string);
-//                        $("#canvas_image").val(file);
 
                         var formdata = new FormData();
                         formdata.append("canvas_image", file);
@@ -524,25 +515,6 @@
                         }).done(function(respond){
                             alert(respond);
                         });
-//                        var options = {
-//                            data:formdata,
-//                            success: respond
-//                        };
-//                        $("#comic_upload").ajaxForm(options);
-
-
-                        <%--$.ajax({--%>
-                            <%--url : "${create}",--%>
-                            <%--type : "POST",--%>
-                            <%--enctype: 'multipart/form-data',--%>
-                            <%--data : {--%>
-                                <%--canvas_JSON : string,--%>
-                                <%--canvas_image : url--%>
-                            <%--},--%>
-                            <%--success: function () {--%>
-                                <%--console.log("Data Uploaded: ");--%>
-                            <%--}--%>
-                        <%--});--%>
                     }
 
                     function respond(){

@@ -27,6 +27,7 @@
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
@@ -65,7 +66,18 @@
                 </div>
 
                 <div class="col s8 right-align">
-                    <i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>
+
+                    <%--<form id="comic_upload" method="post" action="${edit}" enctype="multipart/form-data">--%>
+                        <%--<input id="dummy" type="submit" name="dummy">--%>
+                        <%--<input id="series_title" type="text" class="validate preview_field" name="series_title" value="${current_comic.seriesTitle}">--%>
+                        <%--<input id="issue_title" type="text" class="validate preview_field" name="issue_title" value="${current_comic.issueTitle}">--%>
+                        <%--<input id="volume" type="number" class="validate preview_field" name="volume" value="${current_comic.volume}">--%>
+                        <%--<input id="issue" type="number" class="validate preview_field" name="issue" value="${current_comic.issue}">--%>
+                        <%--<input id="uploaded_files" type="file" class="" name="uploaded_files" multiple >--%>
+                        <%--<label for="uploaded_files">--%>
+                            <%--<i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>--%>
+                        <%--</label>--%>
+                    <%--</form>--%>
                     <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem" onclick="trash()">delete_forever</i>
                    <i id="save" class="material-icons hoverable-1" style="font-size: 3rem" onclick="save_images()">save</i>
                 </div>
@@ -85,6 +97,22 @@
                 </ul>
 
                 <script>
+                    $(document).ready(function () {
+                        var options = {
+                            beforeSend: function () {
+                                console.log("Sending");
+                            },
+                            success: function (data, status) {
+                                console.log(data + status);
+                                var req = data.split(',');
+//                                window.location.href = "/editimages?series_title=" + req[0] +
+//                                        "&issue_title=" + req[1] + "&volume=" + req[2] +
+//                                        "&issue=" + req[3];
+                            }
+                        }
+                        $("#comic_upload").ajaxForm(options);
+                    });
+
                     function select(element) {
                         $(element).toggleClass("selected-page");
                     }
@@ -119,7 +147,6 @@
                         });
                     }
 
-                    $(document).ready(function(){
                     $(document).ready(function () {
                         $("#sortable").sortable();
                     })
