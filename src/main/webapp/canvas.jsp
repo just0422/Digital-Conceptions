@@ -470,7 +470,8 @@
                             <button type="button" class="btn btn-info" ng-click="loadJSON()">
                                 Load
                             </button>
-                            <button type="button" class="btn btn-info" ng-click="saveJSON()">
+                            <button type="button" class="btn btn-info" onclick="save()">
+                                    <%--ng-click="saveJSON()">--%>
                                 Save
                             </button>
                         </div>
@@ -478,11 +479,75 @@
                     </div>
 
                 </div>
+                    <%--<input name="canvas_JSON" id="canvas_JSON" form="comic_upload" hidden>--%>
+                    <%--<input type="file" name="canvas_image" id="canvas_image" form="comic_upload" hidden>--%>
 
                 <script src="js/font_definitions.js"></script>
                 <script>
                     var kitchensink = {};
                     var canvas = new fabric.Canvas('canvas');
+
+                    function save(){
+                        var string = JSON.stringify(canvas);
+//                        console.log(string);
+
+                        var url = canvas.toDataURL("image/jpeg");//.replace(/^data:image\/(png|jpg);base64,/, "");
+//                        console.log(url);
+
+
+                        var blobBin = atob(url.split(',')[1]);
+                        var array = [];
+                        for(var i = 0; i < blobBin.length; i++) {
+                            array.push(blobBin.charCodeAt(i));
+                        }
+                        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+
+//                        $("#canvas_JSON").val(string);
+//                        $("#canvas_image").val(file);
+
+                        var formdata = new FormData();
+                        formdata.append("canvas_image", file);
+                        formdata.append("canvas_JSON", string);
+                        formdata.append("series_title", $("#series_title").val());
+                        formdata.append("issue_title", $("#issue_title").val());
+                        formdata.append("volume", $("#volume").val());
+                        formdata.append("issue", $("#issue").val());
+                        formdata.append("genre", $("#genre_select").val());
+                        formdata.append("description", $("#description").val());
+
+                        $.ajax({
+                            url: "${create}",
+                            type: "POST",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                        }).done(function(respond){
+                            alert(respond);
+                        });
+//                        var options = {
+//                            data:formdata,
+//                            success: respond
+//                        };
+//                        $("#comic_upload").ajaxForm(options);
+
+
+                        <%--$.ajax({--%>
+                            <%--url : "${create}",--%>
+                            <%--type : "POST",--%>
+                            <%--enctype: 'multipart/form-data',--%>
+                            <%--data : {--%>
+                                <%--canvas_JSON : string,--%>
+                                <%--canvas_image : url--%>
+                            <%--},--%>
+                            <%--success: function () {--%>
+                                <%--console.log("Data Uploaded: ");--%>
+                            <%--}--%>
+                        <%--});--%>
+                    }
+
+                    function respond(){
+                        console.log("DONE");
+                    }
                 </script>
 
                 <script src="js/utils.js"></script>
@@ -604,28 +669,28 @@
 
         <div class="col s9">
             <div class="container-1">
-                <form action="${upload}" method="post" id="comic_upload" enctype="multipart/form-data">
+                <%--<form action="${create}" method="post" id="comic_upload" enctype="multipart/form-data">--%>
                     <div class="input-field titles">
-                        <input id="series_title" type="text" class="validate" name="series_title">
+                        <input id="series_title" type="text" class="validate" name="series_title" required>
                         <label for="series_title">Series Title</label>
                     </div>
                     <div class="input-field titles issues">
-                        <input id="issue_title" type="text" class="validate" name="issue_title">
+                        <input id="issue_title" type="text" class="validate" name="issue_title" required>
                         <label for="issue_title">Issue Title</label>
                     </div>
                     <div class="input-field titles">
-                        <input id="volume" type="number" class="validate" name="volume">
+                        <input id="volume" type="number" class="validate" name="volume" required>
                         <label for="volume">Volume</label>
                     </div>
                     <div class="input-field titles issues">
-                        <input id="issue" type="number" class="validate" name="issue">
+                        <input id="issue" type="number" class="validate" name="issue" required>
                         <label for="issue">Issues</label>
                     </div>
 
 
 
                     <div class="input-field col s11">
-                        <select name="genre" form="comic_upload" required>
+                        <select name="genre" id="genre_select" required>
                             <option value="" disabled selected>Choose your genre</option>
                             <option value="action">Action</option>
                             <option value="comedy">Comedy</option>
@@ -643,7 +708,7 @@
                                                   required></textarea>
                         <label for="description">Description of the comic</label>
                     </div>
-                </form>
+                <%--</form>--%>
 
             </div>
 
@@ -651,23 +716,23 @@
             <div class="pad-top-20"></div>
             <!-- Browse and Submit buttons -->
             <div class="col s12">
-                <div class="file-field input-field">
-                    <div class="waves-effect waves-light btn cyan lighten-2"><i
-                            class="material-icons right">cloud_upload</i>Browse</input>
-                        <input type="file" multiple form="comic_upload" name="upload_images">
-                    </div>
-                    <div class="file-path-wrapper">
-                        <input class="file-path validate" type="text"
-                               placeholder="Upload one or more files">
-                    </div>
-                </div>
+                <%--<div class="file-field input-field">--%>
+                    <%--<div class="waves-effect waves-light btn cyan lighten-2"><i--%>
+                            <%--class="material-icons right">cloud_upload</i>Browse</input>--%>
+                        <%--<input type="file" multiple form="comic_upload" name="upload_images">--%>
+                    <%--</div>--%>
+                    <%--<div class="file-path-wrapper">--%>
+                        <%--<input class="file-path validate" type="text"--%>
+                               <%--placeholder="Upload one or more files">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
 
 
-                <div class="pad-top-20"></div>
-                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"
-                        form="comic_upload" type="submit"><i
-                        class="material-icons right">send</i>Submit
-                </button>
+                <%--<div class="pad-top-20"></div>--%>
+                <%--<button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"--%>
+                        <%--form="comic_upload" type="submit"><i--%>
+                        <%--class="material-icons right">send</i>Submit--%>
+                <%--</button>--%>
             </div>
 
         </div>

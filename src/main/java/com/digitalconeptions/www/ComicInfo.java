@@ -37,6 +37,8 @@ public class ComicInfo {
     @Index double rating;
     @Index int volume;
     @Index int issue;
+    @Index boolean isCanvas;
+    String json;
 
     List<BlobKey> images;
     List<String> urls;
@@ -97,7 +99,8 @@ public class ComicInfo {
                      int volume,
                      int issue,
                      List<BlobKey> images,
-                     List<String> urls){
+                     List<String> urls,
+                     boolean canvas){
         this(username, seriesTitle, comicTitle);
         this.description = description;
         this.genre = genre;
@@ -105,6 +108,7 @@ public class ComicInfo {
         this.issue = issue;
         this.images = images;
         this.urls = urls;
+        this.isCanvas = canvas;
     }
 
     public void setKey(){
@@ -204,4 +208,8 @@ public class ComicInfo {
     public void setUrls(List<String> urls) { this.urls = urls; }
     public int getImagesListSize() { return images.size(); }
     public int getUrlsListSize() { return urls.size(); }
+    public String getJson() { return json; }
+    public void setJson(String json) { this.json = json; }
+    public boolean getIsCanvas() { return isCanvas; }
+    public void setIsCanvas(boolean canvas) { this.isCanvas = canvas; }
 }
