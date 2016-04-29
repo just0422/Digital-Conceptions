@@ -120,8 +120,12 @@
                                 beforeSend: function () {
                                     console.log("Sending");
                                 },
-                                success: function (resp) {
-                                    console.log(resp);
+                                success: function (data, status) {
+                                    console.log(data + status);
+                                    var req = data.split(',');
+                                    window.location.href = "/editimages?series_title=" + req[0] +
+                                            "&issue_title=" + req[1] + "&volume=" + req[2] +
+                                            "&issue=" + req[3];
                                 }
                             }
                             $("#comic_upload").ajaxForm(options);
@@ -132,19 +136,19 @@
                         <div class="container-1">
                             <form action="${upload}" method="post" id="comic_upload" enctype="multipart/form-data">
                                 <div class="input-field titles">
-                                    <input id="series_title" type="text" class="validate" name="series_title">
+                                    <input id="series_title" type="text" class="validate" name="series_title" required >
                                     <label for="series_title">Series Title</label>
                                 </div>
                                 <div class="input-field titles issues">
-                                    <input id="issue_title" type="text" class="validate" name="issue_title">
+                                    <input id="issue_title" type="text" class="validate" name="issue_title" required >
                                     <label for="issue_title">Issue Title</label>
                                 </div>
                                 <div class="input-field titles">
-                                    <input id="volume" type="number" class="validate" name="volume">
+                                    <input id="volume" type="number" class="validate" name="volume" required >
                                     <label for="volume">Volume</label>
                                 </div>
                                 <div class="input-field titles issues">
-                                    <input id="issue" type="number" class="validate" name="issue">
+                                    <input id="issue" type="number" class="validate" name="issue" required >
                                     <label for="issue">Issues</label>
                                 </div>
 

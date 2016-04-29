@@ -64,8 +64,8 @@
                 </div>
 
                 <div class="col s8 right-align">
-                   <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem">delete_forever</i>
-                   <i id="save" class="material-icons hoverable-1" style="font-size: 3rem">save</i>
+                   <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem" onclick="trash()">delete_forever</i>
+                   <i id="save" class="material-icons hoverable-1" style="font-size: 3rem" onclick="save_images()">save</i>
                 </div>
 
 
@@ -94,6 +94,27 @@
                                 $(elements[i]).remove();
                             }
                         }
+                    }
+
+                    function save_images() {
+                        var elements = document.getElementsByClassName("page-image");
+                        var links=[];
+                        for (i = 0; i < elements.length; i++) {
+                            links.push($($(elements[i]).find('img')[0]).attr('src'))
+                        }
+
+                        $.post(
+                            "/editimages",
+                            {
+                                series_title : '${current_comic.seriesTitle}',
+                                issue_title : '${current_comic.issueTitle}',
+                                volume : '${current_comic.volume}',
+                                issue : '${current_comic.issue}',
+                                images : links.toString()
+                            },
+                            function(data){
+                                console.log("Response: " + data);
+                        });
                     }
 
                     $(document).ready(function(){

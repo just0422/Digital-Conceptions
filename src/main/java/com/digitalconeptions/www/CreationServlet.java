@@ -92,10 +92,10 @@ public class CreationServlet extends HttpServlet {
 
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();
-            resp.getWriter().write("1");
+            resp.getWriter().write(seriesTitle + "," + issueTitle + "," + volume + "," + issue);
+//            resp.setStatus(1);
             ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/editimages?series_title=" + seriesTitle + "&issue_title=" +
-                issueTitle + "&volume=" + volume + "&issue=" + issue);
+            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
             rd.forward(req, resp);
         }
         else{
