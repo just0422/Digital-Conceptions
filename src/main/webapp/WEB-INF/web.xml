@@ -38,6 +38,10 @@
         <servlet-name>editimageservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.EditImagesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SaveCanvasServlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.SaveCanvasServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet Mappings -->
     <servlet-mapping>

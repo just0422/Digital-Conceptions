@@ -54,15 +54,15 @@
                 <div class="col s12">
                     <nav>
                         <div class="nav-wrapper cyan lighten-3 center">
-                                <ul id="genres" class="center">
-                                    <li id="action" class="z-depth-1"><a>Action</a></li>
-                                    <li id="drama"><a>Drama</a></li>
-                                    <li id="romance"><a>Romance</a></li>
-                                    <li id="comedy"><a>Comedy</a></li>
-                                    <li id="horror"><a>Horror</a></li>
-                                    <li id="fantasy"><a>Fantasy</a></li>
-                                    <li id="sport"><a>Sport</a></li>
-                                </ul>
+                            <ul id="genres" class="center">
+                                <li id="action" class="z-depth-1"><a>Action</a></li>
+                                <li id="drama"><a>Drama</a></li>
+                                <li id="romance"><a>Romance</a></li>
+                                <li id="comedy"><a>Comedy</a></li>
+                                <li id="horror"><a>Horror</a></li>
+                                <li id="fantasy"><a>Fantasy</a></li>
+                                <li id="sport"><a>Sport</a></li>
+                            </ul>
                         </div>
                     </nav>
 
@@ -72,145 +72,163 @@
             <div id="genre_content">
                 <div class="row">
                     <%-- How to show next page of comics? --%>
-                    <c:forEach var="comic" items="${requestScope.comics}">
-                        <div class="col s3">
-                            <form action="/comicservlet" method="GET">
-                                <input type="hidden" name="series_title" value="${comic.seriesTitle}">
-                                <input type="hidden" name="issue_title" value="${comic.issueTitle}">
-                                <input type="hidden" name="volume" value="${comic.volume}">
-                                <input type="hidden" name="issue" value="${comic.issue}">
-                                <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
-                                    <div class="card-image">
-                                        <img src="image/5.jpg">
+                    <div id="action_comics">
+                        <c:forEach var="comic" items="${requestScope.action_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
                                     </div>
-                                    <div class="card-content white-text">
-                                        <p class="flow-text">${comic.seriesTitle}</p>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </c:forEach>
+                                </form>
+                            </div>
+                        </c:forEach>
+                    </div>
 
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
+                    <div id="drama_comics" style="display:none;">
+                        <c:forEach var="comic" items="${requestScope.drama_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
+
+                    <div id="romance_comics" style="display:none;">
+                        <c:forEach var="comic" items="${requestScope.romance_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
+
+                    <div id="comedy_comics" style="display:none;">
+                        <c:forEach var="comic" items="${requestScope.comedy_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
+
+                    <div id="horror_comics" style="display:none;">
+                        <c:forEach var="comic" items="${requestScope.horror_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
+
+                    <div id="fantasy_comics" style="display:none;">
+                        <c:forEach var="comic" items="${requestScope.fantasy_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
+
+                    <div id="sport_comics" style="display:none;">
+                        <c:forEach var="comic" items="${requestScope.sport_comics}">
+                            <div class="col s3">
+                                <form action="/comic" method="GET">
+                                    <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                    <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                    <input type="hidden" name="volume" value="${comic.volume}">
+                                    <input type="hidden" name="issue" value="${comic.issue}">
+                                    <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}">
+                                        </div>
+                                        <div class="card-content white-text">
+                                            <p class="flow-text">${comic.seriesTitle}</p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s3">
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text">Hero</p>
-                            </div>
-                        </div>
-                    </div>
+
+                    <%--<div class="col s3">--%>
+                        <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
+                            <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                            <%--</div>--%>
+                            <%--<div class="card-content white-text">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                            <%--</div>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                 </div>
 
 

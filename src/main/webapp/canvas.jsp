@@ -72,202 +72,8 @@
     <!-- Main body-->
     <main class="main body body-background-color">
 
-        <div class="pad-top-20"></div>
-        <div class="pad-top-20"></div>
-        <!-- Buttons for My Comics and Upload -->
-        <div class="row">
-            <div class="col s12">
-
-                <div class="container">
-                    <!-- My Comic Button-->
-                    <a id="my_comic_button" class="waves-effect waves-light btn cyan lighten-2 left"><i
-                            class="material-icons right">dashboard</i>My Comic</a>
-
-                    <!-- Upload button-->
-                    <a id="upload_button" class="waves-effect waves-light btn cyan lighten-2 right"><i
-                            class="material-icons right">file_upload</i>Upload</a>
-                </div>
-
-            </div>
-        </div>
-
-        <div class="pad-top-20"></div>
-
-
-        <!-- The upload section -->
-        <div id="upload" style="display: none">
-            <div class="container-1">
-
-
-                <div class="row">
-
-                    <!-- Comic Cover -->
-                    <div class="col s3">
-
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img id="cover_image" src="image/9.jpg" style="max-height: 200px; min-height:200px">
-                            </div>
-                            <div class="card-content white-text">
-                                <p class="flow-text center">Cover</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <script>
-                        $(document).ready(function () {
-                            var options = {
-                                beforeSend: function () {
-                                    console.log("Sending");
-                                },
-                                success: function (data, status) {
-                                    console.log(data + status);
-                                    var req = data.split(',');
-                                    window.location.href = "/editimages?series_title=" + req[0] +
-                                            "&issue_title=" + req[1] + "&volume=" + req[2] +
-                                            "&issue=" + req[3];
-                                }
-                            }
-                            $("#comic_upload").ajaxForm(options);
-                        });
-                    </script>
-                    <!-- Upload information -->
-                    <div class="col s9">
-                        <div class="container-1">
-                            <form action="${upload}" method="post" id="comic_upload" enctype="multipart/form-data">
-                                <div class="input-field titles">
-                                    <input id="series_title" type="text" class="validate" name="series_title" required >
-                                    <label for="series_title">Series Title</label>
-                                </div>
-                                <div class="input-field titles issues">
-                                    <input id="issue_title" type="text" class="validate" name="issue_title" required >
-                                    <label for="issue_title">Issue Title</label>
-                                </div>
-                                <div class="input-field titles">
-                                    <input id="volume" type="number" class="validate" name="volume" required >
-                                    <label for="volume">Volume</label>
-                                </div>
-                                <div class="input-field titles issues">
-                                    <input id="issue" type="number" class="validate" name="issue" required >
-                                    <label for="issue">Issues</label>
-                                </div>
-
-
-
-                                <div class="input-field col s11">
-                                    <select name="genre" form="comic_upload" required>
-                                        <option value="" disabled selected>Choose your genre</option>
-                                        <option value="action">Action</option>
-                                        <option value="comedy">Comedy</option>
-                                        <option value="drama">Drama</option>
-                                        <option value="horror">Horror</option>
-                                        <option value="fantasy">Fantasy</option>
-                                        <option value="romance">Romance</option>
-                                        <option value="sport">Sports</option>
-                                    </select>
-                                </div>
-
-
-                                <div class="input-field col s12">
-                                        <textarea id="description" class="materialize-textarea" name="description"
-                                                  required></textarea>
-                                    <label for="description">Description of the comic</label>
-                                </div>
-                            </form>
-
-                        </div>
-
-                        <div class="pad-top-20"></div>
-                        <div class="pad-top-20"></div>
-                        <!-- Browse and Submit buttons -->
-                        <div class="col s12">
-                            <div class="file-field input-field">
-                                <div class="waves-effect waves-light btn cyan lighten-2"><i
-                                        class="material-icons right">cloud_upload</i>Browse</input>
-                                    <input type="file" multiple form="comic_upload" name="upload_images">
-                                </div>
-                                <div class="file-path-wrapper">
-                                    <input class="file-path validate" type="text"
-                                           placeholder="Upload one or more files">
-                                </div>
-                            </div>
-
-
-                            <div class="pad-top-20"></div>
-                            <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"
-                                    form="comic_upload" type="submit"><i
-                                    class="material-icons right">send</i>Submit
-                            </button>
-                        </div>
-
-                    </div>
-
-                </div>
-            </div>
-            <div class="pad-top-20"></div>
-            <div class="pad-top-20"></div>
-
-        </div>
-        <!-- End of upload section -->
-
-        <!-- Start of My Comic section -->
-        <div id="my_comic">
-
-            <!-- Start of empty_comic -->
-            <!-- User hasn't create any comic -->
-            <div id="empty_comic" style="display: none">
-                <div class="center flow-text valign-wrapper" style="padding-top: 20%; padding-left: 25%">
-                    <h4 class="valign"> You Haven't Created Anything Yet </h4>
-                </div>
-            </div>
-            <!-- End of empty_comic-->
-
-            <!-- Start of sample my_comic layout -->
-            <div id="my_comic_content" class="container-1">
-                <div class="row">
-                    <!-- Start of left pointer -->
-                    <div class="col s1" style="float: left">
-                        <div class="valign-wrapper" style="min-height: 80vh;">
-                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
-                        </div>
-                    </div>
-                    <!-- End of left pointer -->
-
-                    <div class="col s10">
-                        <div class="row">
-                            <c:forEach var="comic" items="${my_comics}">
-                                <div class="col s3">
-                                    <a href="/editimages?series_title=${comic.seriesTitle}&issue_title=${comic.issueTitle}&volume=${comic.volume}&issue=${comic.issue}">
-                                        <div class="card cyan lighten-3" onclick="">
-                                            <div class="card-image">
-                                                <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
-                                            </div>
-                                            <div class="card-title center">${comic.seriesTitle}</div>
-                                        </div>
-                                    </a>
-                                </div>
-                            </c:forEach>
-                        </div>
-                    </div>
-
-                    <!-- Start of right pointer-->
-                    <div class="col s1" style="float: right;">
-                        <div class="valign-wrapper" style="min-height: 80vh; max-height:80vh;">
-                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
-                        </div>
-                    </div>
-                    <!-- End of right pointer -->
-
-                </div>
-                <!-- End of the grid layout -->
-                <div class="pad-top-20"></div>
-            </div>
-            <!-- End of sample my_comic layout-->
-        </div>
-
-
         <!-- Start of actual create comic secion -->
-        <div id="create_canvas" ng-app="kitchensink" style="display: none">
+        <div id="create_canvas" ng-app="kitchensink">
 
             <!-- Start of create tools -->
             <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
@@ -297,7 +103,7 @@
                         </div>
                     </div>
 
-                    <canvas id="canvas" width="1000" height="700" style="margin:auto;"></canvas>
+                    <canvas id="canvas" width="700" height="600"></canvas>
 
                     <div id="color-opacity-controls" ng-show="canvas.getActiveObject()">
 
@@ -455,36 +261,36 @@
 
                             <%--<p>Add <strong>images</strong> to canvas:</p>--%>
                             <%--<p>--%>
-                                <%--<button type="button" class="btn image1" ng-click="addImage1()">Image 1 (pug)--%>
-                                <%--</button>--%>
-                                <%--<button type="button" class="btn image2" ng-click="addImage2()">Image 2 (google)--%>
-                                <%--</button>--%>
-                                <%--<button type="button" class="btn image3" n-click="addImage3()">Image 3 (printio)--%>
-                                <%--</button>--%>
+                            <%--<button type="button" class="btn image1" ng-click="addImage1()">Image 1 (pug)--%>
+                            <%--</button>--%>
+                            <%--<button type="button" class="btn image2" ng-click="addImage2()">Image 2 (google)--%>
+                            <%--</button>--%>
+                            <%--<button type="button" class="btn image3" n-click="addImage3()">Image 3 (printio)--%>
+                            <%--</button>--%>
                             <%--</p>--%>
 
                             <%--<p>Add <strong>gradient-based shapes</strong> to canvas:</p>--%>
 
                             <%--<p>--%>
-                                <%--<button class="btn shape" id="shape74">Gradient 1</button>--%>
-                                <%--<button class="btn shape" id="shape66">Gradient 2</button>--%>
-                                <%--<button class="btn shape" id="shape75">Gradient 3</button>--%>
-                                <%--<button class="btn shape" id="shape148">Gradient 4</button>--%>
+                            <%--<button class="btn shape" id="shape74">Gradient 1</button>--%>
+                            <%--<button class="btn shape" id="shape66">Gradient 2</button>--%>
+                            <%--<button class="btn shape" id="shape75">Gradient 3</button>--%>
+                            <%--<button class="btn shape" id="shape148">Gradient 4</button>--%>
                             <%--</p>--%>
 
                             <%--<p>Add <strong>arcs</strong> and misc to canvas:</p>--%>
 
                             <%--<p>--%>
-                                <%--<button class="btn shape" id="shape104">Arc(s) 1</button>--%>
-                                <%--<button class="btn shape" id="shape105">Arc(s) 2</button>--%>
-                                <%--<button class="btn shape" id="shape106">Arc(s) 3</button>--%>
-                                <%--<button class="btn shape" id="shape107">Arc(s) 4</button>--%>
+                            <%--<button class="btn shape" id="shape104">Arc(s) 1</button>--%>
+                            <%--<button class="btn shape" id="shape105">Arc(s) 2</button>--%>
+                            <%--<button class="btn shape" id="shape106">Arc(s) 3</button>--%>
+                            <%--<button class="btn shape" id="shape107">Arc(s) 4</button>--%>
                             <%--</p>--%>
                             <%--<p>--%>
-                                <%--<button class="btn shape" id="shape103">Transformed paths</button>--%>
+                            <%--<button class="btn shape" id="shape103">Transformed paths</button>--%>
                             <%--</p>--%>
                             <%--<p>--%>
-                                <%--<button class="btn shape" id="shape54">Image</button>--%>
+                            <%--<button class="btn shape" id="shape54">Image</button>--%>
                             <%--</p>--%>
                         </div>
 
@@ -496,7 +302,7 @@
                                         Image
                                     </button>
                                     <%--<button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">--%>
-                                        <%--SVG--%>
+                                    <%--SVG--%>
                                     <%--</button>--%>
                                     <button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">
                                         JSON
@@ -645,18 +451,18 @@
                         </div>
 
                         <%--<div class="tab-pane" id="load-svg-pane">--%>
-                            <%--<textarea id="svg-console" bind-value-to="consoleSVG"></textarea>--%>
-                            <%--<button type="button" class="btn btn-info" ng-click="loadSVG()">--%>
-                                <%--Load--%>
-                            <%--</button>--%>
-                            <%--<button type="button" class="btn" ng-click="loadSVGWithoutGrouping()">--%>
-                                <%--Load without grouping--%>
-                            <%--</button>--%>
+                        <%--<textarea id="svg-console" bind-value-to="consoleSVG"></textarea>--%>
+                        <%--<button type="button" class="btn btn-info" ng-click="loadSVG()">--%>
+                        <%--Load--%>
+                        <%--</button>--%>
+                        <%--<button type="button" class="btn" ng-click="loadSVGWithoutGrouping()">--%>
+                        <%--Load without grouping--%>
+                        <%--</button>--%>
                         <%--</div>--%>
 
                         <%--<div class="tab-pane" id="execute-code">--%>
-                            <%--<textarea id="canvas-console" bind-value-to="console"></textarea>--%>
-                            <%--<button type="button" class="btn btn-info" ng-click="execute()">Execute</button>--%>
+                        <%--<textarea id="canvas-console" bind-value-to="console"></textarea>--%>
+                        <%--<button type="button" class="btn btn-info" ng-click="execute()">Execute</button>--%>
                         <%--</div>--%>
 
                         <div class="tab-pane" id="json-inout">
@@ -796,8 +602,75 @@
 
         <!-- End of actual create comic seciont -->
 
-        <!-- End of My Comic section -->
+        <div class="col s9">
+            <div class="container-1">
+                <form action="${upload}" method="post" id="comic_upload" enctype="multipart/form-data">
+                    <div class="input-field titles">
+                        <input id="series_title" type="text" class="validate" name="series_title">
+                        <label for="series_title">Series Title</label>
+                    </div>
+                    <div class="input-field titles issues">
+                        <input id="issue_title" type="text" class="validate" name="issue_title">
+                        <label for="issue_title">Issue Title</label>
+                    </div>
+                    <div class="input-field titles">
+                        <input id="volume" type="number" class="validate" name="volume">
+                        <label for="volume">Volume</label>
+                    </div>
+                    <div class="input-field titles issues">
+                        <input id="issue" type="number" class="validate" name="issue">
+                        <label for="issue">Issues</label>
+                    </div>
 
+
+
+                    <div class="input-field col s11">
+                        <select name="genre" form="comic_upload" required>
+                            <option value="" disabled selected>Choose your genre</option>
+                            <option value="action">Action</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="drama">Drama</option>
+                            <option value="horror">Horror</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="romance">Romance</option>
+                            <option value="sport">Sports</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                                        <textarea id="description" class="materialize-textarea" name="description"
+                                                  required></textarea>
+                        <label for="description">Description of the comic</label>
+                    </div>
+                </form>
+
+            </div>
+
+            <div class="pad-top-20"></div>
+            <div class="pad-top-20"></div>
+            <!-- Browse and Submit buttons -->
+            <div class="col s12">
+                <div class="file-field input-field">
+                    <div class="waves-effect waves-light btn cyan lighten-2"><i
+                            class="material-icons right">cloud_upload</i>Browse</input>
+                        <input type="file" multiple form="comic_upload" name="upload_images">
+                    </div>
+                    <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text"
+                               placeholder="Upload one or more files">
+                    </div>
+                </div>
+
+
+                <div class="pad-top-20"></div>
+                <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"
+                        form="comic_upload" type="submit"><i
+                        class="material-icons right">send</i>Submit
+                </button>
+            </div>
+
+        </div>
 
         <!-- Start of Add button -->
         <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
@@ -809,7 +682,6 @@
         <!-- End of Add button -->
 
     </main>
-
 
     <jsp:include page="footer.jsp"/>
 
