@@ -48,7 +48,7 @@ public class GenreServlet extends HttpServlet{
         req.setAttribute("action_comics", actionComics);
         req.setAttribute("drama_comics", dramaComics);
         req.setAttribute("romance_comics", romanceComics);
-        req.setAttribute("comedyComics", comedyComics);
+        req.setAttribute("comedy_comics", comedyComics);
         req.setAttribute("horror_comics", horrorComics);
         req.setAttribute("fantasy_comics", fantasyComics);
         req.setAttribute("sport_comics", sportComics);
