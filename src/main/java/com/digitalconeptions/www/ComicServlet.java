@@ -50,7 +50,6 @@ public class ComicServlet extends HttpServlet {
         User user = userService.getCurrentUser();
         String subscribed = "Subscribe";
         String start = "Start";
-        // TODO
 
         if (user != null)
         {

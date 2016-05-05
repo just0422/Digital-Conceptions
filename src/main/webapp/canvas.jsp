@@ -40,6 +40,7 @@
     <script type="text/javascript" src="js/fabric.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 
+
     <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
     <%--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
     <script type="text/javascript" src="js/paster.js"></script>
@@ -56,6 +57,12 @@
     <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/app_config.js"></script>
     <script type="text/javascript" src="js/controller.js"></script>
+
+    <link type="text/css" rel="stylesheet" href="css/horizontal.css">
+    <script type="text/javascript" src="js/sly.min.js"></script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script type="text/javascript" src="js/horizontal.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
@@ -77,6 +84,47 @@
 
             <!-- Start of create tools -->
             <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
+                <div class="wrap">
+                    <div class="scrollbar">
+                        <div class="handle">
+                            <div class="mousearea"></div>
+                        </div>
+                    </div>
+
+                    <div class="frame" id="basic">
+                        <ul class="clearfix">
+                            <li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
+                            <li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
+                            <li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
+                            <li>28</li><li>29</li>
+                        </ul>
+                    </div>
+
+                    <ul class="pages"></ul>
+
+                    <div class="controls center">
+                        <button class="btn toStart"><i class="fa fa-fast-backward" aria-hidden="true"></i></button>
+                        <button class="btn prevPage"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                        <button class="btn prev"><i class="fa fa-caret-left fa-2x" aria-hidden="true"></i></button>
+                        <%--<button class="btn backward"><i class="icon-chevron-left"></i> move</button>--%>
+
+                        <%--<div class="btn-group">--%>
+                            <%--<button class="btn toStart">toStart</button>--%>
+                            <%--<button class="btn toCenter">toCenter</button>--%>
+                            <%--<button class="btn toEnd">toEnd</button>--%>
+                        <%--</div>--%>
+
+                        <%--<div class="btn-group">--%>
+                            <%--<button class="btn add"><i class="icon-plus-sign"></i></button>--%>
+                            <%--<button class="btn remove"><i class="icon-minus-sign"></i></button>--%>
+                        <%--</div>--%>
+
+                        <%--<button class="btn forward">move <i class="icon-chevron-right"></i></button>--%>
+                        <button class="btn next"><i class="fa fa-caret-right fa-2x" aria-hidden="true"></i></button>
+                        <button class="btn nextPage"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+                        <button class="btn toEnd"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>
+                    </div>
+                </div>
 
                 <%--<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
                 <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
