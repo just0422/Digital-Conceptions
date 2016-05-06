@@ -35,16 +35,6 @@
 
     <script type="text/javascript" src="js/customJS_2.js"></script>
 
-    <%--<!-- For FabricJS Canvas -->--%>
-    <%--<script type="text/javascript" src="js/prism.min.js"></script>--%>
-    <%--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>--%>
-
-    <%--<script type="text/javascript" src="js/paster.js"></script>--%>
-    <%--<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>--%>
-
-    <%--<link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>--%>
-    <%--<link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>--%>
-
     <script type="text/javascript" src="js/font_definitions.js"></script>
 
     <title>Modify Comic Info</title>
@@ -70,6 +60,7 @@
 
                     <div class="row">
 
+                        <h3>Currently modifying ${current_comic.seriesTitle}</h3>
                         <!-- Comic Cover -->
                         <div class="col s3">
                             <div class="card hoverable cyan lighten-3" onclick="">
@@ -102,50 +93,58 @@
                         <!-- Upload information -->
                         <div class="col s9">
                             <div class="container-1">
-                                <form action="/modifycomicinfo" method="post" id="modify_comic_info" enctype="multipart/form-data">
+                                <form action="/modifycomicinfo" method="post" id="modify_comic_info" >
+                                    <input type="hidden" name="old_series_title" value="${current_comic.seriesTitle}">
+                                    <input type="hidden" name="old_issue_title" value="${current_comic.issueTitle}">
+                                    <input type="hidden" name="old_volume" value="${current_comic.volume}">
+                                    <input type="hidden" name="old_issue" value="${current_comic.issue}">
+                                    <input type="hidden" name="old_genre" value="${current_comic.genre}">
+                                    <input type="hidden" name="old_description" value="${current_comic.description}">
+
                                     <div class="input-field titles">
-                                        <input id="series_title" type="text" class="validate" name="series_title" value="${current_comic.seriesTitle}" required >
+                                        <input id="series_title" type="text" class="validate" name="new_series_title" value="${current_comic.seriesTitle}" required>
                                         <label for="series_title">Series Title</label>
                                     </div>
                                     <div class="input-field titles issues">
-                                        <input id="issue_title" type="text" class="validate" name="issue_title" value="${current_comic.issueTitle}" required>
+                                        <input id="issue_title" type="text" class="validate" name="new_issue_title" value="${current_comic.issueTitle}" required>
                                         <label for="issue_title">Issue Title</label>
                                     </div>
                                     <div class="input-field titles">
-                                        <input id="volume" type="number" class="validate" name="volume" value="${current_comic.volume}" required>
+                                        <input id="volume" type="number" class="validate" name="new_volume" value="${current_comic.volume}" required>
                                         <label for="volume">Volume</label>
                                     </div>
                                     <div class="input-field titles issues">
-                                        <input id="issue" type="number" class="validate" name="issue" value="${current_comic.issue}" required>
+                                        <input id="issue" type="number" class="validate" name="new_issue" value="${current_comic.issue}" required>
                                         <label for="issue">Issues</label>
                                     </div>
 
-
-
                                     <div class="input-field col s11">
-                                        <select id="genre" name="genre" form="modify_comic_info" required>
-                                            <option value="" disabled>Choose your genre</option>
-                                            <option value="action">Action</option>
-                                            <option value="comedy">Comedy</option>
-                                            <option value="drama">Drama</option>
-                                            <option value="horror">Horror</option>
-                                            <option value="fantasy">Fantasy</option>
-                                            <option value="romance">Romance</option>
-                                            <option value="sport">Sports</option>
+                                        <select id="genre" name="new_genre" form="modify_comic_info" required>
+                                            <option value="Action">Action</option>
+                                            <option value="Comedy">Comedy</option>
+                                            <option value="Drama">Drama</option>
+                                            <option value="Horror">Horror</option>
+                                            <option value="Fantasy">Fantasy</option>
+                                            <option value="Romance">Romance</option>
+                                            <option value="Sport">Sports</option>
                                         </select>
+                                        <label for="genre">Genre:</label>
                                     </div>
 
                                     <script>
-                                        $("#genre").val("${current_comic.genre}");
+                                        $(document).ready(function()
+                                        {
+                                            $("#genre").val("${current_comic.genre}");
+                                        });
                                     </script>
 
                                     <div class="input-field col s12">
-                                        <textarea id="description" class="materialize-textarea" name="description"
+                                        <textarea id="description" class="materialize-textarea" name="new_description"
                                                    required>${current_comic.description}</textarea>
                                         <label for="description">Description of the comic</label>
                                     </div>
 
-                                </form>
+
                                     <div class="pad-top-20"></div>
                                     <div class="pad-top-20"></div>
 
@@ -156,7 +155,7 @@
                                                 form="modify_comic_info" type="submit"><i class="material-icons right">send</i>Save
                                         </button>
                                     </div>
-
+                                </form>
                             </div>
                         </div>
                     </div>

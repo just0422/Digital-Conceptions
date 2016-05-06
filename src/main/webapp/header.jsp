@@ -14,7 +14,7 @@
                         <%-- Active button has class 'z-depth-1' --%>
 
                         <li><a href="/" class="custom-nav-font-size" id="home">Home</a></li>
-                        <li><a href="/genre" class="custom-nav-font-size" id="genre">Genre</a></li>
+                        <li><a href="/genre" class="custom-nav-font-size" id="genre">Genres</a></li>
                     </ul>
 
                     <!-- Profile button-->
