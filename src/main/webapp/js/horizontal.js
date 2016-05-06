@@ -18,7 +18,7 @@ jQuery(function($){
 			mouseDragging: 1,
 			touchDragging: 1,
 			releaseSwing: 1,
-			startAt: 3,
+			startAt: 0,
 			scrollBar: $wrap.find('.scrollbar'),
 			scrollBy: 1,
 			pagesBar: $wrap.find('.pages'),
@@ -45,14 +45,6 @@ jQuery(function($){
 			// Animate a particular item to the start of the frame.
 			// If no item is provided, the whole content will be animated.
 			$frame.sly('toStart', item);
-		});
-
-		// To Center button
-		$wrap.find('.toCenter').on('click', function () {
-			var item = $(this).data('item');
-			// Animate a particular item to the center of the frame.
-			// If no item is provided, the whole content will be animated.
-			$frame.sly('toCenter', item);
 		});
 
 		// To End button

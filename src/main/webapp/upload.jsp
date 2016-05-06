@@ -804,7 +804,7 @@
             <a class="btn-floating btn-large red waves-effect tooltipped"
                <%--data-position="top"--%>
                <%--data-delay="50" data-tooltip="Create new comic">--%>
-                href="/create">
+                href="/create?new=true">
                 <i class="large material-icons">add</i>
             </a>
         </div>

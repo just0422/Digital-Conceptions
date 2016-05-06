@@ -28,6 +28,24 @@ import java.util.Map;
  */
 public class SaveCanvasServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String isNew = req.getParameter("new");
+        ComicInfo currentComic;
+        if (!Boolean.parseBoolean(isNew)) {
+            String seriesTitle = req.getParameter("series_title");
+            String issueTitle = req.getParameter("issue_title");
+            String volume = req.getParameter("volume");
+            String issue = req.getParameter("issue");
+
+            currentComic
+                    = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter("seriesTitle", seriesTitle)
+                    .filter("issueTitle", issueTitle)
+                    .filter("volume", Integer.parseInt(volume))
+                    .filter("issue", Integer.parseInt(issue)).first().now();
+
+            req.setAttribute("current_comic", currentComic);
+        }
+
         System.out.println(getClass().getName());
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         String create = blobstoreService.createUploadUrl("/create");
@@ -37,6 +55,7 @@ public class SaveCanvasServlet extends HttpServlet {
         RequestDispatcher rd = sc.getRequestDispatcher("/canvas.jsp");
         rd.forward(req, resp);
     }
+
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println(getClass().getName());
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
@@ -79,7 +98,6 @@ public class SaveCanvasServlet extends HttpServlet {
             ComicInfo newComic = new ComicInfo(username, seriesTitle, issueTitle, genre, description,
                     Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls, true);
             newComic.setKey();
-            newComic.setJson(json);
 
             currentUserInfo.addCreation(newComic.getComicName());
 
@@ -91,6 +109,7 @@ public class SaveCanvasServlet extends HttpServlet {
             rd.forward(req, resp);
         }
         else{
+            // TODO Update first comic on the list
             resp.getWriter().write("Unsuccessful");
         }
 

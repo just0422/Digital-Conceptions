@@ -66,6 +66,8 @@
 
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
+
+    <script type="text/javascript" src="js/canvas_functions.js"></script>
 </head>
 
 <body class="background">
@@ -92,11 +94,35 @@
                     </div>
 
                     <div class="frame" id="basic">
-                        <ul class="clearfix">
-                            <li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>
-                            <li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>
-                            <li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>
-                            <li>28</li><li>29</li>
+                        <ul id="pages_list" class="clearfix">
+                            <c:choose>
+                                <c:when test="${current_comic == null}">
+                                    <li onclick="updateCanvas(0)">
+                                        <img id="canvas_0" class="page_previews"/>
+                                        <script>console.log("HERE");</script>
+                                        <div id="json_0" style="display: none;"></div>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="num" value="0"/>
+                                    <c:forEach var="json" items="${current_comic.json}" varStatus="loop">
+                                        <li onclick="updateCanvas(${num})">
+                                            <canvas id="canvas_${num}"></canvas>
+
+                                            <script>
+                                                var canvas = new fabric.Canvas('canvas_${num}');
+                                                canvas.loadFromJSON(${json}, canvas.renderAll().bind('canvas_${num}');
+                                                canvas.deactivateAll();
+                                            </script>
+                                        </li>
+                                        <:c:set var="num" value="${num + 1}"/>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+                            <%--<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>--%>
+                            <%--<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>--%>
+                            <%--<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>--%>
+                            <%--<li>28</li><li>29</li>--%>
                         </ul>
                     </div>
 
@@ -106,37 +132,12 @@
                         <button class="btn toStart"><i class="fa fa-fast-backward" aria-hidden="true"></i></button>
                         <button class="btn prevPage"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
                         <button class="btn prev"><i class="fa fa-caret-left fa-2x" aria-hidden="true"></i></button>
-                        <%--<button class="btn backward"><i class="icon-chevron-left"></i> move</button>--%>
-
-                        <%--<div class="btn-group">--%>
-                            <%--<button class="btn toStart">toStart</button>--%>
-                            <%--<button class="btn toCenter">toCenter</button>--%>
-                            <%--<button class="btn toEnd">toEnd</button>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="btn-group">--%>
-                            <%--<button class="btn add"><i class="icon-plus-sign"></i></button>--%>
-                            <%--<button class="btn remove"><i class="icon-minus-sign"></i></button>--%>
-                        <%--</div>--%>
-
-                        <%--<button class="btn forward">move <i class="icon-chevron-right"></i></button>--%>
+                        //TODO add + and - buttons
                         <button class="btn next"><i class="fa fa-caret-right fa-2x" aria-hidden="true"></i></button>
                         <button class="btn nextPage"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
                         <button class="btn toEnd"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>
                     </div>
                 </div>
-
-                <%--<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
-                <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
-                <%--<script src="js/paster.js"></script>--%>
-                <%--<script src="js/jquery.mousewheel.min.js"></script>--%>
-
-                <%--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">--%>
-                <%--<link rel="stylesheet" href="css/kitchensink.css">--%>
-
-                <%--<link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>--%>
-                <%--<link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>--%>
-
                 <div style="position:relative;width:704px;float:left;" id="canvas-wrapper">
 
                     <div id="canvas-controls">
@@ -151,7 +152,8 @@
                         </div>
                     </div>
 
-                    <canvas id="canvas" width="700" height="600"></canvas>
+                    <canvas id="canvas" width="700" height="600" onchange="updatePage()"></canvas>
+
 
                     <div id="color-opacity-controls" ng-show="canvas.getActiveObject()">
 
@@ -530,12 +532,18 @@
                 <script src="js/font_definitions.js"></script>
                 <script>
                     var kitchensink = {};
-                    var canvas = new fabric.Canvas('canvas');
+                    canvas = new fabric.Canvas('canvas');
 
                     function save(){
+                        var pages = $('#pages_list').getElementsByTagName("li");
+                        var canvasJSONs = [];
+                        for (var i = 0; i < pages.length; i++)
+                            canvasJSONs[i] = JSON.stringify(document.getElementById("canvas_" + i));
+
                         var string = JSON.stringify(canvas);
                         var url = canvas.toDataURL("image/jpeg");
 
+                        console.log(canvasJSONs.join);
 
                         var blobBin = atob(url.split(',')[1]);
                         var array = [];
@@ -554,15 +562,15 @@
                         formdata.append("genre", $("#genre_select").val());
                         formdata.append("description", $("#description").val());
 
-                        $.ajax({
-                            url: "${create}",
-                            type: "POST",
-                            data: formdata,
-                            processData: false,
-                            contentType: false,
-                        }).done(function(respond){
-                            alert(respond);
-                        });
+                        <%--$.ajax({--%>
+                            <%--url: "${create}",--%>
+                            <%--type: "POST",--%>
+                            <%--data: formdata,--%>
+                            <%--processData: false,--%>
+                            <%--contentType: false,--%>
+                        <%--}).done(function(respond){--%>
+                            <%--alert(respond);--%>
+                        <%--});--%>
                     }
 
                     function respond(){
