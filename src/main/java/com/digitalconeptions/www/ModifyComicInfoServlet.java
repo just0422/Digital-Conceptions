@@ -56,7 +56,8 @@ public class ModifyComicInfoServlet extends HttpServlet {
                 .filter("seriesTitle", seriesTitle)
                 .filter("issueTitle", issueTitle)
                 .filter("volume", volume)
-                .filter("issue", issue).first().now();
+                .filter("issue", issue)
+                .filter("genre", genre).first().now();
 
         String newSeriesTitle = req.getParameter("new_series_title");
         String newIssueTitle = req.getParameter("new_issue_title");

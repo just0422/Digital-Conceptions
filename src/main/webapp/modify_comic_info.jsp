@@ -132,10 +132,10 @@
                                     </div>
 
                                     <script>
-                                        $(document).ready(function()
-                                        {
-                                            $("#genre").val("${current_comic.genre}");
-                                        });
+//                                        $(document).ready(function()
+//                                        {
+                                            $("#genre option[value='${cureent_comic.genre}'").prop("selected", true);
+//                                        });
                                     </script>
 
                                     <div class="input-field col s12">
