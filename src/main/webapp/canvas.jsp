@@ -98,7 +98,7 @@
                             <c:choose>
                                 <c:when test="${current_comic == null}">
                                     <li onclick="updateCanvas(0)">
-                                        <img id="canvas_0" class="page_previews"/>
+                                        <img id="img_0" class="page_previews"/>
                                         <script>console.log("HERE");</script>
                                         <div id="json_0" style="display: none;"></div>
                                     </li>
@@ -107,7 +107,7 @@
                                     <c:set var="num" value="0"/>
                                     <c:forEach var="json" items="${current_comic.json}" varStatus="loop">
                                         <li onclick="updateCanvas(${num})">
-                                            <canvas id="canvas_${num}"></canvas>
+                                            <canvas id="img_${num}"></canvas>
 
                                             <script>
                                                 var canvas = new fabric.Canvas('canvas_${num}');
@@ -538,26 +538,43 @@
                     canvas = new fabric.Canvas('canvas');
 
                     function save(){
-                        var pages = $('#pages_list').getElementsByTagName("li");
-                        var canvasJSONs = [];
-                        for (var i = 0; i < pages.length; i++)
-                            canvasJSONs[i] = JSON.stringify(document.getElementById("canvas_" + i));
-
-                        var string = JSON.stringify(canvas);
-                        var url = canvas.toDataURL("image/jpeg");
-
-                        console.log(canvasJSONs.join);
-
-                        var blobBin = atob(url.split(',')[1]);
-                        var array = [];
-                        for(var i = 0; i < blobBin.length; i++) {
-                            array.push(blobBin.charCodeAt(i));
-                        }
-                        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
-
+                        var pages = $('#pages_list').children();
+                        var canvasJSONs = [], files = [];
                         var formdata = new FormData();
-                        formdata.append("canvas_image", file);
-                        formdata.append("canvas_JSON", string);
+
+                        for (var i = 0; i < pages.length; i++) {
+                            console.log(i);
+                            console.log(pages.length);
+
+
+                            if ($('#img_' + i).attr('src') != null) {
+                                var blobBin = atob($('#img_' + i).attr('src').split(',')[1]);
+                                var array = [];
+                                for(var j = 0; j < blobBin.length; j++) {
+                                    array.push(blobBin.charCodeAt(j));
+                                }
+
+                                formdata.append("image_" + i, new Blob([new Uint8Array(array)], {type: 'image/png'}));
+                                formdata.append("json_" + i, $('#json_' + i).html());
+//                                files.push(new Blob([new Uint8Array(array)], {type: 'image/png'}));
+                            }
+                        }
+
+//                        var string = JSON.stringify(canvas);
+
+//                        var url = canvas.toDataURL("image/png");
+
+//                        console.log(canvasJSONs.join);
+
+//                        var blobBin = atob(url.split(',')[1]);
+//                        var array = [];
+//                        for(var i = 0; i < blobBin.length; i++) {
+//                            array.push(blobBin.charCodeAt(i));
+//                        }
+//                        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
+
+//                        formdata.append('images', files);
+//                        formdata.append("canvas_JSONs", canvasJSONs);
                         formdata.append("series_title", $("#series_title").val());
                         formdata.append("issue_title", $("#issue_title").val());
                         formdata.append("volume", $("#volume").val());
@@ -565,15 +582,15 @@
                         formdata.append("genre", $("#genre_select").val());
                         formdata.append("description", $("#description").val());
 
-                        <%--$.ajax({--%>
-                            <%--url: "${create}",--%>
-                            <%--type: "POST",--%>
-                            <%--data: formdata,--%>
-                            <%--processData: false,--%>
-                            <%--contentType: false,--%>
-                        <%--}).done(function(respond){--%>
-                            <%--alert(respond);--%>
-                        <%--});--%>
+                        $.ajax({
+                            url: "${create}",
+                            type: "POST",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                        }).done(function(respond){
+                            alert(respond);
+                        });
                     }
 
                     function respond(){

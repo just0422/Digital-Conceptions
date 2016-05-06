@@ -62,7 +62,7 @@ jQuery(function($){
 		// Add item
 		$wrap.find('.add').on('click', function () {
 			$frame.sly('add', '<li onclick="updateCanvas(' + $slidee.children().length + ')">' +
-				'<img id="canvas_' + $slidee.children().length + '" class="page_previews"/>' +
+				'<img id="img_' + $slidee.children().length + '" class="page_previews"/>' +
 				'<div id="json_' + $slidee.children().length + '" style="display: none;"></div></li>');
 		});
 

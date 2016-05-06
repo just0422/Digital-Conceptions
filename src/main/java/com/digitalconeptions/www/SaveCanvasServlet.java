@@ -66,14 +66,19 @@ public class SaveCanvasServlet extends HttpServlet {
         String username = ((User)now.getAttribute("user")).getNickname();
         resp.setContentType("text/plain");
 
-        List<BlobKey> blobKeys = blobs.get("canvas_image");
+        List<BlobKey> blobKeys = new ArrayList();// = blobs.get("image");
+        List<String> JSON = new ArrayList<>();
+        for (int i = 0; i < blobs.size(); i++){
+            blobKeys.add(blobs.get("image_"+i).get(0));
+            JSON.add(req.getParameter("json_" + i));
+        }
+
         List<String> urls = new ArrayList<>();
 
         for (BlobKey key : blobKeys){
             urls.add(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(key)));
         }
 
-        String json = req.getParameter("canvas_JSON");
         String seriesTitle = req.getParameter("series_title");
         String issueTitle = req.getParameter("issue_title");
         String volume = req.getParameter("volume");
@@ -98,6 +103,7 @@ public class SaveCanvasServlet extends HttpServlet {
             ComicInfo newComic = new ComicInfo(username, seriesTitle, issueTitle, genre, description,
                     Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls, true);
             newComic.setKey();
+            newComic.setJson(JSON);
 
             currentUserInfo.addCreation(newComic.getComicName());
 
