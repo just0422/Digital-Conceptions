@@ -59,6 +59,7 @@
     <script type="text/javascript" src="js/controller.js"></script>
 
     <link type="text/css" rel="stylesheet" href="css/horizontal.css">
+    <script type="text/javascript" src="js/canvas_functions.js"></script>
     <script type="text/javascript" src="js/sly.min.js"></script>
     <script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/horizontal.js"></script>
@@ -67,7 +68,6 @@
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
 
-    <script type="text/javascript" src="js/canvas_functions.js"></script>
 </head>
 
 <body class="background">
@@ -132,7 +132,10 @@
                         <button class="btn toStart"><i class="fa fa-fast-backward" aria-hidden="true"></i></button>
                         <button class="btn prevPage"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
                         <button class="btn prev"><i class="fa fa-caret-left fa-2x" aria-hidden="true"></i></button>
-                        //TODO add + and - buttons
+
+                        <button class="btn remove"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <button class="btn add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
                         <button class="btn next"><i class="fa fa-caret-right fa-2x" aria-hidden="true"></i></button>
                         <button class="btn nextPage"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
                         <button class="btn toEnd"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>

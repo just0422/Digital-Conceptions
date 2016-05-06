@@ -26,14 +26,17 @@ body { background: #e8e8e8; }
 	height: 100%;
 	margin: 0 1px 0 0;
 	padding: 0;
-	background: #333;
+	background-color: rgba(0,0,0,0);
 	color: #ddd;
 	text-align: center;
 	cursor: pointer;
+	border: 1px solid lightgrey;
 }
 .frame ul li.active {
-	color: #fff;
-	background: #a03232;
+	color: #888888;
+	background-color: rgba(0,0,0,0);
+	/*background: #a03232;*/
+	border: 2px solid black;
 }
 
 .page_previews{

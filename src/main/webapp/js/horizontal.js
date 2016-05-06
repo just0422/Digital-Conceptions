@@ -39,6 +39,10 @@ jQuery(function($){
 			nextPage: $wrap.find('.nextPage')
 		});
 
+		$frame.sly('on', 'active', function(eventName, pageIndex){
+			updateCanvas(pageIndex);
+		});
+
 		// To Start button
 		$wrap.find('.toStart').on('click', function () {
 			var item = $(this).data('item');
@@ -57,13 +61,16 @@ jQuery(function($){
 
 		// Add item
 		$wrap.find('.add').on('click', function () {
-			$frame.sly('add', '<li>' + $slidee.children().length + '</li>');
+			$frame.sly('add', '<li onclick="updateCanvas(' + $slidee.children().length + ')">' +
+				'<img id="canvas_' + $slidee.children().length + '" class="page_previews"/>' +
+				'<div id="json_' + $slidee.children().length + '" style="display: none;"></div></li>');
 		});
 
 		// Remove item
 		$wrap.find('.remove').on('click', function () {
 			$frame.sly('remove', -1);
 		});
+
 	}());
 
 });
