@@ -39,6 +39,9 @@ public class ComicServlet extends HttpServlet {
         int volume = Integer.parseInt(req.getParameter("volume"));
         int issue = Integer.parseInt(req.getParameter("issue"));
 
+        HttpSession session = req.getSession();
+        String username = ((User) session.getAttribute("user")).getNickname();
+
         ComicInfo currentComic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle", seriesTitle)
@@ -66,6 +69,7 @@ public class ComicServlet extends HttpServlet {
 
 
         req.setAttribute("current_comic", currentComic);
+        req.setAttribute("username", username);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/comic_cover.jsp");
         rd.forward(req, resp);

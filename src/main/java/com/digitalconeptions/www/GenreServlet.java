@@ -37,13 +37,13 @@ public class GenreServlet extends HttpServlet{
 
         if (comicObjLoad != null)
         {
-            actionComics = comicObjLoad.filter("genre", "action").list();
-            dramaComics = comicObjLoad.filter("genre", "drama").list();
-            romanceComics = comicObjLoad.filter("genre", "romance").list();
-            comedyComics = comicObjLoad.filter("genre", "comedy").list();
-            horrorComics = comicObjLoad.filter("genre", "horror").list();
-            fantasyComics = comicObjLoad.filter("genre", "fantasy").list();
-            sportComics = comicObjLoad.filter("genre", "sport").list();
+            actionComics = comicObjLoad.filter("genre", "Action").list();
+            dramaComics = comicObjLoad.filter("genre", "Drama").list();
+            romanceComics = comicObjLoad.filter("genre", "Romance").list();
+            comedyComics = comicObjLoad.filter("genre", "Comedy").list();
+            horrorComics = comicObjLoad.filter("genre", "Horror").list();
+            fantasyComics = comicObjLoad.filter("genre", "Fantasy").list();
+            sportComics = comicObjLoad.filter("genre", "Sport").list();
         }
         req.setAttribute("action_comics", actionComics);
         req.setAttribute("drama_comics", dramaComics);

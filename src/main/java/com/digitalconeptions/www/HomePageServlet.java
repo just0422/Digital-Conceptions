@@ -28,10 +28,10 @@ public class HomePageServlet extends HttpServlet {
         LoadType<ComicInfo> comicObjLoad = ObjectifyService.ofy().load().type(ComicInfo.class);
 
         // Filter comics by genres
-        List<ComicInfo> actionComics = comicObjLoad.filter("genre", "action").list();
-        List<ComicInfo> romanceComics = comicObjLoad.filter("genre", "romance").list();
-        List<ComicInfo> horrorComics = comicObjLoad.filter("genre", "horror").list();
-        List<ComicInfo> fantasyComics = comicObjLoad.filter("genre", "fantasy").list();
+        List<ComicInfo> actionComics = comicObjLoad.filter("genre", "Action").list();
+        List<ComicInfo> romanceComics = comicObjLoad.filter("genre", "Romance").list();
+        List<ComicInfo> horrorComics = comicObjLoad.filter("genre", "Horror").list();
+        List<ComicInfo> fantasyComics = comicObjLoad.filter("genre", "Fantasy").list();
 
         // Filter comics by popularity
 //        List<ComicInfo> popularComics = null;
