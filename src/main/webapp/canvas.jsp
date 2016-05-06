@@ -106,9 +106,18 @@
                                     <c:set var="num" value="0"/>
                                     <c:forEach var="json" items="${current_comic.json}" varStatus="loop">
                                         <li onclick="updateCanvas(${num})">
-                                            <img id="img_${num}" class="page_previews" src="${current_comic.urls[num]}"/>
+                                            <img id="img_${num}" class="page_previews"/>
+                                            <%--src="${current_comic.urls[num]}"/>--%>
 
                                             <div id="json_${num}" style="display: none;">${json}</div>
+
+                                            <script>
+                                                var canvas = new fabric.Canvas('dummy')
+                                                canvas.loadFromJSON(${json}, canvas.renderAll.bind(canvas));
+                                                $('#img_' + ${num}).attr('src', canvas.toDataURL("image/png"))
+
+                                                $('#dummy').remove();
+                                            </script>
                                         </li>
                                         <c:set var="num" value="${num + 1}"/>
                                     </c:forEach>
@@ -553,12 +562,25 @@
                             }
                         }
 
-                        formdata.append("series_title", $("#series_title").val());
-                        formdata.append("issue_title", $("#issue_title").val());
-                        formdata.append("volume", $("#volume").val());
-                        formdata.append("issue", $("#issue").val());
-                        formdata.append("genre", $("#genre_select").val());
-                        formdata.append("description", $("#description").val());
+                        var vol = '${current_comic.volume}';
+                        if (vol.length == 0)
+                                vol = -1;
+                        var iss = '${current_comic.issue}';
+                        if (iss.length == 0)
+                                iss = -1;
+
+                        formdata.append("series_title", '${current_comic.seriesTitle}');
+                        formdata.append("issue_title", '${current_comic.issueTitle}');
+                        formdata.append("volume", vol);
+                        formdata.append("issue", iss);
+                        formdata.append('description', '${current_comic.description}')
+                        formdata.append('genre', '${current_comic.genre}')
+                        formdata.append("new_series_title", $("#series_title").val());
+                        formdata.append("new_issue_title", $("#issue_title").val());
+                        formdata.append("new_volume", $("#volume").val());
+                        formdata.append("new_issue", $("#issue").val());
+                        formdata.append("new_genre", $("#genre_select").val());
+                        formdata.append("new_description", $("#description").val());
 
                         $.ajax({
                             url: "${create}",
@@ -731,7 +753,7 @@
 
                     <div class="input-field col s12">
                                         <textarea id="description" class="materialize-textarea" name="description"
-                                                  value="${current_comic.description} "required></textarea>
+                                                  required>${current_comic.description}</textarea>
                         <label for="description">Description of the comic</label>
                     </div>
                 <%--</form>--%>

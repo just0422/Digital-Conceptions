@@ -3,6 +3,7 @@ package com.digitalconeptions.www;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.blobstore.BlobstoreServicePb;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
@@ -85,6 +86,12 @@ public class SaveCanvasServlet extends HttpServlet {
         String issue = req.getParameter("issue");
         String genre = req.getParameter("genre");
         String description = req.getParameter("description");
+        String nseriesTitle = req.getParameter("new_series_title");
+        String nissueTitle = req.getParameter("new_issue_title");
+        int nvolume = Integer.parseInt(req.getParameter("new_volume"));
+        int nissue = Integer.parseInt(req.getParameter("new_issue"));
+        String ngenre = req.getParameter("new_genre");
+        String ndescription = req.getParameter("new_description");
 
         LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
         Query<ComicInfo> query = load;
@@ -92,16 +99,17 @@ public class SaveCanvasServlet extends HttpServlet {
         else seriesTitle = "";
         if (issueTitle != null) query = query.filter("issueTitle", issueTitle);
         else issueTitle = "";
-        if (issueTitle != null) query = query.filter("volume", volume);
+        if (volume != null) query = query.filter("volume", Integer.parseInt(volume));
         else volume = "1";
-        if (issueTitle != null) query = query.filter("issue", issue);
+        if (issue != null) query = query.filter("issue", Integer.parseInt(issue));
         else issue = "1";
 
 
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
+
         if (query.list().size() < 1){
-            ComicInfo newComic = new ComicInfo(username, seriesTitle, issueTitle, genre, description,
-                    Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls, true);
+            ComicInfo newComic = new ComicInfo(username, nseriesTitle, nissueTitle, ngenre, ndescription,
+                    nvolume, nissue, blobKeys, urls, true);
             newComic.setKey();
             newComic.setJson(JSON);
 
@@ -109,16 +117,24 @@ public class SaveCanvasServlet extends HttpServlet {
 
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();
-            resp.getWriter().write(seriesTitle + "," + issueTitle + "," + volume + "," + issue);
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/canvas.jsp");
-            rd.forward(req, resp);
+
         }
         else{
+            ComicInfo currentComic = query.list().get(0);
             // TODO Update first comic on the list
-            resp.getWriter().write("Unsuccessful");
+//            resp.getWriter().write("Unsuccessful");
+            currentComic.setSeriesTitle(nseriesTitle);
+            currentComic.setIssueTitle(nissueTitle);
+            currentComic.setVolume(nvolume);
+            currentComic.setIssue(nissue);
+            currentComic.setGenre(ngenre);
+            currentComic.setDescription(ndescription);
+            ObjectifyService.ofy().save().entity(currentComic).now();
         }
-
+        resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);
+        ServletContext sc = getServletContext();
+        RequestDispatcher rd = sc.getRequestDispatcher("/canvas.jsp");
+        rd.forward(req, resp);
     }
 
 }
