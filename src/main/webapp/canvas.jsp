@@ -99,7 +99,6 @@
                                 <c:when test="${current_comic == null}">
                                     <li onclick="updateCanvas(0)">
                                         <img id="img_0" class="page_previews"/>
-                                        <script>console.log("HERE");</script>
                                         <div id="json_0" style="display: none;"></div>
                                     </li>
                                 </c:when>
@@ -107,15 +106,11 @@
                                     <c:set var="num" value="0"/>
                                     <c:forEach var="json" items="${current_comic.json}" varStatus="loop">
                                         <li onclick="updateCanvas(${num})">
-                                            <canvas id="img_${num}"></canvas>
+                                            <img id="img_${num}" class="page_previews" src="${current_comic.urls[num]}"/>
 
-                                            <script>
-                                                var canvas = new fabric.Canvas('canvas_${num}');
-                                                canvas.loadFromJSON(${json}, canvas.renderAll().bind('canvas_${num}');
-                                                canvas.deactivateAll();
-                                            </script>
+                                            <div id="json_${num}" style="display: none;">${json}</div>
                                         </li>
-                                        <:c:set var="num" value="${num + 1}"/>
+                                        <c:set var="num" value="${num + 1}"/>
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
@@ -539,7 +534,6 @@
 
                     function save(){
                         var pages = $('#pages_list').children();
-                        var canvasJSONs = [], files = [];
                         var formdata = new FormData();
 
                         for (var i = 0; i < pages.length; i++) {
@@ -556,25 +550,9 @@
 
                                 formdata.append("image_" + i, new Blob([new Uint8Array(array)], {type: 'image/png'}));
                                 formdata.append("json_" + i, $('#json_' + i).html());
-//                                files.push(new Blob([new Uint8Array(array)], {type: 'image/png'}));
                             }
                         }
 
-//                        var string = JSON.stringify(canvas);
-
-//                        var url = canvas.toDataURL("image/png");
-
-//                        console.log(canvasJSONs.join);
-
-//                        var blobBin = atob(url.split(',')[1]);
-//                        var array = [];
-//                        for(var i = 0; i < blobBin.length; i++) {
-//                            array.push(blobBin.charCodeAt(i));
-//                        }
-//                        var file=new Blob([new Uint8Array(array)], {type: 'image/png'});
-
-//                        formdata.append('images', files);
-//                        formdata.append("canvas_JSONs", canvasJSONs);
                         formdata.append("series_title", $("#series_title").val());
                         formdata.append("issue_title", $("#issue_title").val());
                         formdata.append("volume", $("#volume").val());
@@ -719,19 +697,19 @@
             <div class="container-1">
                 <%--<form action="${create}" method="post" id="comic_upload" enctype="multipart/form-data">--%>
                     <div class="input-field titles">
-                        <input id="series_title" type="text" class="validate" name="series_title" required>
+                        <input id="series_title" type="text" class="validate" name="series_title" value="${current_comic.seriesTitle}" required>
                         <label for="series_title">Series Title</label>
                     </div>
                     <div class="input-field titles issues">
-                        <input id="issue_title" type="text" class="validate" name="issue_title" required>
+                        <input id="issue_title" type="text" class="validate" name="issue_title" value="${current_comic.issueTitle}" required>
                         <label for="issue_title">Issue Title</label>
                     </div>
                     <div class="input-field titles">
-                        <input id="volume" type="number" class="validate" name="volume" required>
+                        <input id="volume" type="number" class="validate" name="volume" value="${current_comic.volume}" required>
                         <label for="volume">Volume</label>
                     </div>
                     <div class="input-field titles issues">
-                        <input id="issue" type="number" class="validate" name="issue" required>
+                        <input id="issue" type="number" class="validate" name="issue" value="${current_comic.issue}" required>
                         <label for="issue">Issues</label>
                     </div>
 
@@ -753,7 +731,7 @@
 
                     <div class="input-field col s12">
                                         <textarea id="description" class="materialize-textarea" name="description"
-                                                  required></textarea>
+                                                  value="${current_comic.description} "required></textarea>
                         <label for="description">Description of the comic</label>
                     </div>
                 <%--</form>--%>

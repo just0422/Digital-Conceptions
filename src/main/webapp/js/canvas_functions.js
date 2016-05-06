@@ -27,3 +27,4 @@ function updateCanvas(canvas_id_num){
     canvas.clear();
     canvas.loadFromJSON($('#json_'+current_page_edit).html(), canvas.renderAll.bind(canvas));
 }
+
