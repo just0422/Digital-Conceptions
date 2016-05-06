@@ -42,6 +42,10 @@
         <servlet-name>canvasservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.SaveCanvasServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>modifycomicinfoservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.ModifyComicInfoServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet Mappings -->
     <servlet-mapping>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>editimageservlet</servlet-name>
         <url-pattern>/editimages</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modifycomicinfoservlet</servlet-name>
+        <url-pattern>/modifycomicinfo</url-pattern>
     </servlet-mapping>
 
     <servlet-mapping>
