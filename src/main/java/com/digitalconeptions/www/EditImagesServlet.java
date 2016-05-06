@@ -86,6 +86,12 @@ public class EditImagesServlet extends HttpServlet {
 
             resp.getWriter().write("1");
         }
+
+        currentComic.setSeriesTitle(req.getParameter("new_series_title"));
+        currentComic.setIssueTitle(req.getParameter("new_issue_title"));
+        currentComic.setVolume(Integer.parseInt(req.getParameter("new_volume")));
+        currentComic.setIssue(Integer.parseInt(req.getParameter("new_issue")));
+
         ObjectifyService.ofy().save().entity(currentComic).now();
     }
 }

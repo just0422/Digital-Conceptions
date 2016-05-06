@@ -52,8 +52,31 @@
 
         <div class="container-1 min-height">
             <div class="row" style="padding-top:5vh;">
+                <input type="hidden" id="old_series_title" value="${current_comic.seriesTitle}">
+                <input type="hidden" id="old_issue_title" value="${current_comic.issueTitle}">
+                <input type="hidden" id="old_volume" value="${current_comic.volume}">
+                <input type="hidden" id="old_issue" value="${current_comic.issue}">
+                <input type="hidden" id="old_genre" value="${current_comic.genre}">
+                <input type="hidden" id="old_description" value="${current_comic.description}">
+                <div class="input-field modify_titles">
+                    <input id="series" type="text" name="new_series_title" value="${current_comic.seriesTitle}">
+                    <label for="series">Series Title</label>
+                </div>
+                <div class="input-field modify_titles modify_issues">
+                    <input id="volume" type="number" class="validate" name="new_volume" value="${current_comic.volume}" required>
+                    <label for="volume">Volume</label>
+                </div>
+                <div class="input-field modify_titles modify_issues">
+                    <input id="issue_title" type="text" class="validate" name="new_issue_title" value="${current_comic.issueTitle}" required>
+                    <label for="issue_title">Issue Title</label>
+                </div>
+                <div class="input-field modify_titles modify_issues">
+                    <input id="issue" type="number" class="validate" name="new_issue" value="${current_comic.issue}" required>
+                    <label for="issue">Issues</label>
+                </div>
+
                 <div class="col s12 center flow-text">
-                    <h4>Pages Preview</h4>
+                    <h4>Edit Comic</h4>
                     <div class="pad-top-10"></div>
                     <div class="divider"></div>
                     <div class="pad-top-10"></div>
@@ -140,6 +163,10 @@
                                 issue_title : '${current_comic.issueTitle}',
                                 volume : '${current_comic.volume}',
                                 issue : '${current_comic.issue}',
+                                new_series_title : $('#series').val(),
+                                new_issue_title : $('#issue_title').val(),
+                                new_volume : $('#volume').val(),
+                                new_issue : $('#issue').val(),
                                 images : links.toString()
                             },
                             function(data){
@@ -152,12 +179,14 @@
                     })
 
                     $(document).keydown(function (e) {
-                        if (e.which == 8)
-                            e.preventDefault();
+                        var element = e.target.nodeName.toLowerCase();
+                        if (element != 'input' && element != 'textarea'){
+                            if (e.which == 8)
+                                e.preventDefault();
 
-                        if (e.which == 8 || e.which == 48)
-                            trash();
-
+                            if (e.which == 8 || e.which == 48)
+                                trash();
+                        }
                         console.log(e.which);
                     });
                 </script>
