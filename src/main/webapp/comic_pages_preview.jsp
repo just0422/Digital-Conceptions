@@ -12,30 +12,10 @@
 <html>
 
 <head>
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--Import Jquery-->
-    <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.js"></script>
-    <%--<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>--%>
-
-    <!--Import materialize.js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    <script type="text/javascript" src="js/jquery.form.js"></script>
-
-    <!--Impot custom css-->
-    <link type="text/css" rel="stylesheet" href="css/custom.css">
-
-    <!--Import custom js-->
-    <script type="text/javascript" src="js/customJS.js"></script>
+    <jsp:include page="head.jsp"/>
 
     <title>Home - Digital Conceptions</title>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
 </head>
 

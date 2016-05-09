@@ -12,27 +12,8 @@
 <html>
 
 <head>
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
+    <jsp:include page="head.jsp"/>
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--Import Jquery-->
-    <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
-
-    <!--Import materialize.js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-
-
-    <!--Impot custom css-->
-    <link type="text/css" rel="stylesheet" href="css/custom.css">
-
-    <!--Import custom js-->
-    <script type="text/javascript" src="js/customJS.js"></script>
-    <script type="text/javascript" src="js/customJS_2.js"></script>
     <script type="text/javascript" src="js/pagination.js"></script>
 
     <title>Genre - Digital Conceptions</title>

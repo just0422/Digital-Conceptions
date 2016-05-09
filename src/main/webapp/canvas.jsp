@@ -12,28 +12,7 @@
 <html>
 
 <head>
-    <!--Import Google Icon Font-->
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!--Import Jquery-->
-    <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
-
-    <!--Import materialize.js-->
-    <script type="text/javascript" src="js/materialize.js"></script>
-    <script type="text/javascript" src="js/jquery.form.js"></script>
-
-    <!--Impot custom css-->
-    <link type="text/css" rel="stylesheet" href="css/custom.css">
-
-    <!--Import custom js-->
-    <script type="text/javascript" src="js/customJS.js"></script>
-
-    <script type="text/javascript" src="js/customJS_2.js"></script>
+    <jsp:include page="head.jsp"/>
 
     <!-- For FabricJS Canvas -->
     <script type="text/javascript" src="js/prism.min.js"></script>
@@ -41,12 +20,9 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 
 
-    <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
-    <%--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
     <script type="text/javascript" src="js/paster.js"></script>
     <script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
 
-    <%--<link type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">--%>
     <link type="text/css" rel="stylesheet" href="css/kitchensink.css">
 
     <link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>
