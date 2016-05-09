@@ -148,6 +148,7 @@ public class ComicInfo {
         return seriesTitle + '|' + volume + '|' +  issueTitle + '|' + issue;
     }
     public String getCoverPage(){ return urls.get(0); }
+    public String getRandomPage() { return urls.get((int)(Math.random() * urls.size())); }
     public String getPage(int page) { return urls.get(page); }
     public int getRate(){
         UserService userService = UserServiceFactory.getUserService();
