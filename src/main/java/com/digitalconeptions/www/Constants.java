@@ -16,6 +16,13 @@ public class Constants {
     public static final String romance = "Romance";
     public static final String sports = "Sports";
 
+    public static final String series_title = "series_title";
+    public static final String seriesTitle = "seriesTitle";
+    public static final String issue_title = "issue_title";
+    public static final String issueTitle = "issueTitle";
+    public static final String volume = "volume";
+    public static final String issue = "issue";
+
     public static ArrayList genres = new ArrayList(){{
         add(action);
         add(comedy);

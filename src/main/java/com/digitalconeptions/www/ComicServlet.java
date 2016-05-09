@@ -34,39 +34,25 @@ public class ComicServlet extends HttpServlet {
     // Front end splits comments based on delimiters
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println(getClass().getName() + " GET");
-        String seriesTitle = req.getParameter("series_title");
-        String issueTitle = req.getParameter("issue_title");
-        int volume = Integer.parseInt(req.getParameter("volume"));
-        int issue = Integer.parseInt(req.getParameter("issue"));
+        String seriesTitle = req.getParameter(Constants.series_title);
+        String issueTitle = req.getParameter(Constants.issue_title);
+        int volume = Integer.parseInt(req.getParameter(Constants.volume));
+        int issue = Integer.parseInt(req.getParameter(Constants.issue));
 
         HttpSession session = req.getSession();
         String username = ((User) session.getAttribute("user")).getNickname();
 
         ComicInfo currentComic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter("seriesTitle", seriesTitle)
-                .filter("issueTitle", issueTitle)
-                .filter("volume", volume)
-                .filter("issue", issue).first().now();
+                .filter(Constants.seriesTitle, seriesTitle)
+                .filter(Constants.issueTitle, issueTitle)
+                .filter(Constants.volume, volume)
+                .filter(Constants.issue, issue).first().now();
 
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
         String subscribed = "Subscribe";
         String start = "Start";
-
-        if (user != null)
-        {
-            // Check if user is already subscribed
-
-            // If subscribed, change string to "Unsubscribe"
-            subscribed = "Unsubscribe";
-
-            // Check if user already started comic
-
-            // If started, change string to "Resume"
-            start = "Resume";
-        }
-
 
         req.setAttribute("current_comic", currentComic);
         req.setAttribute("username", username);
@@ -85,10 +71,10 @@ public class ComicServlet extends HttpServlet {
 
         ComicInfo currentcomic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter("seriesTitle", comic[0])
-                .filter("issueTitle", comic[2])
-                .filter("volume", Integer.parseInt(comic[1]))
-                .filter("issue", Integer.parseInt(comic[3])).first().now();
+                .filter(Constants.seriesTitle, comic[0])
+                .filter(Constants.issueTitle, comic[2])
+                .filter(Constants.volume, Integer.parseInt(comic[1]))
+                .filter(Constants.issue, Integer.parseInt(comic[3])).first().now();
 
         HttpSession session = req.getSession();
         User user = (User)session.getAttribute("user");

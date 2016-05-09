@@ -203,10 +203,19 @@
     .issues{
         margin-left: 9%;
     }
+    .editor{
+        display: table;
+        width: 100%;
+        table-layout: fixed;    /* For cells of equal size */
+        border-collapse: separate;
+        border-spacing: 10px;
+
+    }
 
     .modify_titles{
-        width: 15%;
-        display: inline-block;
+        display: table-cell;
+        text-align: center;
+
     }
     .modify_issues{
         margin-left: 2%;

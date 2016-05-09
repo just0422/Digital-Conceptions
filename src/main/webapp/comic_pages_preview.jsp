@@ -51,59 +51,86 @@
     <main class="main body body-background-color">
 
         <div class="container-1 min-height">
-            <div class="row" style="padding-top:5vh;">
+            <div class="row">
+                <div class="col s12 center flow-text">
+                    <h4>Edit Comic</h4>
+                    <div class="divider"></div>
+                    <div class="pad-top-10"></div>
+                    <div class="pad-top-10"></div>
+                </div>
+                <div class="col s4 right-align" style="padding-top: 5px">
+                    <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
+                        to My Comics</a>
+                </div>
+
+                <div class="col s8 right-align">
+
+                    <%--<form id="comic_upload" method="post" action="${edit}" enctype="multipart/form-data">--%>
+                    <%--<input id="dummy" type="submit" name="dummy">--%>
+                    <%--<input id="series_title" type="text" class="validate preview_field" name="series_title" value="${current_comic.seriesTitle}">--%>
+                    <%--<input id="issue_title" type="text" class="validate preview_field" name="issue_title" value="${current_comic.issueTitle}">--%>
+                    <%--<input id="volume" type="number" class="validate preview_field" name="volume" value="${current_comic.volume}">--%>
+                    <%--<input id="issue" type="number" class="validate preview_field" name="issue" value="${current_comic.issue}">--%>
+                    <%--<input id="uploaded_files" type="file" class="" name="uploaded_files" multiple >--%>
+                    <%--<label for="uploaded_files">--%>
+                    <%--<i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>--%>
+                    <%--</label>--%>
+                    <%--</form>--%>
+                    <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem" onclick="trash()">delete_forever</i>
+                    <i id="save" class="material-icons hoverable-1" style="font-size: 3rem" onclick="save_images()">save</i>
+                </div>
+
+
+
                 <input type="hidden" id="old_series_title" value="${current_comic.seriesTitle}">
                 <input type="hidden" id="old_issue_title" value="${current_comic.issueTitle}">
                 <input type="hidden" id="old_volume" value="${current_comic.volume}">
                 <input type="hidden" id="old_issue" value="${current_comic.issue}">
                 <input type="hidden" id="old_genre" value="${current_comic.genre}">
                 <input type="hidden" id="old_description" value="${current_comic.description}">
-                <div class="input-field modify_titles">
-                    <input id="series" type="text" name="new_series_title" value="${current_comic.seriesTitle}">
-                    <label for="series">Series Title</label>
+                <div class="editor">
+                    <div class="input-field modify_titles">
+                        <input id="series" type="text" name="new_series_title" value="${current_comic.seriesTitle}">
+                        <label for="series">Series Title</label>
+                    </div>
+                    <div class="input-field modify_titles modify_issues">
+                        <input id="volume" type="number" class="validate" name="new_volume" value="${current_comic.volume}" required>
+                        <label for="volume">Volume</label>
+                    </div>
+                    <div class="input-field modify_titles modify_issues">
+                        <input id="issue_title" type="text" class="validate" name="new_issue_title" value="${current_comic.issueTitle}" required>
+                        <label for="issue_title">Issue Title</label>
+                    </div>
+                    <div class="input-field modify_titles modify_issues">
+                        <input id="issue" type="number" class="validate" name="new_issue" value="${current_comic.issue}" required>
+                        <label for="issue">Issues</label>
+                    </div>
+                    <div class="input-field modify_titles modify_issues">
+                        <select name="genre" id="genre_select">
+                            <option value="" disabled>Choose genre</option>
+                            <option value="Action">Action</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sport">Sports</option>
+                        </select>
+                        <label>Genre</label>
+                    </div>
                 </div>
-                <div class="input-field modify_titles modify_issues">
-                    <input id="volume" type="number" class="validate" name="new_volume" value="${current_comic.volume}" required>
-                    <label for="volume">Volume</label>
-                </div>
-                <div class="input-field modify_titles modify_issues">
-                    <input id="issue_title" type="text" class="validate" name="new_issue_title" value="${current_comic.issueTitle}" required>
-                    <label for="issue_title">Issue Title</label>
-                </div>
-                <div class="input-field modify_titles modify_issues">
-                    <input id="issue" type="number" class="validate" name="new_issue" value="${current_comic.issue}" required>
-                    <label for="issue">Issues</label>
+                <script>
+                    $(document).ready(function() {
+                        $('select').material_select();
+                        $("#genre_select select").val("${current_comic.genre}");
+                });
+                </script>
+                <div class="input-field col s12">
+                                        <textarea id="description" class="materialize-textarea" name="description" rows="2"
+                                                  required>${current_comic.description}</textarea>
+                    <label for="description">Description of the comic</label>
                 </div>
 
-                <div class="col s12 center flow-text">
-                    <h4>Edit Comic</h4>
-                    <div class="pad-top-10"></div>
-                    <div class="divider"></div>
-                    <div class="pad-top-10"></div>
-                    <div class="pad-top-10"></div>
-                </div>
-
-                <div class="col s4 right-align" style="padding-top: 5px">
-                    <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
-                        to My Comic</a>
-                </div>
-
-                <div class="col s8 right-align">
-
-                    <%--<form id="comic_upload" method="post" action="${edit}" enctype="multipart/form-data">--%>
-                        <%--<input id="dummy" type="submit" name="dummy">--%>
-                        <%--<input id="series_title" type="text" class="validate preview_field" name="series_title" value="${current_comic.seriesTitle}">--%>
-                        <%--<input id="issue_title" type="text" class="validate preview_field" name="issue_title" value="${current_comic.issueTitle}">--%>
-                        <%--<input id="volume" type="number" class="validate preview_field" name="volume" value="${current_comic.volume}">--%>
-                        <%--<input id="issue" type="number" class="validate preview_field" name="issue" value="${current_comic.issue}">--%>
-                        <%--<input id="uploaded_files" type="file" class="" name="uploaded_files" multiple >--%>
-                        <%--<label for="uploaded_files">--%>
-                            <%--<i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>--%>
-                        <%--</label>--%>
-                    <%--</form>--%>
-                    <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem" onclick="trash()">delete_forever</i>
-                   <i id="save" class="material-icons hoverable-1" style="font-size: 3rem" onclick="save_images()">save</i>
-                </div>
 
 
                 <c:set var="column" value="${0}"/>

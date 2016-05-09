@@ -81,7 +81,7 @@
                 <div class="container">
                     <!-- My Comic Button-->
                     <a id="my_comic_button" class="waves-effect waves-light btn cyan lighten-2 left"><i
-                            class="material-icons right">dashboard</i>My Comic</a>
+                            class="material-icons right">dashboard</i>My Comics</a>
 
                     <!-- Upload button-->
                     <a id="upload_button" class="waves-effect waves-light btn cyan lighten-2 right"><i
