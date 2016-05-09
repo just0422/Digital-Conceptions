@@ -109,13 +109,14 @@
             <!-- Fourth set-->
             <c:forEach var="genre" items="${genres}">
                 <div>
-                    <c:if test="${genre == 'action'}"><c:set var="comics" value="${action}"/></c:if>
-                    <c:if test="${genre == 'comedy'}"><c:set var="comics" value="${comedy}"/></c:if>
-                    <c:if test="${genre == 'drama'}"><c:set var="comics" value="${drama}"/></c:if>
-                    <c:if test="${genre == 'fantasy'}"><c:set var="comics" value="${fantasy}"/></c:if>
-                    <c:if test="${genre == 'horror'}"><c:set var="comics" value="${horror}"/></c:if>
-                    <c:if test="${genre == 'romance'}"><c:set var="comics" value="${romance}"/></c:if>
-                    <c:if test="${genre == 'sports'}"><c:set var="comics" value="${sports}"/></c:if>
+
+                    <c:if test="${genre == 'Action'}"><c:set var="comics" value="${Action}"/></c:if>
+                    <c:if test="${genre == 'Comedy'}"><c:set var="comics" value="${Comedy}"/></c:if>
+                    <c:if test="${genre == 'Drama'}"><c:set var="comics" value="${Drama}"/></c:if>
+                    <c:if test="${genre == 'Fantasy'}"><c:set var="comics" value="${Fantasy}"/></c:if>
+                    <c:if test="${genre == 'Horror'}"><c:set var="comics" value="${Horror}"/></c:if>
+                    <c:if test="${genre == 'Romance'}"><c:set var="comics" value="${Romance}"/></c:if>
+                    <c:if test="${genre == 'Sports'}"><c:set var="comics" value="${Sports}"/></c:if>
 
                     <c:if test="${not empty comics}">
                         <div class="card cyan lighten-2 ">
