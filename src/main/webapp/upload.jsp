@@ -50,6 +50,12 @@
 
         <div class="pad-top-20"></div>
         <div class="pad-top-20"></div>
+
+        <%-- Loading spinner --%>
+        <div id="spinner" hidden>
+            <i class="fa fa-spinner fa-pulse fa-3x fa-fw margin-bottom"></i>
+            <span class="sr-only">Loading...</span>
+        </div>
         <!-- Buttons for My Comics and Upload -->
         <div class="row">
             <div class="col s12">
@@ -95,13 +101,17 @@
                             var options = {
                                 beforeSend: function () {
                                     console.log("Sending");
-
+                                    $("#spinner").show();
+                                    $("#failure").attr('display', 'none');
+                                    $("#success").attr('display', 'none');
                                 },
                                 complete: function(){
-
+                                    $("#spinner").hide();
+                                    $("#success").attr('display', 'inline-block');
                                 },
                                 error: function(){
-
+                                    $("#failure").attr('display', 'inline-block');
+                                    $("#spinner").hide();
                                 },
                                 success: function (data, status) {
                                     console.log(data + status);
@@ -167,7 +177,7 @@
                             <div class="file-field input-field">
                                 <div class="waves-effect waves-light btn cyan lighten-2"><i
                                         class="material-icons right">cloud_upload</i>Browse</input>
-                                    <input type="file" multiple form="comic_upload" name="upload_images">
+                                    <input type="file" multiple form="comic_upload" name="upload_images" required>
                                 </div>
                                 <div class="file-path-wrapper">
                                     <input class="file-path validate" type="text"
@@ -176,11 +186,17 @@
                             </div>
 
 
-                            <div class="pad-top-20"></div>
+                            <div class="pad-top-20"></div><div>
                             <button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"
                                     form="comic_upload" type="submit"><i
                                     class="material-icons right">send</i>Submit
                             </button>
+                            <div class="pad-top-10"></div>
+                            <div id="answer_result">
+                                <strong id="success">Success! Redirecting...</strong><br/>
+                                <strong id="failure">Oops! Something went wrong!</strong>
+                            </div></div>
+
                         </div>
 
                     </div>

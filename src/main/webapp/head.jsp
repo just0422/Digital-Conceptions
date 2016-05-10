@@ -28,3 +28,6 @@
 <!--Import custom js-->
 <script type="text/javascript" src="js/customJS.js"></script>
 <script type="text/javascript" src="js/customJS_2.js"></script>
+
+<%-- Font awesome --%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">

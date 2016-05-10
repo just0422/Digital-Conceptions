@@ -238,3 +238,24 @@
         min-height: 80vh;
         max-height: 80vh;
     }
+
+    #spinner{
+        z-index: 10000;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+
+    #answer_result{
+        font-size: 3em;
+    }
+    #success{
+        color: #00FF00;
+        text-shadow: 0 0 10px #000;
+        display: none;
+    }
+    #failure{
+        color: #FF0000;
+        text-shadow: 0 0 10px #000;
+        display: none;
+    }

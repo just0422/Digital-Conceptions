@@ -39,7 +39,6 @@
     <script type="text/javascript" src="js/sly.min.js"></script>
     <script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/horizontal.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
