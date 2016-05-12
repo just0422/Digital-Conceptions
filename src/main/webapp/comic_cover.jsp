@@ -54,20 +54,6 @@
                         <p>
                             ${current_comic.description}
                         </p>
-                        <c:if test="${user_info.username == current_comic.username}">
-
-                            <form id="" action="/modifycomicinfo" method="get">
-                                <input type="hidden" name="series_title" value="${current_comic.seriesTitle}">
-                                <input type="hidden" name="issue_title" value="${current_comic.issueTitle}">
-                                <input type="hidden" name="volume" value="${current_comic.volume}">
-                                <input type="hidden" name="issue" value="${current_comic.issue}">
-                                <input type="hidden" name="genre" value="${current_comic.genre}">
-                                <input type="hidden" name="description" value="${current_comic.description}">
-                                <button type="submit" class="btn waves-effect waves-light teal lighten-2">
-                                    Modify Comic Info
-                                </button>
-                            </form>
-                        </c:if>
                     </div>
 
                     <div class="col s5">
@@ -418,73 +404,66 @@
                 <!-- Start of Volume issue and issue title listing -->
                 <div class="row" style="min-height: 25vh;margin-top: 2vh;">
                     <!-- Start of volume selection -->
-                    <div class="col s3">
+                    <%--<div class="col s3">--%>
                         <!-- Dropdown Trigger -->
-                        <a class='dropdown-button btn' href='#' data-activates='volume'>Select a volume</a>
+                        <%--<a class='dropdown-button btn' href='#' data-activates='volume'>Select a volume</a>--%>
 
                         <!-- Dropdown Structure -->
-                        <ul id='volume' class='dropdown-content'>
-                            <li><a href="#!">1</a></li>
-                            <li><a href="#!">2</a></li>
-                            <li><a href="#!">3</a></li>
-                        </ul>
-                    </div>
+
+                        <%--<ul id='volume' class='dropdown-content'>--%>
+                            <%--<c:forEach var="vol" items="${volumes}">--%>
+                                <%--<li><a href="#!">${vol.volume}</a></li>--%>
+                            <%--</c:forEach>--%>
+                        <%--</ul>--%>
+                    <%--</div>--%>
                     <!-- End of volumn selection -->
 
                     <!-- List of issues-->
-                    <div class="col s9 flow-text medium-font" style="overflow-y: scroll; height:25vh; ">
+                    <div class="col s12 flow-text medium-font" style="overflow-y: scroll; height:25vh; ">
 
+                        <%-- Other comics in series / title --%>
                         <div class="row">
-                            <div class="col s4">
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                            </div>
-                            <div class="col s4">
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                            </div>
-                            <div class="col s4">
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                                <a class="modal-trigger"
-                                   href="#reading">Issue: Issue title</a><br>
-                            </div>
+                            <%--<c:set var="comic_class" value="${all[0].seriesTitle}${all[0].volume}"/>--%>
+                            <%--<c:set var="i" value="${0}"/>--%>
+                            <%--<c:forEach var="series_vol" items="${all}">--%>
+                                <%--<c:when test="${empty series_vol}">--%>
+                                    <%--<c:set var="c" value="${all[i + 1]}"/>--%>
+                                    <%--<c:set var="comic_class" value="${c.seriesTitle}${c.volume}"/>--%>
+                                <%--</c:when>--%>
+                                <%--<c:otherwise>--%>
+                                <div class="col s6">
+                                    <c:forEach var="issue" items="${all}" begin="0">
+                                        <a class="modal-trigger"
+                                           href="/comic?series_title=${issue.seriesTitle}&issue_title=${issue.issueTitle}&volume=${issue.volume}&issue=${issue.issue}">
+                                                ${issue.seriesTitle} vol. ${issue.volume}: ${issue.issueTitle} #${issue.issue}
+                                        </a><br>
+                                    </c:forEach>
+                                </div>
+                                <div class="col s6 ${comic_class} issueList">
+                                    <c:forEach var="issue" items="${all}" begin="1" step="2">
+                                        <a class="modal-trigger"
+                                           href="/comic?series_title=${issue.seriesTitle}&issue_title=${issue.issueTitle}&volume=${issue.volume}&issue=${issue.issue}">
+                                                ${issue.seriesTitle} vol. ${issue.volume}: ${issue.issueTitle} #${issue.issue}
+                                        </a><br>
+                                    </c:forEach>
+                                </div>
+                                    <%--<div class="col s6 ${comic_class} issueList">--%>
+                                    <%--<c:forEach var="${issue}" items="${volumesRight}">--%>
+                                        <%--<a class="modal-trigger"--%>
+                                           <%--href="/comic?series_title=${issue.seriesTitle}&issue_title=${issue.issueTitle}&volume=${issue.volume}&issue=${issue.issue}">--%>
+                                                <%--${issue.issueTitle}--%>
+                                        <%--</a><br>--%>
+                                    <%--</c:forEach>--%>
+                                <%--</div>--%>
+                                <%--</c:otherwise>--%>
+                                <%--<c:set var="i" value="${i + 1}"/>--%>
+                            <%--</c:forEach>--%>
                         </div>
+                        <%--<script>--%>
+                            <%--function display_comic(volume){--%>
+                                <%--$('.${current_comic.seriesTitle}' + volume).attr('display', 'block');--%>
+                            <%--}--%>
+                        <%--</script>--%>
 
 
                     </div>

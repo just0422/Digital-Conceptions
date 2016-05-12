@@ -1,11 +1,15 @@
 package com.digitalconeptions.www;
 
 import com.google.appengine.api.blobstore.*;
+import com.google.appengine.api.socket.SocketServicePb;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.repackaged.com.google.io.protocol.HtmlFormGenerator;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.cmd.LoadType;
+import com.googlecode.objectify.cmd.Query;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -18,6 +22,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -42,17 +47,34 @@ public class ComicServlet extends HttpServlet {
         HttpSession session = req.getSession();
         String username = ((User) session.getAttribute("user")).getNickname();
 
+        LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
+        Query<ComicInfo> sTitle = load.filter(Constants.seriesTitle, seriesTitle);
+        List<ComicInfo> series = sTitle.list();
+
         ComicInfo currentComic
-                = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter(Constants.seriesTitle, seriesTitle)
-                .filter(Constants.issueTitle, issueTitle)
+                = sTitle.filter(Constants.issueTitle, issueTitle)
                 .filter(Constants.volume, volume)
                 .filter(Constants.issue, issue).first().now();
+
+//        ArrayList<ComicInfo> volumes = new ArrayList<>();
+//        ArrayList<ComicInfo> series = new ArrayList<>();
+//        int series_count = 0;
+//        for (int x = 0; x < s.size(); x++) {
+//            series.add(s.get(x));
+//            if (series_count != s.get(x).getVolume()) {
+//                series.add(null);
+//                series_count = s.get(x).getVolume();
+//                volumes.add(s.get(x));
+//            }
+//        }
 
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
         String subscribed = "Subscribe";
         String start = "Start";
+
+        req.setAttribute("all", series);
+        System.out.println(series.size());
 
         req.setAttribute("current_comic", currentComic);
         req.setAttribute("username", username);
