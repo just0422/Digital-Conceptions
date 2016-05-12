@@ -43,11 +43,11 @@
 
                             <!-- Subscription button-->
                             <a id="subscription_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">library_books</i>Subscription</a>
+                                    class="material-icons right">library_books</i>Subscriptions</a>
 
                             <!-- Notification button-->
                             <a id="notification_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">notifications</i>Notification</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="3"></span>
+                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="3"></span>
                             <div class="pad-top-10"></div>
                         </div>
 
@@ -170,32 +170,9 @@
                                 <c:forEach items="${current_user.unreadNotifications}" var="entry">
                                     <li>
                                         <div class="collapsible-header"><i class="material-icons">${entry}</i>System Message</div>
-                                        <div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>
+                                        <%--<div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>--%>
                                     </li>
                                 </c:forEach>
-                                <%--<script>--%>
-                                    <%--$(document).ready(--%>
-                                            <%--function rem(){--%>
-                                                <%--$.post(--%>
-                                                        <%--"/userprofile",--%>
-                                                        <%--{coomment : }--%>
-                                                <%--)--%>
-
-                                            <%--}--%>
-                                    <%--)--%>
-                                <%--</script>--%>
-                                <%--<li>--%>
-                                    <%--<div class="collapsible-header"><i class="material-icons">message</i>System Message--%>
-                                    <%--</div>--%>
-                                    <%--<div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>--%>
-                                        <%--Message Body</p></div>--%>
-                                <%--</li>--%>
-                                <%--<li>--%>
-                                    <%--<div class="collapsible-header"><i class="material-icons">message</i>System Message--%>
-                                    <%--</div>--%>
-                                    <%--<div class="collapsible-body"><i class="material-icons right pointer">close</i> <p>--%>
-                                        <%--Message Body</p></div>--%>
-                                <%--</li>--%>
                             </ul>
                         </div>
 

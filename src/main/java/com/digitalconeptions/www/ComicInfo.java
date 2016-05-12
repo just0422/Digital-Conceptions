@@ -213,4 +213,14 @@ public class ComicInfo {
     public void setJson(List<String> json) { this.json = json; }
     public boolean getIsCanvas() { return isCanvas; }
     public void setIsCanvas(boolean canvas) { this.isCanvas = canvas; }
+
+    public String getGetRequest(){
+        return "/comic?series_title=" + seriesTitle + "?issue_title=" + issueTitle + "?volume=" + volume + "?issue=" + issue;
+    }
+    public String getPostRequest(){
+        return  "<input type=\"hidden\" name=\"series_title\" value=\"" + seriesTitle + "}\">\n" +
+                "<input type=\"hidden\" name=\"issue_title\" value=\""+ issueTitle +"\">\n" +
+                "<input type=\"hidden\" name=\"volume\" value=\"" + volume + "\">\n" +
+                "<input type=\"hidden\" name=\"issue\" value=\"" + issue + "\">\n";
+    }
 }

@@ -130,6 +130,7 @@
                                    href="#reading" id="start">Start</a>
                                 <c:if test="${not empty user}">
                                     <form method="post" action="/comic">
+                                        <input name="comic_name" value="${current_comic.comicName}" hidden>
                                         <button type="submit" id="subscribe" class="waves-effect waves-light btn">Subscribe</button>
                                     </form>
                                 </c:if>
