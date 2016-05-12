@@ -403,34 +403,11 @@
 
                 <!-- Start of Volume issue and issue title listing -->
                 <div class="row" style="min-height: 25vh;margin-top: 2vh;">
-                    <!-- Start of volume selection -->
-                    <%--<div class="col s3">--%>
-                        <!-- Dropdown Trigger -->
-                        <%--<a class='dropdown-button btn' href='#' data-activates='volume'>Select a volume</a>--%>
-
-                        <!-- Dropdown Structure -->
-
-                        <%--<ul id='volume' class='dropdown-content'>--%>
-                            <%--<c:forEach var="vol" items="${volumes}">--%>
-                                <%--<li><a href="#!">${vol.volume}</a></li>--%>
-                            <%--</c:forEach>--%>
-                        <%--</ul>--%>
-                    <%--</div>--%>
-                    <!-- End of volumn selection -->
-
                     <!-- List of issues-->
                     <div class="col s12 flow-text medium-font" style="overflow-y: scroll; height:25vh; ">
 
                         <%-- Other comics in series / title --%>
                         <div class="row">
-                            <%--<c:set var="comic_class" value="${all[0].seriesTitle}${all[0].volume}"/>--%>
-                            <%--<c:set var="i" value="${0}"/>--%>
-                            <%--<c:forEach var="series_vol" items="${all}">--%>
-                                <%--<c:when test="${empty series_vol}">--%>
-                                    <%--<c:set var="c" value="${all[i + 1]}"/>--%>
-                                    <%--<c:set var="comic_class" value="${c.seriesTitle}${c.volume}"/>--%>
-                                <%--</c:when>--%>
-                                <%--<c:otherwise>--%>
                                 <div class="col s6">
                                     <c:forEach var="issue" items="${all}" begin="0">
                                         <a class="modal-trigger"
@@ -447,23 +424,7 @@
                                         </a><br>
                                     </c:forEach>
                                 </div>
-                                    <%--<div class="col s6 ${comic_class} issueList">--%>
-                                    <%--<c:forEach var="${issue}" items="${volumesRight}">--%>
-                                        <%--<a class="modal-trigger"--%>
-                                           <%--href="/comic?series_title=${issue.seriesTitle}&issue_title=${issue.issueTitle}&volume=${issue.volume}&issue=${issue.issue}">--%>
-                                                <%--${issue.issueTitle}--%>
-                                        <%--</a><br>--%>
-                                    <%--</c:forEach>--%>
-                                <%--</div>--%>
-                                <%--</c:otherwise>--%>
-                                <%--<c:set var="i" value="${i + 1}"/>--%>
-                            <%--</c:forEach>--%>
                         </div>
-                        <%--<script>--%>
-                            <%--function display_comic(volume){--%>
-                                <%--$('.${current_comic.seriesTitle}' + volume).attr('display', 'block');--%>
-                            <%--}--%>
-                        <%--</script>--%>
 
 
                     </div>
