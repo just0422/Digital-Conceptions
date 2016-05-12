@@ -93,14 +93,6 @@
                             <div class="divider"></div>
                         </div>
 
-                        <!-- Latest Chapter-->
-                        <div class="pad-top-10"></div>
-                        <div class="container-1 flow-text cyan-text">
-                            Latest Updated:<br>
-                            <span>Volume # + Issue # + Issue title </span>
-                            <div class="divider"></div>
-                        </div>
-
                         <!-- Current  Rating-->
                         <div class="pad-top-10"></div>
                         <form method="post" action="/comic">
@@ -136,7 +128,11 @@
                             <div class="center">
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger"
                                    href="#reading" id="start">Start</a>
-                                <a id="subscribe" class="waves-effect waves-light btn">Subscribe</a>
+                                <c:if test="${not empty user}">
+                                    <form method="post" action="/comic">
+                                        <button type="submit" id="subscribe" class="waves-effect waves-light btn">Subscribe</button>
+                                    </form>
+                                </c:if>
                                 <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
@@ -191,32 +187,6 @@
                             <!-- Start of modal content -->
                             <div class="modal-content" >
                                 <i class="material-icons modal-close right">close</i>
-
-                                <%--<script>--%>
-                                    <%--$('.modal-trigger').leanModal({--%>
-                                                <%--dismissible: true, // Modal can be dismissed by clicking outside of the modal--%>
-                                                <%--opacity: .5, // Opacity of modal background--%>
-                                                <%--in_duration: 300, // Transition in duration--%>
-                                                <%--out_duration: 200, // Transition out duration--%>
-                                                <%--ready: function() { goToPage(); }, // Callback for Modal open--%>
-                                                <%--complete: function() {--%>
-                                                    <%--$('#comic_viewer').closeModal();--%>
-                                                    <%--$.ajax({--%>
-                                                        <%--url: "/comic",--%>
-                                                        <%--method: "POST",--%>
-                                                        <%--data: {--%>
-                                                            <%--page_left_off: currentPageNumber - 1,--%>
-                                                            <%--comic_name: "${current_comic.comicName}"--%>
-                                                        <%--}--%>
-<%--//                                                        success: function(result) {--%>
-<%--//                                                            console.log(result);--%>
-<%--//                                                            $("#full_rate").html(result);--%>
-<%--//                                                        }--%>
-                                                    <%--})--%>
-                                                <%--} // Callback for Modal close--%>
-                                            <%--}--%>
-                                    <%--);--%>
-                                <%--</script>--%>
 
                                 <div class="row">
                                     <!--Previous page-->
@@ -409,7 +379,7 @@
                         <%-- Other comics in series / title --%>
                         <div class="row">
                                 <div class="col s6">
-                                    <c:forEach var="issue" items="${all}" begin="0">
+                                    <c:forEach var="issue" items="${all}" begin="0" step="2">
                                         <a class="modal-trigger"
                                            href="/comic?series_title=${issue.seriesTitle}&issue_title=${issue.issueTitle}&volume=${issue.volume}&issue=${issue.issue}">
                                                 ${issue.seriesTitle} vol. ${issue.volume}: ${issue.issueTitle} #${issue.issue}

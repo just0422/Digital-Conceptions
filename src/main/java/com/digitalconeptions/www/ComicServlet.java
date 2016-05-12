@@ -45,7 +45,7 @@ public class ComicServlet extends HttpServlet {
         int issue = Integer.parseInt(req.getParameter(Constants.issue));
 
         HttpSession session = req.getSession();
-        String username = ((User) session.getAttribute("user")).getNickname();
+        User user = (User) session.getAttribute("user");
 
         LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
         Query<ComicInfo> sTitle = load.filter(Constants.seriesTitle, seriesTitle);
@@ -68,16 +68,15 @@ public class ComicServlet extends HttpServlet {
 //            }
 //        }
 
-        UserService userService = UserServiceFactory.getUserService();
-        User user = userService.getCurrentUser();
-        String subscribed = "Subscribe";
-        String start = "Start";
+//        UserService userService = UserServiceFactory.getUserService();
+//        User user = userService.getCurrentUser();
+//        String subscribed = "Subscribe";
+//        String start = "Start";
 
         req.setAttribute("all", series);
-        System.out.println(series.size());
 
         req.setAttribute("current_comic", currentComic);
-        req.setAttribute("username", username);
+        req.setAttribute("user", user);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/comic_cover.jsp");
         rd.forward(req, resp);
@@ -124,6 +123,15 @@ public class ComicServlet extends HttpServlet {
         if (req.getParameter("page_left_off") != null){
             userinfo.removeComicPageLeftOff(currentcomic.getComicName());
             userinfo.addComicPageLeftOff(currentcomic.getComicName(), Integer.parseInt(req.getParameter("page_left_off")));
+        }
+
+        if (req.getParameter("subscribe") != null){
+            UserInfo creator = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", currentcomic.getUser()
+                    .getNickname()).first().now();
+            creator.addUnreadNotification(user.getNickname() + " has subscribed to your comic");
+            ObjectifyService.ofy().save().entity(creator).now();
+
+            userinfo.subscribe(currentcomic.key);
         }
 
         ObjectifyService.ofy().save().entity(currentcomic).now();
