@@ -53,6 +53,7 @@ public class ComicServlet extends HttpServlet {
         Query<ComicInfo> sTitle = load.filter(Constants.seriesTitle, seriesTitle);
         List<ComicInfo> series = sTitle.list();
 
+        ComicInfo firstComic = sTitle.first().now();
         ComicInfo currentComic
                 = sTitle.filter(Constants.issueTitle, issueTitle)
                 .filter(Constants.volume, volume)
@@ -72,7 +73,6 @@ public class ComicServlet extends HttpServlet {
 
 //        UserService userService = UserServiceFactory.getUserService();
 //        User user = userService.getCurrentUser();
-//        String subscribed = "Subscribe";
 //        String start = "Start";
 
         req.setAttribute("all", series);
@@ -80,7 +80,7 @@ public class ComicServlet extends HttpServlet {
 
         System.out.println(userinfo.subscriptions.contains(currentComic.key));
 
-        req.setAttribute("subscription", userinfo.subscriptions.contains(currentComic.key) ? "unsubscribe" : "subscribe");
+        req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.key) ? "unsubscribe" : "subscribe");
         req.setAttribute("current_comic", currentComic);
         req.setAttribute("user", user);
         ServletContext sc = getServletContext();
@@ -138,13 +138,19 @@ public class ComicServlet extends HttpServlet {
                     "<a href=\"/comic?series=" + currentcomic.seriesTitle + "\">" + currentcomic.seriesTitle + "</a>||" +
                     new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss").format(new Date()));
             ObjectifyService.ofy().save().entity(creator).now();
+            ComicInfo firsttcomic
+                    = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter(Constants.seriesTitle, comic[0]).first().now();
 
-            userinfo.subscribe(currentcomic.key);
+            userinfo.subscribe(firsttcomic.key);
             resp.setContentType("text/plain");
             resp.getWriter().println("unsubscribe");
         }
         else{
-            userinfo.unsubscribe(currentcomic.key);
+            ComicInfo firsttcomic
+                    = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter(Constants.seriesTitle, comic[0]).first().now();
+            userinfo.unsubscribe(firsttcomic.key);
 
             resp.setContentType("text/plain");
             resp.getWriter().println("subscribe");
