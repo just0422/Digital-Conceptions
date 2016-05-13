@@ -129,10 +129,26 @@
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger"
                                    href="#reading" id="start">Start</a>
                                 <c:if test="${not empty user}">
-                                    <form method="post" action="/comic">
-                                        <input name="comic_name" value="${current_comic.comicName}" hidden>
-                                        <button type="submit" id="subscribe" class="waves-effect waves-light btn">Subscribe</button>
-                                    </form>
+                                    <button id="subscription" class="waves-effect waves-light btn" onclick="un_subscribe()">${subscription}</button>
+                                    <script>
+                                        function un_subscribe(){
+//                                            $("#subscribe").click(function(e){
+//                                                e.preventDefault();
+                                            $.ajax({
+                                                url: "/comic",
+                                                method: "post",
+                                                data: {
+                                                    subscribe: $("#subscription").text(),
+                                                    comic_name: "${current_comic.comicName}"
+                                                },
+                                                success: function(response) {
+                                                    console.log(response);
+                                                    $("#subscription").text(response);
+                                                }
+                                            });
+//                                            });
+                                        }
+                                    </script>
                                 </c:if>
                                 <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>

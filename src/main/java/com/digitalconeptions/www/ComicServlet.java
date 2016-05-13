@@ -22,7 +22,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Blob;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -74,7 +76,11 @@ public class ComicServlet extends HttpServlet {
 //        String start = "Start";
 
         req.setAttribute("all", series);
+        UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
 
+        System.out.println(userinfo.subscriptions.contains(currentComic.key));
+
+        req.setAttribute("subscription", userinfo.subscriptions.contains(currentComic.key) ? "unsubscribe" : "subscribe");
         req.setAttribute("current_comic", currentComic);
         req.setAttribute("user", user);
         ServletContext sc = getServletContext();
@@ -125,13 +131,23 @@ public class ComicServlet extends HttpServlet {
             userinfo.addComicPageLeftOff(currentcomic.getComicName(), Integer.parseInt(req.getParameter("page_left_off")));
         }
 
-        if (req.getParameter("subscribe") != null){
+        if (req.getParameter("subscribe").replaceAll("\\s+","").equalsIgnoreCase("subscribe".replaceAll("\\s+",""))){
             UserInfo creator = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", currentcomic.getUser()
                     .getNickname()).first().now();
-            creator.addUnreadNotification(user.getNickname() + " has subscribed to your comic");
+            creator.addUnreadNotification(user.getNickname() + " has subscribed to your comic " +
+                    "<a href=\"/comic?series=" + currentcomic.seriesTitle + "\">" + currentcomic.seriesTitle + "</a>||" +
+                    new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss").format(new Date()));
             ObjectifyService.ofy().save().entity(creator).now();
 
             userinfo.subscribe(currentcomic.key);
+            resp.setContentType("text/plain");
+            resp.getWriter().println("unsubscribe");
+        }
+        else{
+            userinfo.unsubscribe(currentcomic.key);
+
+            resp.setContentType("text/plain");
+            resp.getWriter().println("subscribe");
         }
 
         ObjectifyService.ofy().save().entity(currentcomic).now();

@@ -92,4 +92,7 @@ public class UserInfo implements java.io.Serializable{
     public void subscribe(String key){
         subscriptions.add(key);
     }
+    public void unsubscribe(String key){
+        subscriptions.remove(key);
+    }
 }

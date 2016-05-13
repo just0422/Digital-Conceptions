@@ -169,7 +169,7 @@
                             <ul class="collapsible" data-collapsible="accordion">
                                 <c:forEach items="${current_user.unreadNotifications}" var="entry">
                                     <li>
-                                        <div class="collapsible-header"><i class="material-icons">${entry}</i>System Message</div>
+                                        <div class="collapsible-header">${entry}</div>
                                         <%--<div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>--%>
                                     </li>
                                 </c:forEach>
