@@ -38,15 +38,29 @@ public class SearchPageServlet extends HttpServlet {
         List<ComicInfo> comics_series_name = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("seriesTitle >=", search)
                 .filter("seriesTitle <", search + "\ufffd").list();
-        List<ComicInfo> comics_name = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter("comicTitle >=", search)
-                .filter("comicTitle <", search + "\ufffd").list();
+        List<ComicInfo> comics_issue_name = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter("issueTitle >=", search)
+                .filter("issueTitle <", search + "\ufffd").list();
         List<ComicInfo> comics_author_name = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter("username >=", search)
-                .filter("username <", search + "\ufffd").list();
-        for(ComicInfo c : comics_name)
+                .filter("username <",  search + "\ufffd").list();
+        for(ComicInfo c : comics_issue_name)
             if (!comics_series_name.contains(c))
                 comics_series_name.add(c);
+
+        for (String word : search.split(" ")){
+            List<ComicInfo> comics_series_word = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter("seriesTitle >=", word)
+                    .filter("seriesTitle <", word + "\ufffd").list();
+            List<ComicInfo> comics_issue_word = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter("issueTitle >=", word)
+                    .filter("issueTitle <", word + "\ufffd").list();
+            comics_series_word.addAll(comics_issue_word);
+            for (ComicInfo c : comics_series_word){
+                if (!comics_series_name.contains(c))
+                    comics_series_name.add(c);
+            }
+        }
         for(ComicInfo c : comics_author_name)
             if (!comics_series_name.contains(c))
                 comics_series_name.add(c);

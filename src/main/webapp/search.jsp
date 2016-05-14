@@ -34,12 +34,13 @@
 
                 <!-- Result counts and notice to user -->
                 <div>
-                    <span class="card-title">Results:</span>
+                    <span class="card-title">Results: '${param['search']}'...</span>
 
                     <c:choose>
-                        <c:when test="${comics != null}">
+                        <c:when test="${not empty comics}">
+                            <div class="row">
                             <c:forEach var="comic" items="${comics}">
-                                <div class="col s3">
+                                <div class="col s4">
                                     <form action="/comic" method="GET">
                                         <input type="hidden" name="series_title" value="${comic.seriesTitle}">
                                         <input type="hidden" name="issue_title" value="${comic.issueTitle}">
@@ -56,9 +57,12 @@
                                     </form>
                                 </div>
                             </c:forEach>
+                            </div>
                         </c:when>
                         <c:otherwise>
-                            <p>Your search - ${param['search']} - No related comics found</p>
+                            <p>No related comics found</p>
+                            <div class="pad-top-20"></div>
+
                         </c:otherwise>
                     </c:choose>
 
