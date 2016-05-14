@@ -48,7 +48,7 @@
                                                 <img src="${comic.coverPage}">
                                             </div>
                                             <div class="card-content white-text">
-                                                <p class="flow-text">${comic.seriesTitle}</p>
+                                                <p class="flow-text">${comic.issueTitle} #${comic.issue}</p>
                                             </div>
                                         </div>
                                     </form>

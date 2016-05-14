@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<datastore-indexes autoGenerate="true">
+    <datastore-index kind="ComicInfo" ancestor="false">
+        <property name="volume" direction="asc" />
+        <property name="issue" direction="asc" />
+    </datastore-index>
+</datastore-indexes>

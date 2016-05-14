@@ -1,5 +1,6 @@
 package com.digitalconeptions.www;
 import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.users.User;
 import com.google.appengine.api.users.UserService;
@@ -114,6 +115,7 @@ public class ComicInfo {
     public void setKey(){
         key = KeyFactory.createKeyString("ComicInfo", username + seriesTitle +  issueTitle + getTimeCreated());
     }
+
     public String getDateFormat() {
         SimpleDateFormat format = new SimpleDateFormat("E MM/dd/yyyy");
         return format.format(this.dateCreated);
