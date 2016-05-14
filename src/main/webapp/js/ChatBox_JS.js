@@ -1,0 +1,83 @@
+/**
+ * Created by ZEXUN on 4/27/16.
+ */
+$(document).ready(function () {
+    var name;
+
+    $("#user_name").change(function () {
+        name = $(this).val();
+        console.log(name);
+
+        $.post("/buildchannel",
+            {
+                id: name
+            },
+            function (data, status) {
+                channelKey = data;
+                console.log("Channel key: " + channelKey);
+                channel = new goog.appengine.Channel(data);
+                socket = channel.open();
+                socket.onopen = onOpened;
+                socket.onmessage = onMessage;
+            }
+        )
+    })
+
+
+    function onMessage(msg) {
+        var message = msg.data;
+
+        var $className = "others";
+
+        var $messageNode =
+            $("<li class="+ $className + ">" +
+                "<div class='avatar'><img src='image/1.jpg' /></div>" +
+                "<div class='messages'><p id='message_content'>" + message + "</p></div>" +
+                "</li>");
+
+        $("#discussion_content").append($messageNode);
+        var height = document.getElementById("discussion_content").scrollHeight;
+        $("#discussion_content").scrollTop( height) ;
+    }
+
+    function onOpened() {
+        console.log("Channel created");
+
+
+    }
+
+
+    $("#submit_message").click(function () {
+        var reciption_name = $("#reciption").val();
+        var message_body = $("#message_body").val();
+        var selfId = $("#user_name").val();
+        $("#message_body").val("");
+
+        $.post("" +
+            "/generatemessage",
+            {
+                reciption: reciption_name,
+                message: message_body,
+                selfId: selfId
+            }
+        )
+
+        var $className = "self";
+
+        var $messageNode =
+            $("<li class="+ $className + ">" +
+                "<div class='avatar'><img src='image/1.jpg' /></div>" +
+                "<div class='messages'><p id='message_content'>" + message_body + "</p></div>" +
+                "</li>");
+
+        $("#discussion_content").append($messageNode);
+        var height = document.getElementById("discussion_content").scrollHeight;
+        $("#discussion_content").scrollTop( height) ;
+
+    });
+
+
+    var channelKey;
+
+
+});

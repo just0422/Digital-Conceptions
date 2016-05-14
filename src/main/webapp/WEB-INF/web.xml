@@ -133,4 +133,17 @@
     <listener>
         <listener-class>com.digitalconeptions.www.OfyHelper</listener-class>
     </listener>
+
+
+    <!-- Chat box -->
+    <servlet>
+        <servlet-name>ChannelBuilder</servlet-name>
+        <servlet-class>chat.ChannelBuilderServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ChannelBuilder</servlet-name>
+        <url-pattern>/buildchannel</url-pattern>
+    </servlet-mapping>
+
+
 </web-app>
