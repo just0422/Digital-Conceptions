@@ -43,53 +43,45 @@ public class ComicServlet extends HttpServlet {
         System.out.println(getClass().getName() + " GET");
         String seriesTitle = req.getParameter(Constants.series_title);
         String issueTitle = req.getParameter(Constants.issue_title);
-        int volume = Integer.parseInt(req.getParameter(Constants.volume));
-        int issue = Integer.parseInt(req.getParameter(Constants.issue));
-
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
 
         LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
         Query<ComicInfo> sTitle = load.filter(Constants.seriesTitle, seriesTitle);
         List<ComicInfo> series = sTitle.list();
 
-        ComicInfo firstComic = sTitle.first().now();
-        ComicInfo currentComic
-                = sTitle.filter(Constants.issueTitle, issueTitle)
-                .filter(Constants.volume, volume)
-                .filter(Constants.issue, issue).first().now();
-
-//        ArrayList<ComicInfo> volumes = new ArrayList<>();
-//        ArrayList<ComicInfo> series = new ArrayList<>();
-//        int series_count = 0;
-//        for (int x = 0; x < s.size(); x++) {
-//            series.add(s.get(x));
-//            if (series_count != s.get(x).getVolume()) {
-//                series.add(null);
-//                series_count = s.get(x).getVolume();
-//                volumes.add(s.get(x));
-//            }
-//        }
-
-//        UserService userService = UserServiceFactory.getUserService();
-//        User user = userService.getCurrentUser();
-//        String start = "Start";
-
-        req.setAttribute("all", series);
-        UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
-
-        System.out.println(userinfo.subscriptions.contains(currentComic.key));
-
-        req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.key) ? "unsubscribe" : "subscribe");
-        req.setAttribute("current_comic", currentComic);
-        req.setAttribute("user", user);
+        HttpSession session = req.getSession();
+        User user = (User) session.getAttribute("user");
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/comic_cover.jsp");
+        String nextPage = "/comic_cover.jsp";
+
+        if (issueTitle == null){
+            nextPage = "/series.jsp";
+            req.setAttribute("comics", series);
+        }
+        else {
+            int volume = Integer.parseInt(req.getParameter(Constants.volume));
+            int issue = Integer.parseInt(req.getParameter(Constants.issue));
+
+            ComicInfo firstComic = sTitle.first().now();
+            ComicInfo currentComic
+                    = sTitle.filter(Constants.issueTitle, issueTitle)
+                    .filter(Constants.volume, volume)
+                    .filter(Constants.issue, issue).first().now();
+
+            req.setAttribute("all", series);
+            UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
+
+            System.out.println(userinfo.subscriptions.contains(currentComic.key));
+
+            req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.key) ? "unsubscribe" : "subscribe");
+            req.setAttribute("current_comic", currentComic);
+        }
+
+        RequestDispatcher rd = sc.getRequestDispatcher(nextPage);
+        req.setAttribute("user", user);
         rd.forward(req, resp);
     }
 
     //  Finished reading (save chapter) // FOR USER
-    //  Subscription // FOR USER
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         System.out.println(getClass().getName() + " POST");
