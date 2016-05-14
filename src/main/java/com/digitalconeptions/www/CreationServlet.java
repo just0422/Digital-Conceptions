@@ -86,16 +86,16 @@ public class CreationServlet extends HttpServlet {
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
         if (query.list().size() < 1){
             ComicInfo newComic = new ComicInfo(username, seriesTitle, issueTitle, genre, description,
-                    Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls);
+                    Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls, false);
             newComic.setKey();
             currentUserInfo.addCreation(newComic.getComicName());
 
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();
-            resp.getWriter().write("1");
+            resp.getWriter().write(seriesTitle + "," + issueTitle + "," + volume + "," + issue + ",");
+//            resp.setStatus(1);
             ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/editimages?series_title=" + seriesTitle + "&issue_title=" +
-                issueTitle + "&volume=" + volume + "&issue=" + issue);
+            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
             rd.forward(req, resp);
         }
         else{

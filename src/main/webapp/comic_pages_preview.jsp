@@ -27,6 +27,7 @@
 
     <!--Import materialize.js-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/jquery.form.js"></script>
 
     <!--Impot custom css-->
     <link type="text/css" rel="stylesheet" href="css/custom.css">
@@ -51,8 +52,31 @@
 
         <div class="container-1 min-height">
             <div class="row" style="padding-top:5vh;">
+                <input type="hidden" id="old_series_title" value="${current_comic.seriesTitle}">
+                <input type="hidden" id="old_issue_title" value="${current_comic.issueTitle}">
+                <input type="hidden" id="old_volume" value="${current_comic.volume}">
+                <input type="hidden" id="old_issue" value="${current_comic.issue}">
+                <input type="hidden" id="old_genre" value="${current_comic.genre}">
+                <input type="hidden" id="old_description" value="${current_comic.description}">
+                <div class="input-field modify_titles">
+                    <input id="series" type="text" name="new_series_title" value="${current_comic.seriesTitle}">
+                    <label for="series">Series Title</label>
+                </div>
+                <div class="input-field modify_titles modify_issues">
+                    <input id="volume" type="number" class="validate" name="new_volume" value="${current_comic.volume}" required>
+                    <label for="volume">Volume</label>
+                </div>
+                <div class="input-field modify_titles modify_issues">
+                    <input id="issue_title" type="text" class="validate" name="new_issue_title" value="${current_comic.issueTitle}" required>
+                    <label for="issue_title">Issue Title</label>
+                </div>
+                <div class="input-field modify_titles modify_issues">
+                    <input id="issue" type="number" class="validate" name="new_issue" value="${current_comic.issue}" required>
+                    <label for="issue">Issues</label>
+                </div>
+
                 <div class="col s12 center flow-text">
-                    <h4>Pages Preview</h4>
+                    <h4>Edit Comic</h4>
                     <div class="pad-top-10"></div>
                     <div class="divider"></div>
                     <div class="pad-top-10"></div>
@@ -65,9 +89,20 @@
                 </div>
 
                 <div class="col s8 right-align">
-                    <i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>
-                    <i id="delete" class="material-icons hoverable-1" style="font-size: 3rem">delete_forever</i>
-                    <i id="save" class="material-icons hoverable-1" style="font-size: 3rem">save</i>
+
+                    <%--<form id="comic_upload" method="post" action="${edit}" enctype="multipart/form-data">--%>
+                        <%--<input id="dummy" type="submit" name="dummy">--%>
+                        <%--<input id="series_title" type="text" class="validate preview_field" name="series_title" value="${current_comic.seriesTitle}">--%>
+                        <%--<input id="issue_title" type="text" class="validate preview_field" name="issue_title" value="${current_comic.issueTitle}">--%>
+                        <%--<input id="volume" type="number" class="validate preview_field" name="volume" value="${current_comic.volume}">--%>
+                        <%--<input id="issue" type="number" class="validate preview_field" name="issue" value="${current_comic.issue}">--%>
+                        <%--<input id="uploaded_files" type="file" class="" name="uploaded_files" multiple >--%>
+                        <%--<label for="uploaded_files">--%>
+                            <%--<i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>--%>
+                        <%--</label>--%>
+                    <%--</form>--%>
+                    <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem" onclick="trash()">delete_forever</i>
+                   <i id="save" class="material-icons hoverable-1" style="font-size: 3rem" onclick="save_images()">save</i>
                 </div>
 
 
@@ -85,6 +120,22 @@
                 </ul>
 
                 <script>
+                    $(document).ready(function () {
+                        var options = {
+                            beforeSend: function () {
+                                console.log("Sending");
+                            },
+                            success: function (data, status) {
+                                console.log(data + status);
+                                var req = data.split(',');
+//                                window.location.href = "/editimages?series_title=" + req[0] +
+//                                        "&issue_title=" + req[1] + "&volume=" + req[2] +
+//                                        "&issue=" + req[3];
+                            }
+                        }
+                        $("#comic_upload").ajaxForm(options);
+                    });
+
                     function select(element) {
                         $(element).toggleClass("selected-page");
                     }
@@ -98,17 +149,44 @@
                         }
                     }
 
+                    function save_images() {
+                        var elements = document.getElementsByClassName("page-image");
+                        var links=[];
+                        for (i = 0; i < elements.length; i++) {
+                            links.push($($(elements[i]).find('img')[0]).attr('src'))
+                        }
+
+                        $.post(
+                            "/editimages",
+                            {
+                                series_title : '${current_comic.seriesTitle}',
+                                issue_title : '${current_comic.issueTitle}',
+                                volume : '${current_comic.volume}',
+                                issue : '${current_comic.issue}',
+                                new_series_title : $('#series').val(),
+                                new_issue_title : $('#issue_title').val(),
+                                new_volume : $('#volume').val(),
+                                new_issue : $('#issue').val(),
+                                images : links.toString()
+                            },
+                            function(data){
+                                console.log("Response: " + data);
+                        });
+                    }
+
                     $(document).ready(function () {
                         $("#sortable").sortable();
                     })
 
                     $(document).keydown(function (e) {
-                        if (e.which == 8)
-                            e.preventDefault();
+                        var element = e.target.nodeName.toLowerCase();
+                        if (element != 'input' && element != 'textarea'){
+                            if (e.which == 8)
+                                e.preventDefault();
 
-                        if (e.which == 8 || e.which == 48)
-                            trash();
-
+                            if (e.which == 8 || e.which == 48)
+                                trash();
+                        }
                         console.log(e.which);
                     });
                 </script>

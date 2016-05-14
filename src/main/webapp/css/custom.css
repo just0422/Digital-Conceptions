@@ -203,12 +203,25 @@
     .issues{
         margin-left: 9%;
     }
+
+    .modify_titles{
+        width: 15%;
+        display: inline-block;
+    }
+    .modify_issues{
+        margin-left: 2%;
+    }
+
+
     #comic_upload input {
         padding-left: 5%;
         padding-right: 5%;
     }
     .selected-page{
         outline: 5px solid #ffff00;
+    }
+    .preview_field{
+        display: none;
     }
 
 

@@ -38,6 +38,14 @@
         <servlet-name>editimageservlet</servlet-name>
         <servlet-class>com.digitalconeptions.www.EditImagesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>canvasservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.SaveCanvasServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>modifycomicinfoservlet</servlet-name>
+        <servlet-class>com.digitalconeptions.www.ModifyComicInfoServlet</servlet-class>
+    </servlet>
 
     <!-- Servlet Mappings -->
     <servlet-mapping>
@@ -68,6 +76,10 @@
         <servlet-name>editimageservlet</servlet-name>
         <url-pattern>/editimages</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>modifycomicinfoservlet</servlet-name>
+        <url-pattern>/modifycomicinfo</url-pattern>
+    </servlet-mapping>
 
     <servlet-mapping>
         <servlet-name>userservice</servlet-name>
@@ -77,14 +89,14 @@
         <servlet-name>userservice</servlet-name>
         <url-pattern>/usersignout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>canvasservlet</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
 
 
     
     <!-- JSP Servlet Mappings -->
-    <!--<servlet>-->
-        <!--<servlet-name>home</servlet-name>-->
-        <!--<jsp-file>index.jsp</jsp-file>-->
-    <!--</servlet>-->
     <!--<servlet>-->
         <!--<servlet-name>profile</servlet-name>-->
         <!--<jsp-file>user_profile.jsp</jsp-file>-->

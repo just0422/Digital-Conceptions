@@ -40,6 +40,7 @@
     <script type="text/javascript" src="js/fabric.js"></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
 
+
     <%--<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
     <%--<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
     <script type="text/javascript" src="js/paster.js"></script>
@@ -57,8 +58,16 @@
     <script type="text/javascript" src="js/app_config.js"></script>
     <script type="text/javascript" src="js/controller.js"></script>
 
+    <link type="text/css" rel="stylesheet" href="css/horizontal.css">
+    <script type="text/javascript" src="js/canvas_functions.js"></script>
+    <script type="text/javascript" src="js/sly.min.js"></script>
+    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script type="text/javascript" src="js/horizontal.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
+
 </head>
 
 <body class="background">
@@ -77,18 +86,65 @@
 
             <!-- Start of create tools -->
             <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
+                <div class="wrap">
+                    <div class="scrollbar">
+                        <div class="handle">
+                            <div class="mousearea"></div>
+                        </div>
+                    </div>
 
-                <%--<script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo="   crossorigin="anonymous"></script>--%>
-                <%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
-                <%--<script src="js/paster.js"></script>--%>
-                <%--<script src="js/jquery.mousewheel.min.js"></script>--%>
+                    <div class="frame" id="basic">
+                        <ul id="pages_list" class="clearfix">
+                            <c:choose>
+                                <c:when test="${current_comic == null}">
+                                    <li onclick="updateCanvas(0)">
+                                        <img id="img_0" class="page_previews"/>
+                                        <div id="json_0" style="display: none;"></div>
+                                    </li>
+                                </c:when>
+                                <c:otherwise>
+                                    <c:set var="num" value="0"/>
+                                    <c:forEach var="json" items="${current_comic.json}" varStatus="loop">
+                                        <li onclick="updateCanvas(${num})">
+                                            <img id="img_${num}" class="page_previews"/>
+                                            <%--src="${current_comic.urls[num]}"/>--%>
 
-                <%--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">--%>
-                <%--<link rel="stylesheet" href="css/kitchensink.css">--%>
+                                            <div id="json_${num}" style="display: none;">${json}</div>
 
-                <%--<link href='http://fonts.googleapis.com/css?family=Plaster' rel='stylesheet' type='text/css'>--%>
-                <%--<link href='http://fonts.googleapis.com/css?family=Engagement' rel='stylesheet' type='text/css'>--%>
+                                            <script>
+                                                var canvas = new fabric.Canvas('dummy')
+                                                canvas.loadFromJSON(${json}, canvas.renderAll.bind(canvas));
+                                                $('#img_' + ${num}).attr('src', canvas.toDataURL("image/png"))
 
+                                                $('#dummy').remove();
+                                            </script>
+                                        </li>
+                                        <c:set var="num" value="${num + 1}"/>
+                                    </c:forEach>
+                                </c:otherwise>
+                            </c:choose>
+                            <%--<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>--%>
+                            <%--<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>--%>
+                            <%--<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>--%>
+                            <%--<li>28</li><li>29</li>--%>
+                        </ul>
+                    </div>
+
+                    <ul class="pages"></ul>
+
+                    <div class="controls center">
+                        <button class="btn toStart"><i class="fa fa-fast-backward" aria-hidden="true"></i></button>
+                        <button class="btn prevPage"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                        <button class="btn prev"><i class="fa fa-caret-left fa-2x" aria-hidden="true"></i></button>
+
+                        <button class="btn remove"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <button class="btn add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+
+                        <button class="btn next"><i class="fa fa-caret-right fa-2x" aria-hidden="true"></i></button>
+                        <button class="btn nextPage"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+                        <button class="btn toEnd"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>
+                    </div>
+                </div>
                 <div style="position:relative;width:704px;float:left;" id="canvas-wrapper">
 
                     <div id="canvas-controls">
@@ -103,7 +159,8 @@
                         </div>
                     </div>
 
-                    <canvas id="canvas" width="700" height="600"></canvas>
+                    <canvas id="canvas" width="700" height="600" onchange="updatePage()"></canvas>
+
 
                     <div id="color-opacity-controls" ng-show="canvas.getActiveObject()">
 
@@ -470,7 +527,7 @@
                             <button type="button" class="btn btn-info" ng-click="loadJSON()">
                                 Load
                             </button>
-                            <button type="button" class="btn btn-info" ng-click="saveJSON()">
+                            <button type="button" class="btn btn-info" onclick="save()">
                                 Save
                             </button>
                         </div>
@@ -482,7 +539,63 @@
                 <script src="js/font_definitions.js"></script>
                 <script>
                     var kitchensink = {};
-                    var canvas = new fabric.Canvas('canvas');
+                    canvas = new fabric.Canvas('canvas');
+
+                    function save(){
+                        var pages = $('#pages_list').children();
+                        var formdata = new FormData();
+
+                        for (var i = 0; i < pages.length; i++) {
+                            console.log(i);
+                            console.log(pages.length);
+
+
+                            if ($('#img_' + i).attr('src') != null) {
+                                var blobBin = atob($('#img_' + i).attr('src').split(',')[1]);
+                                var array = [];
+                                for(var j = 0; j < blobBin.length; j++) {
+                                    array.push(blobBin.charCodeAt(j));
+                                }
+
+                                formdata.append("image_" + i, new Blob([new Uint8Array(array)], {type: 'image/png'}));
+                                formdata.append("json_" + i, $('#json_' + i).html());
+                            }
+                        }
+
+                        var vol = '${current_comic.volume}';
+                        if (vol.length == 0)
+                                vol = -1;
+                        var iss = '${current_comic.issue}';
+                        if (iss.length == 0)
+                                iss = -1;
+
+                        formdata.append("series_title", '${current_comic.seriesTitle}');
+                        formdata.append("issue_title", '${current_comic.issueTitle}');
+                        formdata.append("volume", vol);
+                        formdata.append("issue", iss);
+                        formdata.append('description', '${current_comic.description}')
+                        formdata.append('genre', '${current_comic.genre}')
+                        formdata.append("new_series_title", $("#series_title").val());
+                        formdata.append("new_issue_title", $("#issue_title").val());
+                        formdata.append("new_volume", $("#volume").val());
+                        formdata.append("new_issue", $("#issue").val());
+                        formdata.append("new_genre", $("#genre_select").val());
+                        formdata.append("new_description", $("#description").val());
+
+                        $.ajax({
+                            url: "${create}",
+                            type: "POST",
+                            data: formdata,
+                            processData: false,
+                            contentType: false,
+                        }).done(function(respond){
+                            alert(respond);
+                        });
+                    }
+
+                    function respond(){
+                        console.log("DONE");
+                    }
                 </script>
 
                 <script src="js/utils.js"></script>
@@ -602,8 +715,75 @@
 
         <!-- End of actual create comic seciont -->
 
+        <div class="col s9">
+            <div class="container-1">
+                <%--<form action="${create}" method="post" id="comic_upload" enctype="multipart/form-data">--%>
+                    <div class="input-field titles">
+                        <input id="series_title" type="text" class="validate" name="series_title" value="${current_comic.seriesTitle}" required>
+                        <label for="series_title">Series Title</label>
+                    </div>
+                    <div class="input-field titles issues">
+                        <input id="issue_title" type="text" class="validate" name="issue_title" value="${current_comic.issueTitle}" required>
+                        <label for="issue_title">Issue Title</label>
+                    </div>
+                    <div class="input-field titles">
+                        <input id="volume" type="number" class="validate" name="volume" value="${current_comic.volume}" required>
+                        <label for="volume">Volume</label>
+                    </div>
+                    <div class="input-field titles issues">
+                        <input id="issue" type="number" class="validate" name="issue" value="${current_comic.issue}" required>
+                        <label for="issue">Issues</label>
+                    </div>
 
 
+
+                    <div class="input-field col s11">
+                        <select name="genre" id="genre_select" required>
+                            <option value="" disabled selected>Choose your genre</option>
+                            <option value="action">Action</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="drama">Drama</option>
+                            <option value="horror">Horror</option>
+                            <option value="fantasy">Fantasy</option>
+                            <option value="romance">Romance</option>
+                            <option value="sport">Sports</option>
+                        </select>
+                    </div>
+
+
+                    <div class="input-field col s12">
+                                        <textarea id="description" class="materialize-textarea" name="description"
+                                                  required>${current_comic.description}</textarea>
+                        <label for="description">Description of the comic</label>
+                    </div>
+                <%--</form>--%>
+
+            </div>
+
+            <div class="pad-top-20"></div>
+            <div class="pad-top-20"></div>
+            <!-- Browse and Submit buttons -->
+            <div class="col s12">
+                <%--<div class="file-field input-field">--%>
+                    <%--<div class="waves-effect waves-light btn cyan lighten-2"><i--%>
+                            <%--class="material-icons right">cloud_upload</i>Browse</input>--%>
+                        <%--<input type="file" multiple form="comic_upload" name="upload_images">--%>
+                    <%--</div>--%>
+                    <%--<div class="file-path-wrapper">--%>
+                        <%--<input class="file-path validate" type="text"--%>
+                               <%--placeholder="Upload one or more files">--%>
+                    <%--</div>--%>
+                <%--</div>--%>
+
+
+                <%--<div class="pad-top-20"></div>--%>
+                <%--<button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"--%>
+                        <%--form="comic_upload" type="submit"><i--%>
+                        <%--class="material-icons right">send</i>Submit--%>
+                <%--</button>--%>
+            </div>
+
+        </div>
 
         <!-- Start of Add button -->
         <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">

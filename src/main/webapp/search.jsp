@@ -15,10 +15,10 @@
     <!--Import Google Icon Font-->
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection">
 
     <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0 /">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Import Jquery-->
     <script type="text/javascript" src="js/jquery-2.2.2.js"></script>
@@ -52,9 +52,33 @@
 
                 <!-- Result counts and notice to user -->
                 <div>
-                    <span class="card-title">Results: 0</span>
+                    <span class="card-title">Results:</span>
 
-                    <p>Your search - <c:out value="${param['search']}"/> - No related comics found</p>
+                    <c:choose>
+                        <c:when test="${comics != null}">
+                            <c:forEach var="comic" items="${comics}">
+                                <div class="col s3">
+                                    <form action="/comic" method="GET">
+                                        <input type="hidden" name="series_title" value="${comic.seriesTitle}">
+                                        <input type="hidden" name="issue_title" value="${comic.issueTitle}">
+                                        <input type="hidden" name="volume" value="${comic.volume}">
+                                        <input type="hidden" name="issue" value="${comic.issue}">
+                                        <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                            <div class="card-image">
+                                                <img src="${comic.coverPage}">
+                                            </div>
+                                            <div class="card-content white-text">
+                                                <p class="flow-text">${comic.seriesTitle}</p>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </c:forEach>
+                        </c:when>
+                        <c:otherwise>
+                            <p>Your search - ${param['search']} - No related comics found</p>
+                        </c:otherwise>
+                    </c:choose>
 
                     <p>Below are recommend comics for the day </p>
 

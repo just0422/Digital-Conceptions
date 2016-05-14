@@ -69,6 +69,23 @@
                                 <img src="${current_comic.coverPage}"  style="max-height: 270px; min-height:270px">
                             </div>
                         </div>
+                        <p>
+                            ${current_comic.description}
+                        </p>
+                        <c:if test="${user_info.username == current_comic.username}">
+
+                            <form id="" action="/modifycomicinfo" method="get">
+                                <input type="hidden" name="series_title" value="${current_comic.seriesTitle}">
+                                <input type="hidden" name="issue_title" value="${current_comic.issueTitle}">
+                                <input type="hidden" name="volume" value="${current_comic.volume}">
+                                <input type="hidden" name="issue" value="${current_comic.issue}">
+                                <input type="hidden" name="genre" value="${current_comic.genre}">
+                                <input type="hidden" name="description" value="${current_comic.description}">
+                                <button type="submit" class="btn waves-effect waves-light teal lighten-2">
+                                    Modify Comic Info
+                                </button>
+                            </form>
+                        </c:if>
                     </div>
 
                     <div class="col s5">
@@ -86,6 +103,13 @@
                             <div class="divider"></div>
                         </div>
                         <div class="pad-top-10"></div>
+
+                        <!-- Genre -->
+                        <div class="pad-top-10"></div>
+                        <div class="container-1 flow-text cyan-text">
+                            Genre:<span class="right">${current_comic.genre}</span>
+                            <div class="divider"></div>
+                        </div>
 
                         <!-- Author Name-->
                         <div class="pad-top-10"></div>
@@ -585,9 +609,6 @@
 
 
                     <div class="pad-top-10"></div>
-
-
-
 
 
                 </div>

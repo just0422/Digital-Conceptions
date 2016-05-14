@@ -39,12 +39,8 @@ public class UserProfileServlet extends HttpServlet {
 
     }
 
-    /*
-        TODO
-            Finish post request on frontend and backend (to update and refresh info on a small AJAX request)
-     */
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-
+        doGet(req, resp);
     }
 
 }

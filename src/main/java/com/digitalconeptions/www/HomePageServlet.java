@@ -34,12 +34,12 @@ public class HomePageServlet extends HttpServlet {
         List<ComicInfo> fantasyComics = comicObjLoad.filter("genre", "fantasy").list();
 
         // Filter comics by popularity
-        List<ComicInfo> popularComics = null;
-        for (int x = 5; x > 0; x--){
-            popularComics = comicObjLoad.filter("rating >", x).list();
-            if(popularComics.size() > 0)
-                break;
-        }
+//        List<ComicInfo> popularComics = null;
+//        for (int x = 5; x > 0; x--){
+//            popularComics = comicObjLoad.filter("rating >", x).list();
+//            if(popularComics.size() > 0)
+//                break;
+//        }
 
         // Filter comics by date added
         List<ComicInfo> newestComics = null;
@@ -97,7 +97,7 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute("romance_comics", romanceComics);
         req.setAttribute("horror_comics", horrorComics);
         req.setAttribute("fantasy_comics", fantasyComics);
-        req.setAttribute("popular_comics", popularComics);
+//        req.setAttribute("popular_comics", popularComics);
         req.setAttribute("newest_comics", newestComics);
         HttpSession session = req.getSession();
         session.setAttribute("user", user);
