@@ -87,6 +87,11 @@ public class ComicServlet extends HttpServlet {
         String name = req.getParameter("comic_name");
         String comic[] = name.split("\\|");
 
+        String rating = req.getParameter("rating");
+        String comment = req.getParameter("comment");
+        String subscription = req.getParameter("subscription");
+        String pages_left_off = req.getParameter("pages_left_off");
+
         ComicInfo currentcomic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter(Constants.seriesTitle, comic[0])
@@ -98,12 +103,12 @@ public class ComicServlet extends HttpServlet {
         User user = (User)session.getAttribute("user");
         UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
 
-        if (req.getParameter("rating") != null) {
+        if (rating != null) {
             currentcomic.addRate(user.getNickname(), Integer.parseInt(req.getParameter("rating")));
             resp.getWriter().write("" + currentcomic.rating);
         }
 
-        if (req.getParameter("comment") != null){
+        if (comment != null){
             String date = currentcomic.addComment(user.getNickname(), req.getParameter("comment"));
 
             userinfo.addUnreadNotification( user.getNickname() + " commented '" + req.getParameter("comment") + "' on your Comic: "
@@ -117,40 +122,40 @@ public class ComicServlet extends HttpServlet {
             resp.getWriter().println("}");
         }
 
-        if (req.getParameter("page_left_off") != null){
+        if (pages_left_off != null){
             userinfo.removeComicPageLeftOff(currentcomic.getComicName());
             userinfo.addComicPageLeftOff(currentcomic.getComicName(), Integer.parseInt(req.getParameter("page_left_off")));
         }
 
+        if (subscription != null) {
+            // SUBSCRIBTIONS
+            if (subscription.replaceAll("\\s+", "")
+                    .equalsIgnoreCase("subscribe".replaceAll("\\s+", ""))) {
+                UserInfo creator = ObjectifyService.ofy().load()
+                        .type(UserInfo.class).filter("username", currentcomic.getUser()
+                                .getNickname()).first().now();
+                creator.addUnreadNotification(user.getNickname()
+                        + " has subscribed to your comic " + "<a href=\"/comic?series_title="
+                        + currentcomic.seriesTitle + "\">" + currentcomic.seriesTitle
+                        + "</a>||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
+                        .format(new Date()));
+                ObjectifyService.ofy().save().entity(creator).now();
+                ComicInfo firsttcomic
+                        = ObjectifyService.ofy().load().type(ComicInfo.class)
+                        .filter(Constants.seriesTitle, comic[0]).first().now();
 
-        // SUBSCRIBTIONS
-        if (req.getParameter("subscribe").replaceAll("\\s+","")
-                .equalsIgnoreCase("subscribe".replaceAll("\\s+",""))){
-            UserInfo creator = ObjectifyService.ofy().load()
-                    .type(UserInfo.class).filter("username", currentcomic.getUser()
-                    .getNickname()).first().now();
-            creator.addUnreadNotification(user.getNickname()
-                    + " has subscribed to your comic " + "<a href=\"/comic?series="
-                    + currentcomic.seriesTitle + "\">" + currentcomic.seriesTitle
-                    + "</a>||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
-                    .format(new Date()));
-            ObjectifyService.ofy().save().entity(creator).now();
-            ComicInfo firsttcomic
-                    = ObjectifyService.ofy().load().type(ComicInfo.class)
-                    .filter(Constants.seriesTitle, comic[0]).first().now();
+                userinfo.subscribe(firsttcomic.getSeriesTitle());
+                resp.setContentType("text/plain");
+                resp.getWriter().println("unsubscribe");
+            } else {
+                ComicInfo firsttcomic
+                        = ObjectifyService.ofy().load().type(ComicInfo.class)
+                        .filter(Constants.seriesTitle, comic[0]).first().now();
+                userinfo.unsubscribe(firsttcomic.getSeriesTitle());
 
-            userinfo.subscribe(firsttcomic.getSeriesTitle());
-            resp.setContentType("text/plain");
-            resp.getWriter().println("unsubscribe");
-        }
-        else{
-            ComicInfo firsttcomic
-                    = ObjectifyService.ofy().load().type(ComicInfo.class)
-                    .filter(Constants.seriesTitle, comic[0]).first().now();
-            userinfo.unsubscribe(firsttcomic.getSeriesTitle());
-
-            resp.setContentType("text/plain");
-            resp.getWriter().println("subscribe");
+                resp.setContentType("text/plain");
+                resp.getWriter().println("subscribe");
+            }
         }
 
         ObjectifyService.ofy().save().entity(currentcomic).now();

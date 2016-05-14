@@ -78,10 +78,8 @@
                 <div class="row">
 
                     <!-- First column -->
-                    <div class="col s6">
-
                         <!-- 1st -->
-                        <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3 col s2" onclick="">
                             <div class="card-image">
                                 <img src="image/5.jpg">
                             </div>
@@ -89,11 +87,8 @@
                                 <p class="flow-text">Hero</p>
                             </div>
                         </div>
-                        <!-- Divider -->
-                        <div class="divider-grey-3"></div>
-
                         <!-- 2nd -->
-                        <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3 col s2" onclick="">
                             <div class="card-image">
                                 <img src="image/5.jpg">
                             </div>
@@ -101,11 +96,9 @@
                                 <p class="flow-text">Hero</p>
                             </div>
                         </div>
-                        <!-- Divider -->
-                        <div class="divider-grey-3"></div>
 
                         <!-- 3rd -->
-                        <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3 col s2" onclick="">
                             <div class="card-image">
                                 <img src="image/5.jpg">
                             </div>
@@ -113,17 +106,10 @@
                                 <p class="flow-text">Hero</p>
                             </div>
                         </div>
-                        <!-- Divider -->
-                        <div class="divider-grey-3"></div>
 
-
-                    </div>
-
-                    <!-- 2nd column -->
-                    <div class="col s6">
 
                         <!-- 1st -->
-                        <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3 col s2" onclick="">
                             <div class="card-image">
                                 <img src="image/5.jpg">
                             </div>
@@ -131,11 +117,8 @@
                                 <p class="flow-text">Hero</p>
                             </div>
                         </div>
-                        <!-- Divider -->
-                        <div class="divider-grey-3"></div>
-
                         <!-- 2nd -->
-                        <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3 col s2" onclick="">
                             <div class="card-image">
                                 <img src="image/5.jpg">
                             </div>
@@ -143,11 +126,9 @@
                                 <p class="flow-text">Hero</p>
                             </div>
                         </div>
-                        <!-- Divider -->
-                        <div class="divider-grey-3"></div>
 
                         <!-- 3rd -->
-                        <div class="card hoverable cyan lighten-3" onclick="">
+                        <div class="card hoverable cyan lighten-3 col s2" onclick="">
                             <div class="card-image">
                                 <img src="image/5.jpg">
                             </div>
@@ -155,11 +136,8 @@
                                 <p class="flow-text">Hero</p>
                             </div>
                         </div>
-                        <!-- Divider -->
-                        <div class="divider-grey-3"></div>
 
 
-                    </div>
 
                 </div>
             </div>

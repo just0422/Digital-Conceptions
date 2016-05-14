@@ -30,13 +30,13 @@ public class HomePageServlet extends HttpServlet {
         // Filter comics by genres
         List<String> genres = Constants.randomGenres(4);
         List<ComicInfo> comics0 = comicObjLoad.filter("genre", genres.get(0)).order("rating").list();
-        comics0 = comics0.subList(0, 2 >= comics0.size() ? comics0.size() : 2);
+        comics0 = comics0.subList(0, 2 >= comics0.size() ? comics0.size() : 3);
         List<ComicInfo> comics1 = comicObjLoad.filter("genre", genres.get(1)).order("rating").list();
-        comics1 = comics1.subList(0, 2 >= comics1.size() ? comics1.size() : 2);
+        comics1 = comics1.subList(0, 2 >= comics1.size() ? comics1.size() : 3);
         List<ComicInfo> comics2 = comicObjLoad.filter("genre", genres.get(2)).order("rating").list();
-        comics2 = comics2.subList(0, 2 >= comics2.size() ? comics2.size() : 2);
+        comics2 = comics2.subList(0, 2 >= comics2.size() ? comics2.size() : 3);
         List<ComicInfo> comics3 = comicObjLoad.filter("genre", genres.get(3)).order("rating").list();
-        comics3 = comics3.subList(0, 2 >= comics3.size() ? comics3.size() : 2);
+        comics3 = comics3.subList(0, 2 >= comics3.size() ? comics3.size() : 3);
 
         // Filter comics by popularity
         List<ComicInfo> popularComics = null;
