@@ -4,7 +4,7 @@
 $(document).ready(function () {
     var name;
 
-    $("#user_name").change(function () {
+    /*$("#user_name").change(function () {
         name = $(this).val();
         console.log(name);
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
                 socket.onmessage = onMessage;
             }
         )
-    })
+    })*/
 
 
     function onMessage(msg) {
@@ -56,9 +56,9 @@ $(document).ready(function () {
         $.post("" +
             "/generatemessage",
             {
-                reciption: reciption_name,
+                reciption: receiver_name,
                 message: message_body,
-                selfId: selfId
+                selfId: self_name
             }
         )
 
@@ -78,6 +78,27 @@ $(document).ready(function () {
 
 
     var channelKey;
+
+    $("#confirm_receiver").click(function () {
+        $("#this_chat_info").hide();
+        $("#type_message").show();
+
+        $.post("/buildchannel",
+            {
+                id: $("#self_name").val()
+            },
+            function (data, status) {
+                channelKey = data;
+                console.log("Channel key: " + channelKey);
+                channel = new goog.appengine.Channel(data);
+                socket = channel.open();
+                socket.onopen = onOpened;
+                socket.onmessage = onMessage;
+            }
+        )
+
+
+    });
 
 
 

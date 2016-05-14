@@ -39,7 +39,7 @@
 --%>
 
 
-<div id="start_chat" class="fixed-action-btn" style="bottom: 45px; left: 24px;">
+<div id="start_chat" class="fixed-action-btn" style="bottom: 250px; left: 24px;">
     <a class="btn-floating btn-large grey darken-3">
         <i class="large material-icons">chat</i>
     </a>
@@ -61,21 +61,33 @@
     </header>
 
 
-    <ol class="discussion" id="discussion_content">
+    <ol class="discussion">
         <div id="this_chat_info" class="container">
             <div style="margin-top: 20%" class="center">
                 <h4 class="flow-text center-align">Send To</h4>
-                <input id="receiver_name" type="text" value="">
-                <hidden id="self_name" value="${current_user.username}"></hidden>
-                <button id="confirm_receiver" class="btn waves-effect waves-light brown darken-2" type="submit" name="action">Submit
+                <input id="receiver_name" type="text" value=""/>
+                <input id="self_name" value="${current_user.username}"/>
+                <button id="confirm_receiver" class="btn waves-effect waves-light brown darken-2"
+                >Submit
                 </button>
             </div>
         </div>
 
-        <div class="send">
+        <div id="discussion_content">
+
+        </div>
+
+        <div id="type_message" class="send" style="display: none">
+            <div class="divider-3"></div>
+
+                <span>
+                    <input placeholder="Type a message" id="message_body" type="text">
+                </span>
+
+                <button  id="submit_message" class="btn waves-effect waves-light btn-medium">Submit
+                </button>
         </div>
     </ol>
-
 
 
 </section>
@@ -84,10 +96,6 @@
 <script>
     $("#start_chat").click(function () {
         $("#chat_box").show();
-    });
-
-    $("#confirm_receiver").click(function(){
-        $("#this_chat_info").hide();
     });
 
 </script>

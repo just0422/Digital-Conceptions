@@ -27,15 +27,10 @@ public class ChannelBuilderServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response){
 
-
-
-        LoadType<UserInfo> userObjLoad = ObjectifyService.ofy().load().type(UserInfo.class);
-        List<UserInfo> users = new ArrayList();
-
-        System.out.println(userObjLoad.toString());
-
         ChannelService channelService = ChannelServiceFactory.getChannelService();
         String token = channelService.createChannel(request.getParameter("id"));
+
+        System.out.println("ChannelBuilderServlet");
 
         try {
             PrintWriter out = response.getWriter();

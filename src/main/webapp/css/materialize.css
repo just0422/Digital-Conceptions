@@ -8491,6 +8491,11 @@ button.btn-floating {
     line-height: 56px;
 }
 
+.btn-medium {
+    height: 20px;
+    line-height: 22px;
+}
+
 .btn-small {
     height: 22px;
     max-width: 22px;

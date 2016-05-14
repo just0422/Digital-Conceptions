@@ -13,10 +13,6 @@
 
 <head>
     <jsp:include page="head.jsp"/>
-    <script type="text/javascript" src="/_ah/channel/jsapi"></script>
-    <script type="text/javascript" src="js/ChatBox_JS.js"></script>
-    <link rel="stylesheet" href="css/chat_box.css">
-
     <title>User Profile - Digital Conceptions</title>
 </head>
 

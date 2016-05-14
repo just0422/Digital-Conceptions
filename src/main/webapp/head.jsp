@@ -31,3 +31,7 @@
 
 <%-- Font awesome --%>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
+
+<script type="text/javascript" src="/_ah/channel/jsapi"></script>
+<script type="text/javascript" src="js/ChatBox_JS.js"></script>
+<link rel="stylesheet" href="css/chat_box.css">

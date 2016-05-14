@@ -157,5 +157,35 @@
         <url-pattern>/buildchannel</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>Generator</servlet-name>
+        <servlet-class>chat.SendMessage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Generator</servlet-name>
+        <url-pattern>/generatemessage</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>connection</servlet-name>
+        <servlet-class>chat.ConnectionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>connection</servlet-name>
+        <url-pattern>/_ah/channel/connected/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>disconnection</servlet-name>
+        <servlet-class>chat.DisconnectionServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>disconnection</servlet-name>
+        <url-pattern>/_ah/channel/disconnected/</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>

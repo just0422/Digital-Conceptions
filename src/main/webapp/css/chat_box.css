@@ -65,15 +65,10 @@
 
 }
 
-.discussion .send{
+.discussion  .send{
     position: absolute;
+    min-width: 100%;
     bottom: 0;
-    max-height: 5vh;
-    min-height: 5vh;
-    background: red;
-    margin: 0;
-    padding: 5px 0 0 0;
-    overflow-y: auto;
 }
 
 
