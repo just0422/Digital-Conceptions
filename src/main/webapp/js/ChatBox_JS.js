@@ -48,9 +48,9 @@ $(document).ready(function () {
 
 
     $("#submit_message").click(function () {
-        var reciption_name = $("#reciption").val();
+        var receiver_name = $("#receiver_name").val();
         var message_body = $("#message_body").val();
-        var selfId = $("#user_name").val();
+        var self_name = $("#self_name").val();
         $("#message_body").val("");
 
         $.post("" +
@@ -78,6 +78,7 @@ $(document).ready(function () {
 
 
     var channelKey;
+
 
 
 });

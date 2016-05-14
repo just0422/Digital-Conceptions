@@ -34,6 +34,10 @@
 
     <title>Home - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
+
+    <script type="text/javascript" src="/_ah/channel/jsapi"></script>
+    <script type="text/javascript" src="js/ChatBox_JS.js"></script>
+    <link rel="stylesheet" href="css/chat_box.css">
 </head>
 
 <body class="background">
@@ -477,6 +481,11 @@
 
 
         <!-- Divider -->
+
+        <!-- Start of chat box -->
+
+        <!-- End of chat box -->
+
     </main>
 
 
