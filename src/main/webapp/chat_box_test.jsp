@@ -61,7 +61,7 @@
     </header>
 
 
-    <ol class="discussion">
+    <ol class="discussion" id="discussion_content">
         <div id="this_chat_info" class="container">
             <div style="margin-top: 20%" class="center">
                 <h4 class="flow-text center-align">Send To</h4>
@@ -73,22 +73,19 @@
             </div>
         </div>
 
-        <div id="discussion_content">
+    </ol>
 
-        </div>
 
-        <div id="type_message" class="send" style="display: none">
-            <div class="divider-3"></div>
+    <header id="type_message" class="bot-bar" style="display: none;">
+        <div class="divider-3"></div>
 
                 <span>
                     <input placeholder="Type a message" id="message_body" type="text">
                 </span>
 
-                <button  id="submit_message" class="btn waves-effect waves-light btn-medium">Submit
-                </button>
-        </div>
-    </ol>
-
+        <button  id="submit_message" class="btn waves-effect waves-light btn-medium">Submit
+        </button>
+    </header>
 
 </section>
 

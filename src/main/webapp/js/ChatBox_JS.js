@@ -38,6 +38,7 @@ $(document).ready(function () {
         $("#discussion_content").append($messageNode);
         var height = document.getElementById("discussion_content").scrollHeight;
         $("#discussion_content").scrollTop( height) ;
+
     }
 
     function onOpened() {
