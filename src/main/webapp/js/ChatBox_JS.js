@@ -67,6 +67,11 @@ $(document).ready(function () {
             foundChatBox.closest("section").children("ol").scrollTop(height);
         } else {
             console.log("No such open chat box");
+            createChatBoxWithKnownInfo(comeFrom.trim());
+            var foundChatBox = chatBoxList[chatBoxList.length-1];
+            foundChatBox.closest("section").children("ol").append($messageNode);
+            var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
+            foundChatBox.closest("section").children("ol").scrollTop(height);
         }
 
 
@@ -83,6 +88,68 @@ $(document).ready(function () {
     }
 
 
+    function createChatBoxWithKnownInfo(comeFrom){
+        // start of header section
+        var $section = $("<section>", {class: "module", id: "chat_box"});
+        /*$section.css("right",chatBoxList.length*cssOffSet+rightOffSet+pixel);*/
+        var $header = $("<header>", {class: "top-bar"});
+        var $header_message_div = $("<div>", {class: "left"});
+        var $header_message_icon = $("<span>", {class: "incon typicons-message"});
+        var $header_message_h1 = $("<h1>");
+        $header_message_h1.html(comeFrom);
+        var $header_close_div = $("<div>", {class: "right hoverable-1"});
+        var $header_close_icon = $("<span>", {
+            class: "icon typicons-times hoverable-1",
+        });
+
+        $header_message_div.append($header_message_icon, $header_message_h1);
+        $header_close_div.append($header_close_icon);
+        $header.append($header_message_div, $header_close_div);
+
+        // End of header section
+
+        // Start of message body section
+        var $ol = $("<ol>", {class: "discussion", id: "discussion_content"});
+        var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info", style:"display:none"});
+        var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
+        var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
+        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", value:comeFrom});
+        var $self_name = $("<input>", {type: "text", id: "self_name",value:"1"});
+        var $confirm_receiver = $("<button>", {
+            class: "btn waves-effect waves-light brown darken-2",
+            id: "confirm_receiver"
+        });
+        $confirm_receiver.html("Submit");
+
+        $style_div.append($h4, $receiver_name, $self_name, $confirm_receiver);
+        $chat_info_div.append($style_div);
+        $ol.append($chat_info_div);
+
+        // End of message body section
+
+        // Start of typing bar
+        var $typing_bar = $("<div>", {class: "bot-bar center", id: "type_message"});
+        var $input_field = $("<input>", {type: "text", placeholder: "Type a message", id: "message_body"});
+        var $submit_message = $("<button>", {class: "btn waves-effect waves-light btn-medium", id: "submit_message"});
+        $submit_message.html("Submit");
+
+        $typing_bar.append($input_field, $submit_message);
+
+        // End of typing bar
+
+        var currentPosition = chatBoxList.length;
+        var $positionValue = $("<input>", {value: currentPosition, type: "hidden"});
+
+
+        $section.append($header, $ol, $typing_bar, $positionValue);
+
+
+        chatBoxList[chatBoxList.length] = $section;
+
+        updateChatBoxPosition();
+
+        $("#forChatBox").append($section);
+    }
     function createChatBox() {
         // start of header section
         var $section = $("<section>", {class: "module", id: "chat_box"});
