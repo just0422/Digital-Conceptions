@@ -185,9 +185,9 @@ $(document).ready(function () {
                     "<div class='messages'><p id='message_content'>" + message_body + "</p></div>" +
                     "</li>");
 
-            $("#discussion_content").append($messageNode);
-            var height = document.getElementById("discussion_content").scrollHeight;
-            $("#discussion_content").scrollTop(height);
+            $(this).closest("section").children("ol").append($messageNode);
+            var height = $(this).closest("section").children("ol").prop("scrollHeight");
+            $(this).closest("section").children("ol").scrollTop(height);
         }
 
 
