@@ -19,6 +19,7 @@ public class SendMessage extends HttpServlet {
 
         ChannelService channelService = ChannelServiceFactory.getChannelService();
 
+        System.out.println(message);
 
         // channelKey is user_ID
         channelService.sendMessage(new ChannelMessage(channelKey, message.toString()));
