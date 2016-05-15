@@ -24,7 +24,7 @@
     <jsp:include page="header.jsp"/>
 
     <!-- Main boy content -->
-    <main class="main body body-background-color">
+    <main class="main body body-background-color" id="main">
         <!-- Body  -->
         <div class="row">
 
@@ -233,6 +233,10 @@
             </div>
 
         </div>
+
+
+
+
 
         <!--Start test.jsp" />
         <!--End of chat -->

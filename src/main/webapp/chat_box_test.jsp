@@ -38,14 +38,15 @@
 
 --%>
 
-
-<div id="start_chat" class="fixed-action-btn" style="bottom: 250px; left: 24px;">
+<div id="start_chat" class="fixed-action-btn" style="bot: 550px; left: 23px;">
     <a class="btn-floating btn-large grey darken-3">
         <i class="large material-icons">chat</i>
     </a>
 </div>
 
-<section class="module" id="chat_box" style="display: none;">
+
+
+<%--<section class="module" id="chat_box" style="display: none;">
 
     <header class="top-bar">
 
@@ -54,9 +55,8 @@
             <h1>SimpleChat</h1>
         </div>
 
-        <div class="right">
-            <span class="icon typicons-minus"></span>
-            <span class="icon typicons-times"></span>
+        <div class="right hoverable-1">
+            <span class="icon typicons-times hoverable-1" onclick="$(this).closest('section').remove()"></span>
         </div>
     </header>
 
@@ -72,7 +72,6 @@
                 </button>
             </div>
         </div>
-
     </ol>
 
 
@@ -83,5 +82,10 @@
         </button>
     </div>
 
-</section>
+</section>--%>
 
+
+<%--
+/*var $newDiv = $("<div>", {class: "container flow-text", id: "div1", align: "center", style:"background-color:red"});
+$newDiv.html("WTF");
+$newDiv.appendTo($("#account_info"));*/--%>

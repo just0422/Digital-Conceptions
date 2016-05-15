@@ -98,9 +98,59 @@ $(document).ready(function () {
 
     });
 
+
+
     $("#start_chat").click(function () {
-        $("#chat_box").show();
+
+        // start of header section
+        var $section = $("<secion>",{class:"module"});
+        var $header = $("<header>", {class:"top-bar"});
+        var $header_message_div = $("<div>", {class:"left"});
+        var $header_message_icon = $("<span>",{class:"incon typicons-message"});
+        var $header_message_h1 = $("<h1>SimpleChat</h1>");
+        var $header_close_div = $("<div>", {class:"right hoverable-1"});
+        var $header_close_icon = $("<span>",{class:"icon typicons-times hoverable-1"});
+
+        $header_message_div.append($header_message_icon, $header_message_h1);
+        $header_close_div.append($header_close_icon);
+        $header.append($header_message_div,$header_close_div);
+
+        // End of header section
+
+        // Start of message body section
+        var $ol = $("<ol>", {class:"discussion"});
+        var $chat_info_div = $("<div>", {class:"container"});
+        var $style_div = $("<div>", {class:"center", style:"margin-top:20%"});
+        var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
+        var $receiver_name = $("<input>", {type:"text"} );
+        var $self_name = $("<input>", {type:"text"});
+        var $confirm_receiver = $("<button>", {class:"btn waves-effect waves-light brown darken-2", id:"confirm_receiver"});
+        $confirm_receiver.html("Submit");
+
+        $style_div.append($h4, $receiver_name, $self_name, $confirm_receiver);
+        $chat_info_div.append($style_div);
+        $ol.append($chat_info_div);
+
+        // End of message body section
+
+        // Start of typing bar
+        var $typing_bar = $("<div>", {class:"bot-bar center", style:"display:none", id:"type_message"});
+        var $input_field = $("<input>", {type:"text", placeholder:"Type a message"});
+        var $submit_message = $("<button>", {class:"btn waves-effect waves-light btn-medium"})
+
+        $typing_bar.append($input_field, $submit_message);
+
+        // End of typing bar
+
+
+
+        $section.append($header, $ol, $typing_bar);
+
+
+        $("#main").append($section);
     });
+
+
 
 
 });
