@@ -29,6 +29,14 @@ $(document).ready(function () {
      })*/
 
 
+
+    function updateChatBoxPosition(){
+
+        for(var i = 0; i <chatBoxList.length; i ++){
+            chatBoxList[i].css("right", i*cssOffSet+rightOffSet+pixel);
+        }
+    }
+
     function onMessage(msg) {
         var message = msg.data;
 
@@ -52,10 +60,16 @@ $(document).ready(function () {
 
     }
 
+    function removeChatBox(){
+        console.log("hello");
+    }
+
+
+
     function createChatBox(){
         // start of header section
         var $section = $("<section>", {class: "module", id: "chat_box"});
-        $section.css("right",chatBoxList.length*cssOffSet+rightOffSet+pixel);
+        /*$section.css("right",chatBoxList.length*cssOffSet+rightOffSet+pixel);*/
         var $header = $("<header>", {class: "top-bar"});
         var $header_message_div = $("<div>", {class: "left"});
         var $header_message_icon = $("<span>", {class: "incon typicons-message"});
@@ -63,7 +77,6 @@ $(document).ready(function () {
         var $header_close_div = $("<div>", {class: "right hoverable-1"});
         var $header_close_icon = $("<span>", {
             class: "icon typicons-times hoverable-1",
-            onclick: "$(this).closest('section').remove()"
         });
 
         $header_message_div.append($header_message_icon, $header_message_h1);
@@ -101,11 +114,17 @@ $(document).ready(function () {
 
         // End of typing bar
 
-        $section.append($header, $ol, $typing_bar);
+        var currentPosition = chatBoxList.length;
+        var $positionValue = $("<input>",{value:currentPosition, type:"hidden"});
+
+
+        $section.append($header, $ol, $typing_bar,$positionValue);
+
+
 
         chatBoxList[chatBoxList.length] = $section;
 
-
+        updateChatBoxPosition();
 
         $("#forChatBox").append($section);
     }
@@ -114,6 +133,7 @@ $(document).ready(function () {
     $("#start_chat").click(function () {
         createChatBox();
     });
+
 
 
 
@@ -201,6 +221,27 @@ $(document).ready(function () {
      $("#discussion_content").scrollTop( height) ;
 
      });*/
+
+
+    $("#forChatBox").on("click","span[class='icon typicons-times hoverable-1']", function(){
+        console.log("Remove: " + $(this).closest("section").children("input[type='hidden']").val());
+        var position = $(this).closest("section").children("input[type='hidden']").val();
+        chatBoxList.splice(position,1);
+        $(this).closest("section").remove();
+
+
+        for(var i = position; i<chatBoxList.length; i++){
+            chatBoxList[i].children("input[type='hidden']").val(i);
+        }
+
+        for(var i = 0; i<chatBoxList.length; i ++ ){
+            console.log("index: " + i + " : " + chatBoxList[i].children("input[type='hidden']").val());
+        }
+
+        updateChatBoxPosition();
+
+        /*$(this).closest("section").remove();*/
+    });
 
 
 });
