@@ -170,6 +170,10 @@ body
 
 
 .bot-bar {
-
+    background: #666;
+    color: white;
+    padding: 0.5rem;
+    position: relative;
+    overflow: hidden;
 }
 

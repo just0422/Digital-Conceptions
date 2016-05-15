@@ -78,8 +78,6 @@ $(document).ready(function () {
     });
 
 
-    var channelKey;
-
     $("#confirm_receiver").click(function () {
         $("#this_chat_info").hide();
         $("#type_message").show();
@@ -98,9 +96,11 @@ $(document).ready(function () {
             }
         )
 
-
     });
 
+    $("#start_chat").click(function () {
+        $("#chat_box").show();
+    });
 
 
 });

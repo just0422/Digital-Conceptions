@@ -76,29 +76,12 @@
     </ol>
 
 
-    <header id="type_message" class="bot-bar" style="display: none;">
-        <div class="divider-3"></div>
-
-                <span>
-                    <input placeholder="Type a message" id="message_body" type="text">
-                </span>
-
-        <button  id="submit_message" class="btn waves-effect waves-light btn-medium">Submit
+    <div id="type_message" class="bot-bar center" style="display: none;">
+        <input placeholder="Type a message" id="message_body" type="text">
+        <button id="submit_message" class="btn waves-effect waves-light btn-medium">
+            Submit
         </button>
-    </header>
+    </div>
 
 </section>
 
-
-<script>
-    $("#start_chat").click(function () {
-        $("#chat_box").show();
-    });
-
-</script>
-
-<%--
-
-</body>
-</html>
---%>
