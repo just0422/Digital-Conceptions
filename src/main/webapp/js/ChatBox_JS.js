@@ -333,4 +333,16 @@ $(document).ready(function () {
     });
 
 
+    $("#chatOnOff").click(function(){
+        console.log($("#chatOnOff").is(":checked"));
+
+        if($("#chatOnOff").is(":checked") == true){
+
+        }else{
+
+        }
+    });
+
+
+
 });
