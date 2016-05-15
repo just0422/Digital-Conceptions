@@ -35,7 +35,8 @@
                         <ul id='features' class='dropdown-content'>
                             <li><a href="/upload">Create <img></a></li>
                             <li><a href="/userprofile">Profile</a></li>
-                            <li><a id="start_chat">Message
+                            <li id="open_new_chat" style="display: none"><a>New Message</a></li>
+                            <li><a>Message
                                 <div class="switch">
                                     <label>
                                         <input type="checkbox" id="chatOnOff">
@@ -76,9 +77,6 @@
     </nav>
 
 
-    <script>
-
-    </script>
-
+    <input type="hidden" value="${user.email}" id="userEmalAsChatName">
 
 </header>

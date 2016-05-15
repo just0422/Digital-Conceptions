@@ -83,6 +83,10 @@ $(document).ready(function () {
 
     }
 
+    function onClosed(){
+        console.log("Channel is closed");
+    }
+
     function removeChatBox() {
         console.log("hello");
     }
@@ -182,7 +186,7 @@ $(document).ready(function () {
         });
         $confirm_receiver.html("Submit");
 
-        $style_div.append($h4, $receiver_name, $self_name, $confirm_receiver);
+        $style_div.append($h4, $receiver_name, $confirm_receiver);
         $chat_info_div.append($style_div);
         $ol.append($chat_info_div);
 
@@ -213,7 +217,7 @@ $(document).ready(function () {
     }
 
 
-    $("#start_chat").click(function () {
+    $("#open_new_chat").click(function () {
         createChatBox();
     });
 
@@ -232,19 +236,7 @@ $(document).ready(function () {
             var $incoming = $("<input>", {type: "hidden", value: receiver_name, name:"incoming_name"});
             $(this).closest("section").append($incoming);
 
-            $.post("/buildchannel",
-                {
-                    id: self_name
-                },
-                function (data, status) {
-                    channelKey = data;
-                    console.log("Channel key: " + channelKey);
-                    channel = new goog.appengine.Channel(data);
-                    socket = channel.open();
-                    socket.onopen = onOpened;
-                    socket.onmessage = onMessage;
-                }
-            )
+
 
 
         } else {
@@ -335,11 +327,28 @@ $(document).ready(function () {
 
     $("#chatOnOff").click(function(){
         console.log($("#chatOnOff").is(":checked"));
+        var self_name = $("#userEmalAsChatName").val();
+        $("#open_new_chat").show();
 
         if($("#chatOnOff").is(":checked") == true){
 
+            $.post("/buildchannel",
+                {
+                    id: self_name
+                },
+                function (data, status) {
+                    channelKey = data;
+                    console.log("Channel key: " + channelKey);
+                    channel = new goog.appengine.Channel(data);
+                    socket = channel.open();
+                    socket.onopen = onOpened;
+                    socket.onmessage = onMessage;
+                    socket.onclose = onClosed;
+                }
+            )
         }else{
-
+            socket.close();
+            $("#open_new_chat").hide();
         }
     });
 
