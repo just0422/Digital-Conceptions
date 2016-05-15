@@ -34,6 +34,7 @@
                                 <ul id='features' class='dropdown-content'>
                                     <li><a href="/upload">Create <img></a></li>
                                     <li><a href="/userprofile">Profile</a></li>
+                                    <li><a id="start_chat">Send Message</a></li>
                                     <li class="divider"></li>
                                     <li><a onclick="$('#signout').submit();">Log out</a></li>
                                 </ul>

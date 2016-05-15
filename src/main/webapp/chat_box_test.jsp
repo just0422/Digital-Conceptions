@@ -38,11 +38,11 @@
 
 --%>
 
-<div id="start_chat" class="fixed-action-btn" style="bot: 550px; left: 23px;">
+<%--<div id="start_chat" class="fixed-action-btn" style="bot: 10px; left: 23px;">
     <a class="btn-floating btn-large grey darken-3">
         <i class="large material-icons">chat</i>
     </a>
-</div>
+</div>--%>
 
 
 

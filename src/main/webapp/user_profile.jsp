@@ -24,7 +24,7 @@
     <jsp:include page="header.jsp"/>
 
     <!-- Main boy content -->
-    <main class="main body body-background-color" id="main">
+    <main class="main body body-background-color">
         <!-- Body  -->
         <div class="row">
 
@@ -47,7 +47,9 @@
 
                             <!-- Notification button-->
                             <a id="notification_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="3"></span>
+                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti"
+                                                                                                         class="badge1 cyan lighten-3 "
+                                                                                                         data-badge="3"></span>
                             <div class="pad-top-10"></div>
                         </div>
 
@@ -58,21 +60,21 @@
                     <div id="account_info">
                         <div class="pad-top-20"></div>
                         <div class="container">
-                        <div class="flow-text pad-left">
-                            User Name: <span id="user_name">${current_user.username}</span>
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
+                            <div class="flow-text pad-left">
+                                User Name: <span id="user_name">${current_user.username}</span>
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
 
-                            <div class="pad-top-20"></div>
-                            Email Address: <span id="email_address">${user.email}</span>
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
+                                <div class="pad-top-20"></div>
+                                Email Address: <span id="email_address">${user.email}</span>
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
 
-                            <div class="pad-top-20"></div>
-                            Date Joined: <span id="date_jointed">${current_user.dateFormat}</span>
-                            <div class="pad-top-2"></div>
-                            <div class="divider"></div>
-                        </div>
+                                <div class="pad-top-20"></div>
+                                Date Joined: <span id="date_jointed">${current_user.dateFormat}</span>
+                                <div class="pad-top-2"></div>
+                                <div class="divider"></div>
+                            </div>
                         </div>
 
                     </div>
@@ -87,10 +89,11 @@
                                     <div class="col s4">
                                         <form action="/comic" method="GET">
                                             <input type="hidden" name="series_title" value="${comic.seriesTitle}">
-                                            <%--<input type="hidden" name="issue_title" value="${comic.issueTitle}">--%>
-                                            <%--<input type="hidden" name="volume" value="${comic.volume}">--%>
-                                            <%--<input type="hidden" name="issue" value="${comic.issue}">--%>
-                                            <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
+                                                <%--<input type="hidden" name="issue_title" value="${comic.issueTitle}">--%>
+                                                <%--<input type="hidden" name="volume" value="${comic.volume}">--%>
+                                                <%--<input type="hidden" name="issue" value="${comic.issue}">--%>
+                                            <div class="card hoverable cyan lighten-3"
+                                                 onclick="$(this).parent().submit();">
                                                 <div class="card-image">
                                                     <img src="${comic.coverPage}">
                                                 </div>
@@ -102,53 +105,53 @@
                                     </div>
                                 </c:forEach>
                                 <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
+                                <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content white-text">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
                                 <%--</div>--%>
 
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
                                 <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
+                                <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content white-text">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
                                 <%--</div>--%>
 
                                 <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
+                                <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content white-text">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
                                 <%--</div>--%>
 
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
+                                <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
                                 <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
+                                <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
+                                <%--<div class="card-image">--%>
+                                <%--<img src="image/5.jpg">--%>
+                                <%--</div>--%>
+                                <%--<div class="card-content white-text">--%>
+                                <%--<p class="flow-text">Hero</p>--%>
+                                <%--</div>--%>
+                                <%--</div>--%>
                                 <%--</div>--%>
                             </div>
 
@@ -176,7 +179,7 @@
                                 <c:forEach items="${current_user.unreadNotifications}" var="entry">
                                     <li>
                                         <div class="collapsible-header">${entry}</div>
-                                        <%--<div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>--%>
+                                            <%--<div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>--%>
                                     </li>
                                 </c:forEach>
                             </ul>
@@ -235,12 +238,14 @@
         </div>
 
 
+        <div id="forChatBox">
 
+        </div>
 
 
         <!--Start test.jsp" />
         <!--End of chat -->
-    <jsp:include page="chat_box_test.jsp" />
+        <jsp:include page="chat_box_test.jsp"/>
     </main>
 
     <jsp:include page="footer.jsp"/>
