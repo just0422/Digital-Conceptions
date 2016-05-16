@@ -2,7 +2,7 @@
  * Created by ZEXUN on 4/27/16.
  */
 $(document).ready(function () {
-    var name;
+    var userName;
     var chatBoxList = [];
     var cssOffSet = 320;
     var pixel = "px";
@@ -118,7 +118,7 @@ $(document).ready(function () {
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
         var $receiver_name = $("<input>", {type: "text", id: "receiver_name", value:comeFrom});
-        var $self_name = $("<input>", {type: "text", id: "self_name",value:"1"});
+        var $self_name = $("<input>", {type: "text", id: "self_name",value:userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
             id: "confirm_receiver"
@@ -179,14 +179,14 @@ $(document).ready(function () {
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
         var $receiver_name = $("<input>", {type: "text", id: "receiver_name"});
-        var $self_name = $("<input>", {type: "text", id: "self_name"});
+        var $self_name = $("<input>", {type: "hidden", id: "self_name", value:userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
             id: "confirm_receiver"
         });
         $confirm_receiver.html("Submit");
 
-        $style_div.append($h4, $receiver_name, $confirm_receiver);
+        $style_div.append($h4, $receiver_name, $self_name, $confirm_receiver);
         $chat_info_div.append($style_div);
         $ol.append($chat_info_div);
 
@@ -328,6 +328,7 @@ $(document).ready(function () {
     $("#chatOnOff").click(function(){
         console.log($("#chatOnOff").is(":checked"));
         var self_name = $("#userEmalAsChatName").val();
+        userName = self_name;
         $("#open_new_chat").show();
 
         if($("#chatOnOff").is(":checked") == true){
