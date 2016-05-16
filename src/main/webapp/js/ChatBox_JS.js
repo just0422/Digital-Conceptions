@@ -236,11 +236,13 @@ $(document).ready(function () {
         var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info"});
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
-        var $receiver_name = $("<input>", {type: "text", id: "receiver_name"});
+        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder:"Enter receiver's ID"});
         var $self_name = $("<input>", {type: "hidden", id: "self_name", value:userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
-            id: "confirm_receiver"
+            id: "confirm_receiver",
+            style:"margin-top:25px"
+
         });
         $confirm_receiver.html("Submit");
 
