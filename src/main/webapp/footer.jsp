@@ -1,5 +1,9 @@
 <!-- Footer -->
 <footer class="page-footer cyan lighten-2">
+
+    <jsp:include page="chat_box_test.jsp"/>
+
+
     <div class="container ">
         <div class="row ">
             <div class="col s12 ">

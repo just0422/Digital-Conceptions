@@ -85,7 +85,8 @@
 </section>--%>
 
 
-<%--
-/*var $newDiv = $("<div>", {class: "container flow-text", id: "div1", align: "center", style:"background-color:red"});
-$newDiv.html("WTF");
-$newDiv.appendTo($("#account_info"));*/--%>
+
+
+<div id="forChatBox">
+
+</div>

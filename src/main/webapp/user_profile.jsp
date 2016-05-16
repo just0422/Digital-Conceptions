@@ -237,15 +237,6 @@
 
         </div>
 
-
-        <div id="forChatBox">
-
-        </div>
-
-
-        <!--Start test.jsp" />
-        <!--End of chat -->
-        <jsp:include page="chat_box_test.jsp"/>
     </main>
 
     <jsp:include page="footer.jsp"/>
