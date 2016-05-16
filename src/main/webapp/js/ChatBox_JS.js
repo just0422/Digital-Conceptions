@@ -36,43 +36,101 @@ $(document).ready(function () {
         }
     }
 
+
+    function onOpened(){
+        $.post(
+            "/_ah/channel/connected/"
+        );
+    }
+
+    function onClosed(){
+        $.post(
+            "/_ah/channel/disconnected/"
+        );
+    }
+
     function onMessage(msg) {
         var message = msg.data.split("&")[0];
         var comeFrom = msg.data.split("&")[1];
+        var sendTo = msg.data.split("&")[2];
+        var noUserFound = msg.data.split("&")[3];
+        console.log("***No user found "+noUserFound+"***");
         console.log("***")
 
-        var $className = "others";
+        if(noUserFound.trim() != "no"){
+            var $className = "others";
 
-        var $messageNode =
-            $("<li class=" + $className + ">" +
-                "<div class='avatar'><img src='image/1.jpg' /></div>" +
-                "<div class='messages'><p id='message_content'>" + message + "</p></div>" +
-                "</li>");
+            var $messageNode =
+                $("<li class=" + $className + ">" +
+                    "<div class='avatar'><img src='image/others.jpg' /></div>" +
+                    "<div class='messages'><p id='message_content'>" + message + "</p></div>" +
+                    "</li>");
 
 
-        var indexForIncomingMessage = -1;
-        var foundChatBox;
-        // Check if there is a open chat box for incoming message
-        for (var i = 0; i < chatBoxList.length; i++) {
-            var eachChatBoxName = chatBoxList[i].children("header").children("div:first-child").children("h1").html();
-            console.log("Opened chat box : " + eachChatBoxName + " Message From : " + comeFrom) ;
-            if (eachChatBoxName.trim() == comeFrom.trim()) {
-                indexForIncomingMessage = i;
+            var indexForIncomingMessage = -1;
+            var foundChatBox;
+            // Check if there is a open chat box for incoming message
+            for (var i = 0; i < chatBoxList.length; i++) {
+                var eachChatBoxName = chatBoxList[i].children("header").children("div:first-child").children("h1").html();
+                console.log("Opened chat box : " + eachChatBoxName + " Message From : " + comeFrom) ;
+                if (eachChatBoxName.trim() == comeFrom.trim()) {
+                    indexForIncomingMessage = i;
+                }
             }
+            if (indexForIncomingMessage != -1) {
+                foundChatBox = chatBoxList[indexForIncomingMessage];
+                foundChatBox.closest("section").children("ol").append($messageNode);
+                var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
+                foundChatBox.closest("section").children("ol").scrollTop(height);
+            } else {
+                console.log("No such open chat box");
+                createChatBoxWithKnownInfo(comeFrom.trim());
+                var foundChatBox = chatBoxList[chatBoxList.length-1];
+                foundChatBox.closest("section").children("ol").append($messageNode);
+                var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
+                foundChatBox.closest("section").children("ol").scrollTop(height);
+            }
+
+
+        }else{
+            var $className = "others";
+
+            var $messageNode =
+                $("<li class=" + $className + ">" +
+                    "<div class='avatar'><img src='image/others.jpg' /></div>" +
+                    "<div class='messages'><p id='message_content'>" + message + "</p></div>" +
+                    "</li>");
+
+
+            var indexForIncomingMessage = -1;
+            var foundChatBox;
+            // Check if there is a open chat box for incoming message
+            for (var i = 0; i < chatBoxList.length; i++) {
+                var eachChatBoxName = chatBoxList[i].children("header").children("div:first-child").children("h1").html();
+                console.log("Opened chat box : " + eachChatBoxName + " Message From : " + sendTo) ;
+                if (eachChatBoxName.trim() == sendTo.trim()) {
+                    indexForIncomingMessage = i;
+                }
+            }
+            if (indexForIncomingMessage != -1) {
+                foundChatBox = chatBoxList[indexForIncomingMessage];
+                foundChatBox.closest("section").children("ol").append($messageNode);
+                var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
+                foundChatBox.closest("section").children("ol").scrollTop(height);
+            } else {
+                console.log("No such open chat box");
+                createChatBoxWithKnownInfo(sendTo.trim());
+                var foundChatBox = chatBoxList[chatBoxList.length-1];
+                foundChatBox.closest("section").children("ol").append($messageNode);
+                var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
+                foundChatBox.closest("section").children("ol").scrollTop(height);
+            }
+
+
+
         }
-        if (indexForIncomingMessage != -1) {
-            foundChatBox = chatBoxList[indexForIncomingMessage];
-            foundChatBox.closest("section").children("ol").append($messageNode);
-            var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
-            foundChatBox.closest("section").children("ol").scrollTop(height);
-        } else {
-            console.log("No such open chat box");
-            createChatBoxWithKnownInfo(comeFrom.trim());
-            var foundChatBox = chatBoxList[chatBoxList.length-1];
-            foundChatBox.closest("section").children("ol").append($messageNode);
-            var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
-            foundChatBox.closest("section").children("ol").scrollTop(height);
-        }
+
+
 
 
     }
@@ -248,7 +306,7 @@ $(document).ready(function () {
             console.log(self_name);
             $(this).closest("div").children("input[type=text]").val("");
 
-            var fullMessage = message_body + "&" + self_name;
+            var fullMessage = message_body + "&" + self_name +"&" + receiver_name;
             $.post("" +
                 "/generatemessage",
                 {
@@ -262,7 +320,7 @@ $(document).ready(function () {
 
             var $messageNode =
                 $("<li class=" + $className + ">" +
-                    "<div class='avatar'><img src='image/1.jpg' /></div>" +
+                    "<div class='avatar'><img src='image/me.jpg' /></div>" +
                     "<div class='messages'><p id='message_content'>" + message_body + "</p></div>" +
                     "</li>");
 
@@ -352,6 +410,8 @@ $(document).ready(function () {
             $("#open_new_chat").hide();
         }
     });
+
+
 
 
 
