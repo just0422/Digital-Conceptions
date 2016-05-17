@@ -30,6 +30,16 @@
     <!-- Main body-->
     <main class="main body body-background-color">
 
+        <script>
+            $(document).ready(function(){
+                // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+                $('.modal-trigger').leanModal({
+                    dismissible: false
+                });
+//                $('#modal1').openModal();
+            });
+        </script>
+
         <div class="container-1 min-height">
             <div class="row">
                 <div class="col s12 center flow-text">
@@ -43,19 +53,42 @@
                         to My Comics</a>
                 </div>
 
-                <div class="col s8 right-align">
+                <div class="col s4 center-align" style="padding-top: 5px">
+                    <a class="waves-effect waves-light btn red lighten-2 center modal-trigger" href="#modal1">Delete Comic</a>
+                </div>
 
-                    <%--<form id="comic_upload" method="post" action="${edit}" enctype="multipart/form-data">--%>
-                    <%--<input id="dummy" type="submit" name="dummy">--%>
-                    <%--<input id="series_title" type="text" class="validate preview_field" name="series_title" value="${current_comic.seriesTitle}">--%>
-                    <%--<input id="issue_title" type="text" class="validate preview_field" name="issue_title" value="${current_comic.issueTitle}">--%>
-                    <%--<input id="volume" type="number" class="validate preview_field" name="volume" value="${current_comic.volume}">--%>
-                    <%--<input id="issue" type="number" class="validate preview_field" name="issue" value="${current_comic.issue}">--%>
-                    <%--<input id="uploaded_files" type="file" class="" name="uploaded_files" multiple >--%>
-                    <%--<label for="uploaded_files">--%>
-                    <%--<i id="add" class="material-icons hoverable-1" style="font-size: 3rem">add_circle</i>--%>
-                    <%--</label>--%>
-                    <%--</form>--%>
+                <div id="modal1" class="modal">
+                    <div class="modal-content">
+                        <h3>Are you sure you want to delete this comic???</h3>
+                        <h4>There's not coming back form this one</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat " onclick="fadeout()">Cancel</a>
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="delete_comic()">Delete Forever</a>
+                    </div>
+                </div>
+                <script>
+                    function fadeout(){ $('.lean-overlay').fadeOut(300); }
+                    function delete_comic(){
+                        fadeout();
+
+                        $.post(
+                            "/editimages",
+                            {
+                                series_title : '${current_comic.seriesTitle}',
+                                issue_title : '${current_comic.issueTitle}',
+                                volume : '${current_comic.volume}',
+                                issue : '${current_comic.issue}',
+                                remove : "yes"
+                            }
+                        )
+                                    window.location.href = "/upload"
+                    }
+                </script>
+
+
+
+                <div class="col s4 right-align">
                     <i id="delete" class="material-icons hoverable-1"  style="font-size: 3rem" onclick="trash()">delete_forever</i>
                     <i id="save" class="material-icons hoverable-1" style="font-size: 3rem" onclick="save_images()">save</i>
                 </div>

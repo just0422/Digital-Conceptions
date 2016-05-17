@@ -64,10 +64,44 @@
                 <%-- Pages scroll view --%>
                     <div class="pad-top-10"></div>
 
-                    <div class="col s4 right-align" style="padding-top: 5px">
+                    <div class="col s6 right-align" style="padding-top: 5px">
                         <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
                             to My Comics</a>
                     </div>
+                    <c:if test="${current_comic 1= null}">
+                        <div class="col s6 right-align" style="padding-top: 5px">
+                            <a class="waves-effect waves-light btn red lighten-2 right modal-trigger" href="#modal1">Delete Comic</a>
+                        </div>
+
+                        <div id="modal1" class="modal">
+                            <div class="modal-content">
+                                <h3>Are you sure you want to delete this comic???</h3>
+                                <h4>There's not coming back form this one</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <a href="#!" class="modal-action modal-close waves-effect waves-red btn-flat " onclick="fadeout()">Cancel</a>
+                                <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat " onclick="delete_comic()">Delete Forever</a>
+                            </div>
+                        </div>
+                        <script>
+                        function fadeout(){ $('.lean-overlay').fadeOut(300); }
+                        function delete_comic(){
+                            fadeout();
+
+                            $.post(
+                                    "/editimages",
+                                    {
+                                        series_title : '${current_comic.seriesTitle}',
+                                        issue_title : '${current_comic.issueTitle}',
+                                        volume : '${current_comic.volume}',
+                                        issue : '${current_comic.issue}',
+                                        remove : "yes"
+                                    }
+                            )
+                            window.location.href = "/upload"
+                        }
+                    </script>
+                    </c:if>
                     <div class="pad-top-10"></div>
 
                     <div class="wrap">

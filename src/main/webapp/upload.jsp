@@ -225,12 +225,13 @@
             <div id="my_comic_content" class="container-1">
                 <div class="row">
                     <!-- Start of left pointer -->
-                    <div class="col s1" style="float: left">
-                        <div class="valign-wrapper" style="min-height: 80vh;">
-                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>
-                        </div>
-                    </div>
+                    <%--<div class="col s1" style="float: left">--%>
+                        <%--<div class="valign-wrapper" style="min-height: 80vh;">--%>
+                            <%--<i class="valign material-icons medium hoverable-1">keyboard_arrow_left</i>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- End of left pointer -->
+
 
                     <div class="col s10">
                         <div class="row">
@@ -245,24 +246,25 @@
                                             <a href="/editimages?${req_details}">
                                         </c:otherwise>
                                     </c:choose>
-                                        <div class="card cyan lighten-3" onclick="">
-                                            <div class="card-image">
-                                                <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
-                                            </div>
-                                            <div class="card-title center">${comic.seriesTitle}</div>
+                                    <div class="card cyan lighten-3">
+                                        <div class="card-image">
+                                            <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
                                         </div>
+                                        <div class="card-title center">${comic.seriesTitle}</div>
+                                    </div>
                                     </a>
                                 </div>
                             </c:forEach>
                         </div>
                     </div>
 
+
                     <!-- Start of right pointer-->
-                    <div class="col s1" style="float: right;">
-                        <div class="valign-wrapper" style="min-height: 80vh; max-height:80vh;">
-                            <i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>
-                        </div>
-                    </div>
+                    <%--<div class="col s1" style="float: right;">--%>
+                        <%--<div class="valign-wrapper" style="min-height: 80vh; max-height:80vh;">--%>
+                            <%--<i class="valign material-icons medium hoverable-1">keyboard_arrow_right</i>--%>
+                        <%--</div>--%>
+                    <%--</div>--%>
                     <!-- End of right pointer -->
 
                 </div>

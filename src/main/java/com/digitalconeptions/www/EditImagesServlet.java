@@ -68,30 +68,34 @@ public class EditImagesServlet extends HttpServlet {
                 .filter("volume", volume)
                 .filter("issue", issue).first().now();
 
-        if (req.getParameter("uploads") != null){
-            BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
-            Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
-            ImagesService imagesService = ImagesServiceFactory.getImagesService();
-
-            List<BlobKey> blobKeys = blobs.get("uploads");
-
-            for (BlobKey key : blobKeys){
-                currentComic.urls.add(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(key)));
-            }
-
+        if (req.getParameter("remove") != null){
+            ObjectifyService.ofy().delete().entity(currentComic);
         }
         else {
-            List<String> images = Arrays.asList(req.getParameter("images").split(","));
-            currentComic.setUrls(images);
+            if (req.getParameter("uploads") != null) {
+                BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
+                Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
+                ImagesService imagesService = ImagesServiceFactory.getImagesService();
 
-            resp.getWriter().write("1");
+                List<BlobKey> blobKeys = blobs.get("uploads");
+
+                for (BlobKey key : blobKeys) {
+                    currentComic.urls.add(imagesService.getServingUrl(ServingUrlOptions.Builder.withBlobKey(key)));
+                }
+
+            } else {
+                List<String> images = Arrays.asList(req.getParameter("images").split(","));
+                currentComic.setUrls(images);
+
+                resp.getWriter().write("1");
+            }
+
+            currentComic.setSeriesTitle(req.getParameter("new_series_title"));
+            currentComic.setIssueTitle(req.getParameter("new_issue_title"));
+            currentComic.setVolume(Integer.parseInt(req.getParameter("new_volume")));
+            currentComic.setIssue(Integer.parseInt(req.getParameter("new_issue")));
+
+            ObjectifyService.ofy().save().entity(currentComic).now();
         }
-
-        currentComic.setSeriesTitle(req.getParameter("new_series_title"));
-        currentComic.setIssueTitle(req.getParameter("new_issue_title"));
-        currentComic.setVolume(Integer.parseInt(req.getParameter("new_volume")));
-        currentComic.setIssue(Integer.parseInt(req.getParameter("new_issue")));
-
-        ObjectifyService.ofy().save().entity(currentComic).now();
     }
 }

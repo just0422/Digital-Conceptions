@@ -68,6 +68,7 @@ public class SaveCanvasServlet extends HttpServlet {
         String username = ((User)now.getAttribute("user")).getNickname();
         resp.setContentType("text/plain");
 
+
         List<BlobKey> blobKeys = new ArrayList();// = blobs.get("image");
         List<String> JSON = new ArrayList<>();
         for (int i = 0; i < blobs.size(); i++){
@@ -87,12 +88,6 @@ public class SaveCanvasServlet extends HttpServlet {
         String issue = req.getParameter("issue");
 //        String genre = req.getParameter("genre");
 //        String description = req.getParameter("description");
-        String nseriesTitle = req.getParameter("new_series_title");
-        String nissueTitle = req.getParameter("new_issue_title");
-        int nvolume = Integer.parseInt(req.getParameter("new_volume"));
-        int nissue = Integer.parseInt(req.getParameter("new_issue"));
-        String ngenre = req.getParameter("new_genre");
-        String ndescription = req.getParameter("new_description");
 
         Query<ComicInfo> query = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter(Constants.seriesTitle, seriesTitle)
@@ -100,49 +95,49 @@ public class SaveCanvasServlet extends HttpServlet {
                 .filter(Constants.volume, volume)
                 .filter(Constants.issue, issue);
 
-//        LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
-//        Query<ComicInfo> query = load;
-//        if (seriesTitle != null) query = query.filter("seriesTitle", seriesTitle);
-//        else seriesTitle = "";
-//        if (issueTitle != null) query = query.filter("issueTitle", issueTitle);
-//        else issueTitle = "";
-//        if (volume != null) query = query.filter("volume", Integer.parseInt(volume));
-//        else volume = "1";
-//        if (issue != null) query = query.filter("issue", Integer.parseInt(issue));
-//        else issue = "1";
 
-
-        UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
-
-        if (query.list().size() < 1){
-            ComicInfo newComic = new ComicInfo(username, nseriesTitle, nissueTitle, ngenre, ndescription,
-                    nvolume, nissue, blobKeys, urls, true);
-            newComic.setKey();
-            newComic.setJson(JSON);
-
-            currentUserInfo.addCreation(newComic.getComicName());
-
-            ObjectifyService.ofy().save().entity(newComic).now();
-            ObjectifyService.ofy().save().entity(currentUserInfo).now();
-
+        if (req.getParameter("remove") != null){
+            ObjectifyService.ofy().delete().entity(query.first().now());
         }
-        else{
-            ComicInfo currentComic = query.list().get(0);
-            // TODO Update first comic on the list
+        else {
+            String nseriesTitle = req.getParameter("new_series_title");
+            String nissueTitle = req.getParameter("new_issue_title");
+            int nvolume = Integer.parseInt(req.getParameter("new_volume"));
+            int nissue = Integer.parseInt(req.getParameter("new_issue"));
+            String ngenre = req.getParameter("new_genre");
+            String ndescription = req.getParameter("new_description");
+
+            UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
+
+            if (query.list().size() < 1) {
+                ComicInfo newComic = new ComicInfo(username, nseriesTitle, nissueTitle, ngenre, ndescription,
+                        nvolume, nissue, blobKeys, urls, true);
+                newComic.setKey();
+                newComic.setJson(JSON);
+
+                currentUserInfo.addCreation(newComic.getComicName());
+
+                ObjectifyService.ofy().save().entity(newComic).now();
+                ObjectifyService.ofy().save().entity(currentUserInfo).now();
+
+            } else {
+                ComicInfo currentComic = query.list().get(0);
+                // TODO Update first comic on the list
 //            resp.getWriter().write("Unsuccessful");
-            currentComic.setSeriesTitle(nseriesTitle);
-            currentComic.setIssueTitle(nissueTitle);
-            currentComic.setVolume(nvolume);
-            currentComic.setIssue(nissue);
-            currentComic.setGenre(ngenre);
-            currentComic.setDescription(ndescription);
-            ObjectifyService.ofy().save().entity(currentComic).now();
-        }
-        resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);
+                currentComic.setSeriesTitle(nseriesTitle);
+                currentComic.setIssueTitle(nissueTitle);
+                currentComic.setVolume(nvolume);
+                currentComic.setIssue(nissue);
+                currentComic.setGenre(ngenre);
+                currentComic.setDescription(ndescription);
+                ObjectifyService.ofy().save().entity(currentComic).now();
+            }
+            resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);
 
-        ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
-        rd.forward(req, resp);
+            ServletContext sc = getServletContext();
+            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
+            rd.forward(req, resp);
+        }
     }
 
 }
