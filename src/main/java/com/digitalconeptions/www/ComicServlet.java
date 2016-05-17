@@ -89,7 +89,7 @@ public class ComicServlet extends HttpServlet {
 
         String rating = req.getParameter("rating");
         String comment = req.getParameter("comment");
-        String subscription = req.getParameter("subscription");
+        String subscription = req.getParameter("subscribe");
         String pages_left_off = req.getParameter("pages_left_off");
 
         ComicInfo currentcomic
@@ -113,6 +113,18 @@ public class ComicServlet extends HttpServlet {
 
             userinfo.addUnreadNotification( user.getNickname() + " commented '" + req.getParameter("comment") + "' on your Comic: "
                     + currentcomic.getIssueTitle() + " " + currentcomic.getIssue());
+            UserInfo creator = ObjectifyService.ofy().load()
+                    .type(UserInfo.class).filter("username", currentcomic.getUser()
+                            .getNickname()).first().now();
+
+            creator.addUnreadNotification(
+                    "Comments||" + new Date().toString() + "||" + user.getNickname()
+                            + " has commented on your comic " + "<a href=\""+ currentcomic.getGetRequest()
+                            +"\">" + currentcomic.seriesTitle + " " + currentcomic.issueTitle
+                            + "</a>||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
+                            .format(new Date()));
+            ObjectifyService.ofy().save().entity(creator).now();
+
 
             resp.setContentType("text/plain");
             resp.getWriter().println("{");
@@ -128,14 +140,14 @@ public class ComicServlet extends HttpServlet {
         }
 
         if (subscription != null) {
-            // SUBSCRIBTIONS
             if (subscription.replaceAll("\\s+", "")
                     .equalsIgnoreCase("subscribe".replaceAll("\\s+", ""))) {
                 UserInfo creator = ObjectifyService.ofy().load()
                         .type(UserInfo.class).filter("username", currentcomic.getUser()
                                 .getNickname()).first().now();
-                creator.addUnreadNotification(user.getNickname()
-                        + " has subscribed to your comic " + "<a href=\"/comic?series_title="
+                creator.addUnreadNotification(
+                        "Subscribed to you||" + new Date().toString() + "||" + user.getNickname()
+                        + " has subscribed to your comic series " + "<a href=\"/comic?series_title="
                         + currentcomic.seriesTitle + "\">" + currentcomic.seriesTitle
                         + "</a>||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
                         .format(new Date()));

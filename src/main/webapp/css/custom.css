@@ -278,3 +278,20 @@
     .lock{
         color: black;
     }
+
+    .unread_notification {
+        background-color: rgba(0, 0, 255, 0.1);
+    }
+
+    .entry{
+        display: none;
+    }
+
+    .notification{
+        padding: 10px;
+    }
+    .delete_notification:hover{
+        color:red;
+        cursor: pointer;
+    }
+

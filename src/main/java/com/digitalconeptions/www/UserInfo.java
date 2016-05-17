@@ -7,6 +7,7 @@ import com.googlecode.objectify.annotation.*;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -87,7 +88,20 @@ public class UserInfo implements java.io.Serializable{
     public void setUnreadNotifications(ArrayList<String> unreadNotifications) { this.unreadNotifications = unreadNotifications; }
     public ArrayList<String> getReadNotifications() { return readNotifications; }
     public void setReadNotifications(ArrayList<String> readNotifications) { this.readNotifications = readNotifications; }
-    public void addUnreadNotification(String notification) { unreadNotifications.add(notification); }
+    public void addUnreadNotification(String notification) {
+        unreadNotifications.add(notification);
+        Collections.sort(unreadNotifications);
+    }
+    public void addReadNotification(String notification){
+        readNotifications.add(notification);
+        Collections.sort(unreadNotifications);
+    }
+    public void removeUnreadNotification(String notification){
+        unreadNotifications.remove(notification);
+    }
+    public void removeReadNotification(String notification){
+        readNotifications.remove(notification);
+    }
 
     public void subscribe(String key){
         subscriptions.add(key);

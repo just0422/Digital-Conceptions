@@ -43,23 +43,41 @@ public class UserProfileServlet extends HttpServlet {
             ComicInfo seriesComic
                     = ObjectifyService.ofy().load().type(ComicInfo.class)
                     .filter(Constants.seriesTitle, comic[0]).first().now();
-//                    .filter(Constants.issueTitle, comic[2])
-//                    .filter(Constants.volume, Integer.parseInt(comic[1]))
-//                    .filter(Constants.issue, Integer.parseInt(comic[3])).first().now();
             comics.add(seriesComic);
-            System.out.println("Comics Size: " + comics.size());
         }
 
         req.setAttribute("current_user", currentUser);
+        System.out.println(currentUser.unreadNotifications.size());
         req.setAttribute("series_comics", comics);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/user_profile.jsp");
         rd.forward(req, resp);
-
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        doGet(req, resp);
+        System.out.println(getClass().getName() + " POST");
+        UserService userService = UserServiceFactory.getUserService();
+        User user = userService.getCurrentUser();
+
+        String notification = req.getParameter("notification");
+        String delete_notification = req.getParameter("notification_delete");
+        String un_read = req.getParameter("un_read");
+
+        UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
+
+        if (un_read != null && delete_notification != null){
+            if (un_read.equalsIgnoreCase("read"))
+                currentUser.removeReadNotification(notification);
+            if (un_read.equalsIgnoreCase("unread"))
+                currentUser.removeUnreadNotification(notification);
+        }
+
+        if (notification != null) {
+            currentUser.removeUnreadNotification(notification);
+            currentUser.addReadNotification(notification);
+        }
+        ObjectifyService.ofy().save().entity(currentUser).now();
+
     }
 
 }

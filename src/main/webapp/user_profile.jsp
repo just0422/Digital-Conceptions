@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html>
@@ -47,7 +48,7 @@
 
                             <!-- Notification button-->
                             <a id="notification_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="3"></span>
+                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="${fn:length(current_user.unreadNotifications)}"></span>
                             <div class="pad-top-10"></div>
                         </div>
 
@@ -87,9 +88,6 @@
                                     <div class="col s4">
                                         <form action="/comic" method="GET">
                                             <input type="hidden" name="series_title" value="${comic.seriesTitle}">
-                                            <%--<input type="hidden" name="issue_title" value="${comic.issueTitle}">--%>
-                                            <%--<input type="hidden" name="volume" value="${comic.volume}">--%>
-                                            <%--<input type="hidden" name="issue" value="${comic.issue}">--%>
                                             <div class="card hoverable cyan lighten-3" onclick="$(this).parent().submit();">
                                                 <div class="card-image">
                                                     <img src="${comic.coverPage}">
@@ -101,55 +99,6 @@
                                         </form>
                                     </div>
                                 </c:forEach>
-                                <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
-                                <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;<div class="pad-top-10"></div>&ndash;%&gt;--%>
-                                <%--<div class="col s6">--%>
-                                    <%--<div class="card hoverable cyan lighten-3" onclick="">--%>
-                                        <%--<div class="card-image">--%>
-                                            <%--<img src="image/5.jpg">--%>
-                                        <%--</div>--%>
-                                        <%--<div class="card-content white-text">--%>
-                                            <%--<p class="flow-text">Hero</p>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
                             </div>
 
                             <!-- Pagination -->
@@ -169,15 +118,91 @@
                         </div>
                     </div>
 
+                    <script>
+                        function read_notification(element){
+//                            console.log("read" + $(element).find("p").text());
+                            $.ajax({
+                                url: "/userprofile",
+                                type: "post",
+                                data: { notification: $(element).find("p").html()},
+                                success: function () {
+                                    $(element).removeClass("unread_notification");
+                                },
+                                error: function () {
+                                    alert("uh-oh something happened");
+                                }
+                            });
+                        }
 
+                        function delete_notification(element, un_read){
+                            $.ajax({
+                                url: "/userprofile",
+                                type: "post",
+                                data: {
+                                    notification_delete: $(element).find("p").html(),
+                                    un_read : un_read
+                                },
+                                success: function () {
+                                    $(element).remove();
+                                },
+                                error: function () {
+                                    alert("uh-oh something happened");
+                                }
+                            });
+                        }
+                    </script>
                     <div id="notification" style="display: none">  
                         <div class="container-1">
+                            <h4>Unread Notifications</h4>
                             <ul class="collapsible" data-collapsible="accordion">
+                                <c:set var="prev" value=""/>
                                 <c:forEach items="${current_user.unreadNotifications}" var="entry">
-                                    <li>
-                                        <div class="collapsible-header">${entry}</div>
-                                        <%--<div class="collapsible-body"><i class="material-icons right pointer" onclick="rem()">close</i> <p>Message Body</p></div>--%>
-                                    </li>
+                                    <c:set var="notification" value="${fn:split(entry, '||')}"/>
+                                    <c:if test="${notification[0] != prev}">
+                                        <li>
+                                        <div class="collapsible-header">${notification[0]}</div>
+                                            <c:set var="prev" value="${notification[0]}"/>
+                                    </c:if>
+
+                                    <div class="collapsible-body unread_notification notification" onclick="read_notification(this)">
+                                        <span>
+                                            <i class="fa fa-minus-circle delete_notification" aria-hidden="true" onclick="delete_notification(this.parentElement.parentElement, 'unread')"></i>
+                                            ${notification[2]}
+                                        </span>
+                                        <span class="right">${notification[3]}</span>
+                                        <p class="entry">${entry}</p>
+                                    </div>
+
+                                    <c:if test="${notification[0] != prev}">
+                                        </li>
+                                    </c:if>
+                                </c:forEach>
+                            </ul>
+
+                            <div class="divider"></div>
+                            <h4>Read Notifications</h4>
+                            <ul class="collapsible" data-collapsible="accordion">
+                                <c:set var="prev" value=""/>
+                                <c:forEach items="${current_user.readNotifications}" var="entry">
+                                    <c:set var="notification" value="${fn:split(entry, '||')}"/>
+                                    <c:if test="${notification[0] != prev}">
+                                        <li>
+                                        <div class="collapsible-header">${notification[0]}</div>
+                                        <c:set var="prev" value="${notification[0]}"/>
+                                    </c:if>
+
+                                    <div class="collapsible-body notification">
+                                        <span>
+                                            <i class="fa fa-minus-circle delete_notification" aria-hidden="true" onclick="delete_notification(this.parentElement.parentElement, 'read')"></i>
+                                            ${notification[2]}
+                                        </span>
+                                        <span class="right">${notification[3]}</span>
+                                        <p class="entry">${entry}</p>
+                                    </div>
+
+                                    <c:if test="${notification[0] != prev}">
+                                        </li>
+                                    </c:if>
                                 </c:forEach>
                             </ul>
                         </div>
