@@ -239,7 +239,7 @@
                                 <div class="col s3">
                                     <c:choose>
                                         <c:when test="${comic.isCanvas}">
-                                            <a href="/create?${req_details}"
+                                            <a href="/create?${req_details}">
                                         </c:when>
                                         <c:otherwise>
                                             <a href="/editimages?${req_details}">
