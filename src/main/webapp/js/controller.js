@@ -374,6 +374,7 @@ function addAccessors($scope) {
   };
   $scope.setHorizontalLock = function(value) {
     setActiveProp('lockMovementX', value);
+    check_locks();
   };
 
   $scope.getVerticalLock = function() {
@@ -381,6 +382,7 @@ function addAccessors($scope) {
   };
   $scope.setVerticalLock = function(value) {
     setActiveProp('lockMovementY', value);
+    check_locks();
   };
 
   $scope.getScaleLockX = function() {
@@ -388,6 +390,7 @@ function addAccessors($scope) {
   },
   $scope.setScaleLockX = function(value) {
     setActiveProp('lockScalingX', value);
+    check_locks();
   };
 
   $scope.getScaleLockY = function() {
@@ -395,6 +398,7 @@ function addAccessors($scope) {
   };
   $scope.setScaleLockY = function(value) {
     setActiveProp('lockScalingY', value);
+    check_locks();
   };
 
   $scope.getRotationLock = function() {
@@ -402,6 +406,7 @@ function addAccessors($scope) {
   };
   $scope.setRotationLock = function(value) {
     setActiveProp('lockRotation', value);
+    check_locks();
   };
 
   $scope.getOriginX = function() {

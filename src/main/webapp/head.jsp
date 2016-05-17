@@ -9,6 +9,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--Import Google Icon Font-->
 <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<%-- Font awesome --%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 <!--Import materialize.css-->
 <link type="text/css" rel="stylesheet" href="css/materialize.css" media="screen,projection"/>
 
@@ -28,9 +30,6 @@
 <!--Import custom js-->
 <script type="text/javascript" src="js/customJS.js"></script>
 <script type="text/javascript" src="js/customJS_2.js"></script>
-
-<%-- Font awesome --%>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css">
 
 <script type="text/javascript" src="/_ah/channel/jsapi"></script>
 <script type="text/javascript" src="js/ChatBox_JS.js"></script>

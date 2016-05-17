@@ -9,7 +9,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
-<html>
+<html ng-app="kitchensink">
 
 <head>
     <jsp:include page="head.jsp"/>
@@ -57,10 +57,11 @@
     <main class="main body body-background-color">
 
         <!-- Start of actual create comic secion -->
-        <div id="create_canvas" ng-app="kitchensink">
+        <div id="create_canvas" >
 
             <!-- Start of create tools -->
             <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
+                <%-- Pages scroll view --%>
                 <div class="wrap">
                     <div class="scrollbar">
                         <div class="handle">
@@ -98,10 +99,6 @@
                                     </c:forEach>
                                 </c:otherwise>
                             </c:choose>
-                            <%--<li>0</li><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li>--%>
-                            <%--<li>10</li><li>11</li><li>12</li><li>13</li><li>14</li><li>15</li><li>16</li><li>17</li><li>18</li>--%>
-                            <%--<li>19</li><li>20</li><li>21</li><li>22</li><li>23</li><li>24</li><li>25</li><li>26</li><li>27</li>--%>
-                            <%--<li>28</li><li>29</li>--%>
                         </ul>
                     </div>
 
@@ -243,18 +240,18 @@
 
                 <div id="commands" ng-click="maybeLoadShape($event)">
 
-                    <ul class="tabs">
-                        <li class="tab col s2"><a href="#simple-shapes">Simple</a></li>
-                        <li class="tab col s2"><a href="#svg-shapes">SVG</a></li>
-                        <li class="tab col s2"><a class="active" href="#object-controls-pane">Controls</a></li>
+                    <%--<ul class="tabs">--%>
+                        <%--<li class="tab col s2"><a href="#simple-shapes">Simple</a></li>--%>
+                        <%--<li class="tab col s2"><a href="#svg-shapes">SVG</a></li>--%>
+                        <%--<li class="tab col s2"><a class="active" href="#object-controls-pane">Controls</a></li>--%>
                         <%--<li class="tab col s2"><a href="#load-svg-pane">Load SVG</a></li>--%>
                         <%--<li class="tab col s2"><a href="#execute-code">Execute</a></li>--%>
-                        <li class="tab col s2"><a href="#json-inout">JSON</a></li>
-                    </ul>
+                        <%--<li class="tab col s2"><a href="#json-inout">JSON</a></li>--%>
+                    <%--</ul>--%>
 
                     <div class="tab-content">
 
-                        <div class="tab-pane" id="svg-shapes">
+                        <%--<div class="tab-pane" id="svg-shapes">--%>
                             <p>Comic Templates:</p>
 
                             <ul class="svg-shapes">
@@ -274,22 +271,31 @@
                                 <li><button class="btn btn-small shape" id="shape100">Bubble</button></li>
                             </ul>
 
-                        </div>
+                        <%--</div>--%>
 
-                        <div class="tab-pane" id="simple-shapes">
+                        <%--<div class="tab-pane" id="simple-shapes">--%>
                             <p>Add <strong>simple shapes</strong> to canvas:</p>
-                            <p>
-                                <button type="button" class="btn rect" ng-click="addRect()">Rectangle</button>
-                                <button type="button" class="btn circle" ng-click="addCircle()">Circle</button>
-                                <button type="button" class="btn triangle" ng-click="addTriangle()">Triangle
-                                </button>
-                                <button type="button" class="btn line" ng-click="addLine()">Line</button>
-                                <button type="button" class="btn polygon" ng-click="addPolygon()">Polygon</button>
-                            </p>
-
-                            <p>
-                                <button class="btn" ng-click="addText()">Add text</button>
-                            </p>
+                            <div class="object-controls" object-buttons-enabled="getSelected()">
+                                <p>
+                                    <button type="button" class="btn rect" ng-click="addRect()">
+                                        <i class="fa fa-stop" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn circle" ng-click="addCircle()">
+                                        <i class="fa fa-circle" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn triangle" ng-click="addTriangle()">
+                                        <i class="fa fa-caret-up" aria-hidden="true"></i>
+                                    </button>
+                                    <button type="button" class="btn line" ng-click="addLine()">\</button>
+                                    <button type="button" class="btn polygon" ng-click="addPolygon()">Polygon</button>
+                                    <button class="btn" ng-click="addText()">
+                                        <i class="fa fa-font" aria-hidden="true"></i>
+                                    </button>
+                                    <button class="btn btn-object-action" id="remove-selected"ng-click="removeSelected()">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </button>
+                                </p>
+                            </div>
 
                             <%--<p>Add <strong>images</strong> to canvas:</p>--%>
                             <%--<p>--%>
@@ -324,92 +330,119 @@
                             <%--<p>--%>
                             <%--<button class="btn shape" id="shape54">Image</button>--%>
                             <%--</p>--%>
-                        </div>
+                        <%--</div>--%>
 
-                        <div class="tab-pane active" id="object-controls-pane">
-                            <div id="global-controls">
-                                <p>
-                                    Rasterize canvas to
-                                    <button class="btn btn-success" id="rasterize" ng-click="rasterize()">
-                                        Image
-                                    </button>
-                                    <%--<button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">--%>
-                                    <%--SVG--%>
+                        <%--<div class="tab-pane active" id="object-controls-pane">--%>
+                            <%--<div id="global-controls">--%>
+                                <%--<p>--%>
+                                    <%--Rasterize canvas to--%>
+                                    <%--<button class="btn btn-success" id="rasterize" ng-click="rasterize()">--%>
+                                        <%--Image--%>
                                     <%--</button>--%>
-                                    <button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">
-                                        JSON
-                                    </button>
-                                </p>
-                                <p>
-                                    <button class="btn btn-danger clear" ng-click="confirmClear()">Clear canvas
-                                    </button>
-                                </p>
-                            </div>
+                                    <%--&lt;%&ndash;<button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;SVG&ndash;%&gt;--%>
+                                    <%--&lt;%&ndash;</button>&ndash;%&gt;--%>
+                                    <%--<button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">--%>
+                                        <%--JSON--%>
+                                    <%--</button>--%>
+                                  <%--</p>--%>
+                                <%--<p>--%>
+                                    <%--<button class="btn btn-danger clear" ng-click="confirmClear()">Clear canvas--%>
+                                    <%--</button>--%>
+                                <%--</p>--%>
+                            <%--</div>--%>
 
                             <div class="object-controls" object-buttons-enabled="getSelected()">
+                                <%--<div ng-controller="AllLocks">--%>
+
+
+                                <script>
+//                                    angular.module('kitchensink', [])
+//                                            .controller('CanvasControls', ['$scope', function($scope) {
+////                                            $scope.message = "How to call $scope function from console";
+//                                                $scope.lock_check = function() {
+////                                                $scope.message = "How to call $scope  from console";
+//                                                    console.log("HELL");
+////                                                $scope.setHorizontalLock(!getHorizontalLock());
+////                                                check_locks();
+//                                                };
+//                                            }]);
+                                </script>
+
 
                                 <div style="margin-top:10px;">
-                                    <p>
-                                        <button class="btn btn-object-action" id="remove-selected"ng-click="removeSelected()">Remove selected object/group</button>
-                                    </p>
-
-                                    <button class="btn btn-lock btn-object-action"
+                                    <button id="horizontal-lock"
+                                            class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setHorizontalLock(!getHorizontalLock())"
-                                            ng-class="{'btn-inverse': getHorizontalLock()}">
-                                        {[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal movement' ]}
+                                            ng-class="{'btn-inverse': getHorizontalLock()}"
+                                            title="Lock horizontal movement">
+                                        <%--<span class="fa-stack">--%>
+                                            <%--<i class="fa fa-lock fa-stack-1x" aria-hidden="true"></i>--%>
+                                            <%--<i class="fa fa-refresh fa-stack-2x"></i>--%>
+                                          <%--<i class="fa fa-camera fa-stack-1x"></i>--%>
+                                        <%--</span>--%>
+                                        <%--{[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal movement' ]}--%>
                                     </button>
-                                    <br>
-                                    <button class="btn btn-lock btn-object-action"
-                                            ng-click="setVerticalLock(!getVerticalLock())"
-                                            ng-class="{'btn-inverse': getVerticalLock()}">
-                                        {[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement']}
+                                <%--<br>--%>
+                                    <button id="vertical-lock"
+                                            class="btn btn-lock btn-object-action lock-buttons"
+                                            ng-click="setVerticalLock(!getVerticalLock());"
+                                            ng-class="{'btn-inverse': getVerticalLock()}"
+                                            title="Lock vertical movement">
+                                    <%--{[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement']}--%>
                                     </button>
-                                    <br>
-                                    <button class="btn btn-lock btn-object-action"
+                                    <%--<br>--%>
+                                    <button id="scale-x-lock" onclick="check_locks()"
+                                            class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setScaleLockX(!getScaleLockX())"
-                                            ng-class="{'btn-inverse': getScaleLockX()}">
-                                        {[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling']}
+                                            ng-class="{'btn-inverse': getScaleLockX()}"
+                                            title="Lock horizontal scaling">
+                                    <%--{[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling']}--%>
                                     </button>
-                                    <br>
-                                    <button class="btn btn-lock btn-object-action"
+                                    <%--<br>--%>
+                                    <button id="scale-y-lock" onclick="check_locks()"
+                                            class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setScaleLockY(!getScaleLockY())"
-                                            ng-class="{'btn-inverse': getScaleLockY()}">
-                                        {[ getScaleLockY() ? 'Unlock vertical scaling' : 'Lock vertical scaling' ]}
+                                            ng-class="{'btn-inverse': getScaleLockY()}"
+                                            title="Lock vertical scaling"
+                                    <%--{[ getScaleLockY() ? 'Unlock vertical scaling' : 'Lock vertical scaling' ]}--%>
                                     </button>
-                                    <br>
-                                    <button class="btn btn-lock btn-object-action"
+                                    <%--<br>--%>
+                                    <button id="rotate-lock" onclick="check_locks()"
+                                            class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setRotationLock(!getRotationLock())"
-                                            ng-class="{'btn-inverse': getRotationLock()}">
-                                        {[ getRotationLock() ? 'Unlock rotation' : 'Lock rotation' ]}
+                                            ng-class="{'btn-inverse': getRotationLock()}"
+                                            title="Lock Rotation">
+                                    <%--{[ getRotationLock() ? 'Unlock rotation' : 'Lock rotation' ]}--%>
                                     </button>
-                                </div>
+                                </div></div>
 
-                                <div style="margin-top:10px">
-                                    <p>
-                                        <span style="margin-right: 10px">Origin X: </span>
-                                        <label>Left
-                                            <input type="radio" name="origin-x" class="origin-x btn-object-action" value="left" bind-value-to="originX">
-                                        </label>
-                                        <label>Center
-                                            <input type="radio" name="origin-x" class="origin-x btn-object-action" value="center" bind-value-to="originX">
-                                        </label>
-                                        <label>Right
-                                            <input type="radio" name="origin-x" class="origin-x btn-object-action" value="right" bind-value-to="originX">
-                                        </label>
-                                    </p>
-                                    <p>
-                                        <span style="margin-right: 10px">Origin Y: </span>
-                                        <label>Top
-                                            <input type="radio" name="origin-y" class="origin-y btn-object-action" value="top" bind-value-to="originY">
-                                        </label>
-                                        <label>Center
-                                            <input type="radio" name="origin-y" class="origin-y btn-object-action" value="center" bind-value-to="originY">
-                                        </label>
-                                        <label>Bottom
-                                            <input type="radio" name="origin-y" class="origin-y btn-object-action" value="bottom" bind-value-to="originY">
-                                        </label>
-                                    </p>
-                                </div>
+                                <%--<div style="margin-top:10px">--%>
+                                    <%--<p>--%>
+                                        <%--<span style="margin-right: 10px">Origin X: </span>--%>
+                                        <%--<label>Left--%>
+                                            <%--<input type="radio" name="origin-x" class="origin-x btn-object-action" value="left" bind-value-to="originX">--%>
+                                        <%--</label>--%>
+                                        <%--<label>Center--%>
+                                            <%--<input type="radio" name="origin-x" class="origin-x btn-object-action" value="center" bind-value-to="originX">--%>
+                                        <%--</label>--%>
+                                        <%--<label>Right--%>
+                                            <%--<input type="radio" name="origin-x" class="origin-x btn-object-action" value="right" bind-value-to="originX">--%>
+                                        <%--</label>--%>
+                                    <%--</p>--%>
+                                    <%--<p>--%>
+                                        <%--<span style="margin-right: 10px">Origin Y: </span>--%>
+                                        <%--<label>Top--%>
+                                            <%--<input type="radio" name="origin-y" class="origin-y btn-object-action" value="top" bind-value-to="originY">--%>
+                                        <%--</label>--%>
+                                        <%--<label>Center--%>
+                                            <%--<input type="radio" name="origin-y" class="origin-y btn-object-action" value="center" bind-value-to="originY">--%>
+                                        <%--</label>--%>
+                                        <%--<label>Bottom--%>
+                                            <%--<input type="radio" name="origin-y" class="origin-y btn-object-action" value="bottom" bind-value-to="originY">--%>
+                                        <%--</label>--%>
+                                    <%--</p>--%>
+                                <%--</div>--%>
 
                                 <div style="margin-top:10px;">
                                     <button id="send-backwards" class="btn btn-object-action"
@@ -418,9 +451,6 @@
                                     <button id="send-to-back" class="btn btn-object-action"
                                             ng-click="sendToBack()">Send to back
                                     </button>
-                                </div>
-
-                                <div style="margin-top:4px;">
                                     <button id="bring-forward" class="btn btn-object-action"
                                             ng-click="bringForward()">Bring forwards
                                     </button>
@@ -430,27 +460,78 @@
                                 </div>
 
                                 <div style="margin-top:10px;">
-                                    <button id="gradientify" class="btn btn-object-action" ng-click="gradientify()">
-                                        Gradientify
-                                    </button>
+                                    <button id="gradientify" class="btn btn-object-action" ng-click="gradientify()" title="Gradient"></button>
                                     <button id="shadowify" class="btn btn-object-action" ng-click="shadowify()">
-                                        Shadowify
+                                        <i class="fa fa-square" aria-hidden="true" id="shadow_button"></i>
                                     </button>
-                                    <button id="patternify" class="btn btn-object-action" ng-click="patternify()">
-                                        Patternify
-                                    </button>
-                                    <button id="clip" class="btn btn-object-action" ng-click="clip()">
-                                        Clip
-                                    </button>
+                                    <%--<button id="patternify" class="btn btn-object-action" ng-click="patternify()">--%>
+                                        <%--Patternify--%>
+                                    <%--</button>--%>
+                                    <%--<button id="clip" class="btn btn-object-action" ng-click="clip()">--%>
+                                        <%--Clip--%>
+                                    <%--</button>--%>
                                 </div>
                             </div>
                             <div style="margin-top:10px;" id="drawing-mode-wrapper">
-
                                 <button id="drawing-mode" class="btn btn-info"
                                         ng-click="setFreeDrawingMode(!getFreeDrawingMode())"
                                         ng-class="{'btn-inverse': getFreeDrawingMode()}">
-                                    {[ getFreeDrawingMode() ? 'Exit free drawing mode' : 'Enter free drawing mode'
-                                    ]}
+                                    <script>
+                                        function check_locks(){
+                                            var open_span = '<span class="fa-stack">';
+                                            var lock = '<i class="fa fa-lock fa-stack-2x" style="color:black"></i>'
+                                            var close_span = '</span>';
+                                            var object = canvas.getActiveObject();
+                                            var moveX = open_span + '<i class="fa fa-arrows-h fa-stack-1x"></i>';
+                                            var moveY = open_span + '<i class="fa fa-arrows-v fa-stack-1x"></i>';
+                                            var scaleX = open_span + '<i class="fa fa-arrows-h fa-stack-1x"></i>' +
+                                                    '<i style="font-size:2.1rem;" class="fa fa-square-o fa-stack-1x scale_square"></i>';
+                                            var scaleY = open_span + '<i class="fa fa-arrows-v fa-stack-1x"></i>' +
+                                                    '<i style="font-size:2.1rem;" class="fa fa-square-o fa-stack-1x scale_square"></i>';
+                                            var rot = open_span + '<i class="fa fa-refresh fa-stack-1x"></i>';
+
+
+                                            if (object) {
+                                                if (object.lockMovementX)
+                                                    moveX += lock;
+                                                if (object.lockMovementY)
+                                                    moveY += lock;
+                                                if (object.lockScalingX)
+                                                    scaleX += lock;
+                                                if (object.lockScalingY)
+                                                    scaleY += lock;
+                                                if (object.lockRotation)
+                                                    rot += lock;
+                                            }
+
+                                            moveX += close_span;
+                                            moveY += close_span;
+                                            scaleX += close_span;
+                                            scaleY += close_span;
+                                            rot += close_span;
+
+                                            $("#horizontal-lock").html(moveX);
+                                            $("#vertical-lock").html(moveY);
+                                            $("#scale-x-lock").html(scaleX);
+                                            $("#scale-y-lock").html(scaleY);
+                                            $("#rotate-lock").html(rot);
+
+                                        }
+
+                                        function draw_stop(){
+                                            if (!canvas.isDrawingMode)
+                                                $('#drawing-mode').html('<i class="fa fa-stop-circle-o" aria-hidden="true"></i>');
+                                            else
+                                                $('#drawing-mode').html('<i class="fa fa-pencil" aria-hidden="true"></i>');
+                                        }
+
+                                        $(document).ready(draw_stop);
+                                        $(document).ready(check_locks);
+                                        $('#drawing-mode').click(draw_stop);
+
+                                    </script>
+                                    <%--{[ getFreeDrawingMode() ? 'Exit' : 'Enter free drawing mode'--%>
+                                    <%--]}--%>
                                 </button>
 
                                 <div id="drawing-mode-options" ng-show="getFreeDrawingMode()">
@@ -467,20 +548,20 @@
                                         <option>diamond</option>
                                         <option>texture</option>
                                     </select>
-                                    <br>
+                                    <%--<br>--%>
                                     <label for="drawing-line-width">Line width:</label>
                                     <input type="range" value="30" min="0" max="150"
                                            bind-value-to="drawingLineWidth">
-                                    <br>
+                                    <%--<br>--%>
                                     <label for="drawing-color">Line color:</label>
                                     <input type="color" value="#005E7A" bind-value-to="drawingLineColor">
-                                    <br>
+                                    <%--<br>--%>
                                     <label for="drawing-shadow-width">Line shadow width:</label>
                                     <input type="range" value="0" min="0" max="50"
                                            bind-value-to="drawingLineShadowWidth">
                                 </div>
                             </div>
-                        </div>
+                        <%--</div>--%>
 
                         <%--<div class="tab-pane" id="load-svg-pane">--%>
                         <%--<textarea id="svg-console" bind-value-to="consoleSVG"></textarea>--%>
@@ -497,15 +578,15 @@
                         <%--<button type="button" class="btn btn-info" ng-click="execute()">Execute</button>--%>
                         <%--</div>--%>
 
-                        <div class="tab-pane" id="json-inout">
-                            <textarea id="json-console" bind-value-to="consoleJSON"></textarea>
-                            <button type="button" class="btn btn-info" ng-click="loadJSON()">
-                                Load
-                            </button>
+                        <%--<div class="tab-pane" id="json-inout">--%>
+                            <%--<textarea id="json-console" bind-value-to="consoleJSON"></textarea>--%>
+                            <%--<button type="button" class="btn btn-info" ng-click="loadJSON()">--%>
+                                <%--Load--%>
+                            <%--</button>--%>
                             <button type="button" class="btn btn-info" onclick="save()">
                                 Save
                             </button>
-                        </div>
+                        <%--</div>--%>
 
                     </div>
 
@@ -515,6 +596,8 @@
                 <script>
                     var kitchensink = {};
                     canvas = new fabric.Canvas('canvas');
+                    canvas.on('object:selected', check_locks);
+
 
                     function save(){
                         var pages = $('#pages_list').children();
