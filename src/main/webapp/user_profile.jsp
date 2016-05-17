@@ -47,8 +47,12 @@
                                     class="material-icons right">library_books</i>Subscriptions</a>
 
                             <!-- Notification button-->
+                            <c:set var="val" value="${fn:length(current_user.unreadNotifications)}"/>
                             <a id="notification_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="${fn:length(current_user.unreadNotifications)}"></span>
+                                    class="material-icons right">notifications</i>Notifications</a>
+                            <c:if test="${val > 0}">
+                                <span id="numOfNoti" class="badge1 cyan lighten-3 " data-badge="${val}"></span>
+                            </c:if>
                             <div class="pad-top-10"></div>
                         </div>
 
@@ -119,6 +123,11 @@
                     </div>
 
                     <script>
+                        function decrement_badge(){
+                            var notif_number = $('#numOfNoti').attr('data-badge');
+                            $('#numOfNoti').attr('data-badge', parseInt(notif_number) - 1);
+                            console.log(notif_number);
+                        }
                         function read_notification(element){
 //                            console.log("read" + $(element).find("p").text());
                             $.ajax({
@@ -127,6 +136,7 @@
                                 data: { notification: $(element).find("p").html()},
                                 success: function () {
                                     $(element).removeClass("unread_notification");
+                                    decrement_badge();
                                 },
                                 error: function () {
                                     alert("uh-oh something happened");
@@ -134,13 +144,14 @@
                             });
                         }
 
-                        function delete_notification(element, un_read){
+                        function delete_notification(event, element){
+                            event.stopPropagation();
+
                             $.ajax({
                                 url: "/userprofile",
                                 type: "post",
                                 data: {
                                     notification_delete: $(element).find("p").html(),
-                                    un_read : un_read
                                 },
                                 success: function () {
                                     $(element).remove();
@@ -166,7 +177,7 @@
 
                                     <div class="collapsible-body unread_notification notification" onclick="read_notification(this)">
                                         <span>
-                                            <i class="fa fa-minus-circle delete_notification" aria-hidden="true" onclick="delete_notification(this.parentElement.parentElement, 'unread')"></i>
+                                            <i class="fa fa-minus-circle delete_notification" aria-hidden="true" onclick="delete_notification(event, this.parentElement.parentElement)"></i>
                                             ${notification[2]}
                                         </span>
                                         <span class="right">${notification[3]}</span>
@@ -193,7 +204,7 @@
 
                                     <div class="collapsible-body notification">
                                         <span>
-                                            <i class="fa fa-minus-circle delete_notification" aria-hidden="true" onclick="delete_notification(this.parentElement.parentElement, 'read')"></i>
+                                            <i class="fa fa-minus-circle delete_notification" aria-hidden="true" onclick="delete_notification(event, this.parentElement.parentElement)"></i>
                                             ${notification[2]}
                                         </span>
                                         <span class="right">${notification[3]}</span>
@@ -261,7 +272,7 @@
 
         <!--Start test.jsp" />
         <!--End of chat -->
-    <jsp:include page="chat_box_test.jsp" />
+    <%--<jsp:include page="chat_box_test.jsp" />--%>
     </main>
 
     <jsp:include page="footer.jsp"/>

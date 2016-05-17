@@ -61,15 +61,14 @@ public class UserProfileServlet extends HttpServlet {
 
         String notification = req.getParameter("notification");
         String delete_notification = req.getParameter("notification_delete");
-        String un_read = req.getParameter("un_read");
 
         UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
 
-        if (un_read != null && delete_notification != null){
-            if (un_read.equalsIgnoreCase("read"))
-                currentUser.removeReadNotification(notification);
-            if (un_read.equalsIgnoreCase("unread"))
-                currentUser.removeUnreadNotification(notification);
+        if (delete_notification != null){
+//            if (un_read.equalsIgnoreCase("read"))
+                currentUser.removeReadNotification(delete_notification);
+//            if (un_read.equalsIgnoreCase("unread"))
+                currentUser.removeUnreadNotification(delete_notification);
         }
 
         if (notification != null) {
