@@ -8492,8 +8492,9 @@ button.btn-floating {
 }
 
 .btn-medium {
-    height: 20px;
-    line-height: 22px;
+    height: 25px;
+    line-height: 27px;
+    font-size: 80%;
 }
 
 .btn-small {

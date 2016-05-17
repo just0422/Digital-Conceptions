@@ -38,14 +38,15 @@
 
 --%>
 
-
-<div id="start_chat" class="fixed-action-btn" style="bottom: 250px; left: 24px;">
+<%--<div id="start_chat" class="fixed-action-btn" style="bot: 10px; left: 23px;">
     <a class="btn-floating btn-large grey darken-3">
         <i class="large material-icons">chat</i>
     </a>
-</div>
+</div>--%>
 
-<section class="module" id="chat_box" style="display: none;">
+
+
+<%--<section class="module" id="chat_box" style="display: none;">
 
     <header class="top-bar">
 
@@ -54,9 +55,8 @@
             <h1>SimpleChat</h1>
         </div>
 
-        <div class="right">
-            <span class="icon typicons-minus"></span>
-            <span class="icon typicons-times"></span>
+        <div class="right hoverable-1">
+            <span class="icon typicons-times hoverable-1" onclick="$(this).closest('section').remove()"></span>
         </div>
     </header>
 
@@ -72,33 +72,21 @@
                 </button>
             </div>
         </div>
-
     </ol>
 
 
-    <header id="type_message" class="bot-bar" style="display: none;">
-        <div class="divider-3"></div>
-
-                <span>
-                    <input placeholder="Type a message" id="message_body" type="text">
-                </span>
-
-        <button  id="submit_message" class="btn waves-effect waves-light btn-medium">Submit
+    <div id="type_message" class="bot-bar center" style="display: none;">
+        <input placeholder="Type a message" id="message_body" type="text">
+        <button id="submit_message" class="btn waves-effect waves-light btn-medium">
+            Submit
         </button>
-    </header>
+    </div>
 
-</section>
+</section>--%>
 
 
-<script>
-    $("#start_chat").click(function () {
-        $("#chat_box").show();
-    });
 
-</script>
 
-<%--
+<div id="forChatBox">
 
-</body>
-</html>
---%>
+</div>
