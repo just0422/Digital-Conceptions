@@ -38,18 +38,24 @@
                         <div class="center">
 
                             <!-- Account button -->
-                            <a id="account_info_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">account_circle</i>Account</a>
+                            <a id="account_info_button" class="waves-effect waves-light btn cyan lighten-2">
+                                <i class="material-icons right">account_circle</i>Account</a>
 
                             <!-- Subscription button-->
-                            <a id="subscription_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">library_books</i>Subscriptions</a>
+                            <a id="subscription_button" class="waves-effect waves-light btn cyan lighten-2">
+                                <i class="material-icons right">library_books</i>Subscriptions</a>
 
                             <!-- Notification button-->
                             <a id="notification_button" class="waves-effect waves-light btn cyan lighten-2"><i
-                                    class="material-icons right">notifications</i>Notifications</a><span id="numOfNoti"
-                                                                                                         class="badge1 cyan lighten-3 "
-                                                                                                         data-badge="3"></span>
+                                    class="material-icons right">notifications</i>Notifications</a>
+                            <span id="numOfNoti" class="badge1 cyan lighten-3 "></span>
+
+                            <script>
+
+                                if (${current_user.unreadNotificationSize} > 0)
+                                    $("#numOfNoti").attr("data-badge", ${current_user.unreadNotificationSize});
+
+                            </script>
                             <div class="pad-top-10"></div>
                         </div>
 

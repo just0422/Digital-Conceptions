@@ -88,6 +88,9 @@ public class UserInfo implements java.io.Serializable{
     public ArrayList<String> getReadNotifications() { return readNotifications; }
     public void setReadNotifications(ArrayList<String> readNotifications) { this.readNotifications = readNotifications; }
     public void addUnreadNotification(String notification) { unreadNotifications.add(notification); }
+    public void addReadNotification(String notification) { readNotifications.add(notification); }
+    public int getUnreadNotificationSize() { return unreadNotifications.size(); }
+    public int getReadNotificationSize() { return readNotifications.size(); }
 
     public void subscribe(String key){
         subscriptions.add(key);
