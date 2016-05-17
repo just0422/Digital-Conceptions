@@ -8,6 +8,7 @@ import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.users.User;
+import com.googlecode.objectify.LoadResult;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.LoadType;
 import com.googlecode.objectify.cmd.Query;
@@ -84,8 +85,8 @@ public class SaveCanvasServlet extends HttpServlet {
         String issueTitle = req.getParameter("issue_title");
         String volume = req.getParameter("volume");
         String issue = req.getParameter("issue");
-        String genre = req.getParameter("genre");
-        String description = req.getParameter("description");
+//        String genre = req.getParameter("genre");
+//        String description = req.getParameter("description");
         String nseriesTitle = req.getParameter("new_series_title");
         String nissueTitle = req.getParameter("new_issue_title");
         int nvolume = Integer.parseInt(req.getParameter("new_volume"));
@@ -93,16 +94,22 @@ public class SaveCanvasServlet extends HttpServlet {
         String ngenre = req.getParameter("new_genre");
         String ndescription = req.getParameter("new_description");
 
-        LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
-        Query<ComicInfo> query = load;
-        if (seriesTitle != null) query = query.filter("seriesTitle", seriesTitle);
-        else seriesTitle = "";
-        if (issueTitle != null) query = query.filter("issueTitle", issueTitle);
-        else issueTitle = "";
-        if (volume != null) query = query.filter("volume", Integer.parseInt(volume));
-        else volume = "1";
-        if (issue != null) query = query.filter("issue", Integer.parseInt(issue));
-        else issue = "1";
+        Query<ComicInfo> query = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter(Constants.seriesTitle, seriesTitle)
+                .filter(Constants.issueTitle, issueTitle)
+                .filter(Constants.volume, volume)
+                .filter(Constants.issue, issue);
+
+//        LoadType<ComicInfo> load = ObjectifyService.ofy().load().type(ComicInfo.class);
+//        Query<ComicInfo> query = load;
+//        if (seriesTitle != null) query = query.filter("seriesTitle", seriesTitle);
+//        else seriesTitle = "";
+//        if (issueTitle != null) query = query.filter("issueTitle", issueTitle);
+//        else issueTitle = "";
+//        if (volume != null) query = query.filter("volume", Integer.parseInt(volume));
+//        else volume = "1";
+//        if (issue != null) query = query.filter("issue", Integer.parseInt(issue));
+//        else issue = "1";
 
 
         UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
@@ -132,8 +139,9 @@ public class SaveCanvasServlet extends HttpServlet {
             ObjectifyService.ofy().save().entity(currentComic).now();
         }
         resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);
+
         ServletContext sc = getServletContext();
-        RequestDispatcher rd = sc.getRequestDispatcher("/canvas.jsp");
+        RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
         rd.forward(req, resp);
     }
 

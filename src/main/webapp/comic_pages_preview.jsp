@@ -133,8 +133,8 @@
                                 console.log("Sending");
                             },
                             success: function (data, status) {
-                                console.log(data + status);
-                                var req = data.split(',');
+//                                console.log(data + status);
+//                                var req = data.split(',');
 //                                window.location.href = "/editimages?series_title=" + req[0] +
 //                                        "&issue_title=" + req[1] + "&volume=" + req[2] +
 //                                        "&issue=" + req[3];

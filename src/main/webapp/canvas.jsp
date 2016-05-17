@@ -62,7 +62,15 @@
             <!-- Start of create tools -->
             <div id="bd-wrapper" ng-controller="CanvasControls" class="ng-scope">
                 <%-- Pages scroll view --%>
-                <div class="wrap">
+                    <div class="pad-top-10"></div>
+
+                    <div class="col s4 right-align" style="padding-top: 5px">
+                        <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
+                            to My Comics</a>
+                    </div>
+                    <div class="pad-top-10"></div>
+
+                    <div class="wrap">
                     <div class="scrollbar">
                         <div class="handle">
                             <div class="mousearea"></div>
@@ -311,7 +319,7 @@
                                             class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setScaleLockY(!getScaleLockY())"
                                             ng-class="{'btn-inverse': getScaleLockY()}"
-                                            title="Lock vertical scaling"
+                                            title="Lock vertical scaling">
                                     </button>
                                     <button id="rotate-lock" onclick="check_locks()"
                                             class="btn btn-lock btn-object-action lock-buttons"
@@ -481,8 +489,8 @@
                         formdata.append("issue_title", '${current_comic.issueTitle}');
                         formdata.append("volume", vol);
                         formdata.append("issue", iss);
-                        formdata.append('description', '${current_comic.description}')
-                        formdata.append('genre', '${current_comic.genre}')
+                        <%--formdata.append('description', '${current_comic.description}')--%>
+                        <%--formdata.append('genre', '${current_comic.genre}')--%>
                         formdata.append("new_series_title", $("#series_title").val());
                         formdata.append("new_issue_title", $("#issue_title").val());
                         formdata.append("new_volume", $("#volume").val());
@@ -490,21 +498,43 @@
                         formdata.append("new_genre", $("#genre_select").val());
                         formdata.append("new_description", $("#description").val());
 
+                        var options
+
                         $.ajax({
                             url: "${create}",
                             type: "POST",
                             data: formdata,
+                            success: function(){
+                                window.location.href = "/upload";
+                            },
                             processData: false,
                             contentType: false,
-                        }).done(function(respond){
-                            alert(respond);
+                            beforeSend: function () {
+                                console.log("Sending");
+                                $("#spinner").show();
+//                                $("#failure").attr('display', 'none');
+//                                $("#success").attr('display', 'none');
+                            },
+                            complete: function(){
+                                $("#spinner").hide();
+//                                $("#success").attr('display', 'inline-block');
+                            },
+                            error: function(){
+//                                $("#failure").attr('display', 'inline-block');
+                                $("#spinner").hide();
+                            },
+                            success: function (data, status) {
+                                console.log(data + status);
+                                var req = data.split(',');
+                                window.location.href = "/upload";
+                            }
                         });
-                    }
+//                        $("#comic_upload").ajaxForm(options);
 
-                    function respond(){
-                        console.log("DONE");
+//                        $('#canvas_create').ajaxSubmit(options);
                     }
                 </script>
+                    <%--<form id="canvas_create" action="${create}" method="POST"></form>--%>
 
                 <script src="js/utils.js"></script>
                 <script src="js/app_config.js"></script>
@@ -666,29 +696,6 @@
                     </div>
                 <%--</form>--%>
 
-            </div>
-
-            <div class="pad-top-20"></div>
-            <div class="pad-top-20"></div>
-            <!-- Browse and Submit buttons -->
-            <div class="col s12">
-                <%--<div class="file-field input-field">--%>
-                    <%--<div class="waves-effect waves-light btn cyan lighten-2"><i--%>
-                            <%--class="material-icons right">cloud_upload</i>Browse</input>--%>
-                        <%--<input type="file" multiple form="comic_upload" name="upload_images">--%>
-                    <%--</div>--%>
-                    <%--<div class="file-path-wrapper">--%>
-                        <%--<input class="file-path validate" type="text"--%>
-                               <%--placeholder="Upload one or more files">--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-
-
-                <%--<div class="pad-top-20"></div>--%>
-                <%--<button id="submit" class="waves-effect waves-light btn cyan lighten-2 center"--%>
-                        <%--form="comic_upload" type="submit"><i--%>
-                        <%--class="material-icons right">send</i>Submit--%>
-                <%--</button>--%>
             </div>
 
         </div>
