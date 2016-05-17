@@ -240,22 +240,15 @@
 
                 <div id="commands" ng-click="maybeLoadShape($event)">
 
-                    <%--<ul class="tabs">--%>
-                        <%--<li class="tab col s2"><a href="#simple-shapes">Simple</a></li>--%>
-                        <%--<li class="tab col s2"><a href="#svg-shapes">SVG</a></li>--%>
-                        <%--<li class="tab col s2"><a class="active" href="#object-controls-pane">Controls</a></li>--%>
-                        <%--<li class="tab col s2"><a href="#load-svg-pane">Load SVG</a></li>--%>
-                        <%--<li class="tab col s2"><a href="#execute-code">Execute</a></li>--%>
-                        <%--<li class="tab col s2"><a href="#json-inout">JSON</a></li>--%>
-                    <%--</ul>--%>
-
                     <div class="tab-content">
 
                         <%--<div class="tab-pane" id="svg-shapes">--%>
                             <p>Comic Templates:</p>
 
+                            <button class="btn clear" ng-click="confirmClear()">Clear canvas</button>
+
                             <ul class="svg-shapes">
-                                <li><button class="btn btn-small shape" id="shape1">2 panes</button></li>
+                                <li><button class="btn shape" id="shape1">2 panes</button></li>
                                 <%--<li><button class="btn btn-small shape" id="shape25"><strong>36</strong> paths</button></li>--%>
                                 <%--<li><button class="btn btn-small shape" id="shape36"><strong>41</strong> paths</button></li>--%>
                                 <%--<li><button class="btn btn-small shape" id="shape58"><strong>54</strong> paths</button></li>--%>
@@ -265,18 +258,12 @@
                                 <%--<li><button class="btn btn-small shape" id="shape17"><strong>87</strong> paths</button></li>--%>
                             </ul>
 
-                            <p>Speech bubbles:</p>
-
-                            <ul class="svg-shapes">
-                                <li><button class="btn btn-small shape" id="shape100">Bubble</button></li>
-                            </ul>
-
-                        <%--</div>--%>
-
-                        <%--<div class="tab-pane" id="simple-shapes">--%>
-                            <p>Add <strong>simple shapes</strong> to canvas:</p>
+                            <p>Add <strong>shapes</strong> to canvas:</p>
                             <div class="object-controls" object-buttons-enabled="getSelected()">
                                 <p>
+                                    <button class="btn shape" id="shape100">
+                                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                    </button>
                                     <button type="button" class="btn rect" ng-click="addRect()">
                                         <i class="fa fa-stop" aria-hidden="true"></i>
                                     </button>
@@ -287,7 +274,9 @@
                                         <i class="fa fa-caret-up" aria-hidden="true"></i>
                                     </button>
                                     <button type="button" class="btn line" ng-click="addLine()">\</button>
-                                    <button type="button" class="btn polygon" ng-click="addPolygon()">Polygon</button>
+                                    <button type="button" class="btn polygon" ng-click="addPolygon()">
+                                        Polygon
+                                    </button>
                                     <button class="btn" ng-click="addText()">
                                         <i class="fa fa-font" aria-hidden="true"></i>
                                     </button>
@@ -297,179 +286,62 @@
                                 </p>
                             </div>
 
-                            <%--<p>Add <strong>images</strong> to canvas:</p>--%>
-                            <%--<p>--%>
-                            <%--<button type="button" class="btn image1" ng-click="addImage1()">Image 1 (pug)--%>
-                            <%--</button>--%>
-                            <%--<button type="button" class="btn image2" ng-click="addImage2()">Image 2 (google)--%>
-                            <%--</button>--%>
-                            <%--<button type="button" class="btn image3" n-click="addImage3()">Image 3 (printio)--%>
-                            <%--</button>--%>
-                            <%--</p>--%>
-
-                            <%--<p>Add <strong>gradient-based shapes</strong> to canvas:</p>--%>
-
-                            <%--<p>--%>
-                            <%--<button class="btn shape" id="shape74">Gradient 1</button>--%>
-                            <%--<button class="btn shape" id="shape66">Gradient 2</button>--%>
-                            <%--<button class="btn shape" id="shape75">Gradient 3</button>--%>
-                            <%--<button class="btn shape" id="shape148">Gradient 4</button>--%>
-                            <%--</p>--%>
-
-                            <%--<p>Add <strong>arcs</strong> and misc to canvas:</p>--%>
-
-                            <%--<p>--%>
-                            <%--<button class="btn shape" id="shape104">Arc(s) 1</button>--%>
-                            <%--<button class="btn shape" id="shape105">Arc(s) 2</button>--%>
-                            <%--<button class="btn shape" id="shape106">Arc(s) 3</button>--%>
-                            <%--<button class="btn shape" id="shape107">Arc(s) 4</button>--%>
-                            <%--</p>--%>
-                            <%--<p>--%>
-                            <%--<button class="btn shape" id="shape103">Transformed paths</button>--%>
-                            <%--</p>--%>
-                            <%--<p>--%>
-                            <%--<button class="btn shape" id="shape54">Image</button>--%>
-                            <%--</p>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="tab-pane active" id="object-controls-pane">--%>
-                            <%--<div id="global-controls">--%>
-                                <%--<p>--%>
-                                    <%--Rasterize canvas to--%>
-                                    <%--<button class="btn btn-success" id="rasterize" ng-click="rasterize()">--%>
-                                        <%--Image--%>
-                                    <%--</button>--%>
-                                    <%--&lt;%&ndash;<button class="btn btn-success" id="rasterize-svg" ng-click="rasterizeSVG()">&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;SVG&ndash;%&gt;--%>
-                                    <%--&lt;%&ndash;</button>&ndash;%&gt;--%>
-                                    <%--<button class="btn btn-success" id="rasterize-json" ng-click="rasterizeJSON()">--%>
-                                        <%--JSON--%>
-                                    <%--</button>--%>
-                                  <%--</p>--%>
-                                <%--<p>--%>
-                                    <%--<button class="btn btn-danger clear" ng-click="confirmClear()">Clear canvas--%>
-                                    <%--</button>--%>
-                                <%--</p>--%>
-                            <%--</div>--%>
-
                             <div class="object-controls" object-buttons-enabled="getSelected()">
-                                <%--<div ng-controller="AllLocks">--%>
-
-
-                                <script>
-//                                    angular.module('kitchensink', [])
-//                                            .controller('CanvasControls', ['$scope', function($scope) {
-////                                            $scope.message = "How to call $scope function from console";
-//                                                $scope.lock_check = function() {
-////                                                $scope.message = "How to call $scope  from console";
-//                                                    console.log("HELL");
-////                                                $scope.setHorizontalLock(!getHorizontalLock());
-////                                                check_locks();
-//                                                };
-//                                            }]);
-                                </script>
-
-
+                                <%-- Positional Locks --%>
                                 <div style="margin-top:10px;">
                                     <button id="horizontal-lock"
                                             class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setHorizontalLock(!getHorizontalLock())"
                                             ng-class="{'btn-inverse': getHorizontalLock()}"
                                             title="Lock horizontal movement">
-                                        <%--<span class="fa-stack">--%>
-                                            <%--<i class="fa fa-lock fa-stack-1x" aria-hidden="true"></i>--%>
-                                            <%--<i class="fa fa-refresh fa-stack-2x"></i>--%>
-                                          <%--<i class="fa fa-camera fa-stack-1x"></i>--%>
-                                        <%--</span>--%>
-                                        <%--{[ getHorizontalLock() ? 'Unlock horizontal movement' : 'Lock horizontal movement' ]}--%>
                                     </button>
-                                <%--<br>--%>
                                     <button id="vertical-lock"
                                             class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setVerticalLock(!getVerticalLock());"
                                             ng-class="{'btn-inverse': getVerticalLock()}"
                                             title="Lock vertical movement">
-                                    <%--{[ getVerticalLock() ? 'Unlock vertical movement' : 'Lock vertical movement']}--%>
                                     </button>
-                                    <%--<br>--%>
                                     <button id="scale-x-lock" onclick="check_locks()"
                                             class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setScaleLockX(!getScaleLockX())"
                                             ng-class="{'btn-inverse': getScaleLockX()}"
                                             title="Lock horizontal scaling">
-                                    <%--{[ getScaleLockX() ? 'Unlock horizontal scaling' : 'Lock horizontal scaling']}--%>
                                     </button>
-                                    <%--<br>--%>
                                     <button id="scale-y-lock" onclick="check_locks()"
                                             class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setScaleLockY(!getScaleLockY())"
                                             ng-class="{'btn-inverse': getScaleLockY()}"
                                             title="Lock vertical scaling"
-                                    <%--{[ getScaleLockY() ? 'Unlock vertical scaling' : 'Lock vertical scaling' ]}--%>
                                     </button>
-                                    <%--<br>--%>
                                     <button id="rotate-lock" onclick="check_locks()"
                                             class="btn btn-lock btn-object-action lock-buttons"
                                             ng-click="setRotationLock(!getRotationLock())"
                                             ng-class="{'btn-inverse': getRotationLock()}"
                                             title="Lock Rotation">
-                                    <%--{[ getRotationLock() ? 'Unlock rotation' : 'Lock rotation' ]}--%>
                                     </button>
-                                </div></div>
+                                </div>
 
-                                <%--<div style="margin-top:10px">--%>
-                                    <%--<p>--%>
-                                        <%--<span style="margin-right: 10px">Origin X: </span>--%>
-                                        <%--<label>Left--%>
-                                            <%--<input type="radio" name="origin-x" class="origin-x btn-object-action" value="left" bind-value-to="originX">--%>
-                                        <%--</label>--%>
-                                        <%--<label>Center--%>
-                                            <%--<input type="radio" name="origin-x" class="origin-x btn-object-action" value="center" bind-value-to="originX">--%>
-                                        <%--</label>--%>
-                                        <%--<label>Right--%>
-                                            <%--<input type="radio" name="origin-x" class="origin-x btn-object-action" value="right" bind-value-to="originX">--%>
-                                        <%--</label>--%>
-                                    <%--</p>--%>
-                                    <%--<p>--%>
-                                        <%--<span style="margin-right: 10px">Origin Y: </span>--%>
-                                        <%--<label>Top--%>
-                                            <%--<input type="radio" name="origin-y" class="origin-y btn-object-action" value="top" bind-value-to="originY">--%>
-                                        <%--</label>--%>
-                                        <%--<label>Center--%>
-                                            <%--<input type="radio" name="origin-y" class="origin-y btn-object-action" value="center" bind-value-to="originY">--%>
-                                        <%--</label>--%>
-                                        <%--<label>Bottom--%>
-                                            <%--<input type="radio" name="origin-y" class="origin-y btn-object-action" value="bottom" bind-value-to="originY">--%>
-                                        <%--</label>--%>
-                                    <%--</p>--%>
-                                <%--</div>--%>
-
+                                <%-- Backwards/Forwards --%>
                                 <div style="margin-top:10px;">
-                                    <button id="send-backwards" class="btn btn-object-action"
-                                            ng-click="sendBackwards()">Send backwards
-                                    </button>
                                     <button id="send-to-back" class="btn btn-object-action"
-                                            ng-click="sendToBack()">Send to back
+                                            ng-click="sendToBack()" title="Send to back"><img src="https://git.io/vrcSg"/>
+                                    </button>
+                                    <button id="send-backwards" class="btn btn-object-action"
+                                            ng-click="sendBackwards()" title="Send Backwards"><img src="https://git.io/vrcS9"/>
                                     </button>
                                     <button id="bring-forward" class="btn btn-object-action"
-                                            ng-click="bringForward()">Bring forwards
+                                            ng-click="bringForward()" title="Bring Forwards"><img src="https://git.io/vrcSj"/>
                                     </button>
                                     <button id="bring-to-front" class="btn btn-object-action"
-                                            ng-click="bringToFront()">Bring to front
+                                            ng-click="bringToFront()" title="Bring to front"><img src="https://git.io/vrc93"/>
                                     </button>
                                 </div>
 
                                 <div style="margin-top:10px;">
                                     <button id="gradientify" class="btn btn-object-action" ng-click="gradientify()" title="Gradient"></button>
-                                    <button id="shadowify" class="btn btn-object-action" ng-click="shadowify()">
+                                    <button id="shadowify" class="btn btn-object-action" ng-click="shadowify()" title="Shadow">
                                         <i class="fa fa-square" aria-hidden="true" id="shadow_button"></i>
                                     </button>
-                                    <%--<button id="patternify" class="btn btn-object-action" ng-click="patternify()">--%>
-                                        <%--Patternify--%>
-                                    <%--</button>--%>
-                                    <%--<button id="clip" class="btn btn-object-action" ng-click="clip()">--%>
-                                        <%--Clip--%>
-                                    <%--</button>--%>
                                 </div>
                             </div>
                             <div style="margin-top:10px;" id="drawing-mode-wrapper">
@@ -561,32 +433,9 @@
                                            bind-value-to="drawingLineShadowWidth">
                                 </div>
                             </div>
-                        <%--</div>--%>
-
-                        <%--<div class="tab-pane" id="load-svg-pane">--%>
-                        <%--<textarea id="svg-console" bind-value-to="consoleSVG"></textarea>--%>
-                        <%--<button type="button" class="btn btn-info" ng-click="loadSVG()">--%>
-                        <%--Load--%>
-                        <%--</button>--%>
-                        <%--<button type="button" class="btn" ng-click="loadSVGWithoutGrouping()">--%>
-                        <%--Load without grouping--%>
-                        <%--</button>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="tab-pane" id="execute-code">--%>
-                        <%--<textarea id="canvas-console" bind-value-to="console"></textarea>--%>
-                        <%--<button type="button" class="btn btn-info" ng-click="execute()">Execute</button>--%>
-                        <%--</div>--%>
-
-                        <%--<div class="tab-pane" id="json-inout">--%>
-                            <%--<textarea id="json-console" bind-value-to="consoleJSON"></textarea>--%>
-                            <%--<button type="button" class="btn btn-info" ng-click="loadJSON()">--%>
-                                <%--Load--%>
-                            <%--</button>--%>
                             <button type="button" class="btn btn-info" onclick="save()">
                                 Save
                             </button>
-                        <%--</div>--%>
 
                     </div>
 
@@ -600,6 +449,7 @@
 
 
                     function save(){
+                        updateCanvas(current_page_edit);
                         var pages = $('#pages_list').children();
                         var formdata = new FormData();
 

@@ -233,10 +233,10 @@ function addAccessors($scope) {
     var coord = getRandomLeftTop();
 
     this.canvas.add(new fabric.Polygon([
-      {x: 185, y: 0},
-      {x: 250, y: 100},
-      {x: 385, y: 170},
-      {x: 0, y: 245} ], {
+      {x: Math.floor((Math.random() * 400) + 1), y: Math.floor((Math.random() * 400) + 1)},
+      {x: Math.floor((Math.random() * 400) + 1), y: Math.floor((Math.random() * 400) + 1)},
+      {x: Math.floor((Math.random() * 400) + 1), y: Math.floor((Math.random() * 400) + 1)},
+      {x: Math.floor((Math.random() * 400) + 1), y: Math.floor((Math.random() * 400) + 1)} ], {
         left: coord.left,
         top: coord.top,
         fill: '#' + getRandomColor()
