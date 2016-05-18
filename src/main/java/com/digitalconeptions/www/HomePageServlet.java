@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class HomePageServlet extends HttpServlet {
             if(popularComics.size() > 10)
                 break;
         }
+        Collections.reverse(popularComics);
         popularComics = popularComics.subList(0, 9 >= popularComics.size() ? popularComics.size() : 9);
 
         // Filter comics by date added
