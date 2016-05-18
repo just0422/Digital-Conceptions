@@ -27,6 +27,9 @@ public class UserServiceServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException{
+        HttpSession session = req.getSession();
+        session.setAttribute("user", null);
+
         UserService userService = UserServiceFactory.getUserService();
         String logout = userService.createLogoutURL("/");
         resp.sendRedirect(logout);

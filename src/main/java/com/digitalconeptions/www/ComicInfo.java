@@ -217,7 +217,7 @@ public class ComicInfo {
     public void setIsCanvas(boolean canvas) { this.isCanvas = canvas; }
 
     public String getGetRequest(){
-        return "/comic?series_title=" + seriesTitle + "?issue_title=" + issueTitle + "?volume=" + volume + "?issue=" + issue;
+        return "/comic?series_title=" + seriesTitle + "&issue_title=" + issueTitle + "&volume=" + volume + "&issue=" + issue;
     }
     public String getPostRequest(){
         return  "<input type=\"hidden\" name=\"series_title\" value=\"" + seriesTitle + "}\">\n" +

@@ -50,7 +50,6 @@ public class ComicServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-
         String nextPage = "/comic_cover.jsp";
 
         if (issueTitle == null) {
@@ -146,6 +145,11 @@ public class ComicServlet extends HttpServlet {
             userinfo.addComicPageLeftOff(currentcomic.getComicName(), Integer.parseInt(req.getParameter("page_left_off")));
         }
 
+        ComicInfo firsttcomic
+                = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter(Constants.seriesTitle, comic[0]).first().now();
+        SeriesInfo series = ObjectifyService.ofy().load().type(SeriesInfo.class)
+                .filter(Constants.seriesTitle, comic[0]).first().now();
         if (subscription != null) {
             if (subscription.replaceAll("\\s+", "")
                     .equalsIgnoreCase("subscribe".replaceAll("\\s+", ""))) {
@@ -159,18 +163,15 @@ public class ComicServlet extends HttpServlet {
                         + "</a>||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
                         .format(new Date()));
                 ObjectifyService.ofy().save().entity(creator).now();
-                ComicInfo firsttcomic
-                        = ObjectifyService.ofy().load().type(ComicInfo.class)
-                        .filter(Constants.seriesTitle, comic[0]).first().now();
+
+                series.addSubscribedUser(userinfo.getUsername());
 
                 userinfo.subscribe(firsttcomic.getSeriesTitle());
                 resp.setContentType("text/plain");
                 resp.getWriter().println("unsubscribe");
             } else {
-                ComicInfo firsttcomic
-                        = ObjectifyService.ofy().load().type(ComicInfo.class)
-                        .filter(Constants.seriesTitle, comic[0]).first().now();
                 userinfo.unsubscribe(firsttcomic.getSeriesTitle());
+                series.removeSubscribedUser(userinfo.getUsername());
 
                 resp.setContentType("text/plain");
                 resp.getWriter().println("subscribe");
@@ -179,13 +180,6 @@ public class ComicServlet extends HttpServlet {
 
         ObjectifyService.ofy().save().entity(currentcomic).now();
         ObjectifyService.ofy().save().entity(userinfo).now();
-
-
-        // Finished reading
-        // Set userinfo pageleftoff hashmap based off of <ComicInfo, int page>
-
-        // Subscription
-        // Add to user info subscriptionlist
+        ObjectifyService.ofy().save().entity(series).now();
     }
-
 }

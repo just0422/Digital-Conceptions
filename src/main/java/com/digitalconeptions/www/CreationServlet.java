@@ -8,14 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
-import com.google.appengine.api.blobstore.BlobstoreServicePb;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
@@ -23,7 +24,6 @@ import com.google.appengine.api.users.User;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.LoadType;
 import com.googlecode.objectify.cmd.Query;
-import com.googlecode.objectify.impl.Session;
 
 /**
  * Created by justin on 4/12/16.
@@ -89,6 +89,8 @@ public class CreationServlet extends HttpServlet {
                     Integer.parseInt(volume), Integer.parseInt(issue), blobKeys, urls, false);
             newComic.setKey();
             currentUserInfo.addCreation(newComic.getComicName());
+
+            Constants.subscriptionNotifications(newComic, seriesTitle, " created a comic ");
 
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();

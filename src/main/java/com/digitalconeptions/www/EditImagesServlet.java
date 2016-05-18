@@ -8,6 +8,7 @@ import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.ObjectifyService;
+import com.googlecode.objectify.cmd.LoadType;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -17,10 +18,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 /**
  * Created by justin on 4/26/16.
@@ -67,9 +66,24 @@ public class EditImagesServlet extends HttpServlet {
                 .filter("issueTitle", issueTitle)
                 .filter("volume", volume)
                 .filter("issue", issue).first().now();
+        SeriesInfo seriesInfo = ObjectifyService.ofy().load().type(SeriesInfo.class)
+                .filter(Constants.seriesTitle, seriesTitle).first().now();
+        LoadType<UserInfo> usersLoad = ObjectifyService.ofy().load().type(UserInfo.class);
+        System.out.println(seriesInfo);
 
         if (req.getParameter("remove") != null){
             ObjectifyService.ofy().delete().entity(currentComic);
+
+            for (String user : seriesInfo.getSubscribedUsers()){
+                UserInfo userInfo = usersLoad.filter(Constants.username, user).first().now();
+
+                userInfo.addUnreadNotification(
+                        "Subscriptions||" + new Date().toString() + "||" + currentComic.getUsername()
+                                + " has deleted their comic " + currentComic.seriesTitle + " " + currentComic.issueTitle
+                                + "||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
+                                .format(new Date()));
+                ObjectifyService.ofy().save().entity(userInfo).now();
+            }
         }
         else {
             if (req.getParameter("uploads") != null) {
@@ -94,6 +108,8 @@ public class EditImagesServlet extends HttpServlet {
             currentComic.setIssueTitle(req.getParameter("new_issue_title"));
             currentComic.setVolume(Integer.parseInt(req.getParameter("new_volume")));
             currentComic.setIssue(Integer.parseInt(req.getParameter("new_issue")));
+
+            Constants.subscriptionNotifications(currentComic, seriesTitle, " updated their comic ");
 
             ObjectifyService.ofy().save().entity(currentComic).now();
         }
