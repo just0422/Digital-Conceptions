@@ -4,16 +4,16 @@
 $(document).ready(function () {
 
 
-    function buildChannel(){
+    function buildChannel() {
         console.log($("#chatOnOff").is(":checked"));
         var self_name = $("#userEmalAsChatName").val();
         userName = self_name;
         $("#open_new_chat").show();
 
 
-        if($("#onOff").val() == "on"){
+        if ($("#onOff").val() == "on") {
             $("#onOff").val("off");
-        }else{
+        } else {
             $("#onOff").val("on");
         }
 
@@ -207,12 +207,13 @@ $(document).ready(function () {
         var $header_message_h1 = $("<h1>");
         $header_message_h1.html(comeFrom);
         var $header_close_div = $("<div>", {class: "right hoverable-1"});
+        var $header_min_icon = $("<span>", {class: "icon typicons-minus hoverable-1"});
         var $header_close_icon = $("<span>", {
             class: "icon typicons-times hoverable-1",
         });
 
         $header_message_div.append($header_message_icon, $header_message_h1);
-        $header_close_div.append($header_close_icon);
+        $header_close_div.append($header_min_icon, $header_close_icon);
         $header.append($header_message_div, $header_close_div);
 
         // End of header section
@@ -269,12 +270,13 @@ $(document).ready(function () {
         var $header_message_icon = $("<span>", {class: "incon typicons-message"});
         var $header_message_h1 = $("<h1>SimpleChat</h1>");
         var $header_close_div = $("<div>", {class: "right hoverable-1"});
+        var $header_min_icon = $("<span>", {class: "icon typicons-minus hoverable-1"});
         var $header_close_icon = $("<span>", {
             class: "icon typicons-times hoverable-1",
         });
 
         $header_message_div.append($header_message_icon, $header_message_h1);
-        $header_close_div.append($header_close_icon);
+        $header_close_div.append($header_min_icon, $header_close_icon);
         $header.append($header_message_div, $header_close_div);
 
         // End of header section
@@ -410,6 +412,28 @@ $(document).ready(function () {
      });*/
 
 
+    $("#forChatBox").on("click", "span[class='icon typicons-minus hoverable-1']", function () {
+
+        var $body = $(this).closest("section").children("ol");
+        var $typing = $(this).closest("section").children("div");
+
+        if ($body.css("display") != "none" && $typing.css("display") == "none") {
+
+        } else {
+            if ($typing.css("display") == "none") {
+                $(this).closest("section").children("div").show();
+                $(this).closest("section").children("ol").show();
+            } else {
+                $(this).closest("section").children("div").hide();
+                $(this).closest("section").children("ol").hide();
+            }
+        }
+
+
+
+    });
+
+
     $("#forChatBox").on("click", "span[class='icon typicons-times hoverable-1']", function () {
         console.log("Remove: " + $(this).closest("section").children("input[type='hidden']").val());
         var position = $(this).closest("section").children("input[type='hidden']").val();
@@ -466,13 +490,12 @@ $(document).ready(function () {
     });
 
 
-
-    (function(){
+    (function () {
         console.log("The channel is now " + $("#onOff").val());
 
 
-        if($("#onOff").val() == "on"){
-            $("#chatOnOff").prop("checked","checked");
+        if ($("#onOff").val() == "on") {
+            $("#chatOnOff").prop("checked", "checked");
 
 
             var self_name = $("#userEmalAsChatName").val();
