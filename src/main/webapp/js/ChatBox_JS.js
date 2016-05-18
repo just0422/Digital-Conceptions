@@ -286,7 +286,7 @@ $(document).ready(function () {
         var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info"});
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
-        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder: "Enter receiver's ID"});
+        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder: "Enter receiver ID"} );
         var $self_name = $("<input>", {type: "hidden", id: "self_name", value: userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
@@ -380,6 +380,22 @@ $(document).ready(function () {
         }
 
 
+    });
+
+
+
+    $("#forChatBox").on("keypress", "input[placeholder='Enter receiver ID']", function (e) {
+        if(e.keyCode == "13"){
+            $(this).parent().parent().hide();
+            $(this).closest("section").children("div").show();
+
+            var receiver_name = $(this).closest("section").children("ol").children("div").children("div").children("input[type=text]").val();
+            $(this).closest("section").children("header").children("div:first-child").children("h1").html(receiver_name);
+            var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
+            console.log("This is my id" + self_name);
+            var $incoming = $("<input>", {type: "hidden", value: receiver_name, name: "incoming_name"});
+            $(this).closest("section").append($incoming);
+        }
     });
 
     /*  $("#submit_message").click(function () {
