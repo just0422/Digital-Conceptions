@@ -94,9 +94,9 @@ public class CreationServlet extends HttpServlet {
             ObjectifyService.ofy().save().entity(currentUserInfo).now();
             resp.getWriter().write(seriesTitle + "," + issueTitle + "," + volume + "," + issue + ",");
 
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
-            rd.forward(req, resp);
+//            ServletContext sc = getServletContext();
+//            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
+//            rd.forward(req, resp);
         }
         else{
             resp.getWriter().write("Unsuccessful");

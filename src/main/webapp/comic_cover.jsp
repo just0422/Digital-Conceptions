@@ -1,4 +1,3 @@
-<%--
   Created by IntelliJ IDEA.
   User: ZEXUN
   Date: 4/5/16
@@ -34,7 +33,6 @@
 <div class="container">
 
     <jsp:include page="header.jsp"/>
-
     <!-- Main home page content-->
     <main class="main body body-background-color">
 
@@ -44,8 +42,14 @@
             <div class="card-content-1">
 
                 <div class="row">
-
-                    <div class="col s4">
+                    <c:choose>
+                        <c:when test="${user != null}">
+                            <div class="col s4">
+                        </c:when>
+                        <c:otherwise>
+                            <div class="col s5">
+                        </c:otherwise>
+                    </c:choose>
                         <div class="card cyan lighten-3" onclick="">
                             <div class="card-image">
                                 <img src="${current_comic.coverPage}"  style="max-height: 270px; min-height:270px">
@@ -56,8 +60,14 @@
                         </p>
                     </div>
 
-                    <div class="col s5">
-
+                <c:choose>
+                    <c:when test="${user != null}">
+                        <div class="col s5">
+                    </c:when>
+                    <c:otherwise>
+                        <div class="col s7">
+                    </c:otherwise>
+                </c:choose>
                         <!-- Comic Name-->
                         <div class="pad-top-10"></div>
                         <div class="pad-top-10"></div>
@@ -120,7 +130,6 @@
                         </script>
                         <!-- End of rating -->
 
-
                         <!-- Start of start, subscribe and download button -->
                         <div class="container-1">
                             <div class="pad-top-20"></div>
@@ -128,7 +137,9 @@
                             <div class="center">
                                 <a class="waves-effect waves-light btn lighten-3 modal-trigger"
                                    href="#reading" id="start">Start</a>
-                                <c:if test="${not empty user}">
+
+                                <c:if test="${user != null}">
+
                                     <button id="subscription" class="waves-effect waves-light btn" onclick="un_subscribe()">${subscription}</button>
                                     <script>
                                         function un_subscribe(){
@@ -150,6 +161,7 @@
                                         }
                                     </script>
                                 </c:if>
+
                                 <a id="download" class="waves-effect waves-light btn">Download</a>
                             </div>
                         </div>
@@ -194,6 +206,7 @@
                                 })
                             })
                         </script>
+
                         <!-- End of start, subscribe and download button -->
 
 
@@ -348,12 +361,14 @@
                             </div>
                             <!-- End of modal content -->
                         </div>
+                        <% System.out.println("GOT HERE0"); %>
                         <!-- End of modal -->
                     </div>
                     <!-- End of middle column -->
 
+                    <c:if test="${user != null}">
                     <!-- Start of rating -->
-                    <div class="col s3">
+                        <div class="col s3">
                         <div class="container-1 flow-text center cyan-text">
                             <div class="pad-top-20"></div>
                             <div class="pad-top-20"></div>
@@ -366,7 +381,6 @@
                                 <div class="card-content-1">
                                     <div id="rating" class="center" onclick="rate()"></div>
                                     <script>
-
                                             $('#rating').addRating();
                                             $('#rating').val(${current_comic.rate});
                                             $('#rating').setRating(${current_comic.rate});
@@ -377,6 +391,7 @@
                             </div>
                         </div>
                     </div>
+                    </c:if>
                     <!-- End of rating -->
                 </div>
                 <!-- End of the top part grid layout -->

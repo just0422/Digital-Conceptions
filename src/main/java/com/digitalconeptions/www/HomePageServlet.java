@@ -77,6 +77,9 @@ public class HomePageServlet extends HttpServlet {
                 ObjectifyService.ofy().save().entity(currentUser).now();
             }
 
+            HttpSession session = req.getSession();
+            session.setAttribute("user", user);
+            session.setAttribute("user_info", currentUser);
         }
 
         // Set attributes in request for forwarding
@@ -87,10 +90,6 @@ public class HomePageServlet extends HttpServlet {
         req.setAttribute(genres.get(3), comics3);
         req.setAttribute("popular_comics", popularComics);
         req.setAttribute("newest_comics", newestComics);
-        HttpSession session = req.getSession();
-        session.setAttribute("user", user);
-        session.setAttribute("user_info", currentUser);
-
 
         // Forward request to the home page
         ServletContext sc = getServletContext();

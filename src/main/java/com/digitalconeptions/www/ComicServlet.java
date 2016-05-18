@@ -49,15 +49,14 @@ public class ComicServlet extends HttpServlet {
         List<ComicInfo> series = sTitle.list();
 
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-        ServletContext sc = getServletContext();
+
+
         String nextPage = "/comic_cover.jsp";
 
-        if (issueTitle == null){
+        if (issueTitle == null) {
             nextPage = "/series.jsp";
             req.setAttribute("series", series);
-        }
-        else {
+        } else {
             int volume = Integer.parseInt(req.getParameter(Constants.volume));
             int issue = Integer.parseInt(req.getParameter(Constants.issue));
 
@@ -69,14 +68,22 @@ public class ComicServlet extends HttpServlet {
                     .first().now();
 
             req.setAttribute("all", series);
-            UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
-
-            req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.getSeriesTitle()) ? "unsubscribe" : "subscribe");
             req.setAttribute("current_comic", currentComic);
+
+            if (session.getAttribute("user") != null) {
+                User user = (User) session.getAttribute("user");
+                UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
+
+                req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.getSeriesTitle()) ? "unsubscribe" : "subscribe");
+                req.setAttribute("user", user);
+            }
+
         }
 
+
+        ServletContext sc = getServletContext();
+
         RequestDispatcher rd = sc.getRequestDispatcher(nextPage);
-        req.setAttribute("user", user);
         rd.forward(req, resp);
     }
 
