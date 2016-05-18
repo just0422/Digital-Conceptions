@@ -196,6 +196,7 @@
                             links.push($($(elements[i]).find('img')[0]).attr('src'))
                         }
 
+                        console.log(links);
                         $.post(
                             "/editimages",
                             {
@@ -211,6 +212,7 @@
                             },
                             function(data){
                                 console.log("Response: " + data);
+                                window.document.href = "/upload";
                         });
                     }
 

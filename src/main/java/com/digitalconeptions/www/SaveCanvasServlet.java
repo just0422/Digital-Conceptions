@@ -3,16 +3,16 @@ package com.digitalconeptions.www;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
-import com.google.appengine.api.blobstore.BlobstoreServicePb;
 import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.images.ImagesServiceFactory;
 import com.google.appengine.api.images.ServingUrlOptions;
+import com.google.appengine.api.socket.SocketServicePb;
 import com.google.appengine.api.users.User;
-import com.googlecode.objectify.LoadResult;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.LoadType;
 import com.googlecode.objectify.cmd.Query;
 
+import javax.jws.soap.SOAPBinding;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,7 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -96,10 +98,25 @@ public class SaveCanvasServlet extends HttpServlet {
                 .filter(Constants.issueTitle, issueTitle)
                 .filter(Constants.volume, Integer.parseInt(volume))
                 .filter(Constants.issue, Integer.parseInt(issue));
-
+        SeriesInfo seriesInfo = ObjectifyService.ofy().load().type(SeriesInfo.class)
+                .filter(Constants.seriesTitle, seriesTitle).first().now();
+        LoadType<UserInfo> usersLoad = ObjectifyService.ofy().load().type(UserInfo.class);
 
         if (req.getParameter("remove") != null){
-            ObjectifyService.ofy().delete().entity(query.first().now());
+            ComicInfo comic = query.first().now();
+            ObjectifyService.ofy().delete().entity(comic);
+
+            for (String user : seriesInfo.getSubscribedUsers()){
+                UserInfo userInfo = usersLoad.filter(Constants.username, user).first().now();
+
+                userInfo.addUnreadNotification(
+                        "Subscriptions||" + new Date().toString() + "||" + comic.getUsername()
+                                + " has deleted their comic " + comic.seriesTitle + " " + comic.issueTitle
+                                + "||" + new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss")
+                                .format(new Date()));
+
+                ObjectifyService.ofy().save().entity(userInfo).now();
+            }
         }
         else {
             String nseriesTitle = req.getParameter("new_series_title");
@@ -118,14 +135,14 @@ public class SaveCanvasServlet extends HttpServlet {
                 newComic.setJson(JSON);
 
                 currentUserInfo.addCreation(newComic.getComicName());
+                Constants.subscriptionNotifications(newComic, seriesTitle, " created a new comic ");
 
                 ObjectifyService.ofy().save().entity(newComic).now();
                 ObjectifyService.ofy().save().entity(currentUserInfo).now();
 
             } else {
                 ComicInfo currentComic = query.list().get(0);
-                // TODO Update first comic on the list
-//            resp.getWriter().write("Unsuccessful");
+
                 currentComic.setSeriesTitle(nseriesTitle);
                 currentComic.setIssueTitle(nissueTitle);
                 currentComic.setVolume(nvolume);
@@ -134,7 +151,11 @@ public class SaveCanvasServlet extends HttpServlet {
                 currentComic.setDescription(ndescription);
                 currentComic.setJson(JSON);
                 currentComic.setUrls(urls);
+
                 ObjectifyService.ofy().save().entity(currentComic).now();
+
+                Constants.subscriptionNotifications(currentComic, seriesTitle, " updated their comic ");
+
             }
             resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);
 
@@ -145,3 +166,5 @@ public class SaveCanvasServlet extends HttpServlet {
     }
 
 }
+
+

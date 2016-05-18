@@ -63,7 +63,7 @@ public class HomePageServlet extends HttpServlet {
         String username;
         UserService userService = UserServiceFactory.getUserService();
         User user = userService.getCurrentUser();
-        UserInfo currentUser = null;
+        UserInfo currentUser;
         if (user == null)
             username = null;
         // Otherwise look for UserInfo in datastore
