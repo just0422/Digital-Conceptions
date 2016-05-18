@@ -348,12 +348,12 @@ $(document).ready(function () {
 
 
         } else {
-            var receiver_name = $(this).closest("section").children("ol").children("div").children("div").children("input[type=text]").val();
-            console.log(receiver_name);
+            var receiver_name = $(this).closest("section").children("header").children("div").children("h1").html();
+            console.log("Message sends to" + receiver_name);
             var message_body = $(this).closest("div").children("input[type=text]").val();
-            console.log(message_body);
+            console.log("Message body: " + message_body);
             var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
-            console.log(self_name);
+            console.log("My email address: " + self_name);
             $(this).closest("div").children("input[type=text]").val("");
 
             var fullMessage = message_body + "&" + self_name + "&" + receiver_name;
@@ -492,6 +492,12 @@ $(document).ready(function () {
 
     (function () {
         console.log("The channel is now " + $("#onOff").val());
+
+
+        for(var i = 0; i < chatBoxList.length; i++){
+            var height =  chatBoxList[i].children("ol").prop("scrollHeight");
+            chatBoxList[i].children("ol").scrollTop(height);
+        }
 
 
         if ($("#onOff").val() == "on") {
