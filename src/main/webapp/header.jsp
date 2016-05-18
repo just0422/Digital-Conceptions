@@ -10,9 +10,9 @@
             </script>
 
             <!-- Home button and Genre button-->
-            <ul id="nav-mobile" class="left">
+            <ul id="nav-mobile" class="left" >
                 <%-- Active button has class 'z-depth-1' --%>
-
+                <li><img height="45px" src="/image/logo.png" ></li>
                 <li><a href="/" class="custom-nav-font-size" id="home">Home</a></li>
                 <li><a href="/genre" class="custom-nav-font-size" id="genre">Genres</a></li>
             </ul>
@@ -74,6 +74,7 @@
             </script>
 
         </div>
+        <div class="pad-top-10"></div>
     </nav>
 
 
