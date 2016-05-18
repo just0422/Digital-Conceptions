@@ -297,7 +297,7 @@
 
 
         <!-- Start of Add button -->
-        <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; left: 24px;">
             <a class="btn-floating btn-large red waves-effect tooltipped" href="/create?new=true">
                 <i class="large material-icons">add</i>
             </a>

@@ -4,6 +4,45 @@
 $(document).ready(function () {
 
 
+    function buildChannel() {
+        console.log($("#chatOnOff").is(":checked"));
+        var self_name = $("#userEmalAsChatName").val();
+        userName = self_name;
+        $("#open_new_chat").show();
+
+
+        if ($("#onOff").val() == "on") {
+            $("#onOff").val("off");
+        } else {
+            $("#onOff").val("on");
+        }
+
+
+        console.log("The chat is now " + $("#onOff").val());
+
+        if ($("#chatOnOff").is(":checked") == true) {
+
+            $.post("/buildchannel",
+                {
+                    id: self_name
+                },
+                function (data, status) {
+                    channelKey = data;
+                    console.log("Channel key: " + channelKey);
+                    channel = new goog.appengine.Channel(data);
+                    socket = channel.open();
+                    socket.onopen = onOpened;
+                    socket.onmessage = onMessage;
+                    socket.onclose = onClosed;
+                }
+            )
+        } else {
+            socket.close();
+            $("#open_new_chat").hide();
+        }
+    }
+
+
     var chatBoxList = jQuery.makeArray($("section"));
 
     for (var i = 0; i < chatBoxList.length; i++) {
@@ -168,12 +207,13 @@ $(document).ready(function () {
         var $header_message_h1 = $("<h1>");
         $header_message_h1.html(comeFrom);
         var $header_close_div = $("<div>", {class: "right hoverable-1"});
+        var $header_min_icon = $("<span>", {class: "icon typicons-minus hoverable-1"});
         var $header_close_icon = $("<span>", {
             class: "icon typicons-times hoverable-1",
         });
 
         $header_message_div.append($header_message_icon, $header_message_h1);
-        $header_close_div.append($header_close_icon);
+        $header_close_div.append($header_min_icon, $header_close_icon);
         $header.append($header_message_div, $header_close_div);
 
         // End of header section
@@ -230,12 +270,13 @@ $(document).ready(function () {
         var $header_message_icon = $("<span>", {class: "incon typicons-message"});
         var $header_message_h1 = $("<h1>SimpleChat</h1>");
         var $header_close_div = $("<div>", {class: "right hoverable-1"});
+        var $header_min_icon = $("<span>", {class: "icon typicons-minus hoverable-1"});
         var $header_close_icon = $("<span>", {
             class: "icon typicons-times hoverable-1",
         });
 
         $header_message_div.append($header_message_icon, $header_message_h1);
-        $header_close_div.append($header_close_icon);
+        $header_close_div.append($header_min_icon, $header_close_icon);
         $header.append($header_message_div, $header_close_div);
 
         // End of header section
@@ -245,7 +286,7 @@ $(document).ready(function () {
         var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info"});
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
-        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder: "Enter receiver's ID"});
+        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder: "Enter receiver ID"} );
         var $self_name = $("<input>", {type: "hidden", id: "self_name", value: userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
@@ -307,12 +348,12 @@ $(document).ready(function () {
 
 
         } else {
-            var receiver_name = $(this).closest("section").children("ol").children("div").children("div").children("input[type=text]").val();
-            console.log(receiver_name);
+            var receiver_name = $(this).closest("section").children("header").children("div").children("h1").html();
+            console.log("Message sends to" + receiver_name);
             var message_body = $(this).closest("div").children("input[type=text]").val();
-            console.log(message_body);
+            console.log("Message body: " + message_body);
             var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
-            console.log(self_name);
+            console.log("My email address: " + self_name);
             $(this).closest("div").children("input[type=text]").val("");
 
             var fullMessage = message_body + "&" + self_name + "&" + receiver_name;
@@ -339,6 +380,22 @@ $(document).ready(function () {
         }
 
 
+    });
+
+
+
+    $("#forChatBox").on("keypress", "input[placeholder='Enter receiver ID']", function (e) {
+        if(e.keyCode == "13"){
+            $(this).parent().parent().hide();
+            $(this).closest("section").children("div").show();
+
+            var receiver_name = $(this).closest("section").children("ol").children("div").children("div").children("input[type=text]").val();
+            $(this).closest("section").children("header").children("div:first-child").children("h1").html(receiver_name);
+            var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
+            console.log("This is my id" + self_name);
+            var $incoming = $("<input>", {type: "hidden", value: receiver_name, name: "incoming_name"});
+            $(this).closest("section").append($incoming);
+        }
     });
 
     /*  $("#submit_message").click(function () {
@@ -371,6 +428,28 @@ $(document).ready(function () {
      });*/
 
 
+    $("#forChatBox").on("click", "span[class='icon typicons-minus hoverable-1']", function () {
+
+        var $body = $(this).closest("section").children("ol");
+        var $typing = $(this).closest("section").children("div");
+
+        if ($body.css("display") != "none" && $typing.css("display") == "none") {
+
+        } else {
+            if ($typing.css("display") == "none") {
+                $(this).closest("section").children("div").show();
+                $(this).closest("section").children("ol").show();
+            } else {
+                $(this).closest("section").children("div").hide();
+                $(this).closest("section").children("ol").hide();
+            }
+        }
+
+
+
+    });
+
+
     $("#forChatBox").on("click", "span[class='icon typicons-times hoverable-1']", function () {
         console.log("Remove: " + $(this).closest("section").children("input[type='hidden']").val());
         var position = $(this).closest("section").children("input[type='hidden']").val();
@@ -393,36 +472,50 @@ $(document).ready(function () {
     });
 
 
-    $("#chatOnOff").click(function () {
-        console.log($("#chatOnOff").is(":checked"));
-        var self_name = $("#userEmalAsChatName").val();
-        userName = self_name;
-        $("#open_new_chat").show();
+    $("#forChatBox").on("keypress","input[placeholder='Type a message']", function (e) {
+        if(e.keyCode == "13"){
+            var receiver_name = $(this).closest("section").children("header").children("div").children("h1").html();
+            console.log("Message sends to" + receiver_name);
+            var message_body = $(this).closest("div").children("input[type=text]").val();
+            console.log("Message body: " + message_body);
+            var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
+            console.log("My email address: " + self_name);
+            $(this).closest("div").children("input[type=text]").val("");
 
-        if ($("#chatOnOff").is(":checked") == true) {
-
-            $.post("/buildchannel",
+            var fullMessage = message_body + "&" + self_name + "&" + receiver_name;
+            $.post("" +
+                "/generatemessage",
                 {
-                    id: self_name
-                },
-                function (data, status) {
-                    channelKey = data;
-                    console.log("Channel key: " + channelKey);
-                    channel = new goog.appengine.Channel(data);
-                    socket = channel.open();
-                    socket.onopen = onOpened;
-                    socket.onmessage = onMessage;
-                    socket.onclose = onClosed;
+                    reciption: receiver_name,
+                    message: fullMessage,
+                    selfId: self_name
                 }
             )
-        } else {
-            socket.close();
-            $("#open_new_chat").hide();
+
+            var $className = "self";
+
+            var $messageNode =
+                $("<li class=" + $className + ">" +
+                    "<div class='avatar'><img src='image/me.jpg' /></div>" +
+                    "<div class='messages'><p id='message_content'>" + message_body + "</p></div>" +
+                    "</li>");
+
+            $(this).closest("section").children("ol").append($messageNode);
+            var height = $(this).closest("section").children("ol").prop("scrollHeight");
+            $(this).closest("section").children("ol").scrollTop(height);
         }
+
+    });
+
+
+    $("#chatOnOff").click(function () {
+        buildChannel();
     });
 
 
     $(window).on("beforeunload", function () {
+
+        var onOff = $("#onOff").val();
 
 
         var chatBoxString = [];
@@ -439,11 +532,53 @@ $(document).ready(function () {
 
         $.post(
             "/persist",
-            {chatBox: chatBoxStringWithDelimiter}
+            {
+                chatBox: chatBoxStringWithDelimiter,
+                onOff: onOff
+            }
         )
 
 
     });
+
+
+    (function () {
+        console.log("The channel is now " + $("#onOff").val());
+
+
+        for(var i = 0; i < chatBoxList.length; i++){
+            var height =  chatBoxList[i].children("ol").prop("scrollHeight");
+            chatBoxList[i].children("ol").scrollTop(height);
+        }
+
+
+        if ($("#onOff").val() == "on") {
+            $("#chatOnOff").prop("checked", "checked");
+
+
+            var self_name = $("#userEmalAsChatName").val();
+            userName = self_name;
+            $("#open_new_chat").show();
+
+            $.post("/buildchannel",
+                {
+                    id: self_name
+                },
+                function (data, status) {
+                    channelKey = data;
+                    console.log("Channel key: " + channelKey);
+                    channel = new goog.appengine.Channel(data);
+                    socket = channel.open();
+                    socket.onopen = onOpened;
+                    socket.onmessage = onMessage;
+                    socket.onclose = onClosed;
+                }
+            )
+
+        }
+    })();
+
+
 
 
 });

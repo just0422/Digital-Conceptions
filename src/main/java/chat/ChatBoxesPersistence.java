@@ -40,6 +40,9 @@ public class ChatBoxesPersistence extends HttpServlet {
             System.out.println("After storing data into sesssion");
         }
 
+        String onOff = request.getParameter("onOff");
+        System.out.println("________________________The chat is : " + onOff);
+        session.setAttribute("onOff",onOff);
 
 
 
