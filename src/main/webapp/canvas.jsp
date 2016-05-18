@@ -54,12 +54,6 @@
 
     <jsp:include page="header.jsp"/>
 
-    <% System.out.println ("------------------------------------------------------------------"); %>
-    <% System.out.println (((ComicInfo)request.getAttribute("current_comic")).getLocked()); %>
-    <% System.out.println (((ComicInfo)request.getAttribute("current_comic")).getLockHolder()); %>
-    <% System.out.println (((User)session.getAttribute("user")).getNickname()); %>
-    <% System.out.println ("------------------------------------------------------------------"); %>
-
     <c:choose>
     <c:when test="${current_comic.locked && user.nickname != current_comic.lockHolder}">
         <div class="col s4 right-align" style="padding-top: 5px">
@@ -701,7 +695,6 @@
 
         </div>
         <!-- End of create tools -->
-
         <!-- End of actual create comic seciont -->
 
         <div class="col s9">
@@ -783,7 +776,21 @@
                 <%--</form>--%>
 
             </div>
-
+        <script>
+            $(window).on('beforeunload', function () {
+                $.ajax({
+                    type: "POST",
+                    url: "/editimages",
+                    data: {
+                        series_title : '${current_comic.seriesTitle}',
+                        issue_title : '${current_comic.issueTitle}',
+                        volume : '${current_comic.volume}',
+                        issue : '${current_comic.issue}',
+                        unlock : 'yes'
+                    }
+                });
+            });
+        </script>
         </div>
         <c:if test="${current_comic != null}">
             <c:set var="num" value="0"/>
@@ -801,6 +808,7 @@
             </c:forEach>
             <script> canvas.loadFromJSON($('#json_0').html(), canvas.renderAll.bind(canvas)); </script>
         </c:if>
+
     </main>
 
     </c:otherwise>

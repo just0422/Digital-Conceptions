@@ -98,8 +98,8 @@ public class Constants {
                                         new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss").format(new Date()));
                         collaborators.add(user.getUsername());
                     }
-                    ObjectifyService.ofy().save().entity(user).now();
                 }
+                ObjectifyService.ofy().save().entity(user).now();
             }
         }
         currentComic.setCollaborators(collaborators);

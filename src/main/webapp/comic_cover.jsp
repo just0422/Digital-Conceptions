@@ -327,21 +327,15 @@
                                     <button id="subscription" class="waves-effect waves-light btn" onclick="un_subscribe()">${subscription}</button>
                                     <script>
                                         function un_subscribe(){
-//                                            $("#subscribe").click(function(e){
-//                                                e.preventDefault();
-                                            $.ajax({
-                                                url: "/comic",
-                                                method: "post",
-                                                data: {
+                                            $.post(
+                                                "/comic",
+                                                {
                                                     subscribe: $("#subscription").text(),
                                                     comic_name: "${current_comic.comicName}"
                                                 },
-                                                success: function(response) {
-                                                    console.log(response);
+                                                function(response) {
                                                     $("#subscription").text(response);
-                                                }
-                                            });
-//                                            });
+                                                });
                                         }
                                     </script>
                                 </c:if>
@@ -443,6 +437,7 @@
                 <%-- Might have to use AJAX for this so that the page doesn't reload every time
                                          the user comments on the comic. js/customJS.js line 38--%>
                 <div class="row" style="margin-top: 10vh">
+                    <c:if test="${user != null}">
 
                     <div class="input-field col s12">
                         <form class="col s12" id="comment_form" action="/comic" method="POST">
@@ -487,6 +482,7 @@
                             </script>
                         </form>
                     </div>
+                    </c:if>
 
                 </div>
                 <!-- End of write comment -->
