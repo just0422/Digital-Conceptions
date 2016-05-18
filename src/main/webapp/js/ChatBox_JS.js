@@ -332,6 +332,8 @@ $(document).ready(function () {
     });
 
 
+
+
     $("#forChatBox").on("click", "button", function (event) {
         console.log($(this).attr("id"));
 
