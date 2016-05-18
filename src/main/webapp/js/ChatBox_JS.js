@@ -3,17 +3,15 @@
  */
 $(document).ready(function () {
 
-    if($("#currentNumOfChatBox").val() != 0){
-        var chatBoxList = jQuery.makeArray($("section"));
 
-        for(var i = 0; i<chatBoxList.length; i++){
-            chatBoxList[i] = $(chatBoxList[i]);
-        }
+    var chatBoxList = jQuery.makeArray($("section"));
 
-        console.log("Number of chat box when page first loads: " + chatBoxList.length);
-    }else{
-        var chatBoxList = [];
+    for (var i = 0; i < chatBoxList.length; i++) {
+        chatBoxList[i] = $(chatBoxList[i]);
     }
+
+    console.log("Number of chat box when page first loads: " + chatBoxList.length);
+
 
     var userName;
 
@@ -50,13 +48,13 @@ $(document).ready(function () {
     }
 
 
-    function onOpened(){
+    function onOpened() {
         $.post(
             "/_ah/channel/connected/"
         );
     }
 
-    function onClosed(){
+    function onClosed() {
         $.post(
             "/_ah/channel/disconnected/"
         );
@@ -67,10 +65,10 @@ $(document).ready(function () {
         var comeFrom = msg.data.split("&")[1];
         var sendTo = msg.data.split("&")[2];
         var noUserFound = msg.data.split("&")[3];
-        console.log("***No user found "+noUserFound+"***");
+        console.log("***No user found " + noUserFound + "***");
         console.log("***")
 
-        if(noUserFound.trim() != "no"){
+        if (noUserFound.trim() != "no") {
             var $className = "others";
 
             var $messageNode =
@@ -85,7 +83,7 @@ $(document).ready(function () {
             // Check if there is a open chat box for incoming message
             for (var i = 0; i < chatBoxList.length; i++) {
                 var eachChatBoxName = chatBoxList[i].children("header").children("div:first-child").children("h1").html();
-                console.log("Opened chat box : " + eachChatBoxName + " Message From : " + comeFrom) ;
+                console.log("Opened chat box : " + eachChatBoxName + " Message From : " + comeFrom);
                 if (eachChatBoxName.trim() == comeFrom.trim()) {
                     indexForIncomingMessage = i;
                 }
@@ -98,14 +96,14 @@ $(document).ready(function () {
             } else {
                 console.log("No such open chat box");
                 createChatBoxWithKnownInfo(comeFrom.trim());
-                var foundChatBox = chatBoxList[chatBoxList.length-1];
+                var foundChatBox = chatBoxList[chatBoxList.length - 1];
                 foundChatBox.closest("section").children("ol").append($messageNode);
                 var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
                 foundChatBox.closest("section").children("ol").scrollTop(height);
             }
 
 
-        }else{
+        } else {
             var $className = "others";
 
             var $messageNode =
@@ -120,7 +118,7 @@ $(document).ready(function () {
             // Check if there is a open chat box for incoming message
             for (var i = 0; i < chatBoxList.length; i++) {
                 var eachChatBoxName = chatBoxList[i].children("header").children("div:first-child").children("h1").html();
-                console.log("Opened chat box : " + eachChatBoxName + " Message From : " + sendTo) ;
+                console.log("Opened chat box : " + eachChatBoxName + " Message From : " + sendTo);
                 if (eachChatBoxName.trim() == sendTo.trim()) {
                     indexForIncomingMessage = i;
                 }
@@ -133,17 +131,14 @@ $(document).ready(function () {
             } else {
                 console.log("No such open chat box");
                 createChatBoxWithKnownInfo(sendTo.trim());
-                var foundChatBox = chatBoxList[chatBoxList.length-1];
+                var foundChatBox = chatBoxList[chatBoxList.length - 1];
                 foundChatBox.closest("section").children("ol").append($messageNode);
                 var height = foundChatBox.closest("section").children("ol").prop("scrollHeight");
                 foundChatBox.closest("section").children("ol").scrollTop(height);
             }
 
 
-
         }
-
-
 
 
     }
@@ -154,7 +149,7 @@ $(document).ready(function () {
 
     }
 
-    function onClosed(){
+    function onClosed() {
         console.log("Channel is closed");
     }
 
@@ -163,7 +158,7 @@ $(document).ready(function () {
     }
 
 
-    function createChatBoxWithKnownInfo(comeFrom){
+    function createChatBoxWithKnownInfo(comeFrom) {
         // start of header section
         var $section = $("<section>", {class: "module", id: "chat_box"});
         /*$section.css("right",chatBoxList.length*cssOffSet+rightOffSet+pixel);*/
@@ -185,11 +180,11 @@ $(document).ready(function () {
 
         // Start of message body section
         var $ol = $("<ol>", {class: "discussion", id: "discussion_content"});
-        var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info", style:"display:none"});
+        var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info", style: "display:none"});
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
-        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", value:comeFrom});
-        var $self_name = $("<input>", {type: "text", id: "self_name",value:userName});
+        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", value: comeFrom});
+        var $self_name = $("<input>", {type: "text", id: "self_name", value: userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
             id: "confirm_receiver"
@@ -225,6 +220,7 @@ $(document).ready(function () {
 
         $("#forChatBox").append($section);
     }
+
     function createChatBox() {
         // start of header section
         var $section = $("<section>", {class: "module", id: "chat_box"});
@@ -249,12 +245,12 @@ $(document).ready(function () {
         var $chat_info_div = $("<div>", {class: "container", id: "this_chat_info"});
         var $style_div = $("<div>", {class: "center", style: "margin-top:20%"});
         var $h4 = $("<h4 class='flow-text center-align'>Send To</h4>");
-        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder:"Enter receiver's ID"});
-        var $self_name = $("<input>", {type: "hidden", id: "self_name", value:userName});
+        var $receiver_name = $("<input>", {type: "text", id: "receiver_name", placeholder: "Enter receiver's ID"});
+        var $self_name = $("<input>", {type: "hidden", id: "self_name", value: userName});
         var $confirm_receiver = $("<button>", {
             class: "btn waves-effect waves-light brown darken-2",
             id: "confirm_receiver",
-            style:"margin-top:25px"
+            style: "margin-top:25px"
 
         });
         $confirm_receiver.html("Submit");
@@ -306,10 +302,8 @@ $(document).ready(function () {
             $(this).closest("section").children("header").children("div:first-child").children("h1").html(receiver_name);
             var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
             console.log("This is my id" + self_name);
-            var $incoming = $("<input>", {type: "hidden", value: receiver_name, name:"incoming_name"});
+            var $incoming = $("<input>", {type: "hidden", value: receiver_name, name: "incoming_name"});
             $(this).closest("section").append($incoming);
-
-
 
 
         } else {
@@ -321,7 +315,7 @@ $(document).ready(function () {
             console.log(self_name);
             $(this).closest("div").children("input[type=text]").val("");
 
-            var fullMessage = message_body + "&" + self_name +"&" + receiver_name;
+            var fullMessage = message_body + "&" + self_name + "&" + receiver_name;
             $.post("" +
                 "/generatemessage",
                 {
@@ -399,13 +393,13 @@ $(document).ready(function () {
     });
 
 
-    $("#chatOnOff").click(function(){
+    $("#chatOnOff").click(function () {
         console.log($("#chatOnOff").is(":checked"));
         var self_name = $("#userEmalAsChatName").val();
         userName = self_name;
         $("#open_new_chat").show();
 
-        if($("#chatOnOff").is(":checked") == true){
+        if ($("#chatOnOff").is(":checked") == true) {
 
             $.post("/buildchannel",
                 {
@@ -421,28 +415,25 @@ $(document).ready(function () {
                     socket.onclose = onClosed;
                 }
             )
-        }else{
+        } else {
             socket.close();
             $("#open_new_chat").hide();
         }
     });
 
 
-
-
-    $(window).on("beforeunload",function(){
-
+    $(window).on("beforeunload", function () {
 
 
         var chatBoxString = [];
         var chatBoxStringWithDelimiter = "";
 
-        for(var i = 0; i < chatBoxList.length; i ++){
+        for (var i = 0; i < chatBoxList.length; i++) {
             chatBoxString[i] = chatBoxList[i].wrap("<div></div>").parent().html();
         }
 
-        for(var i = 0; i <chatBoxString.length; i ++){
-            chatBoxStringWithDelimiter += chatBoxString[i]+"&";
+        for (var i = 0; i < chatBoxString.length; i++) {
+            chatBoxStringWithDelimiter += chatBoxString[i] + "&";
         }
 
 
@@ -453,7 +444,6 @@ $(document).ready(function () {
 
 
     });
-
 
 
 });
