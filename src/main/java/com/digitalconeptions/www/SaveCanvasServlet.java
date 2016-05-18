@@ -22,10 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by stevenliao on 4/28/16.
@@ -34,7 +31,7 @@ public class SaveCanvasServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println(getClass().getName());
         String isNew = req.getParameter("new");
-        System.out.println(isNew);
+
         ComicInfo currentComic;
         if (!Boolean.parseBoolean(isNew)) {
             String seriesTitle = req.getParameter("series_title");
@@ -49,6 +46,9 @@ public class SaveCanvasServlet extends HttpServlet {
                     .filter("volume", Integer.parseInt(volume))
                     .filter("issue", Integer.parseInt(issue)).first().now();
 
+            HttpSession session = req.getSession();
+            currentComic.lock(((User)session.getAttribute("user")).getNickname());
+            ObjectifyService.ofy().save().entity(currentComic).now();
             req.setAttribute("current_comic", currentComic);
         }
 
@@ -101,10 +101,20 @@ public class SaveCanvasServlet extends HttpServlet {
         SeriesInfo seriesInfo = ObjectifyService.ofy().load().type(SeriesInfo.class)
                 .filter(Constants.seriesTitle, seriesTitle).first().now();
         LoadType<UserInfo> usersLoad = ObjectifyService.ofy().load().type(UserInfo.class);
+        ComicInfo comic = query.first().now();
 
-        if (req.getParameter("remove") != null){
-            ComicInfo comic = query.first().now();
+
+        if (req.getParameter("unlock") != null){
+            comic.unlock();
+            ObjectifyService.ofy().save().entity(comic).now();
+        }
+        else if (req.getParameter("remove") != null){
             ObjectifyService.ofy().delete().entity(comic);
+            for (String user : comic.collaborators){
+                UserInfo userInfo = usersLoad.filter(Constants.username, user).first().now();
+                userInfo.removeComicCollab(comic.getComicName());
+                ObjectifyService.ofy().save().entity(userInfo).now();
+            }
 
             for (String user : seriesInfo.getSubscribedUsers()){
                 UserInfo userInfo = usersLoad.filter(Constants.username, user).first().now();
@@ -128,6 +138,8 @@ public class SaveCanvasServlet extends HttpServlet {
 
             UserInfo currentUserInfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", username).first().now();
 
+
+
             if (query.list().size() < 1) {
                 ComicInfo newComic = new ComicInfo(username, nseriesTitle, nissueTitle, ngenre, ndescription,
                         nvolume, nissue, blobKeys, urls, true);
@@ -139,6 +151,10 @@ public class SaveCanvasServlet extends HttpServlet {
 
                 ObjectifyService.ofy().save().entity(newComic).now();
                 ObjectifyService.ofy().save().entity(currentUserInfo).now();
+
+                if (req.getParameter("new_collaborators") != null)
+                    Constants.manageCollaborators(req, usersLoad, newComic);
+
 
             } else {
                 ComicInfo currentComic = query.list().get(0);
@@ -152,16 +168,19 @@ public class SaveCanvasServlet extends HttpServlet {
                 currentComic.setJson(JSON);
                 currentComic.setUrls(urls);
 
+                currentComic.unlock();
                 ObjectifyService.ofy().save().entity(currentComic).now();
 
                 Constants.subscriptionNotifications(currentComic, seriesTitle, " updated their comic ");
-
+                System.out.println(req.getParameter("new_collaborators"));
+                if (req.getParameter("new_collaborators") != null)
+                    Constants.manageCollaborators(req, usersLoad, currentComic);
             }
             resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);
 
-            ServletContext sc = getServletContext();
-            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
-            rd.forward(req, resp);
+//            ServletContext sc = getServletContext();
+//            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
+//            rd.forward(req, resp);
         }
     }
 

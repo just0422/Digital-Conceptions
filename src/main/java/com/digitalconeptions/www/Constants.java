@@ -1,13 +1,12 @@
 package com.digitalconeptions.www;
 
+import com.google.appengine.api.urlfetch.HTTPRequest;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.LoadType;
 
+import javax.servlet.http.HttpServletRequest;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by justin on 5/8/16.
@@ -74,5 +73,37 @@ public class Constants {
                 ObjectifyService.ofy().save().entity(userInfo).now();
             }
         }
+    }
+
+    public static void manageCollaborators(HttpServletRequest req, LoadType<UserInfo> usersLoad, ComicInfo currentComic){
+        System.out.println(Constants.class.getName());
+        for (String username : Arrays.asList(req.getParameter("old_collaborators").split(","))) {
+            System.out.println("OLD" + username);
+            if (usersLoad.filter(Constants.username, username) != null) {
+                UserInfo user = usersLoad.filter(Constants.username, username).first().now();
+                user.removeComicCollab(currentComic.getComicName());
+            }
+        }
+        ArrayList<String> collaborators = new ArrayList<>();
+        for (String username : Arrays.asList(req.getParameter("new_collaborators").split(","))) {
+            if (usersLoad.filter(Constants.username, username) != null) {
+                UserInfo user = usersLoad.filter(Constants.username, username).first().now();
+                if (user != null) {
+                    if (!user.getCollaborations().contains(currentComic.getComicName())) {
+                        user.addComicCollab(currentComic.getComicName());
+                        user.addUnreadNotification(
+                                "Collaboration||" + new Date().toString() + "||" + currentComic.getUsername() +
+                                        " has added you as a collaborator for <a href='/upload'>" +
+                                        currentComic.getComicNameFormatted() + "</a>||" +
+                                        new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss").format(new Date()));
+                        collaborators.add(user.getUsername());
+                    }
+                    ObjectifyService.ofy().save().entity(user).now();
+                }
+            }
+        }
+        currentComic.setCollaborators(collaborators);
+        ObjectifyService.ofy().save().entity(currentComic).now();
+
     }
 }

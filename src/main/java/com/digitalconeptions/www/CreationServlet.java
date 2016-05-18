@@ -39,8 +39,22 @@ public class CreationServlet extends HttpServlet {
         LoadType<ComicInfo> comicObjLoad = ObjectifyService.ofy().load().type(ComicInfo.class);
         List<ComicInfo> myComics = comicObjLoad.filter("username", userInfo.username).list();
 
+        List<ComicInfo> collabs = new ArrayList<>();
+        for (String name : userInfo.collaborations){
+            String comic[] = name.split("\\|");
+            ComicInfo comicbook
+                    = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter(Constants.seriesTitle, comic[0])
+                    .filter(Constants.issueTitle, comic[2])
+                    .filter(Constants.volume, Integer.parseInt(comic[1]))
+                    .filter(Constants.issue, Integer.parseInt(comic[3])).first().now();
+            if (comicbook != null)
+                collabs.add(comicbook);
+        }
+
         req.setAttribute("upload", upload);
         req.setAttribute("my_comics", myComics);
+        req.setAttribute("collaborations", collabs);
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
         rd.forward(req, resp);
@@ -95,10 +109,6 @@ public class CreationServlet extends HttpServlet {
             ObjectifyService.ofy().save().entity(newComic).now();
             ObjectifyService.ofy().save().entity(currentUserInfo).now();
             resp.getWriter().write(seriesTitle + "," + issueTitle + "," + volume + "," + issue + ",");
-
-//            ServletContext sc = getServletContext();
-//            RequestDispatcher rd = sc.getRequestDispatcher("/upload.jsp");
-//            rd.forward(req, resp);
         }
         else{
             resp.getWriter().write("Unsuccessful");

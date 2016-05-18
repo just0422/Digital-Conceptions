@@ -1,4 +1,5 @@
-<%@ page import="com.digitalconeptions.www.ComicInfo" %><%--
+<%@ page import="com.digitalconeptions.www.ComicInfo" %>
+<%@ page import="com.google.appengine.api.users.User" %><%--
   Created by IntelliJ IDEA.
   User: ZEXUN
   Date: 4/5/16
@@ -7,6 +8,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html ng-app="kitchensink">
@@ -51,6 +53,23 @@
 <div class="container">
 
     <jsp:include page="header.jsp"/>
+
+    <% System.out.println ("------------------------------------------------------------------"); %>
+    <% System.out.println (((ComicInfo)request.getAttribute("current_comic")).getLocked()); %>
+    <% System.out.println (((ComicInfo)request.getAttribute("current_comic")).getLockHolder()); %>
+    <% System.out.println (((User)session.getAttribute("user")).getNickname()); %>
+    <% System.out.println ("------------------------------------------------------------------"); %>
+
+    <c:choose>
+    <c:when test="${current_comic.locked && user.nickname != current_comic.lockHolder}">
+        <div class="col s4 right-align" style="padding-top: 5px">
+            <a id="my_comics" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
+                to My Comics</a>
+        </div>
+        <h1 class="center"><i id="page_locked" class="fa fa-lock fa-5x" aria-hidden="true"></i></h1>
+        <h1 class="center">${current_comic.lockHolder} is currently editing</h1>
+    </c:when>
+    <c:otherwise>
 
     <!-- Home Page -->
     <!-- Main body-->
@@ -521,6 +540,17 @@
                         formdata.append("new_genre", $("#genre_select").val());
                         formdata.append("new_description", $("#description").val());
 
+                        var collaborators = [];
+                        $.each($(".collab"), function(index, item) {
+                            if ($(item).val().length > 0)
+                                collaborators.push($(item).val());
+                        });
+                        if (collaborators != null){
+                            formdata.append("old_collaborators", ['${collab1}','${collab2}','${collab3}','${collab4}'].toString());
+                            formdata.append("new_collaborators", collaborators.toString());
+                        }
+                        console.log (formdata);
+
                         $.ajax({
                             url: "${create}",
                             type: "POST",
@@ -710,11 +740,46 @@
                     </div>
 
 
-                    <div class="input-field col s12">
-                                        <textarea id="description" class="materialize-textarea" name="description"
-                                                  required>${current_comic.description}</textarea>
-                        <label for="description">Description of the comic</label>
-                    </div>
+                    <div class="row">
+                        <c:choose>
+                        <c:when test="${user.nickname != current_comic.username}">
+                        <div class="input-field col s12">
+
+                            </c:when>
+                            <c:otherwise>
+                            <div class="input-field col s6">
+
+                                </c:otherwise>
+                                </c:choose>
+                        <textarea id="description" class="materialize-textarea" name="description" rows="2"
+                                  required>${current_comic.description}</textarea>
+                                <label for="description">Description of the comic</label>
+                            </div>
+                            <c:if test="${user.nickname == current_comic.username}">
+                                <c:set var="collab1" value="${fn:length(current_comic.collaborators) > 0 ? current_comic.collaborators[0] : ''}"/>
+                                <c:set var="collab2" value="${fn:length(current_comic.collaborators) > 1 ? current_comic.collaborators[1] : ''}"/>
+                                <c:set var="collab3" value="${fn:length(current_comic.collaborators) > 2 ? current_comic.collaborators[2] : ''}"/>
+                                <c:set var="collab4" value="${fn:length(current_comic.collaborators) > 3 ? current_comic.collaborators[3] : ''}"/>
+                                <div class="col s6">
+                                    <div class="row">
+                                        <h5 class="center">Collaborators</h5>
+                                        <ul class="col s6" style="margin: 0px;">
+                                            <li><input class="collab" type="text" style="margin: 0px;"
+                                                       value="${collab1}"></li>
+                                            <li><input class="collab" type="text" style="margin: 0px;"
+                                                       value="${collab2}"></li>
+                                        </ul>
+                                        <ul class="col s6" style="margin: 0px;">
+                                            <li><input class="collab" type="text" style="margin: 0px;"
+                                                       value="${collab3}"></li>
+                                            <li><input class="collab" type="text" style="margin: 0px;"
+                                                       value="${collab4}"></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </c:if>
+
+                        </div>
                 <%--</form>--%>
 
             </div>
@@ -738,6 +803,8 @@
         </c:if>
     </main>
 
+    </c:otherwise>
+    </c:choose>
     <jsp:include page="footer.jsp"/>
 
 

@@ -41,24 +41,25 @@ public class EditImagesServlet extends HttpServlet {
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         String edit = blobstoreService.createUploadUrl("/editimages");
 
+        HttpSession session = req.getSession();
+        currentComic.lock(((User)session.getAttribute("user")).getNickname());
+
         req.setAttribute("edit", edit);
         req.setAttribute("current_comic", currentComic);
+        ObjectifyService.ofy().save().entity(currentComic).now();
+
         ServletContext sc = getServletContext();
         RequestDispatcher rd = sc.getRequestDispatcher("/comic_pages_preview.jsp");
         rd.forward(req, resp);
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
-        if (req.getParameter("uploaded_files") != null){
-            System.out.println("HERE");
-        }
-        else
-            System.out.println("UGHHHH");
+        System.out.println(getClass().getName() + " POST");
         String seriesTitle = req.getParameter("series_title");
         String issueTitle = req.getParameter("issue_title");
+        System.out.println(req.getParameter(Constants.series_title));
         int volume = Integer.parseInt(req.getParameter("volume"));
         int issue = Integer.parseInt(req.getParameter("issue"));
-//        resp.setContentType("text/plain");
 
         ComicInfo currentComic
                 = ObjectifyService.ofy().load().type(ComicInfo.class)
@@ -69,10 +70,18 @@ public class EditImagesServlet extends HttpServlet {
         SeriesInfo seriesInfo = ObjectifyService.ofy().load().type(SeriesInfo.class)
                 .filter(Constants.seriesTitle, seriesTitle).first().now();
         LoadType<UserInfo> usersLoad = ObjectifyService.ofy().load().type(UserInfo.class);
-        System.out.println(seriesInfo);
 
-        if (req.getParameter("remove") != null){
+        if (req.getParameter("unlock") != null){
+            currentComic.unlock();
+            ObjectifyService.ofy().save().entity(currentComic).now();
+        }
+        else if (req.getParameter("remove") != null){
             ObjectifyService.ofy().delete().entity(currentComic);
+            for (String user : currentComic.collaborators){
+                UserInfo userInfo = usersLoad.filter(Constants.username, user).first().now();
+                userInfo.removeComicCollab(currentComic.getComicName());
+                ObjectifyService.ofy().save().entity(userInfo).now();
+            }
 
             for (String user : seriesInfo.getSubscribedUsers()){
                 UserInfo userInfo = usersLoad.filter(Constants.username, user).first().now();
@@ -103,13 +112,20 @@ public class EditImagesServlet extends HttpServlet {
 
                 resp.getWriter().write("1");
             }
+            if (req.getParameter("new_collaborators").length() > 0) {
+                Constants.manageCollaborators(req, usersLoad, currentComic);
+            }
+
 
             currentComic.setSeriesTitle(req.getParameter("new_series_title"));
             currentComic.setIssueTitle(req.getParameter("new_issue_title"));
             currentComic.setVolume(Integer.parseInt(req.getParameter("new_volume")));
             currentComic.setIssue(Integer.parseInt(req.getParameter("new_issue")));
+            currentComic.setDescription(req.getParameter("new_description"));
+            currentComic.setGenre(req.getParameter("new_genre"));
 
             Constants.subscriptionNotifications(currentComic, seriesTitle, " updated their comic ");
+            currentComic.unlock();
 
             ObjectifyService.ofy().save().entity(currentComic).now();
         }

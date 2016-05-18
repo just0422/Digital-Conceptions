@@ -6,10 +6,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.annotation.*;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Created by justin on 3/21/16.
@@ -31,6 +28,8 @@ public class UserInfo implements java.io.Serializable{
     ArrayList<String> unreadNotifications;
     ArrayList<String> readNotifications;
 
+    ArrayList<String> collaborations;
+
     public UserInfo(){
         dateJoined = new Date();
         username = null;
@@ -45,6 +44,8 @@ public class UserInfo implements java.io.Serializable{
 
         unreadNotifications = new ArrayList<>();
         readNotifications = new ArrayList<>();
+
+        collaborations = new ArrayList<>();
     }
 
     public UserInfo(String username){
@@ -109,4 +110,8 @@ public class UserInfo implements java.io.Serializable{
     public void unsubscribe(String key){
         subscriptions.remove(key);
     }
+
+    public void removeComicCollab(String collab) { collaborations.remove(collab); }
+    public void addComicCollab(String collab) { collaborations.add(collab); }
+    public List<String> getCollaborations() { return collaborations; }
 }
