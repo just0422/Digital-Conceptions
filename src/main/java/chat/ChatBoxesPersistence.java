@@ -21,12 +21,60 @@ public class ChatBoxesPersistence extends HttpServlet {
     }
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        System.out.println("Go in to ChatBoxesPersistence servlet");
+        String chatBox = request.getParameter("chatBox");
+        System.out.println("chatBox content: " + chatBox + "!!!");
+
+        HttpSession session = request.getSession();
+        String [] chatBoxList;
+
+        if(chatBox == null){
+            System.out.println("No opened chat box");
+            session.setAttribute("chatBoxList"," ");
+            System.out.println("After storing data into sesssion");
+        }else{
+            System.out.println("Has opened chat boxes");
+            chatBoxList = chatBox.split("&");
+            System.out.println("Now printing the first chat box information" + chatBoxList[0]);
+            session.setAttribute("chatBoxList",chatBoxList);
+            System.out.println("After storing data into sesssion");
+        }
+
 
 
 
     }
 }
 
+
+  /* if(chatBoxListString == null){
+            System.out.println("This is the first time store chat box information into session");
+
+            if(chatBox == null){
+                System.out.println("No opened chat box");
+                session.setAttribute("chatBoxList"," ");
+            }else{
+                System.out.println("Has opened chat boxes");
+                chatBoxList = chatBox.split("&");
+                System.out.println("Now printing the first chat box information" + chatBoxList[0]);
+                session.setAttribute("chatBoxList",chatBoxList);
+            }
+
+        }else{
+            System.out.println("No first time storing chat box information into sesssion");
+
+            if(chatBox == null){
+                System.out.println("No opened chat box");
+                session.setAttribute("chatBoxList","");
+            }else{
+                System.out.println("Has opened chat boxes");
+                chatBoxList = chatBox.split("&");
+                System.out.println("Now printing the first chat box information" + chatBoxList[0]);
+                session.setAttribute("chatBoxList",chatBoxList);
+            }
+
+
+        }*/
 
 /*
 System.out.println("Into ChatBoxesPersistence");

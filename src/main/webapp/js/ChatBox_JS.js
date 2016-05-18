@@ -432,6 +432,8 @@ $(document).ready(function () {
 
     $(window).on("beforeunload",function(){
 
+
+
         var chatBoxString = [];
         var chatBoxStringWithDelimiter = "";
 
@@ -443,14 +445,13 @@ $(document).ready(function () {
             chatBoxStringWithDelimiter += chatBoxString[i]+"&";
         }
 
-        console.log("Printing out chatBosList size before doing post" + chatBoxList);
 
         $.post(
             "/persist",
             {chatBox: chatBoxStringWithDelimiter}
         )
 
-        clearTimeout(socket.pollingTimer_);
+
     });
 
 

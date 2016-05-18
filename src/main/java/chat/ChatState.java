@@ -1,9 +1,11 @@
 package chat;
 
+import java.io.Serializable;
+
 /**
  * Created by ZEXUN on 5/18/16.
  */
-public class ChatState {
+public class ChatState implements Serializable {
     private String [] chatBoxList;
     private int numberOfChatBox;
 
