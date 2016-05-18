@@ -515,13 +515,8 @@
                             </div>
                         </c:forEach>
                     </div>
-
-
                     <div class="pad-top-10"></div>
-
-
                 </div>
-
             </div>
         </div>
 </main>

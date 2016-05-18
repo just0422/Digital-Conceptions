@@ -30,7 +30,7 @@
         <div class="row">
 
             <!-- Account info and Subscription -->
-            <div class="col s8">
+            <div class="col s12">
                 <div class="pad-top-10"></div>
                 <div class="card-1 min-height">
 
@@ -211,52 +211,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Side bar -->
-            <!-- Recently Viewed -->
-            <div class="col s4">
-                <div class="card-1 min-height">
-                    <div class="card-content-1 ">
-                        <div class="flow-text medium cyan-text center">
-                            <h5>Recently Viewed</h5>
-
-                        </div>
-
-                        <!-- Divider -->
-                        <div class="pad-top-10"></div>
-                        <div class="divider-grey-3"></div>
-                        <div class="pad-top-10"></div>
-                        <div class="pad-top-10"></div>
-
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                        </div>
-
-                        <div class="pad-top-10"></div>
-
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                        </div>
-
-                        <div class="pad-top-10"></div>
-
-                        <div class="card hoverable cyan lighten-3" onclick="">
-                            <div class="card-image">
-                                <img src="image/5.jpg">
-                            </div>
-                        </div>
-
-
-                    </div>
-                </div>
-
-
-            </div>
-
         </div>
 
         <!--Start test.jsp" />
