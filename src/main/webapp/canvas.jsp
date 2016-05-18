@@ -698,13 +698,13 @@
                     <div class="input-field col s11">
                         <select name="genre" id="genre_select" required>
                             <option value="" disabled selected>Choose your genre</option>
-                            <option value="action">Action</option>
-                            <option value="comedy">Comedy</option>
-                            <option value="drama">Drama</option>
-                            <option value="horror">Horror</option>
-                            <option value="fantasy">Fantasy</option>
-                            <option value="romance">Romance</option>
-                            <option value="sport">Sports</option>
+                            <option value="Action">Action</option>
+                            <option value="Comedy">Comedy</option>
+                            <option value="Drama">Drama</option>
+                            <option value="Horror">Horror</option>
+                            <option value="Fantasy">Fantasy</option>
+                            <option value="Romance">Romance</option>
+                            <option value="Sports">Sports</option>
                         </select>
                     </div>
 
