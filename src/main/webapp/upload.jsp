@@ -254,6 +254,27 @@
                                     </a>
                                 </div>
                             </c:forEach>
+                            <c:forEach var="comic" items="${collaborations}">
+                                <c:set var="req_details" value="series_title=${comic.seriesTitle}&issue_title=${comic.issueTitle}&volume=${comic.volume}&issue=${comic.issue}&new=false"/>
+                                <div class="col s3">
+                                    <c:choose>
+                                    <c:when test="${comic.isCanvas}">
+                                    <a href="/create?${req_details}">
+                                        </c:when>
+                                        <c:otherwise>
+                                        <a href="/editimages?${req_details}">
+                                            </c:otherwise>
+                                            </c:choose>
+                                            <div class="card cyan lighten-3">
+                                                <div class="card-image">
+                                                    <img src="${comic.coverPage}" style="max-height: 200px; min-height:200px">
+                                                </div>
+                                                <div class="card-title center">${comic.seriesTitle}</div>
+                                            </div>
+                                        </a>
+                                </div>
+                            </c:forEach>
+
                         </div>
                     </div>
 

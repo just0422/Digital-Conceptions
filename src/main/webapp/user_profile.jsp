@@ -130,18 +130,20 @@
                         }
                         function read_notification(element){
 //                            console.log("read" + $(element).find("p").text());
-                            $.ajax({
-                                url: "/userprofile",
-                                type: "post",
-                                data: { notification: $(element).find("p").html()},
-                                success: function () {
-                                    $(element).removeClass("unread_notification");
-                                    decrement_badge();
-                                },
-                                error: function () {
-                                    alert("uh-oh something happened");
-                                }
-                            });
+                            if ($(element).hasClass("unread_notification")) {
+                                $.ajax({
+                                    url: "/userprofile",
+                                    type: "post",
+                                    data: {notification: $(element).find("p").html()},
+                                    success: function () {
+                                        $(element).removeClass("unread_notification");
+                                        decrement_badge();
+                                    },
+                                    error: function () {
+                                        alert("uh-oh something happened");
+                                    }
+                                });
+                            }
                         }
 
                         function delete_notification(event, element){

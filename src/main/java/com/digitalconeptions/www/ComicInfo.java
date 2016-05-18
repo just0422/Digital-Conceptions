@@ -40,10 +40,13 @@ public class ComicInfo {
     @Index int issue;
     @Index boolean isCanvas;
     List<String> json;
+    boolean locked;
+    String lockHolder;
 
     List<BlobKey> images;
     List<String> urls;
     List<String> commentList;
+    List<String> collaborators;
     @EmbedMap HashMap<String, Integer> ratings;
 
     public ComicInfo(){
@@ -63,6 +66,9 @@ public class ComicInfo {
         ratings = new HashMap<>();
         volume = 0;
         issue = 0;
+        locked = false;
+        collaborators = new ArrayList<>();
+        lockHolder = null;
     }
 
     public ComicInfo(String username,
@@ -149,6 +155,7 @@ public class ComicInfo {
     public String getComicName(){
         return seriesTitle + '|' + volume + '|' +  issueTitle + '|' + issue;
     }
+    public String getComicNameFormatted() { return seriesTitle + " Vol. " + volume + ": " + issueTitle + " #" + issue; }
     public String getCoverPage(){ return urls.get(0); }
     public String getRandomPage() { return urls.get((int)(Math.random() * urls.size())); }
     public String getPage(int page) { return urls.get(page); }
@@ -225,4 +232,18 @@ public class ComicInfo {
                 "<input type=\"hidden\" name=\"volume\" value=\"" + volume + "\">\n" +
                 "<input type=\"hidden\" name=\"issue\" value=\"" + issue + "\">\n";
     }
+
+    public boolean getLocked() { return locked; }
+    public void setLocked(boolean locked) { this.locked = locked; }
+    public void lock(String lockHolder) {
+        if (!locked) {
+            locked = true;
+            this.lockHolder = lockHolder;
+        }
+    }
+    public void unlock() { locked = false; lockHolder = null; }
+    public String getLockHolder() { return lockHolder; }
+
+    public List<String> getCollaborators() { return collaborators; }
+    public void setCollaborators(List<String> collaborators) { this.collaborators = collaborators; }
 }
