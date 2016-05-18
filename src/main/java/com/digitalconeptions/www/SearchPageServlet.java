@@ -36,31 +36,55 @@ public class SearchPageServlet extends HttpServlet {
 //        String hi = resp.encodeURL("/search/" + search);
 
         List<ComicInfo> comics_series_name = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter("seriesTitle >=", search)
-                .filter("seriesTitle <", search + "\ufffd").list();
+                .filter("seriesTitle >=", search.toUpperCase())
+                .filter("seriesTitle <", search.toUpperCase() + "\ufffd").list();
+        List<ComicInfo> comics_series_name_low = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter("seriesTitle >=", search.toLowerCase())
+                .filter("seriesTitle <", search.toLowerCase() + "\ufffd").list();
         List<ComicInfo> comics_issue_name = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter("issueTitle >=", search)
-                .filter("issueTitle <", search + "\ufffd").list();
+                .filter("issueTitle >=", search.toUpperCase())
+                .filter("issueTitle <", search.toUpperCase() + "\ufffd").list();
+        List<ComicInfo> comics_issue_name_low = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter("issueTitle >=", search.toLowerCase())
+                .filter("issueTitle <", search.toLowerCase() + "\ufffd").list();
         List<ComicInfo> comics_author_name = ObjectifyService.ofy().load().type(ComicInfo.class)
-                .filter("username >=", search)
-                .filter("username <",  search + "\ufffd").list();
+                .filter("username >=", search.toUpperCase())
+                .filter("username <",  search.toUpperCase() + "\ufffd").list();
+        List<ComicInfo> comics_author_name_low = ObjectifyService.ofy().load().type(ComicInfo.class)
+                .filter("username >=", search.toLowerCase())
+                .filter("username <",  search.toLowerCase() + "\ufffd").list();
         for(ComicInfo c : comics_issue_name)
+            if (!comics_series_name.contains(c))
+                comics_series_name.add(c);
+        for(ComicInfo c : comics_series_name_low)
+            if (!comics_series_name.contains(c))
+                comics_series_name.add(c);
+        for(ComicInfo c : comics_issue_name_low)
             if (!comics_series_name.contains(c))
                 comics_series_name.add(c);
 
         for (String word : search.split(" ")){
             List<ComicInfo> comics_series_word = ObjectifyService.ofy().load().type(ComicInfo.class)
-                    .filter("seriesTitle >=", word)
-                    .filter("seriesTitle <", word + "\ufffd").list();
+                    .filter("seriesTitle >=", word.toLowerCase())
+                    .filter("seriesTitle <", word.toLowerCase() + "\ufffd").list();
+            List<ComicInfo> comics_series_word_lower = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter("seriesTitle >=", word.toUpperCase())
+                    .filter("seriesTitle <", word.toUpperCase() + "\ufffd").list();
             List<ComicInfo> comics_issue_word = ObjectifyService.ofy().load().type(ComicInfo.class)
-                    .filter("issueTitle >=", word)
-                    .filter("issueTitle <", word + "\ufffd").list();
+                    .filter("issueTitle >=", word.toLowerCase())
+                    .filter("issueTitle <", word.toLowerCase() + "\ufffd").list();
+            List<ComicInfo> comics_issue_word_lower = ObjectifyService.ofy().load().type(ComicInfo.class)
+                    .filter("issueTitle >=", word.toUpperCase())
+                    .filter("issueTitle <", word.toUpperCase() + "\ufffd").list();
             comics_series_word.addAll(comics_issue_word);
+            comics_series_word.addAll(comics_issue_word_lower);
+            comics_series_word.addAll(comics_series_word_lower);
             for (ComicInfo c : comics_series_word){
                 if (!comics_series_name.contains(c))
                     comics_series_name.add(c);
             }
         }
+        comics_author_name.addAll(comics_author_name_low);
         for(ComicInfo c : comics_author_name)
             if (!comics_series_name.contains(c))
                 comics_series_name.add(c);
