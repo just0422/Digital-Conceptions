@@ -10,7 +10,7 @@ $(document).ready(function () {
             chatBoxList[i] = $(chatBoxList[i]);
         }
 
-        console.log("Number of chat box: " + chatBoxList.length);
+        console.log("Number of chat box when page first loads: " + chatBoxList.length);
     }else{
         var chatBoxList = [];
     }
@@ -391,6 +391,7 @@ $(document).ready(function () {
         for (var i = 0; i < chatBoxList.length; i++) {
             console.log("index: " + i + " : " + chatBoxList[i].children("input[type='hidden']").val());
         }
+        console.log("ChatBoxList size after removing: " + chatBoxList.length);
 
         updateChatBoxPosition();
 
@@ -430,7 +431,7 @@ $(document).ready(function () {
 
 
     $(window).on("beforeunload",function(){
-        clearTimeout(socket.pollingTimer_);
+
         var chatBoxString = [];
         var chatBoxStringWithDelimiter = "";
 
@@ -442,13 +443,14 @@ $(document).ready(function () {
             chatBoxStringWithDelimiter += chatBoxString[i]+"&";
         }
 
+        console.log("Printing out chatBosList size before doing post" + chatBoxList);
 
         $.post(
             "/persist",
             {chatBox: chatBoxStringWithDelimiter}
         )
 
-
+        clearTimeout(socket.pollingTimer_);
     });
 
 

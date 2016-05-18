@@ -22,24 +22,39 @@ public class ChatBoxesPersistence extends HttpServlet {
 
     public void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 
-        System.out.println("Into ChatBoxesPersistence");
-        String chatBox = request.getParameter("chatBox");
-        if(chatBox != null) {
-            System.out.println("Original chat box string");
-            System.out.println(chatBox);
-            System.out.println("Now split the string");
 
-            String[] chatBoxList = chatBox.split("&");
-            System.out.println(chatBoxList.length);
-            System.out.println(chatBoxList[chatBoxList.length - 1]);
-
-
-            HttpSession session = request.getSession();
-            session.setAttribute("chatBoxList", chatBoxList);
-            session.setAttribute("numOfChatBox",chatBoxList.length);
-        }else{
-            System.out.println("No opened chat box");
-        }
 
     }
 }
+
+
+/*
+System.out.println("Into ChatBoxesPersistence");
+        String chatBox = request.getParameter("chatBox");
+        HttpSession session = request.getSession();
+
+        if(chatBox != null) {
+        System.out.println("Original chat box string");
+        System.out.println(chatBox);
+        System.out.println("Now split the string");
+
+        String[] chatBoxList = chatBox.split("&");
+
+
+        if(chatBoxList.length != 0){
+        System.out.println("Printing chatBoxList size: " + chatBoxList.length);
+        System.out.println(chatBoxList[chatBoxList.length - 1]);
+
+
+        session.setAttribute("chatBoxList", chatBoxList);
+        session.setAttribute("numOfChatBox",chatBoxList.length);
+        }else{
+        session.setAttribute("chatBoxList", "");
+        session.setAttribute("numOfChatBox",0);
+        }
+
+        }else{
+        session.setAttribute("chatBoxList", "");
+        session.setAttribute("numOfChatBox",0);
+        System.out.println("No opened chat box");
+        }*/
