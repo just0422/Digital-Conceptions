@@ -96,10 +96,10 @@ public class Constants {
                                         " has added you as a collaborator for <a href='/upload'>" +
                                         currentComic.getComicNameFormatted() + "</a>||" +
                                         new SimpleDateFormat("E MM/dd/yyyy HH:mm:ss").format(new Date()));
-                        collaborators.add(user.getUsername());
                     }
+                    collaborators.add(user.getUsername());
+                    ObjectifyService.ofy().save().entity(user).now();
                 }
-                ObjectifyService.ofy().save().entity(user).now();
             }
         }
         currentComic.setCollaborators(collaborators);

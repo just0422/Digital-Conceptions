@@ -435,18 +435,9 @@
 
                                         }
 
-                                        function draw_stop(){
-                                            if (!canvas.isDrawingMode)
-                                                $('#drawing-mode').html('<i class="fa fa-stop-circle-o" aria-hidden="true"></i>');
-                                            else
-                                                $('#drawing-mode').html('<i class="fa fa-pencil" aria-hidden="true"></i>');
-                                        }
-
-                                        $(document).ready(draw_stop);
                                         $(document).ready(check_locks);
-                                        $('#drawing-mode').click(draw_stop);
-
                                     </script>
+                                    <i class="fa fa-pencil" aria-hidden="true"></i>
                                     <%--{[ getFreeDrawingMode() ? 'Exit' : 'Enter free drawing mode'--%>
                                     <%--]}--%>
                                 </button>

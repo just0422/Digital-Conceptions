@@ -213,20 +213,6 @@
                 </div>
 
 
-                <!-- Pagination -->
-
-                <ul class="pagination center">
-                    <li id="previous" class="disabled">
-                        <a href="#!"><i class="material-icons">chevron_left</i></a>
-                    </li>
-                    <div id="pages" style="display:inline;">
-                        <li class="active"><a href="#!">1</a></li>
-                        <li class="waves-effect"><a href="#!">2</a></li>
-                    </div>
-                    <li id="next" class="waves-effect">
-                        <a href="#!"><i class="material-icons">chevron_right</i></a>
-                    </li>
-                </ul>
                 <div class="pad-top-10"></div>
 
             </div>
