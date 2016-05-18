@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ZEXUN
@@ -45,7 +46,6 @@
 </div>--%>
 
 
-
 <%--<section class="module" id="chat_box" style="display: none;">
 
     <header class="top-bar">
@@ -85,8 +85,11 @@
 </section>--%>
 
 
-
-
 <div id="forChatBox">
-
+    <c:if test="${chatBoxList != null}">
+        <c:forEach var="each" items="${chatBoxList}">
+            ${each}
+        </c:forEach>
+    </c:if>
+    <input type="hidden" id="numOfChatBox" name="numOfChatBox" value="${numOfChatBox}">
 </div>

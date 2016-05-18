@@ -2,8 +2,21 @@
  * Created by ZEXUN on 4/27/16.
  */
 $(document).ready(function () {
+
+    if($("#currentNumOfChatBox").val() != 0){
+        var chatBoxList = jQuery.makeArray($("section"));
+
+        for(var i = 0; i<chatBoxList.length; i++){
+            chatBoxList[i] = $(chatBoxList[i]);
+        }
+
+        console.log("Number of chat box: " + chatBoxList.length);
+    }else{
+        var chatBoxList = [];
+    }
+
     var userName;
-    var chatBoxList = [];
+
     var cssOffSet = 320;
     var pixel = "px";
     var rightOffSet = 20;
@@ -414,6 +427,29 @@ $(document).ready(function () {
     });
 
 
+
+
+    $(window).on("beforeunload",function(){
+        clearTimeout(socket.pollingTimer_);
+        var chatBoxString = [];
+        var chatBoxStringWithDelimiter = "";
+
+        for(var i = 0; i < chatBoxList.length; i ++){
+            chatBoxString[i] = chatBoxList[i].wrap("<div></div>").parent().html();
+        }
+
+        for(var i = 0; i <chatBoxString.length; i ++){
+            chatBoxStringWithDelimiter += chatBoxString[i]+"&";
+        }
+
+
+        $.post(
+            "/persist",
+            {chatBox: chatBoxStringWithDelimiter}
+        )
+
+
+    });
 
 
 
