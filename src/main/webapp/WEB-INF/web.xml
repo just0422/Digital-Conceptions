@@ -147,5 +147,14 @@
         <url-pattern>/_ah/channel/disconnected/</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>testBean</servlet-name>
+        <servlet-class>chat.ChatBoxesPersistence</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>testBean</servlet-name>
+        <url-pattern>/persist</url-pattern>
+    </servlet-mapping>
+
 
 </web-app>
