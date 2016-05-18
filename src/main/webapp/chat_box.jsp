@@ -91,5 +91,12 @@
             ${each}
         </c:forEach>
     </c:if>
-    <input type="hidden" id="numOfChatBox" name="numOfChatBox" value="${numOfChatBox}">
+    <c:choose>
+        <c:when test="${onOff == null}">
+            <input type="hidden" id="onOff" name="onOff" value="off">
+        </c:when>
+        <c:otherwise>
+            <input type="hidden" id="onOff" name="onOff" value="${onOff}">
+        </c:otherwise>
+    </c:choose>
 </div>

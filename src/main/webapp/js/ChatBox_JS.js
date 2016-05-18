@@ -4,6 +4,45 @@
 $(document).ready(function () {
 
 
+    function buildChannel(){
+        console.log($("#chatOnOff").is(":checked"));
+        var self_name = $("#userEmalAsChatName").val();
+        userName = self_name;
+        $("#open_new_chat").show();
+
+
+        if($("#onOff").val() == "on"){
+            $("#onOff").val("off");
+        }else{
+            $("#onOff").val("on");
+        }
+
+
+        console.log("The chat is now " + $("#onOff").val());
+
+        if ($("#chatOnOff").is(":checked") == true) {
+
+            $.post("/buildchannel",
+                {
+                    id: self_name
+                },
+                function (data, status) {
+                    channelKey = data;
+                    console.log("Channel key: " + channelKey);
+                    channel = new goog.appengine.Channel(data);
+                    socket = channel.open();
+                    socket.onopen = onOpened;
+                    socket.onmessage = onMessage;
+                    socket.onclose = onClosed;
+                }
+            )
+        } else {
+            socket.close();
+            $("#open_new_chat").hide();
+        }
+    }
+
+
     var chatBoxList = jQuery.makeArray($("section"));
 
     for (var i = 0; i < chatBoxList.length; i++) {
@@ -394,35 +433,13 @@ $(document).ready(function () {
 
 
     $("#chatOnOff").click(function () {
-        console.log($("#chatOnOff").is(":checked"));
-        var self_name = $("#userEmalAsChatName").val();
-        userName = self_name;
-        $("#open_new_chat").show();
-
-        if ($("#chatOnOff").is(":checked") == true) {
-
-            $.post("/buildchannel",
-                {
-                    id: self_name
-                },
-                function (data, status) {
-                    channelKey = data;
-                    console.log("Channel key: " + channelKey);
-                    channel = new goog.appengine.Channel(data);
-                    socket = channel.open();
-                    socket.onopen = onOpened;
-                    socket.onmessage = onMessage;
-                    socket.onclose = onClosed;
-                }
-            )
-        } else {
-            socket.close();
-            $("#open_new_chat").hide();
-        }
+        buildChannel();
     });
 
 
     $(window).on("beforeunload", function () {
+
+        var onOff = $("#onOff").val();
 
 
         var chatBoxString = [];
@@ -439,11 +456,46 @@ $(document).ready(function () {
 
         $.post(
             "/persist",
-            {chatBox: chatBoxStringWithDelimiter}
+            {
+                chatBox: chatBoxStringWithDelimiter,
+                onOff: onOff
+            }
         )
 
 
     });
+
+
+
+    (function(){
+        console.log("The channel is now " + $("#onOff").val());
+
+
+        if($("#onOff").val() == "on"){
+            $("#chatOnOff").prop("checked","checked");
+
+
+            var self_name = $("#userEmalAsChatName").val();
+            userName = self_name;
+            $("#open_new_chat").show();
+
+            $.post("/buildchannel",
+                {
+                    id: self_name
+                },
+                function (data, status) {
+                    channelKey = data;
+                    console.log("Channel key: " + channelKey);
+                    channel = new goog.appengine.Channel(data);
+                    socket = channel.open();
+                    socket.onopen = onOpened;
+                    socket.onmessage = onMessage;
+                    socket.onclose = onClosed;
+                }
+            )
+
+        }
+    })();
 
 
 });
