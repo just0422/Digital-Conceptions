@@ -65,10 +65,8 @@ public class UserProfileServlet extends HttpServlet {
         UserInfo currentUser = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
 
         if (delete_notification != null){
-//            if (un_read.equalsIgnoreCase("read"))
-                currentUser.removeReadNotification(delete_notification);
-//            if (un_read.equalsIgnoreCase("unread"))
-                currentUser.removeUnreadNotification(delete_notification);
+            currentUser.removeReadNotification(delete_notification);
+            currentUser.removeUnreadNotification(delete_notification);
         }
 
         if (notification != null) {

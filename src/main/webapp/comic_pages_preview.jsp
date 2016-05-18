@@ -82,7 +82,7 @@
                                 remove : "yes"
                             }
                         )
-                                    window.location.href = "/upload"
+                        window.location.href = "/upload"
                     }
                 </script>
 

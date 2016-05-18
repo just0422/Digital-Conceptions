@@ -85,7 +85,6 @@
 
                     <!-- Comic Cover -->
                     <div class="col s3">
-
                         <div class="card hoverable cyan lighten-3" onclick="">
                             <div class="card-image">
                                 <img id="cover_image" src="image/9.jpg" style="max-height: 200px; min-height:200px">
@@ -278,10 +277,7 @@
 
         <!-- Start of Add button -->
         <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large red waves-effect tooltipped"
-               <%--data-position="top"--%>
-               <%--data-delay="50" data-tooltip="Create new comic">--%>
-                href="/create?new=true">
+            <a class="btn-floating btn-large red waves-effect tooltipped" href="/create?new=true">
                 <i class="large material-icons">add</i>
             </a>
         </div>

@@ -30,7 +30,9 @@ import java.util.Map;
  */
 public class SaveCanvasServlet extends HttpServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println(getClass().getName());
         String isNew = req.getParameter("new");
+        System.out.println(isNew);
         ComicInfo currentComic;
         if (!Boolean.parseBoolean(isNew)) {
             String seriesTitle = req.getParameter("series_title");
@@ -59,7 +61,7 @@ public class SaveCanvasServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(getClass().getName());
+        System.out.println(getClass().getName() + " POST");
         BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();
         Map<String, List<BlobKey>> blobs = blobstoreService.getUploads(req);
         ImagesService imagesService = ImagesServiceFactory.getImagesService();
@@ -92,8 +94,8 @@ public class SaveCanvasServlet extends HttpServlet {
         Query<ComicInfo> query = ObjectifyService.ofy().load().type(ComicInfo.class)
                 .filter(Constants.seriesTitle, seriesTitle)
                 .filter(Constants.issueTitle, issueTitle)
-                .filter(Constants.volume, volume)
-                .filter(Constants.issue, issue);
+                .filter(Constants.volume, Integer.parseInt(volume))
+                .filter(Constants.issue, Integer.parseInt(issue));
 
 
         if (req.getParameter("remove") != null){
@@ -130,6 +132,8 @@ public class SaveCanvasServlet extends HttpServlet {
                 currentComic.setIssue(nissue);
                 currentComic.setGenre(ngenre);
                 currentComic.setDescription(ndescription);
+                currentComic.setJson(JSON);
+                currentComic.setUrls(urls);
                 ObjectifyService.ofy().save().entity(currentComic).now();
             }
             resp.getWriter().write(nseriesTitle + "," + nissueTitle + "," + nvolume + "," + nissue);

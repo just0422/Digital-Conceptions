@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.digitalconeptions.www.ComicInfo" %><%--
   Created by IntelliJ IDEA.
   User: ZEXUN
   Date: 4/5/16
@@ -68,7 +68,7 @@
                         <a id="my_comic_button" class="waves-effect waves-light btn black lighten-2 left" href="/upload">Back
                             to My Comics</a>
                     </div>
-                    <c:if test="${current_comic 1= null}">
+                    <c:if test="${current_comic != null}">
                         <div class="col s6 right-align" style="padding-top: 5px">
                             <a class="waves-effect waves-light btn red lighten-2 right modal-trigger" href="#modal1">Delete Comic</a>
                         </div>
@@ -128,14 +128,6 @@
                                             <%--src="${current_comic.urls[num]}"/>--%>
 
                                             <div id="json_${num}" style="display: none;">${json}</div>
-
-                                            <script>
-                                                var canvas = new fabric.Canvas('dummy')
-                                                canvas.loadFromJSON(${json}, canvas.renderAll.bind(canvas));
-                                                $('#img_' + ${num}).attr('src', canvas.toDataURL("image/png"))
-
-                                                $('#dummy').remove();
-                                            </script>
                                         </li>
                                         <c:set var="num" value="${num + 1}"/>
                                     </c:forEach>
@@ -144,19 +136,17 @@
                         </ul>
                     </div>
 
-                    <ul class="pages"></ul>
-
                     <div class="controls center">
-                        <button class="btn toStart"><i class="fa fa-fast-backward" aria-hidden="true"></i></button>
-                        <button class="btn prevPage"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
-                        <button class="btn prev"><i class="fa fa-caret-left fa-2x" aria-hidden="true"></i></button>
+                        <button class="btn toStart tooltipped" data-position="bottom" data-delay="50" data-tooltip="First Pages"><i class="fa fa-fast-backward" aria-hidden="true"></i></button>
+                        <button class="btn prevPage tooltipped" data-position="bottom" data-delay="50" data-tooltip="Previous Section"><i class="fa fa-step-backward" aria-hidden="true"></i></button>
+                        <button class="btn prev tooltipped" data-position="bottom" data-delay="50" data-tooltip="Previous Pages"><i class="fa fa-caret-left fa-2x" aria-hidden="true"></i></button>
 
-                        <button class="btn remove"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                        <button class="btn add"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class="btn remove tooltipped" data-position="bottom" data-delay="50" data-tooltip="Remove Page"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <button class="btn add tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add Page"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
-                        <button class="btn next"><i class="fa fa-caret-right fa-2x" aria-hidden="true"></i></button>
-                        <button class="btn nextPage"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
-                        <button class="btn toEnd"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>
+                        <button class="btn next tooltipped" data-position="bottom" data-delay="50" data-tooltip="Next Page"><i class="fa fa-caret-right fa-2x" aria-hidden="true"></i></button>
+                        <button class="btn nextPagetooltipped" data-position="bottom" data-delay="50" data-tooltip="Next Section"><i class="fa fa-step-forward" aria-hidden="true"></i></button>
+                        <button class="btn toEnd tooltipped" data-position="bottom" data-delay="50" data-tooltip="Last Pages"><i class="fa fa-fast-forward" aria-hidden="true"></i></button>
                     </div>
                 </div>
                 <div style="position:relative;width:704px;float:left;" id="canvas-wrapper">
@@ -303,26 +293,25 @@
                             <p>Add <strong>shapes</strong> to canvas:</p>
                             <div class="object-controls" object-buttons-enabled="getSelected()">
                                 <p>
-                                    <button class="btn shape" id="shape100">
+                                    <button class="btn shape tooltipped" data-position="bottom" data-delay="50" data-tooltip="Speech Bubble" id="shape100">
                                         <i class="fa fa-comment-o" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn rect" ng-click="addRect()">
+                                    <button type="button" class="btn rect tooltipped" data-position="bottom" data-delay="50" data-tooltip="Square" ng-click="addRect()">
                                         <i class="fa fa-stop" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn circle" ng-click="addCircle()">
+                                    <button type="button" class="btn circle tooltipped" data-position="bottom" data-delay="50" data-tooltip="Circle" ng-click="addCircle()">
                                         <i class="fa fa-circle" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn triangle" ng-click="addTriangle()">
+                                    <button type="button" class="btn triangle tooltipped" data-position="bottom" data-delay="50" data-tooltip="Triangle" ng-click="addTriangle()">
                                         <i class="fa fa-caret-up" aria-hidden="true"></i>
                                     </button>
-                                    <button type="button" class="btn line" ng-click="addLine()">\</button>
-                                    <button type="button" class="btn polygon" ng-click="addPolygon()">
-                                        Polygon
+                                    <button type="button" class="btn line tooltipped" data-position="bottom" data-delay="50" data-tooltip="Line" ng-click="addLine()">\</button>
+                                    <button type="button" class="btn polygon tooltipped" data-position="bottom" data-delay="50" data-tooltip="Polygon" ng-click="addPolygon()">
                                     </button>
-                                    <button class="btn" ng-click="addText()">
+                                    <button class="btn tooltipped" data-position="bottom" data-delay="50" data-tooltip="Add Text" ng-click="addText()">
                                         <i class="fa fa-font" aria-hidden="true"></i>
                                     </button>
-                                    <button class="btn btn-object-action" id="remove-selected"ng-click="removeSelected()">
+                                    <button class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Delete" id="remove-selected"ng-click="removeSelected()">
                                         <i class="fa fa-trash" aria-hidden="true"></i>
                                     </button>
                                 </p>
@@ -332,31 +321,31 @@
                                 <%-- Positional Locks --%>
                                 <div style="margin-top:10px;">
                                     <button id="horizontal-lock"
-                                            class="btn btn-lock btn-object-action lock-buttons"
+                                            class="btn btn-lock btn-object-action lock-buttons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Move X Lock"
                                             ng-click="setHorizontalLock(!getHorizontalLock())"
                                             ng-class="{'btn-inverse': getHorizontalLock()}"
                                             title="Lock horizontal movement">
                                     </button>
                                     <button id="vertical-lock"
-                                            class="btn btn-lock btn-object-action lock-buttons"
+                                            class="btn btn-lock btn-object-action lock-buttons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Move Y Lock"
                                             ng-click="setVerticalLock(!getVerticalLock());"
                                             ng-class="{'btn-inverse': getVerticalLock()}"
                                             title="Lock vertical movement">
                                     </button>
                                     <button id="scale-x-lock" onclick="check_locks()"
-                                            class="btn btn-lock btn-object-action lock-buttons"
+                                            class="btn btn-lock btn-object-action lock-buttons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Scale X Lock"
                                             ng-click="setScaleLockX(!getScaleLockX())"
                                             ng-class="{'btn-inverse': getScaleLockX()}"
                                             title="Lock horizontal scaling">
                                     </button>
                                     <button id="scale-y-lock" onclick="check_locks()"
-                                            class="btn btn-lock btn-object-action lock-buttons"
+                                            class="btn btn-lock btn-object-action lock-buttons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Scale Y Lock"
                                             ng-click="setScaleLockY(!getScaleLockY())"
                                             ng-class="{'btn-inverse': getScaleLockY()}"
                                             title="Lock vertical scaling">
                                     </button>
                                     <button id="rotate-lock" onclick="check_locks()"
-                                            class="btn btn-lock btn-object-action lock-buttons"
+                                            class="btn btn-lock btn-object-action lock-buttons tooltipped" data-position="bottom" data-delay="50" data-tooltip="Rotation Lock"
                                             ng-click="setRotationLock(!getRotationLock())"
                                             ng-class="{'btn-inverse': getRotationLock()}"
                                             title="Lock Rotation">
@@ -365,29 +354,29 @@
 
                                 <%-- Backwards/Forwards --%>
                                 <div style="margin-top:10px;">
-                                    <button id="send-to-back" class="btn btn-object-action"
+                                    <button id="send-to-back" class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send to the Back"
                                             ng-click="sendToBack()" title="Send to back"><img src="https://git.io/vrcSg"/>
                                     </button>
-                                    <button id="send-backwards" class="btn btn-object-action"
+                                    <button id="send-backwards" class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Send Backward"
                                             ng-click="sendBackwards()" title="Send Backwards"><img src="https://git.io/vrcS9"/>
                                     </button>
-                                    <button id="bring-forward" class="btn btn-object-action"
+                                    <button id="bring-forward" class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bring Forward"
                                             ng-click="bringForward()" title="Bring Forwards"><img src="https://git.io/vrcSj"/>
                                     </button>
-                                    <button id="bring-to-front" class="btn btn-object-action"
+                                    <button id="bring-to-front" class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Bring to the Front"
                                             ng-click="bringToFront()" title="Bring to front"><img src="https://git.io/vrc93"/>
                                     </button>
                                 </div>
 
                                 <div style="margin-top:10px;">
-                                    <button id="gradientify" class="btn btn-object-action" ng-click="gradientify()" title="Gradient"></button>
-                                    <button id="shadowify" class="btn btn-object-action" ng-click="shadowify()" title="Shadow">
+                                    <button id="gradientify" class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Gradient" ng-click="gradientify()" title="Gradient"></button>
+                                    <button id="shadowify" class="btn btn-object-action tooltipped" data-position="bottom" data-delay="50" data-tooltip="Shadow" ng-click="shadowify()" title="Shadow">
                                         <i class="fa fa-square" aria-hidden="true" id="shadow_button"></i>
                                     </button>
                                 </div>
                             </div>
                             <div style="margin-top:10px;" id="drawing-mode-wrapper">
-                                <button id="drawing-mode" class="btn btn-info"
+                                <button id="drawing-modetooltipped" data-position="bottom" data-delay="50" data-tooltip="Free Drawing Mode" class="btn btn-info"
                                         ng-click="setFreeDrawingMode(!getFreeDrawingMode())"
                                         ng-class="{'btn-inverse': getFreeDrawingMode()}">
                                     <script>
@@ -475,7 +464,7 @@
                                            bind-value-to="drawingLineShadowWidth">
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-info" onclick="save()">
+                            <button type="button" class="btn btn-info tooltipped" data-position="bottom" data-delay="50" data-tooltip="Make sure you've filled out the info below" onclick="save()">
                                 Save
                             </button>
 
@@ -506,7 +495,6 @@
                                 for(var j = 0; j < blobBin.length; j++) {
                                     array.push(blobBin.charCodeAt(j));
                                 }
-
                                 formdata.append("image_" + i, new Blob([new Uint8Array(array)], {type: 'image/png'}));
                                 formdata.append("json_" + i, $('#json_' + i).html());
                             }
@@ -531,8 +519,6 @@
                         formdata.append("new_issue", $("#issue").val());
                         formdata.append("new_genre", $("#genre_select").val());
                         formdata.append("new_description", $("#description").val());
-
-                        var options
 
                         $.ajax({
                             url: "${create}",
@@ -733,16 +719,22 @@
             </div>
 
         </div>
-
-        <!-- Start of Add button -->
-        <div id="new_comic_button" class="fixed-action-btn" style="bottom: 45px; right: 24px;">
-            <a class="btn-floating btn-large red waves-effect tooltipped" data-position="top"
-               data-delay="50" data-tooltip="Create new comic">
-                <i class="large material-icons">add</i>
-            </a>
-        </div>
-        <!-- End of Add button -->
-
+        <c:if test="${current_comic != null}">
+            <c:set var="num" value="0"/>
+            <c:forEach var="json" items="${current_comic.json}" varStatus="loop" begin="0">
+                <script>
+    //                                                var canvas = new fabric.Canvas('dummy')
+                    canvas.clear()
+                    canvas.loadFromJSON(${json}, canvas.renderAll.bind(canvas));
+    //                canvas.setHeight(700);
+    //                canvas.setWidth(600);
+                    $('#img_' + ${num}).attr('src', canvas.toDataURL("image/png"));
+    //                $('#dummy').remove();
+                </script>
+                <c:set var="num" value="${num + 1}"/>
+            </c:forEach>
+            <script> canvas.loadFromJSON($('#json_0').html(), canvas.renderAll.bind(canvas)); </script>
+        </c:if>
     </main>
 
     <jsp:include page="footer.jsp"/>
