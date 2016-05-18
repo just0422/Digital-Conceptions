@@ -163,7 +163,8 @@
                         </div>
                     </div>
 
-                    <canvas id="canvas" width="700" height="600" onchange="updatePage()"></canvas>
+                    <canvas id="canvas" style="margin-left:auto;margin-right:auto;"
+                            width="900" height="600" onchange="updatePage()"></canvas>
 
 
                     <div id="color-opacity-controls" ng-show="canvas.getActiveObject()">
@@ -477,7 +478,7 @@
                     var kitchensink = {};
                     canvas = new fabric.Canvas('canvas');
                     canvas.on('object:selected', check_locks);
-
+//                    canvas.setWidth($(".container").width());
 
                     function save(){
                         updateCanvas(current_page_edit);
