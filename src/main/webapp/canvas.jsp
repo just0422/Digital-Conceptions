@@ -40,7 +40,7 @@
     <script type="text/javascript" src="js/modernizr.js"></script>
     <script type="text/javascript" src="js/horizontal.js"></script>
 
-    <title>Home - Digital Conceptions</title>
+    <title>Canvas - Digital Conceptions</title>
     <link rel="icon" href="http://rocketdock.com/images/screenshots/CBR.png">
 
 </head>
