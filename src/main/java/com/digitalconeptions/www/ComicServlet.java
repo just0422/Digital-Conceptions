@@ -50,36 +50,41 @@ public class ComicServlet extends HttpServlet {
 
         HttpSession session = req.getSession();
 
-        if (session.getAttribute("user") != null) {
-            User user = (User) session.getAttribute("user");
-            ServletContext sc = getServletContext();
-            String nextPage = "/comic_cover.jsp";
 
-            if (issueTitle == null) {
-                nextPage = "/series.jsp";
-                req.setAttribute("series", series);
-            } else {
-                int volume = Integer.parseInt(req.getParameter(Constants.volume));
-                int issue = Integer.parseInt(req.getParameter(Constants.issue));
+        String nextPage = "/comic_cover.jsp";
 
-                ComicInfo firstComic = sTitle.first().now();
-                ComicInfo currentComic
-                        = sTitle.filter(Constants.issueTitle, issueTitle)
-                        .filter(Constants.volume, volume)
-                        .filter(Constants.issue, issue)
-                        .first().now();
+        if (issueTitle == null) {
+            nextPage = "/series.jsp";
+            req.setAttribute("series", series);
+        } else {
+            int volume = Integer.parseInt(req.getParameter(Constants.volume));
+            int issue = Integer.parseInt(req.getParameter(Constants.issue));
 
-                req.setAttribute("all", series);
+            ComicInfo firstComic = sTitle.first().now();
+            ComicInfo currentComic
+                    = sTitle.filter(Constants.issueTitle, issueTitle)
+                    .filter(Constants.volume, volume)
+                    .filter(Constants.issue, issue)
+                    .first().now();
+
+            req.setAttribute("all", series);
+            req.setAttribute("current_comic", currentComic);
+
+            if (session.getAttribute("user") != null) {
+                User user = (User) session.getAttribute("user");
                 UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
 
                 req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.getSeriesTitle()) ? "unsubscribe" : "subscribe");
-                req.setAttribute("current_comic", currentComic);
+                req.setAttribute("user", user);
             }
 
-            RequestDispatcher rd = sc.getRequestDispatcher(nextPage);
-            req.setAttribute("user", user);
-            rd.forward(req, resp);
         }
+
+
+        ServletContext sc = getServletContext();
+
+        RequestDispatcher rd = sc.getRequestDispatcher(nextPage);
+        rd.forward(req, resp);
     }
 
     //  Finished reading (save chapter) // FOR USER
