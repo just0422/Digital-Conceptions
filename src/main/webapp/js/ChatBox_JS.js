@@ -456,6 +456,42 @@ $(document).ready(function () {
     });
 
 
+    $("#forChatBox").on("keypress","input[placeholder='Type a message']", function (e) {
+        if(e.keyCode == "13"){
+            var receiver_name = $(this).closest("section").children("header").children("div").children("h1").html();
+            console.log("Message sends to" + receiver_name);
+            var message_body = $(this).closest("div").children("input[type=text]").val();
+            console.log("Message body: " + message_body);
+            var self_name = $(this).closest("section").children("ol").children("div").children("div").children("input:nth-child(3)").val();
+            console.log("My email address: " + self_name);
+            $(this).closest("div").children("input[type=text]").val("");
+
+            var fullMessage = message_body + "&" + self_name + "&" + receiver_name;
+            $.post("" +
+                "/generatemessage",
+                {
+                    reciption: receiver_name,
+                    message: fullMessage,
+                    selfId: self_name
+                }
+            )
+
+            var $className = "self";
+
+            var $messageNode =
+                $("<li class=" + $className + ">" +
+                    "<div class='avatar'><img src='image/me.jpg' /></div>" +
+                    "<div class='messages'><p id='message_content'>" + message_body + "</p></div>" +
+                    "</li>");
+
+            $(this).closest("section").children("ol").append($messageNode);
+            var height = $(this).closest("section").children("ol").prop("scrollHeight");
+            $(this).closest("section").children("ol").scrollTop(height);
+        }
+
+    });
+
+
     $("#chatOnOff").click(function () {
         buildChannel();
     });
@@ -525,6 +561,8 @@ $(document).ready(function () {
 
         }
     })();
+
+
 
 
 });
