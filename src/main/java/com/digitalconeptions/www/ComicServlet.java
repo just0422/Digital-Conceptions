@@ -49,35 +49,37 @@ public class ComicServlet extends HttpServlet {
         List<ComicInfo> series = sTitle.list();
 
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-        ServletContext sc = getServletContext();
-        String nextPage = "/comic_cover.jsp";
 
-        if (issueTitle == null){
-            nextPage = "/series.jsp";
-            req.setAttribute("series", series);
+        if (session.getAttribute("user") != null) {
+            User user = (User) session.getAttribute("user");
+            ServletContext sc = getServletContext();
+            String nextPage = "/comic_cover.jsp";
+
+            if (issueTitle == null) {
+                nextPage = "/series.jsp";
+                req.setAttribute("series", series);
+            } else {
+                int volume = Integer.parseInt(req.getParameter(Constants.volume));
+                int issue = Integer.parseInt(req.getParameter(Constants.issue));
+
+                ComicInfo firstComic = sTitle.first().now();
+                ComicInfo currentComic
+                        = sTitle.filter(Constants.issueTitle, issueTitle)
+                        .filter(Constants.volume, volume)
+                        .filter(Constants.issue, issue)
+                        .first().now();
+
+                req.setAttribute("all", series);
+                UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
+
+                req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.getSeriesTitle()) ? "unsubscribe" : "subscribe");
+                req.setAttribute("current_comic", currentComic);
+            }
+
+            RequestDispatcher rd = sc.getRequestDispatcher(nextPage);
+            req.setAttribute("user", user);
+            rd.forward(req, resp);
         }
-        else {
-            int volume = Integer.parseInt(req.getParameter(Constants.volume));
-            int issue = Integer.parseInt(req.getParameter(Constants.issue));
-
-            ComicInfo firstComic = sTitle.first().now();
-            ComicInfo currentComic
-                    = sTitle.filter(Constants.issueTitle, issueTitle)
-                    .filter(Constants.volume, volume)
-                    .filter(Constants.issue, issue)
-                    .first().now();
-
-            req.setAttribute("all", series);
-            UserInfo userinfo = ObjectifyService.ofy().load().type(UserInfo.class).filter("username", user.getNickname()).first().now();
-
-            req.setAttribute("subscription", userinfo.subscriptions.contains(firstComic.getSeriesTitle()) ? "unsubscribe" : "subscribe");
-            req.setAttribute("current_comic", currentComic);
-        }
-
-        RequestDispatcher rd = sc.getRequestDispatcher(nextPage);
-        req.setAttribute("user", user);
-        rd.forward(req, resp);
     }
 
     //  Finished reading (save chapter) // FOR USER
