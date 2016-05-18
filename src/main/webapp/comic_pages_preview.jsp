@@ -212,7 +212,7 @@
                             },
                             function(data){
                                 console.log("Response: " + data);
-                                window.document.href = "/upload";
+                                window.location.href = "/upload";
                         });
                     }
 
